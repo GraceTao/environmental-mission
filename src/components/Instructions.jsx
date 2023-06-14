@@ -45,7 +45,7 @@ function Instructions({ name, title, content, position }) {
       position: "absolute",
       left: position.left,
       top: position.top,
-      backgroundColor: "#0277bd",
+      backgroundColor: "darkblue",
       "&:hover": { backgroundColor: "#0277bd"},
       width: "12vw",
       height: "7vh",

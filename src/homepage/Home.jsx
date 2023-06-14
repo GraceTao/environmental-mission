@@ -1,9 +1,11 @@
 import {
    Alert,
+   AppBar,
    Box,
    Button,
    Grid,
    IconButton,
+   Toolbar,
    Typography,
    createTheme,
 } from "@mui/material";
@@ -16,6 +18,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CollectionsIcon from "@mui/icons-material/Collections";
+import CoPresentIcon from '@mui/icons-material/CoPresent';
 import { Link } from "react-router-dom";
 
 function Notification() {
@@ -25,7 +28,11 @@ function Notification() {
 
    return (
       <div
-         style={{ display: "flex", justifyContent: "center", marginTop: "0%" }}
+         style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "0%"
+         }}
       >
          {!open && (
             <Button
@@ -63,6 +70,22 @@ function Notification() {
    );
 }
 
+// function TopBar({items}) {
+//    return (
+//    <Box sx={{ flexGrow: 1 }}>
+//       <AppBar position="static">
+//          <Toolbar style={{margin: 5}}>
+//             <Instructions name={instructions} title={mission} content={purpose} position={{ left: "2%", top: "3%" }}></Instructions>,
+//          <Notification></Notification>
+//             {/* {items.map((item) => (
+//                item
+//             ))} */}
+//          </Toolbar>
+//       </AppBar>
+//    </Box>
+//    )
+// }
+
 function Home() {
    const purpose = (
       <Typography sx={{ fontSize: "1.2rem" }}>
@@ -88,68 +111,78 @@ function Home() {
       </Typography>
    );
 
+
    const apps = [
       {
-         icon: <PhoneIcon sx={{ color: "green", fontSize: "48px" }} />,
+         icon: PhoneIcon,
          path: "/",
          color: "green",
       },
       {
-         icon: <ContactsIcon sx={{ color: "blue", fontSize: "48px" }} />,
+         icon: ContactsIcon,
          path: "/",
          color: "blue",
       },
       {
-         icon: <CalendarMonthIcon sx={{ color: "red", fontSize: "48px" }} />,
-         path: "/task1",
+         icon: CalendarMonthIcon,
+         path: "/wqi",
          color: "red",
       },
       {
-         icon: <AssignmentIcon sx={{ color: "purple", fontSize: "48px" }} />,
-         path: "/task1",
+         icon: AssignmentIcon,
+         path: "/",
          color: "purple",
       },
       {
-         icon: <MapIcon sx={{ color: "orange", fontSize: "48px" }} />,
+         icon: MapIcon,
+         path: "/",
+         color: "brown",
+      },
+      {
+         icon: MailIcon,
+         path: "/",
+         color: "darkred",
+      },
+      {
+         icon: CollectionsIcon,
          path: "/",
          color: "orange",
       },
       {
-         icon: <MailIcon sx={{ color: "black", fontSize: "48px" }} />,
-         path: "/task1",
+         icon: CoPresentIcon,
+         path: "/",
          color: "black",
       },
-      {
-         icon: <CollectionsIcon sx={{ color: "brown", fontSize: "48px" }} />,
-         path: "/task1",
-         color: "brown",
-      },
    ];
+
+   // const topBarItems = 
+   //    [
+   //       <Instructions name={instructions} title={mission} content={purpose} position={{ left: "2%", top: "3%" }}></Instructions>,
+   //       <Notification></Notification>
+   //    ]
 
    return (
       <>
          <Box
             sx={{
                background: "linear-gradient(to bottom, #0093E5, #A8FEDD)",
-               height: "100vh"
+               height: "100vh",
+               overflow: "auto",
             }}
          >
             <div>
-               <Instructions
-                  name={instructions}
-                  title={mission}
-                  content={purpose}
-                  position={{ left: "2%", top: "3%" }}
-               ></Instructions>
+               <Instructions name={instructions} title={mission} content={purpose} position={{ left: "2%", top: "15px" }}></Instructions>
                <Notification></Notification>
             </div>
 
             <div>
                <Grid
                   container
-                  rowSpacing={{ xs: 5, sm: 7, md: 15 }}
-                  columnSpacing={{ xs: 12, sm: 20, md: 30 }}
+                  mt="50px"
+                  rowSpacing={{ xs: 4, sm: 5, md: 12, lg: 18 }}
+                  columnSpacing={{ xs: 6, sm: 15, md: 20, lg: 25 }}
                   justifyContent="center"
+                  alignItems="center"
                >
                   {apps.map((app) => (
                      <Grid item mt="5%">
@@ -159,10 +192,23 @@ function Home() {
                            sx={{
                               border: "solid",
                               borderColor: app.color,
-                              borderRadius: "40%",
+                              borderRadius: "45%",
+                              "&:hover": { backgroundColor: "lightgray"},
+                              width: {
+                                 xs: "85px",
+                                 sm: "90px",
+                                 md: "100px",
+                                 lg: "100px",
+                              },
+                              height: {
+                                 xs: "85px",
+                                 sm: "90px",
+                                 md: "100px",
+                                 lg: "100px",
+                              },
                            }}
                         >
-                           {app.icon}
+                           <app.icon sx={{fontSize: "60px", color: app.color}}></app.icon>
                         </IconButton>
                      </Grid>
                   ))}
