@@ -2,7 +2,6 @@ import {
    Alert,
    Box,
    Button,
-   Collapse,
    Grid,
    IconButton,
    Typography,
@@ -11,6 +10,13 @@ import {
 import React, { useState } from "react";
 import Instructions from "../components/Instructions";
 import PhoneIcon from "@mui/icons-material/Phone";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import MapIcon from "@mui/icons-material/Map";
+import MailIcon from "@mui/icons-material/Mail";
+import ContactsIcon from "@mui/icons-material/Contacts";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import CollectionsIcon from "@mui/icons-material/Collections";
+import { Link } from "react-router-dom";
 
 function Notification() {
    const [open, setOpen] = useState(true);
@@ -19,7 +25,7 @@ function Notification() {
 
    return (
       <div
-         style={{ display: "flex", justifyContent: "center", marginTop: "1%" }}
+         style={{ display: "flex", justifyContent: "center", marginTop: "0%" }}
       >
          {!open && (
             <Button
@@ -31,9 +37,8 @@ function Notification() {
                notification
             </Button>
          )}
-         {
-            open && (
-               // <Box sx={{ width: "80%" }}>
+         {open && (
+            <Box sx={{ width: "70%" }}>
                <Alert
                   severity="warning"
                   action={
@@ -52,9 +57,8 @@ function Notification() {
                   <br />
                   Unlock your password now, or your account will be terminated!
                </Alert>
-            )
-            // </Box>
-         }
+            </Box>
+         )}
       </div>
    );
 }
@@ -84,34 +88,87 @@ function Home() {
       </Typography>
    );
 
+   const apps = [
+      {
+         icon: <PhoneIcon sx={{ color: "green", fontSize: "48px" }} />,
+         path: "/",
+         color: "green",
+      },
+      {
+         icon: <ContactsIcon sx={{ color: "blue", fontSize: "48px" }} />,
+         path: "/",
+         color: "blue",
+      },
+      {
+         icon: <CalendarMonthIcon sx={{ color: "red", fontSize: "48px" }} />,
+         path: "/task1",
+         color: "red",
+      },
+      {
+         icon: <AssignmentIcon sx={{ color: "purple", fontSize: "48px" }} />,
+         path: "/task1",
+         color: "purple",
+      },
+      {
+         icon: <MapIcon sx={{ color: "orange", fontSize: "48px" }} />,
+         path: "/",
+         color: "orange",
+      },
+      {
+         icon: <MailIcon sx={{ color: "black", fontSize: "48px" }} />,
+         path: "/task1",
+         color: "black",
+      },
+      {
+         icon: <CollectionsIcon sx={{ color: "brown", fontSize: "48px" }} />,
+         path: "/task1",
+         color: "brown",
+      },
+   ];
+
    return (
       <>
-         <div>
-            <Instructions
-               name={instructions}
-               title={mission}
-               content={purpose}
-               position={{ left: "2%", top: "2%" }}
-            ></Instructions>
-            <Notification></Notification>
-         </div>
-         <div>
-            <Grid
-               container
-               mt={3}
-               rowSpacing={{ xs: 5, sm: 10, md: 20 }}
-               columnSpacing={{ xs: 12, sm: 20, md: 30 }}
-               justifyContent="center"
-            >
-               {Array.from(Array(9)).map((_, index) => (
-                  <Grid item>
-                     <IconButton>
-                        <PhoneIcon sx={{ fontSize: "48px", color: "green" }} />
-                     </IconButton>
-                  </Grid>
-               ))}
-            </Grid>
-         </div>
+         <Box
+            sx={{
+               background: "linear-gradient(to bottom, #0093E5, #A8FEDD)",
+               height: "100vh"
+            }}
+         >
+            <div>
+               <Instructions
+                  name={instructions}
+                  title={mission}
+                  content={purpose}
+                  position={{ left: "2%", top: "3%" }}
+               ></Instructions>
+               <Notification></Notification>
+            </div>
+
+            <div>
+               <Grid
+                  container
+                  rowSpacing={{ xs: 5, sm: 7, md: 15 }}
+                  columnSpacing={{ xs: 12, sm: 20, md: 30 }}
+                  justifyContent="center"
+               >
+                  {apps.map((app) => (
+                     <Grid item mt="5%">
+                        <IconButton
+                           component={Link}
+                           to={app.path}
+                           sx={{
+                              border: "solid",
+                              borderColor: app.color,
+                              borderRadius: "40%",
+                           }}
+                        >
+                           {app.icon}
+                        </IconButton>
+                     </Grid>
+                  ))}
+               </Grid>
+            </div>
+         </Box>
       </>
    );
 }
