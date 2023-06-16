@@ -9,7 +9,7 @@ import {
    Typography,
    createTheme,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Instructions from "../components/Instructions";
 import PhoneIcon from "@mui/icons-material/Phone";
 import AssignmentIcon from "@mui/icons-material/Assignment";
@@ -18,7 +18,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CollectionsIcon from "@mui/icons-material/Collections";
-import CoPresentIcon from '@mui/icons-material/CoPresent';
+import CoPresentIcon from "@mui/icons-material/CoPresent";
 import { Link } from "react-router-dom";
 
 function Notification() {
@@ -31,7 +31,7 @@ function Notification() {
          style={{
             display: "flex",
             justifyContent: "center",
-            marginTop: "0%"
+            marginTop: "0%",
          }}
       >
          {!open && (
@@ -88,18 +88,25 @@ function Notification() {
 
 function Home() {
    const purpose = (
-      <Typography sx={{ fontSize: "1.2rem" }}>
-         You are an environmental compliance specialist working alongside your
-         peers to analyze the Port of Corpus Christi environment. You’re
-         specifically interested in XYZ watershed and its surrounding buildings.
-         You will be presenting a report to your manager on your findings and
-         any recommendations for new environmental regulations.
-      </Typography>
+      <>
+         <Typography sx={{ fontSize: "1.2rem" }} color="darkgreen">
+            You are an environmental compliance specialist working alongside
+            your peers to analyze the Port of Corpus Christi environment. You’re
+            specifically interested in XYZ watershed and its surrounding
+            buildings. You will be presenting a report to your manager on your
+            findings and any recommendations for new environmental regulations.
+            <br />
+            <br />
+         </Typography>
+         <Typography variant="body1" color="darkred">
+            Read the notification!
+         </Typography>
+      </>
    );
 
    const mission = (
       <Typography
-         sx={{ color: "#1D8558", fontSize: "1.5rem", fontWeight: 700 }}
+         sx={{ color: "#104A30", fontSize: "1.5rem", fontWeight: 700 }}
       >
          Online Escape Room: Environmental Mission
       </Typography>
@@ -110,7 +117,6 @@ function Home() {
          Instructions
       </Typography>
    );
-
 
    const apps = [
       {
@@ -125,7 +131,7 @@ function Home() {
       },
       {
          icon: CalendarMonthIcon,
-         path: "/wqi",
+         path: "/wqi-home",
          color: "red",
       },
       {
@@ -155,7 +161,7 @@ function Home() {
       },
    ];
 
-   // const topBarItems = 
+   // const topBarItems =
    //    [
    //       <Instructions name={instructions} title={mission} content={purpose} position={{ left: "2%", top: "3%" }}></Instructions>,
    //       <Notification></Notification>
@@ -171,10 +177,22 @@ function Home() {
             }}
          >
             <div>
-               <Instructions name={instructions} title={mission} content={purpose} position={{ left: "2%", top: "15px" }}></Instructions>
-               <Notification></Notification>
+               <Instructions
+                  name={instructions}
+                  title={mission}
+                  content={purpose}
+                  position={{ left: "2%", top: "15px" }}
+               ></Instructions>
             </div>
+            <div>
+               <Notification></Notification>
+               <img
+                  src="https://portofcc.com/wp-content/uploads/PortCC-2016-logo-hor.png"
+                  alt="Port of Corpus Christi Logo"
+                  width="20%"
+               ></img>
 
+            </div>
             <div>
                <Grid
                   container
@@ -184,8 +202,8 @@ function Home() {
                   justifyContent="center"
                   alignItems="center"
                >
-                  {apps.map((app) => (
-                     <Grid item mt="5%">
+                  {apps.map((app, index) => (
+                     <Grid item mt="5%" key={index}>
                         <IconButton
                            component={Link}
                            to={app.path}
@@ -193,7 +211,11 @@ function Home() {
                               border: "solid",
                               borderColor: app.color,
                               borderRadius: "45%",
-                              "&:hover": { backgroundColor: "lightgray"},
+                              "&:hover": {
+                                 backgroundColor: "#FCECFC70",
+                                 boxShadow: 7,
+                              },
+                              boxShadow: 2,
                               width: {
                                  xs: "85px",
                                  sm: "90px",
@@ -208,7 +230,9 @@ function Home() {
                               },
                            }}
                         >
-                           <app.icon sx={{fontSize: "60px", color: app.color}}></app.icon>
+                           <app.icon
+                              sx={{ fontSize: "60px", color: app.color }}
+                           ></app.icon>
                         </IconButton>
                      </Grid>
                   ))}

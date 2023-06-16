@@ -3,14 +3,15 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from "./homepage/Home";
 import WQI from "./tasks/WQI";
+import PageTracker from "./components/PageTracker";
 
 function App() {
    return (
      <Router>
        <Routes>
-         <Route exact path="/" element={<Home />} />
-         <Route path="/wqi" element={<WQI />} />
-       </Routes>
+         <Route exact path="/" element={<Home />}/>
+         <Route path="/wqi-home" element={<WQI />}/>
+       </Routes> 
      </Router>
    );
  }

@@ -1,3 +1,8 @@
+import {Button, Dialog, DialogContent} from "@mui/material";
+import { Link } from "react-router-dom";
+
 export default function WQI () {
-    return <h1>Task 1</h1>
+    return (
+        <Button component={Link} to="/" >Home</Button>
+    )
 }
