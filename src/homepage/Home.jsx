@@ -34,18 +34,11 @@ function Notification() {
             marginTop: "0%",
          }}
       >
-         {!open && (
-            <Button
-               variant="contained"
-               onClick={() => {
-                  setOpen(true);
-               }}
+         {open ? (
+            <Box
+               sx={{ width: "70%" }}
+               style={{ position: "absolute", zIndex: 1 }}
             >
-               notification
-            </Button>
-         )}
-         {open && (
-            <Box sx={{ width: "70%" }}>
                <Alert
                   severity="warning"
                   action={
@@ -65,6 +58,16 @@ function Notification() {
                   Unlock your password now, or your account will be terminated!
                </Alert>
             </Box>
+         ) : (
+            <Button
+               variant="contained"
+               onClick={() => {
+                  setOpen(true);
+               }}
+               style={{ position: "absolute", zIndex: 1 }}
+            >
+               notification
+            </Button>
          )}
       </div>
    );
@@ -88,7 +91,7 @@ function Notification() {
 
 function Home() {
    const purpose = (
-      <>
+      <div>
          <Typography sx={{ fontSize: "1.2rem" }} color="darkgreen">
             You are an environmental compliance specialist working alongside
             your peers to analyze the Port of Corpus Christi environment. You’re
@@ -101,7 +104,7 @@ function Home() {
          <Typography variant="body1" color="darkred">
             Read the notification!
          </Typography>
-      </>
+      </div>
    );
 
    const mission = (
@@ -176,34 +179,30 @@ function Home() {
                overflow: "auto",
             }}
          >
-            <div>
-               <Instructions
-                  name={instructions}
-                  title={mission}
-                  content={purpose}
-                  position={{ left: "2%", top: "15px" }}
-               ></Instructions>
-            </div>
-            <div>
-               <Notification></Notification>
+            <div style={{ position: "relative"}}>
                <img
                   src="https://portofcc.com/wp-content/uploads/PortCC-2016-logo-hor.png"
                   alt="Port of Corpus Christi Logo"
                   width="20%"
-               ></img>
-
-            </div>
-            <div>
+                  style={{ position: "absolute", top: 5, left: 5 }}
+               />
+               <Notification></Notification>
+               <Instructions
+                  name={instructions}
+                  title={mission}
+                  content={purpose}
+                  position={{ left: "85%", top: "15px" }}
+               ></Instructions>
                <Grid
                   container
-                  mt="50px"
                   rowSpacing={{ xs: 4, sm: 5, md: 12, lg: 18 }}
                   columnSpacing={{ xs: 6, sm: 15, md: 20, lg: 25 }}
                   justifyContent="center"
                   alignItems="center"
+                  style={{marginTop: "50px"}}
                >
                   {apps.map((app, index) => (
-                     <Grid item mt="5%" key={index}>
+                     <Grid item key={index}>
                         <IconButton
                            component={Link}
                            to={app.path}

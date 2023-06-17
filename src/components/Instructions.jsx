@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
-   ThemeProvider,
    Dialog,
    DialogTitle,
    DialogContent,
    Button,
-   Box,
    IconButton,
-   Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import {useLocation} from "react-router-dom";
@@ -37,41 +34,40 @@ function Header(props) {
 
 function Instructions({ name, title, content, position }) {
    const [open, setOpen] = useState(true);
+   const location = useLocation();
 
    useEffect(() => {
-      if (sessionStorage.getItem("seenInstructions")) {
+      if (sessionStorage.getItem("seenInstructions" + location.pathname)) {
          setOpen(false);
       }
    },[]);
    
    const handleClose = () => {
       setOpen(false);
-      sessionStorage.setItem("seenInstructions", true);
+      sessionStorage.setItem("seenInstructions" + location.pathname, true);
    };
 
 
-   const buttonStyles = {
-      position: "absolute",
-      left: position.left,
-      top: position.top,
-      backgroundColor: "darkblue",
-      "&:hover": { backgroundColor: "#0277bd" },
-      width: "12vw",
-      height: "7vh",
-   };
-
+   
    return (
       <div>
-         <Button
+         {name ? <Button
             variant="contained"
             onClick={() => setOpen(true)}
-            sx={buttonStyles}
+            sx={{      position: "absolute",
+            left: position.left,
+            top: position.top,
+            backgroundColor: "darkblue",
+            "&:hover": { backgroundColor: "#0277bd" },
+            width: "12vw",
+            height: "7vh",}}
          >
             {name}
-         </Button>
-         <Dialog open={open} onClose={handleClose}>
-            <Header onClose={handleClose}> {title} </Header>
-            <DialogContent dividers sx={{ backgroundColor: "#CFEFE5" }}>
+         </Button> : null}
+         
+         <Dialog open={open} onClose={handleClose} >
+            {title && <Header onClose={handleClose}> {title} </Header>}
+            <DialogContent dividers sx={{ backgroundColor: "#CFEFE5", display: 'flex', justifyContent: 'center', alignItems: "center" }}>
                {content}
             </DialogContent>
          </Dialog>
