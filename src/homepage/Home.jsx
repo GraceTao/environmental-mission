@@ -1,24 +1,17 @@
 import {
    Alert,
-   AppBar,
    Box,
    Button,
    Grid,
    IconButton,
-   Toolbar,
+   Tooltip,
    Typography,
    createTheme,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Instructions from "../components/Instructions";
-import PhoneIcon from "@mui/icons-material/Phone";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import MapIcon from "@mui/icons-material/Map";
-import MailIcon from "@mui/icons-material/Mail";
-import ContactsIcon from "@mui/icons-material/Contacts";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import CollectionsIcon from "@mui/icons-material/Collections";
-import CoPresentIcon from "@mui/icons-material/CoPresent";
+import {appIcons} from "./app-icons";
+import WarningIcon from "@mui/icons-material/Warning";
 import { Link } from "react-router-dom";
 
 function Notification() {
@@ -31,7 +24,7 @@ function Notification() {
          style={{
             display: "flex",
             justifyContent: "center",
-            marginTop: "0%",
+            marginTop: "5px",
          }}
       >
          {open ? (
@@ -48,7 +41,7 @@ function Notification() {
                   }
                   sx={{
                      [theme.breakpoints.up("sm")]: {
-                        fontSize: "1rem",
+                        fontSize: "1.1rem",
                      },
                   }}
                >
@@ -59,35 +52,22 @@ function Notification() {
                </Alert>
             </Box>
          ) : (
-            <Button
-               variant="contained"
-               onClick={() => {
-                  setOpen(true);
-               }}
-               style={{ position: "absolute", zIndex: 1 }}
-            >
-               notification
-            </Button>
+            <Tooltip title="open me">
+               <IconButton
+                  onClick={() => {
+                     setOpen(true);
+                  }}
+                  style={{ position: "absolute", zIndex: 1 }}
+               >
+                  <WarningIcon
+                     sx={{ color: "#CAC653", fontSize: 50 }}
+                  ></WarningIcon>
+               </IconButton>
+            </Tooltip>
          )}
       </div>
    );
 }
-
-// function TopBar({items}) {
-//    return (
-//    <Box sx={{ flexGrow: 1 }}>
-//       <AppBar position="static">
-//          <Toolbar style={{margin: 5}}>
-//             <Instructions name={instructions} title={mission} content={purpose} position={{ left: "2%", top: "3%" }}></Instructions>,
-//          <Notification></Notification>
-//             {/* {items.map((item) => (
-//                item
-//             ))} */}
-//          </Toolbar>
-//       </AppBar>
-//    </Box>
-//    )
-// }
 
 function Home() {
    const purpose = (
@@ -115,60 +95,7 @@ function Home() {
       </Typography>
    );
 
-   const instructions = (
-      <Typography variant="button" sx={{ fontSize: "1.2vw" }}>
-         Instructions
-      </Typography>
-   );
-
-   const apps = [
-      {
-         icon: PhoneIcon,
-         path: "/",
-         color: "green",
-      },
-      {
-         icon: ContactsIcon,
-         path: "/",
-         color: "blue",
-      },
-      {
-         icon: CalendarMonthIcon,
-         path: "/wqi-home",
-         color: "red",
-      },
-      {
-         icon: AssignmentIcon,
-         path: "/",
-         color: "purple",
-      },
-      {
-         icon: MapIcon,
-         path: "/",
-         color: "brown",
-      },
-      {
-         icon: MailIcon,
-         path: "/",
-         color: "darkred",
-      },
-      {
-         icon: CollectionsIcon,
-         path: "/",
-         color: "orange",
-      },
-      {
-         icon: CoPresentIcon,
-         path: "/",
-         color: "black",
-      },
-   ];
-
-   // const topBarItems =
-   //    [
-   //       <Instructions name={instructions} title={mission} content={purpose} position={{ left: "2%", top: "3%" }}></Instructions>,
-   //       <Notification></Notification>
-   //    ]
+  
 
    return (
       <>
@@ -179,19 +106,28 @@ function Home() {
                overflow: "auto",
             }}
          >
-            <div style={{ position: "relative"}}>
+            <div style={{ position: "relative" }}>
                <img
                   src="https://portofcc.com/wp-content/uploads/PortCC-2016-logo-hor.png"
                   alt="Port of Corpus Christi Logo"
-                  width="20%"
-                  style={{ position: "absolute", top: 5, left: 5 }}
+                  width="300px"
+                  style={{ position: "absolute", left: 5 }}
                />
                <Notification></Notification>
                <Instructions
-                  name={instructions}
+                  name={<Typography color="white">instructions</Typography>}
                   title={mission}
                   content={purpose}
-                  position={{ left: "85%", top: "15px" }}
+                  style={{
+                     left: "87%",
+                     position: "sticky",
+                     boxShadow: 2,
+                     backgroundColor: "#356696",
+                     "&:hover": {
+                        backgroundColor: "#294E72",
+                        boxShadow: 3,
+                     },
+                  }}
                ></Instructions>
                <Grid
                   container
@@ -199,9 +135,9 @@ function Home() {
                   columnSpacing={{ xs: 6, sm: 15, md: 20, lg: 25 }}
                   justifyContent="center"
                   alignItems="center"
-                  style={{marginTop: "50px"}}
+                  style={{ marginTop: "2%", marginBottom: "2%" }}
                >
-                  {apps.map((app, index) => (
+                  {appIcons().map((app, index) => (
                      <Grid item key={index}>
                         <IconButton
                            component={Link}

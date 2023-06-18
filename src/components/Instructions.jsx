@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+   Box,
    Dialog,
    DialogTitle,
    DialogContent,
@@ -7,7 +8,7 @@ import {
    IconButton,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Header(props) {
    const { children, onClose, ...other } = props;
@@ -32,42 +33,40 @@ function Header(props) {
    );
 }
 
-function Instructions({ name, title, content, position }) {
-   const [open, setOpen] = useState(true);
-   const location = useLocation();
+function Instructions({ name, title, content, style }) {
+   const location = useLocation().pathname;
+   const [open, setOpen] = useState(sessionStorage.getItem(location) == null);
 
-   useEffect(() => {
-      if (sessionStorage.getItem("seenInstructions" + location.pathname)) {
-         setOpen(false);
-      }
-   },[]);
-   
    const handleClose = () => {
       setOpen(false);
-      sessionStorage.setItem("seenInstructions" + location.pathname, true);
+      sessionStorage.setItem(location, true);
    };
 
-
-   
    return (
       <div>
-         {name ? <Button
-            variant="contained"
-            onClick={() => setOpen(true)}
-            sx={{      position: "absolute",
-            left: position.left,
-            top: position.top,
-            backgroundColor: "darkblue",
-            "&:hover": { backgroundColor: "#0277bd" },
-            width: "12vw",
-            height: "7vh",}}
-         >
-            {name}
-         </Button> : null}
-         
-         <Dialog open={open} onClose={handleClose} >
+         {name ? (
+            <Box sx={{ flexGrow: 1 }}>
+               <Button
+                  onClick={() => setOpen(true)}
+                  size="large"
+                  sx={style}
+               >
+                  {name}
+               </Button>
+            </Box>
+         ) : null}
+
+         <Dialog open={open} onClose={handleClose}>
             {title && <Header onClose={handleClose}> {title} </Header>}
-            <DialogContent dividers sx={{ backgroundColor: "#CFEFE5", display: 'flex', justifyContent: 'center', alignItems: "center" }}>
+            <DialogContent
+               dividers
+               sx={{
+                  backgroundColor: "#CFEFE5",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+               }}
+            >
                {content}
             </DialogContent>
          </Dialog>
