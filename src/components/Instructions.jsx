@@ -46,29 +46,27 @@ function Instructions({ name, title, content, style }) {
       <div>
          {name ? (
             <Box sx={{ flexGrow: 1 }}>
-               <Button
-                  onClick={() => setOpen(true)}
-                  size="large"
-                  sx={style}
-               >
+               <Button onClick={() => setOpen(true)} size="large" sx={style}>
                   {name}
                </Button>
             </Box>
          ) : null}
 
-         <Dialog open={open} onClose={handleClose}>
+         <Dialog open={open} onClose={handleClose} position="fixed">
             {title && <Header onClose={handleClose}> {title} </Header>}
-            <DialogContent
-               dividers
-               sx={{
-                  backgroundColor: "#CFEFE5",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-               }}
-            >
-               {content}
-            </DialogContent>
+            <div style={{ maxHeight: "400px", overflow: "auto" }}>
+               <DialogContent
+                  dividers
+                  sx={{
+                     backgroundColor: "#CFEFE5",
+                     display: "flex",
+                     justifyContent: "center",
+                     alignItems: "center",
+                  }}
+               >
+                  {content}
+               </DialogContent>
+            </div>
          </Dialog>
       </div>
    );
