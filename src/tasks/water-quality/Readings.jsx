@@ -6,45 +6,79 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import {
+   Button,
    OutlinedInput,
    InputAdornment,
    Dialog,
    DialogContent,
-   DialogContentText,
+   DialogActions,
 } from "@mui/material";
 import { useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
-function createData(name, units) {
+function createData(name, abbrName, units, formValuesRef) {
+   // console.log(formValuesRef[abbrName]);
    const inputBox = (
       <OutlinedInput
+         name={abbrName}
          align="right"
          endAdornment={<InputAdornment position="end">{units}</InputAdornment>}
          sx={{ maxWidth: 200, maxHeight: 40 }}
+         onChange={(e) => {
+            formValuesRef.current[abbrName] = e.target.value;
+         }}
+         // value={formValuesRef[abbrName] ? formValuesRef[abbrName] : ""}
       ></OutlinedInput>
    );
 
    return { name, inputBox };
 }
 
-const rows = [
-   createData("Dissolved oxygen", "% saturation"),
-   createData("Fecal coliform", "col / 100 mL"),
-   createData("pH", ""),
-   createData("Biochemical oxygen demand", "ppm"),
-   createData(
-      <p>&Delta; Temperature (upstream &minus; downstream)</p>,
-      <p>&deg;C</p>
-   ),
-   createData("Phosphates", "ppm"),
-   createData("Nitrates", "ppm"),
-   createData("Turbidity", "inches"),
-   createData("Total solids", "ppm"),
-];
+export default function Readings({ openClipboard, setOpenClipboard }) {
+   const location = useLocation();
 
-export default function Readings({openClipboard, setOpenClipboard}) {
+
+   const formValuesRef = location.state ? location.state.formValues : useRef({
+      DO: 0,
+      FC: 0,
+      pH: 0,
+      BOD: 0,
+      deltaTemp: 0,
+      Phosphates: 0,
+      Nitrates: 0,
+      Turbidity: 0,
+      TS: 0,
+   });
+
+   console.log(formValuesRef);
+
+   const rows = [
+      createData("Dissolved oxygen", "DO", "% saturation", formValuesRef),
+      createData("Fecal coliform", "FC", "col / 100 mL", formValuesRef),
+      createData("pH", "pH", "", formValuesRef),
+      createData("Biochemical oxygen demand", "BOD", "ppm", formValuesRef),
+      createData(
+         <p>&Delta; Temperature (upstream &minus; downstream)</p>,
+         "deltaTemp",
+         <p>&deg;C</p>,
+         formValuesRef
+      ),
+      createData("Phosphates", "Phosphates", "ppm", formValuesRef),
+      createData("Nitrates", "Phosphates", "ppm", formValuesRef),
+      createData("Turbidity", "Turbidity", "inches", formValuesRef),
+      createData("Total solids", "TS", "ppm", formValuesRef),
+   ];
+
    return (
       <div>
-         <Dialog maxWidth="xl" open={openClipboard ? true : false} onClose={() => {setOpenClipboard(false)}}>
+         <Dialog
+            maxWidth="xl"
+            open={openClipboard ? true : false}
+            onClose={() => {
+               setOpenClipboard(false);
+            }}
+         >
             <DialogContent>
                <TableContainer
                   component={Paper}
@@ -52,7 +86,7 @@ export default function Readings({openClipboard, setOpenClipboard}) {
                      backgroundColor: "white",
                   }}
                >
-                  <Table size="small" sx={{boxShadow: 0}}>
+                  <Table size="small" sx={{ boxShadow: 0 }}>
                      <TableHead>
                         <TableRow>
                            <TableCell
@@ -90,6 +124,11 @@ export default function Readings({openClipboard, setOpenClipboard}) {
                   </Table>
                </TableContainer>
             </DialogContent>
+            <DialogActions>
+               <Link to="/wqi-p2" state={{ formValues: formValuesRef }}>
+                  <ArrowCircleRightIcon sx={{fontSize: 55, color: "blue"}}></ArrowCircleRightIcon>
+               </Link>
+            </DialogActions>
          </Dialog>
       </div>
    );

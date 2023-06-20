@@ -20,29 +20,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import ForwardIcon from "@mui/icons-material/Forward";
 import Readings from "./Readings";
-
-function Instr({ title, contents }) {
-   return (
-      <Box
-         display="flex"
-         flexDirection="column"
-         alignItems="center"
-         margin="10px 10px 20px 10px"
-      >
-         <Typography
-            fontSize="1.5rem"
-            fontWeight="700"
-            align="center"
-            lineHeight={2}
-         >
-            {title}
-         </Typography>
-         <Typography fontSize="1.2rem" align="center">
-            {contents}
-         </Typography>
-      </Box>
-   );
-}
+import Instr from "./Instr";
 
 function CalendarAndInstructions() {
    const hasVisited = sessionStorage.getItem(useLocation().pathname);
@@ -162,11 +140,11 @@ export default function WQIHome() {
                </Tooltip>
             </IconButton>
             <Readings openClipboard={openClipboard} setOpenClipboard={setOpenClipboard}/>
-            <IconButton>
+            {/* <IconButton>
                <Tooltip title="Continue" arrow>
                   <ForwardIcon sx={{ fontSize: 60, color: "green" }} />
                </Tooltip>
-            </IconButton>
+            </IconButton> */}
          </Box>
 
          <Readings/>
