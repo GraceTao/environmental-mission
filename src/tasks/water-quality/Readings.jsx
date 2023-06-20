@@ -12,23 +12,28 @@ import {
    Dialog,
    DialogContent,
    DialogActions,
+   Tooltip,
 } from "@mui/material";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
-function createData(name, abbrName, units, formValuesRef) {
-   // console.log(formValuesRef[abbrName]);
+function createData(name, abbrName, units, formValues, setFormValues) {
+   const handleChange = (e) => {
+      const { name, value } = e.target;
+      const updatedFormValues = { ...formValues, [name]: value };
+      setFormValues(updatedFormValues);
+      sessionStorage.setItem("formValues", JSON.stringify(updatedFormValues));
+   };
+   // console.log(formValues[abbrName]);
    const inputBox = (
       <OutlinedInput
          name={abbrName}
          align="right"
          endAdornment={<InputAdornment position="end">{units}</InputAdornment>}
          sx={{ maxWidth: 200, maxHeight: 40 }}
-         onChange={(e) => {
-            formValuesRef.current[abbrName] = e.target.value;
-         }}
-         // value={formValuesRef[abbrName] ? formValuesRef[abbrName] : ""}
+         onChange={handleChange}
+         value={formValues[abbrName] || ''}
       ></OutlinedInput>
    );
 
@@ -37,43 +42,58 @@ function createData(name, abbrName, units, formValuesRef) {
 
 export default function Readings({ openClipboard, setOpenClipboard }) {
    const location = useLocation();
+   const savedFormValues = location.state?.formValues || {};
+   const [formValues, setFormValues] = useState(savedFormValues);
 
+   useEffect(() => {
+      // When the component mounts, retrieve the form values from session storage
+      const storedFormValues = JSON.parse(sessionStorage.getItem("formValues"));
 
-   const formValuesRef = location.state ? location.state.formValues : useRef({
-      DO: 0,
-      FC: 0,
-      pH: 0,
-      BOD: 0,
-      deltaTemp: 0,
-      Phosphates: 0,
-      Nitrates: 0,
-      Turbidity: 0,
-      TS: 0,
-   });
-
-   console.log(formValuesRef);
+      if (storedFormValues) {
+         // If there are saved form values, update the state with them
+         setFormValues(storedFormValues);
+      }
+   }, []);
 
    const rows = [
-      createData("Dissolved oxygen", "DO", "% saturation", formValuesRef),
-      createData("Fecal coliform", "FC", "col / 100 mL", formValuesRef),
-      createData("pH", "pH", "", formValuesRef),
-      createData("Biochemical oxygen demand", "BOD", "ppm", formValuesRef),
+      createData(
+         "Dissolved oxygen",
+         "DO",
+         "% saturation",
+         formValues,
+         setFormValues
+      ),
+      createData(
+         "Fecal coliform",
+         "FC",
+         "col / 100 mL",
+         formValues,
+         setFormValues
+      ),
+      createData("pH", "pH", "", formValues, setFormValues),
+      createData(
+         "Biochemical oxygen demand",
+         "BOD",
+         "ppm",
+         formValues,
+         setFormValues
+      ),
       createData(
          <p>&Delta; Temperature (upstream &minus; downstream)</p>,
          "deltaTemp",
          <p>&deg;C</p>,
-         formValuesRef
+         formValues,
+         setFormValues
       ),
-      createData("Phosphates", "Phosphates", "ppm", formValuesRef),
-      createData("Nitrates", "Phosphates", "ppm", formValuesRef),
-      createData("Turbidity", "Turbidity", "inches", formValuesRef),
-      createData("Total solids", "TS", "ppm", formValuesRef),
+      createData("Phosphates", "Phosphates", "ppm", formValues, setFormValues),
+      createData("Nitrates", "Nitrates", "ppm", formValues, setFormValues),
+      createData("Turbidity", "Turbidity", "inches", formValues, setFormValues),
+      createData("Total solids", "TS", "ppm", formValues, setFormValues),
    ];
 
    return (
       <div>
          <Dialog
-            maxWidth="xl"
             open={openClipboard ? true : false}
             onClose={() => {
                setOpenClipboard(false);
@@ -85,8 +105,9 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
                   sx={{
                      backgroundColor: "white",
                   }}
+                  
                >
-                  <Table size="small" sx={{ boxShadow: 0 }}>
+                  <Table size="small">
                      <TableHead>
                         <TableRow>
                            <TableCell
@@ -103,7 +124,7 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
                                  fontWeight: "bold",
                               }}
                            >
-                              Reading
+                              Measurement
                            </TableCell>
                         </TableRow>
                      </TableHead>
@@ -125,8 +146,12 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
                </TableContainer>
             </DialogContent>
             <DialogActions>
-               <Link to="/wqi-p2" state={{ formValues: formValuesRef }}>
-                  <ArrowCircleRightIcon sx={{fontSize: 55, color: "blue"}}></ArrowCircleRightIcon>
+               <Link to="/wqi-p2">
+                  <Tooltip title="continue" arrow>
+                     <ArrowCircleRightIcon
+                        sx={{ fontSize: 55, color: "blue" }}
+                     ></ArrowCircleRightIcon>
+                  </Tooltip>
                </Link>
             </DialogActions>
          </Dialog>

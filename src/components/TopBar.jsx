@@ -28,7 +28,7 @@ export default function TopBar({ instruction }) {
 					<div style={{position: "absolute", right: 5}}>
                <Tooltip title="Go Home" arrow>
                   <IconButton component={Link} to="/" size="large">
-                     <HomeIcon sx={{ fontSize: 45 }} />
+                     <HomeIcon sx={{ fontSize: 45, color: "black" }} />
                   </IconButton>
                </Tooltip>
 					</div>
