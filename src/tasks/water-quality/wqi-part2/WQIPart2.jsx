@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import TopBar from "../../components/TopBar";
-import Instr from "./Instr";
-import Instructions from "../../components/Instructions";
+import TopBar from "../../../components/TopBar";
+import Instr from "../Instr";
+import Instructions from "../../../components/Instructions";
 import { Box, Typography, OutlinedInput } from "@mui/material";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
@@ -13,9 +13,16 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import DOGraph from "./graphs/DOGraph";
+import PHGraph from "./graphs/PHGraph";
+import GraphSlideShow from "./graphs/GraphSlideShow";
 
 function createData(name, abbrName, units, formValues, qValues, setQValues) {
-   const formValue = formValues[abbrName];
+   const formValue = formValues ? formValues[abbrName] : "";
+   const readingWithUnits = (
+      <div>
+         <b>{formValue}</b> {units}
+      </div>
+   );
 
    const handleChange = (e) => {
       const { name, value } = e.target;
@@ -23,6 +30,7 @@ function createData(name, abbrName, units, formValues, qValues, setQValues) {
       setQValues(updatedQValues);
       sessionStorage.setItem("qValues", JSON.stringify(updatedQValues));
    };
+
    const inputBox = (
       <OutlinedInput
          name={abbrName}
@@ -32,11 +40,7 @@ function createData(name, abbrName, units, formValues, qValues, setQValues) {
          value={qValues[abbrName] || ""}
       ></OutlinedInput>
    );
-   const readingWithUnits = (
-      <div>
-         <b>{formValue}</b> {units}
-      </div>
-   );
+
    return { name, readingWithUnits, inputBox };
 }
 
@@ -164,15 +168,18 @@ export default function WQIPart2() {
             }
          />
          <Box display="flex" flexDirection="row" justifyContent="center">
-            <Link to="/wqi-p1" state={{ formValues: formValues }}>
+            <Link to="/wqi-p1">
                <ArrowCircleLeftIcon
                   sx={{ fontSize: 55, color: "blue", mr: 5 }}
                />
             </Link>
-            <ArrowCircleRightIcon sx={{ fontSize: 55, color: "blue", ml: 5 }} />
+            <Link to="/wqi-p3">
+               <ArrowCircleRightIcon sx={{ fontSize: 55, color: "blue", ml: 5 }} />
+            </Link>
+            
          </Box>
-         <Box display="flex" flexDirection="row" justifyContent="space-evenly">
-            <Box maxWidth={600}>
+         <Box display="flex" flexDirection="row" justifyContent="center">
+            <Box ml="1%">
                <TableContainer>
                   <Table size="small">
                      <TableHead>
@@ -214,7 +221,11 @@ export default function WQIPart2() {
                   </Table>
                </TableContainer>
             </Box>
-            <DOGraph></DOGraph>
+            <Box sx={{position: "relative"}} minWidth="50%" ml="1%">
+               <div style={{ position: "absolute", top: "20%", left: "5%", zIndex: 1, width: "90%"}} >
+                  <GraphSlideShow/>
+               </div>
+            </Box>
          </Box>
       </Box>
    );

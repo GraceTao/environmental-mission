@@ -9,18 +9,18 @@ import {
    Popover
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import Instructions from "../../components/Instructions";
+import Instructions from "../../../components/Instructions";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import TopBar from "../../components/TopBar";
+import TopBar from "../../../components/TopBar";
 import DO from "./DO";
 import Temperature from "./Temperature";
 import HomeIcon from "@mui/icons-material/Home";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import ForwardIcon from "@mui/icons-material/Forward";
 import Readings from "./Readings";
-import Instr from "./Instr";
+import Instr from "../Instr";
 
 function CalendarAndInstructions() {
    const hasVisited = sessionStorage.getItem(useLocation().pathname);
