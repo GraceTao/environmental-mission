@@ -94,18 +94,16 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
    return (
       <div>
          <Dialog
+            maxWidth="md"
+            fullWidth
             open={openClipboard ? true : false}
             onClose={() => {
                setOpenClipboard(false);
             }}
          >
-            <DialogContent>
+            <DialogContent sx={{backgroundColor: "#266F35"}}>
                <TableContainer
-                  component={Paper}
-                  sx={{
-                     backgroundColor: "white",
-                  }}
-                  
+                  component={Paper}  
                >
                   <Table size="small">
                      <TableHead>
@@ -145,7 +143,7 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
                   </Table>
                </TableContainer>
             </DialogContent>
-            <DialogActions>
+            <DialogActions sx={{backgroundColor: "#D0D0D0 "}}>
                <Link to="/wqi-p2">
                   <Tooltip title="continue" arrow>
                      <ArrowCircleRightIcon

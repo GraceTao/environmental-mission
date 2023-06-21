@@ -1,9 +1,20 @@
+import {useState} from "react";
 import TopBar from "../../../components/TopBar";
 import Instr from "../Instr";
 import Instructions from "../../../components/Instructions";
-import { Box, Typography, OutlinedInput } from "@mui/material";
+import {
+   Box,
+   IconButton,
+   Button,
+   Typography,
+   OutlinedInput,
+   TextField,
+   Tooltip,
+} from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import {Link} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import FullTable from "./FullTable";
+import Submit from "./Submit";
 
 export default function WQIPart3() {
    const instructions = (
@@ -19,12 +30,14 @@ export default function WQIPart3() {
       </Box>
    );
 
+
    return (
       <Box
          sx={{
             background: "linear-gradient(to top, #0093E5, #53E59E)",
             height: "100vh",
             overflow: "auto",
+            margin: "auto",
          }}
       >
          <TopBar
@@ -48,9 +61,19 @@ export default function WQIPart3() {
                ></Instructions>
             }
          />
-         <Link to="/wqi-p2">
-            <ArrowCircleLeftIcon  sx={{fontSize: 55, color: "blue"}}/>
-         </Link>
+         <IconButton component={Link} to="/wqi-p2" sx={{ ml: "41%" }}>
+            <Tooltip title="back" arrow>
+               <ArrowCircleLeftIcon sx={{ fontSize: 55, color: "blue" }} />
+            </Tooltip>
+         </IconButton>
+         <Box
+            display="flex"
+            flexDirection={{ xs: "column", md: "row" }}
+            justifyContent="space-around"
+         >
+            <FullTable></FullTable>
+            <Submit />
+         </Box>
       </Box>
    );
 }

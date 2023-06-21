@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import TopBar from "../../../components/TopBar";
 import Instr from "../Instr";
 import Instructions from "../../../components/Instructions";
-import { Box, Typography, OutlinedInput } from "@mui/material";
+import {
+   Box,
+   IconButton,
+   Tooltip,
+   Typography,
+   OutlinedInput,
+} from "@mui/material";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { Link, useLocation } from "react-router-dom";
@@ -12,6 +18,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import GraphSlideShow from "./graphs/GraphSlideShow";
 
 function createData(name, abbrName, units, formValues, qValues, setQValues) {
@@ -33,7 +40,7 @@ function createData(name, abbrName, units, formValues, qValues, setQValues) {
       <OutlinedInput
          name={abbrName}
          align="right"
-         sx={{ maxWidth: 150, maxHeight: 40 }}
+         sx={{ maxWidth: 100, maxHeight: 43 }}
          onChange={handleChange}
          value={qValues[abbrName] || ""}
       ></OutlinedInput>
@@ -46,8 +53,8 @@ export default function WQIPart2() {
    const formValues = JSON.parse(sessionStorage.getItem("formValues"));
 
    const tableHeaders = [
-      "Water Quality Indicators",
-      "Measurement You Entered",
+      "Water Quality Indicator",
+      "Measurement",
       "Q-Value",
    ];
    const location = useLocation();
@@ -89,7 +96,7 @@ export default function WQIPart2() {
          setQValues
       ),
       createData(
-         <p>&Delta; Temperature (upstream &minus; downstream)</p>,
+         <p>&Delta; Temperature</p>,
          "deltaTemp",
          <>&deg;C</>,
          formValues,
@@ -166,19 +173,20 @@ export default function WQIPart2() {
             }
          />
          <Box display="flex" flexDirection="row" justifyContent="center">
-            <Link to="/wqi-p1">
-               <ArrowCircleLeftIcon
-                  sx={{ fontSize: 55, color: "blue", mr: 5 }}
-               />
-            </Link>
-            <Link to="/wqi-p3">
-               <ArrowCircleRightIcon sx={{ fontSize: 55, color: "blue", ml: 5 }} />
-            </Link>
-            
+            <IconButton component={Link} to="/wqi-p1" sx={{ mr: 8 }}>
+               <Tooltip title="back" arrow>
+                  <ArrowCircleLeftIcon sx={{ fontSize: 55, color: "blue" }} />
+               </Tooltip>
+            </IconButton>
+            <IconButton component={Link} to="/wqi-p3" sx={{ ml: 8 }}>
+               <Tooltip title="continue" arrow>
+                  <ArrowCircleRightIcon sx={{ fontSize: 55, color: "blue" }} />
+               </Tooltip>
+            </IconButton>
          </Box>
-         <Box display="flex" flexDirection="row" justifyContent="center">
-            <Box ml="1%">
-               <TableContainer>
+         <Box display="flex" flexDirection={{xs: "column", sm: "row"}} justifyContent="space-between">
+            <Box width={{xs: "100%", sm: "50%"}} ml="1%">
+               <TableContainer component={Paper} sx={{backgroundColor: "#fff5"}}>
                   <Table size="small">
                      <TableHead>
                         <TableRow>
@@ -219,10 +227,19 @@ export default function WQIPart2() {
                   </Table>
                </TableContainer>
             </Box>
-            <Box sx={{position: "relative"}} minWidth="50%" ml="1%">
-               <div style={{ position: "absolute", top: "20%", left: "5%", zIndex: 1, width: "90%"}} >
-                  <GraphSlideShow/>
-               </div>
+            <Box sx={{ position: "relative" }} minWidth="50%">
+               <Box
+                  sx={{
+                     position: "absolute",
+                     top: {xs: "100%", sm: "15%"},
+                     left: "5%",
+                     zIndex: 1,
+                     width: "93%",
+                     mt: {xs: "10%", sm: 0},
+                  }}
+               >
+                  <GraphSlideShow />
+               </Box>
             </Box>
          </Box>
       </Box>
