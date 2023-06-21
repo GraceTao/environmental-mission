@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-   createTheme,
-   ThemeProvider,
+   Box,
    Dialog,
    DialogTitle,
    DialogContent,
    Button,
-   Box,
    IconButton,
-   Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useLocation } from "react-router-dom";
 
 function Header(props) {
    const { children, onClose, ...other } = props;
 
    return (
-      <DialogTitle sx={{ backgroundColor: "#B5E9D9" }}>
+      <DialogTitle sx={{ backgroundColor: "#79C1A1" }}>
          {children}
          {onClose ? (
             <IconButton
@@ -35,33 +33,42 @@ function Header(props) {
    );
 }
 
-function Instructions({ name, title, content, position }) {
-   const [open, setOpen] = useState(true);
-   const handleOpen = () => setOpen(true);
-   const handleClose = () => setOpen(false);
+function Instructions({ name, title, content, style }) {
+   const location = useLocation().pathname;
+   const [open, setOpen] = useState(sessionStorage.getItem(location) == null);
 
-   const theme = createTheme();
-   const buttonStyles = {
-      position: "absolute",
-      left: position.left,
-      top: position.top,
-      backgroundColor: "darkblue",
-      "&:hover": { backgroundColor: "#0277bd"},
-      width: "12vw",
-      height: "7vh",
+   const handleClose = () => {
+      setOpen(false);
+      sessionStorage.setItem(location, true);
    };
 
    return (
       <div>
-         <Button variant="contained" onClick={handleOpen} sx={buttonStyles}>
-            {name}
-         </Button>
-         <Dialog open={open} onClose={handleClose}>
-            <Header onClose={handleClose}> {title} </Header>
-            <DialogContent dividers sx={{ backgroundColor: "#CFEFE5" }}> {content} </DialogContent>
+         {name ? (
+            <Box sx={{ flexGrow: 1 }}>
+               <Button onClick={() => setOpen(true)} size="large" sx={style}>
+                  {name}
+               </Button>
+            </Box>
+         ) : null}
+
+         <Dialog open={open} onClose={handleClose} position="fixed">
+            {title && <Header onClose={handleClose}> {title} </Header>}
+            <div style={{ maxHeight: "400px", overflow: "auto" }}>
+               <DialogContent
+                  dividers
+                  sx={{
+                     backgroundColor: "#CFEFE5",
+                     display: "flex",
+                     justifyContent: "center",
+                     alignItems: "center",
+                  }}
+               >
+                  {content}
+               </DialogContent>
+            </div>
          </Dialog>
       </div>
-
    );
 }
 
