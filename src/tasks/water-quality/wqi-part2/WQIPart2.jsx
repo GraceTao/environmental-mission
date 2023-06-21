@@ -12,8 +12,6 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import DOGraph from "./graphs/DOGraph";
-import PHGraph from "./graphs/PHGraph";
 import GraphSlideShow from "./graphs/GraphSlideShow";
 
 function createData(name, abbrName, units, formValues, qValues, setQValues) {
@@ -128,11 +126,11 @@ export default function WQIPart2() {
    const instructions = (
       <Box display="flex" flexDirection="column" justifyContent="center">
          <Instr
-            title="Task"
+            title="Task:"
             contents="Find the water quality index (WQI) of this pond and use the WQI to determine the water quality rating. If the rating is correct, you will receive a clue."
          ></Instr>
          <Instr
-            title="Part 2"
+            title="Part Two:"
             contents="Determine the quality values (Q-values) based on the provided graphs. Record the Q-values in the chart on the left. Click the top right arrow to continue."
          ></Instr>
       </Box>

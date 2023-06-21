@@ -1,5 +1,6 @@
 import DOGraph from "./DOGraph";
 import PHGraph from "./PHGraph";
+import FCGraph from "./FCGraph";
 import { useState } from "react";
 import { Box, Button } from "@mui/material";
 
@@ -26,12 +27,14 @@ function makeGraph(name, graph, prev, next, setOpen) {
 function GraphSlideShow() {
    const [open, setOpen] = useState({
       DO: true,
+      FC: false,
       pH: false,
    });
 
    const graphs = [
-      makeGraph("DO", <DOGraph />, "pH", "pH", setOpen),
-      makeGraph("pH", <PHGraph />, "DO", "DO", setOpen),
+      makeGraph("DO", <DOGraph />, "pH", "FC", setOpen),
+      makeGraph("FC", <FCGraph />, "DO", "pH", setOpen),
+      makeGraph("pH", <PHGraph />, "FC", "DO", setOpen),
    ];
    return (
       <div>
