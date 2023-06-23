@@ -30,7 +30,7 @@ function Instructions({ name, title, content, style }) {
             </Box>
          ) : null}
 
-         <Dialog open={open} onClose={handleClose} position="fixed" fullWidth maxWidth="md">
+         <Dialog open={open} onClose={handleClose} position="fixed" >
          {title && <DialogTitle onClose={handleClose} sx={{ backgroundColor: "#79C1A1" }}>{title}</DialogTitle>}
             {/* {title && <Header onClose={handleClose}> {title} </Header>} */}
             <div style={{ maxHeight: "400px", overflow: "auto" }}>
