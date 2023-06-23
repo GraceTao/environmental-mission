@@ -33,16 +33,16 @@ export default function Submit() {
    };
 
    const buttons = [
-      <Button key="excellent" sx={{ "&:hover": { backgroundColor: "green" } }}>
+      <Button key="excellent" sx={{ "&:hover": { backgroundColor: "#1D9C4F  " } }}>
          Excellent (&gt;90)
       </Button>,
-      <Button key="good" sx={{ "&:hover": { backgroundColor: "#5FC624" } }}>
+      <Button key="good" sx={{ "&:hover": { backgroundColor: "#B7E73E" } }}>
          Good (&gt;70&ndash;90)
       </Button>,
-      <Button key="medium" sx={{ "&:hover": { backgroundColor: "#DEE630" } }}>
+      <Button key="medium" sx={{ "&:hover": { backgroundColor: "#FFDE47" } }}>
          Medium (&gt;50&ndash;70)
       </Button>,
-      <Button key="bad" sx={{ "&:hover": { backgroundColor: "red" } }}>
+      <Button key="bad" sx={{ "&:hover": { backgroundColor: "#E52F02 " } }}>
          Bad (25&ndash;50)
       </Button>,
       <Button key="very bad" sx={{ "&:hover": { backgroundColor: "darkred" } }}>

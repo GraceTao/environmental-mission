@@ -155,7 +155,7 @@ export default function FullTable() {
          name: "Turbidity",
          readingWithUnits: (
             <div>
-               <b>{formValues ? formValues.Turbidity : ""}</b> inches
+               <b>{formValues ? formValues.Turbidity : ""}</b> NTU
             </div>
          ),
          qValue: (

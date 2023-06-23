@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, IconButton, Popover, Fade } from "@mui/material";
+import { Box, Button, IconButton, Popover, Fade } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default function IndicatorInfo({
@@ -26,9 +26,9 @@ export default function IndicatorInfo({
 
    return (
       <div>
-         <IconButton onClick={handleClick} sx={{ position: position }}>
+         <Button onClick={handleClick} component="span" sx={{ position: position, width: "5%" }}>
             {icon}
-         </IconButton>
+         </Button>
 			
          <Popover
             id={id}
@@ -37,13 +37,15 @@ export default function IndicatorInfo({
             transformOrigin={{
                vertical: "bottom",
                horizontal: "center",
+               display: "flex",
+               width: {xs: "95%", sm: "85%", lg: "70%"}
             }}
 				TransitionComponent={Fade}
     			TransitionProps={{ timeout: 0 }}
             open={open}
             onClose={handleClose}
-            sx={{ display: "flex", width: {xs: "95%", sm: "85%", lg: "70%"}, "& .MuiPopover-paper": {
-					backgroundColor: "#BBE8F1", // Set your desired background color
+            sx={{ display: "flex", width: {xs: "95%", sm: "90%", lg: "80%"}, "& .MuiPopover-paper": {
+					backgroundColor: "#D2FFF7", // Set your desired background color
 				 } }}
          >
             {openPage2 ? (

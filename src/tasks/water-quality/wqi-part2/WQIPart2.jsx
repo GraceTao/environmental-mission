@@ -88,7 +88,7 @@ export default function WQIPart2() {
       ),
       createData("pH", "pH", "", formValues, qValues, setQValues),
       createData(
-         "Biochemical oxygen demand",
+         "Biochemical oxygen demand (BOD5)",
          "BOD",
          "ppm",
          formValues,
@@ -122,7 +122,7 @@ export default function WQIPart2() {
       createData(
          "Turbidity",
          "Turbidity",
-         "inches",
+         "NTU",
          formValues,
          qValues,
          setQValues
@@ -184,8 +184,8 @@ export default function WQIPart2() {
                </Tooltip>
             </IconButton>
          </Box>
-         <Box display="flex" flexDirection={{xs: "column", sm: "row"}} justifyContent="space-between">
-            <Box width={{xs: "100%", sm: "50%"}} ml="1%">
+         <Box display="flex" flexDirection={{xs: "column", md: "row"}} justifyContent="space-between">
+            <Box width={{xs: "100%", md: "50%"}} ml="1%">
                <TableContainer component={Paper} sx={{backgroundColor: "#fff5"}}>
                   <Table size="small">
                      <TableHead>
@@ -231,11 +231,11 @@ export default function WQIPart2() {
                <Box
                   sx={{
                      position: "absolute",
-                     top: {xs: "100%", sm: "15%"},
+                     top: {xs: "100%", md: "15%"},
                      left: "5%",
                      zIndex: 1,
                      width: "93%",
-                     mt: {xs: "10%", sm: 0},
+                     mt: {xs: "10%", md: 0},
                   }}
                >
                   <GraphSlideShow />

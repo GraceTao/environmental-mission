@@ -10,9 +10,11 @@ import {
    OutlinedInput,
    InputAdornment,
    Dialog,
+   DialogTitle,
    DialogContent,
    DialogActions,
    Tooltip,
+   Typography,
 } from "@mui/material";
 import { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -31,9 +33,9 @@ function createData(name, abbrName, units, formValues, setFormValues) {
          name={abbrName}
          align="right"
          endAdornment={<InputAdornment position="end">{units}</InputAdornment>}
-         sx={{ maxWidth: 200, maxHeight: 40 }}
+         sx={{ maxWidth: 200, maxHeight: 43 }}
          onChange={handleChange}
-         value={formValues[abbrName] || ''}
+         value={formValues[abbrName] || ""}
       ></OutlinedInput>
    );
 
@@ -72,7 +74,7 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
       ),
       createData("pH", "pH", "", formValues, setFormValues),
       createData(
-         "Biochemical oxygen demand",
+         <p>BOD5 (day 0 DO &minus; day 5 DO)</p>,
          "BOD",
          "ppm",
          formValues,
@@ -87,7 +89,7 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
       ),
       createData("Phosphates", "Phosphates", "ppm", formValues, setFormValues),
       createData("Nitrates", "Nitrates", "ppm", formValues, setFormValues),
-      createData("Turbidity", "Turbidity", "inches", formValues, setFormValues),
+      createData("Turbidity", "Turbidity", "NTU", formValues, setFormValues),
       createData("Total solids", "TS", "ppm", formValues, setFormValues),
    ];
 
@@ -101,9 +103,17 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
                setOpenClipboard(false);
             }}
          >
-            <DialogContent sx={{backgroundColor: "#266F35"}}>
+            <DialogTitle sx={{backgroundColor: "lightgray"}} >
+               <Typography fontSize={{ xs: "1.1rem", md: "1.3rem" }} fontFamily="tahoma">
+                  Make sure all units match! Round to one decimal place.
+                  <b> 1&nbsp;ppm&nbsp;=&nbsp;1&nbsp;mg&nbsp;/&nbsp;L</b>
+                  
+               </Typography>
+            </DialogTitle>
+            <DialogContent sx={{ backgroundColor: "#266F35" }}>
                <TableContainer
-                  component={Paper}  
+                  component={Paper}
+                  sx={{ backgroundColor: "#CCEACE" }}
                >
                   <Table size="small">
                      <TableHead>
@@ -143,7 +153,7 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
                   </Table>
                </TableContainer>
             </DialogContent>
-            <DialogActions sx={{backgroundColor: "#D0D0D0 "}}>
+            <DialogActions sx={{ backgroundColor: "lightgray" }}>
                <Link to="/wqi-p2">
                   <Tooltip title="continue" arrow>
                      <ArrowCircleRightIcon
