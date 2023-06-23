@@ -95,8 +95,8 @@ function Page2() {
                         <Box
                            sx={{
                               backgroundColor: pH.color,
-                              width: 25,
-                              height: 40,
+                              width: 30,
+                              height: 45,
                            }}
                         ></Box>
                         <Typography align="center">{pH.value}</Typography>

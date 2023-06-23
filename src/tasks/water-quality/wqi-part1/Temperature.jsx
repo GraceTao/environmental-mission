@@ -39,8 +39,6 @@ export default function Temperature({upstream}) {
                   color: "red",
                   width: "100%",
                   height: "100%",
-                  // backgroundColor: "lightgray",
-                  // borderRadius: 3,
                }}
             />
          }

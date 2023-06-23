@@ -37,7 +37,7 @@ function Page2() {
          Total solids are measured by weighing the amount of solids present in a
          water sample. First, the water sample is added to a beaker. The water is 
          then evaporated and the remaining residue inside the beaker is dried and 
-         weighed.<br/><br/>
+         weighed.<br/><br/>At this visit:<br/>
          (A) Mass of empty beaker = {emptyBeaker}&nbsp;g <br />
          (B) Volume of water added = {waterAdded}&nbsp;mL <br />
          (C) Mass of beaker with residue = {beakerWithResidue}&nbsp;g <br /><br />
@@ -45,7 +45,7 @@ function Page2() {
             total solids (g / mL) = (C &minus; A) / B
          </Typography>
          <br/>
-         Now convert g / mL to the correct units.<br/>
+         Now convert g&nbsp;/&nbsp;mL to mg&nbsp;/&nbsp;L.&emsp;
          <i>1&nbsp;g&nbsp;=&nbsp;1000&nbsp;mg, 1&nbsp;L&nbsp;=&nbsp;1000&nbsp;mL</i>
       </Typography>
    );

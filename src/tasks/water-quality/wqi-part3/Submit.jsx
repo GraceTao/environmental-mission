@@ -7,22 +7,29 @@ import {
    Typography,
    useMediaQuery,
    useTheme,
+   Dialog,
+   DialogContent,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import { useLocation } from "react-router-dom";
 
-const wqi = "5";
+const wqi = 75.31;
+const marginOfError = 0.2;
 
 export default function Submit() {
-   const [inputWQI, setInputWQI] = useState(sessionStorage.getItem("inputWQI"));
-   const [correct, setCorrect] = useState(sessionStorage.getItem("inputWQI") === wqi);
-   const [submitted, setSubmitted] = useState(sessionStorage.getItem("inputWQI") === wqi);
+   const storedWQI = sessionStorage.getItem("inputWQI");
+   const displayWQIClue = sessionStorage.getItem("displayWQIClue");
+   const [inputWQI, setInputWQI] = useState(storedWQI);
+   const [correct, setCorrect] = useState(storedWQI === wqi);
+   const [submitted, setSubmitted] = useState(storedWQI === wqi);
+   const [displayClue, setDisplayClue] = useState(displayWQIClue);
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      setCorrect(inputWQI === wqi);
+      const answer = parseFloat(inputWQI);
+      setCorrect(answer >= (wqi-marginOfError) && answer <= wqi+marginOfError);
       setSubmitted(true);
       sessionStorage.setItem("inputWQI", inputWQI);
    };
@@ -32,11 +39,23 @@ export default function Submit() {
       setSubmitted(false);
    };
 
+   const onCorrectRating = () => {
+      sessionStorage.setItem("displayWQIClue", true);
+      setDisplayClue(true);
+   };
+
    const buttons = [
-      <Button key="excellent" sx={{ "&:hover": { backgroundColor: "#1D9C4F  " } }}>
+      <Button
+         key="excellent"
+         sx={{ "&:hover": { backgroundColor: "#1D9C4F  " } }}
+      >
          Excellent (&gt;90)
       </Button>,
-      <Button key="good" sx={{ "&:hover": { backgroundColor: "#B7E73E" } }}>
+      <Button
+         key="good"
+         sx={{ "&:hover": { backgroundColor: "#B7E73E" } }}
+         onClick={onCorrectRating}
+      >
          Good (&gt;70&ndash;90)
       </Button>,
       <Button key="medium" sx={{ "&:hover": { backgroundColor: "#FFDE47" } }}>
@@ -61,7 +80,7 @@ export default function Submit() {
          <TextField
             label="Enter WQI"
             variant="filled"
-            defaultValue={correct ? inputWQI : ''}
+            defaultValue={correct ? inputWQI : ""}
             disabled={correct}
             inputProps={{
                pattern: "[0-9]*",
@@ -115,6 +134,21 @@ export default function Submit() {
                )}
             </Box>
          )}
+         <Dialog
+            open={displayClue}
+            onClose={() => {
+               setDisplayClue(false);
+            }}
+         >
+            <DialogContent sx={{backgroundColor: "lightblue"}}>
+               <Typography fontSize={{xs: "1.3rem", md: "1.5rem"}} >
+               Correct! The stream rating is GOOD.
+               <br />
+               Your clue word is <b>water</b>.
+               </Typography>
+               
+            </DialogContent>
+         </Dialog>
       </Box>
    );
 }

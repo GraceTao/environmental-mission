@@ -45,7 +45,7 @@ export default function IndicatorInfo({
             open={open}
             onClose={handleClose}
             sx={{ display: "flex", width: {xs: "95%", sm: "90%", lg: "80%"}, "& .MuiPopover-paper": {
-					backgroundColor: "#D2FFF7", // Set your desired background color
+					backgroundColor: "lightblue", // Set your desired background color
 				 } }}
          >
             {openPage2 ? (

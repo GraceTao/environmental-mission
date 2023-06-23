@@ -1,6 +1,12 @@
 import DOGraph from "./DOGraph";
 import PHGraph from "./PHGraph";
 import FCGraph from "./FCGraph";
+import BODGraph from "./BODGraph";
+import TemperatureGraph from "./TemperatureGraph";
+import PhosphatesGraph from "./PhosphatesGraph";
+import NitratesGraph from "./NitratesGraph";
+import TurbidityGraph from "./TurbidityGraph";
+import TSGraph from "./TSGraph";
 import { useState } from "react";
 import { Box, Button } from "@mui/material";
 
@@ -29,12 +35,24 @@ function GraphSlideShow() {
       DO: true,
       FC: false,
       pH: false,
+      BOD: false,
+      deltaTemp: false,
+      Phosphates: false,
+      Nitrates: false,
+      Turbidity: false,
+      TS: false,
    });
 
    const graphs = [
-      makeGraph("DO", <DOGraph />, "pH", "FC", setOpen),
+      makeGraph("DO", <DOGraph />, "TS", "FC", setOpen),
       makeGraph("FC", <FCGraph />, "DO", "pH", setOpen),
-      makeGraph("pH", <PHGraph />, "FC", "DO", setOpen),
+      makeGraph("pH", <PHGraph />, "FC", "BOD", setOpen),
+      makeGraph("BOD", <BODGraph />, "pH", "deltaTemp", setOpen),
+      makeGraph("deltaTemp", <TemperatureGraph />, "BOD", "Phosphates", setOpen),
+      makeGraph("Phosphates", <PhosphatesGraph />, "deltaTemp", "Nitrates", setOpen),
+      makeGraph("Nitrates", <NitratesGraph />, "Phosphates", "Turbidity", setOpen),
+      makeGraph("Turbidity", <TurbidityGraph />, "Nitrates", "TS", setOpen),
+      makeGraph("TS", <TSGraph />, "Turbidity", "DO", setOpen),
    ];
    return (
       <div>

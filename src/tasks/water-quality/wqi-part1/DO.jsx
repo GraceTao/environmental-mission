@@ -438,10 +438,10 @@ function Page1() {
             <br />
             <br />
             The <b>biochemical oxygen demand (BOD)</b> measures the amount of
-            oxygen consumed by microorganisms to decompose organic matter.
-            The BOD5 is the five-day oxygen consumption. BOD5 is calculated as the difference 
-            between the DO of a sample of the water taken immediately and the DO of a sample incubated 
-            in the dark at 20&deg;C for 5 days.
+            oxygen consumed by microorganisms to decompose organic matter. The
+            BOD5 is the five-day oxygen consumption. BOD5 is calculated as the
+            difference between the DO of a sample of the water taken immediately
+            and the DO of a sample incubated in the dark at 20&deg;C for 5 days.
          </Typography>
       </Box>
    );
@@ -463,18 +463,15 @@ function Page2() {
                % saturation = 100% * (measured DO) / (max DO)
             </Typography>
             <br />
-            The DO (at day 0) was measured to be <b>{doDay0} mg / L</b>. Given the following
-            graph displaying the maximum oxygen concentration at different
-            temperatures, calculate the % saturation and record it. Use the average
-            temperature between upstream and downstream as the temperature
-            value.
-            <Box p={3}>
-               {graph}
-            </Box>
-            Furthermore, after 5 days at 20&deg;C, the DO was measured to be 
-            <b> {doDay5} mg / L</b>. Record the BOD5.
+            The DO (at day 0) was measured to be <b>{doDay0}&nbsp;mg&nbsp;/&nbsp;L</b>. Given
+            the following graph displaying the maximum oxygen concentration at
+            different temperatures, calculate the % saturation and record it.
+            Use the day 0 DO as the measured DO and the average temperature
+            between upstream and downstream as the temperature value.
+            <Box p={3}>{graph}</Box>
+            Furthermore, after 5 days at 20&deg;C, the DO was measured to be
+            <b> {doDay5}&nbsp;mg&nbsp;/&nbsp;L</b>.<br/><br/>
          </Typography>
-         
       </Box>
    );
 }

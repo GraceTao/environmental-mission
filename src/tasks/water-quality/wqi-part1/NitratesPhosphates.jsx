@@ -36,16 +36,17 @@ function Page2() {
             <b> {nitrates}&nbsp;&#181;g&nbsp;/&nbsp;fl&nbsp;oz</b> and{" "}
             <b>{phosphates}&nbsp;ng&nbsp;/&nbsp;mL</b>, respectively.
             <br /><br />
-            <b>1 mg / L = 1 ppm</b>
+            
             <Typography fontSize="1rem">
                <i>1&nbsp;mg = 1000&nbsp;&#181;g</i>
                <br />
                <i>1&nbsp;&#181;g = 1000&nbsp;ng</i>
                <br />
-               <i>1&nbsp;mL = 0.034 fl oz</i>
+               <i>1&nbsp;mL = 0.034&nbsp;fl&nbsp;oz</i>
                <br />
-               <i>1 L = 1000 mL</i>
+               <i>1&nbsp;L&nbsp;=&nbsp;1000&nbsp;mL</i>
                <br />
+               <b>1 mg / L = 1 ppm</b>
             </Typography>
          </Typography>
       </div>

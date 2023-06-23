@@ -1,4 +1,4 @@
-export default function FCGraph() {
+export default function TurbidityGraph() {
    return (
       <svg
          viewBox="0 0 1653 993"
@@ -9,14 +9,17 @@ export default function FCGraph() {
       >
          <defs>
             <clipPath id="clip0">
-               <rect x={1101} y={158} width={1653} height={993} />
+               <rect x={957} y={121} width={1653} height={993} />
+            </clipPath>
+            <clipPath id="clip1">
+               <rect x={1186} y={291} width={1343} height={620} />
             </clipPath>
          </defs>
-         <g clipPath="url(#clip0)" transform="translate(-1101 -158)">
-            <rect x={1102} y={159} width={1650} height={990} fill="#FFFFFF" />
+         <g clipPath="url(#clip0)" transform="translate(-957 -121)">
+            <rect x={958} y={122} width={1650} height={990} fill="#FFFFFF" />
             <g>
                <path
-                  d="M1330.5 883.529 2680.5 883.529M1330.5 821.527 2680.5 821.527M1330.5 760.525 2680.5 760.525M1330.5 698.523 2680.5 698.523M1330.5 636.521 2680.5 636.521M1330.5 575.519 2680.5 575.519M1330.5 513.517 2680.5 513.517M1330.5 451.515 2680.5 451.515M1330.5 390.513 2680.5 390.513M1330.5 328.5 2680.5 328.5"
+                  d="M1186.5 839.528 2526.5 839.528M1186.5 771.526 2526.5 771.526M1186.5 702.523 2526.5 702.523M1186.5 634.521 2526.5 634.521M1186.5 565.519 2526.5 565.519M1186.5 497.516 2526.5 497.516M1186.5 428.514 2526.5 428.514M1186.5 360.512 2526.5 360.512M1186.5 291.5 2526.5 291.5"
                   stroke="#D9D9D9"
                   strokeWidth="3.4375"
                   strokeLinejoin="round"
@@ -26,7 +29,7 @@ export default function FCGraph() {
             </g>
             <g>
                <path
-                  d="M1523.55 328.5 1523.55 945.5M1716.56 328.5 1716.56 945.5M1908.56 328.5 1908.56 945.5M2101.57 328.5 2101.57 945.5M2294.58 328.5 2294.58 945.5M2487.58 328.5 2487.58 945.5M2680.5 328.5 2680.5 945.5"
+                  d="M1320.54 291.5 1320.54 908.5M1454.55 291.5 1454.55 908.5M1588.55 291.5 1588.55 908.5M1722.56 291.5 1722.56 908.5M1856.56 291.5 1856.56 908.5M1990.57 291.5 1990.57 908.5M2124.57 291.5 2124.57 908.5M2258.57 291.5 2258.57 908.5M2392.58 291.5 2392.58 908.5M2526.5 291.5 2526.5 908.5"
                   stroke="#D9D9D9"
                   strokeWidth="3.4375"
                   strokeLinejoin="round"
@@ -43,12 +46,12 @@ export default function FCGraph() {
                   strokeMiterlimit={10}
                   fill="none"
                   fillRule="evenodd"
-                  transform="matrix(1 0 0 -1 1330.5 945.5)"
+                  transform="matrix(1 0 0 -1 1186.5 908.5)"
                />
             </g>
             <g>
                <path
-                  d="M1330.5 945.5 2680.5 945.501"
+                  d="M1186.5 908.5 2526.5 908.5"
                   stroke="#BFBFBF"
                   strokeWidth="3.4375"
                   strokeLinejoin="round"
@@ -57,10 +60,10 @@ export default function FCGraph() {
                   fillRule="evenodd"
                />
             </g>
-            <g>
+            <g clipPath="url(#clip1)">
                <path
-                  d="M1369 353 1407.05 514.017 1446.05 575.019 1484.05 662.022 1523.05 699.023 1716.06 736.024 1909.06 773.025 2102.07 822.027 2295.08 846.028 2488.08 883.029 2681 908"
-                  stroke="#70AD47"
+                  d="M1186 312 1253.04 394.013 1320.04 456.015 1360.04 497.016 1387.05 511.017 1454.05 552.018 1521.05 586.019 1588.05 613.02 1655.05 648.021 1722.06 668.022 1856.06 709.023 1990.07 744.024 2124.07 785.026 2258.07 805.026 2392.08 826.027 2526 860"
+                  stroke="#C00000"
                   strokeWidth="8.02083"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -74,139 +77,7 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={41}
-                  transform="matrix(1 0 0 1 1250.07 957)"
-               >
-                  50
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1250.07 895)"
-               >
-                  55
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1250.07 833)"
-               >
-                  60
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1250.07 772)"
-               >
-                  65
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1250.07 710)"
-               >
-                  70
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1250.07 648)"
-               >
-                  75
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1250.07 587)"
-               >
-                  80
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1250.07 525)"
-               >
-                  85
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1250.07 464)"
-               >
-                  90
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1250.07 402)"
-               >
-                  95
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1229.17 340)"
-               >
-                  100
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1319.68 1010)"
-               >
-                  0
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={41}
-                  transform="matrix(1 0 0 1 1502.19 1010)"
+                  transform="matrix(1 0 0 1 1106.02 920)"
                >
                   10
                </text>
@@ -217,7 +88,7 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={41}
-                  transform="matrix(1 0 0 1 1695.16 1010)"
+                  transform="matrix(1 0 0 1 1106.02 851)"
                >
                   20
                </text>
@@ -228,7 +99,7 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={41}
-                  transform="matrix(1 0 0 1 1888.12 1010)"
+                  transform="matrix(1 0 0 1 1106.02 783)"
                >
                   30
                </text>
@@ -239,7 +110,7 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={41}
-                  transform="matrix(1 0 0 1 2081.08 1010)"
+                  transform="matrix(1 0 0 1 1106.02 714)"
                >
                   40
                </text>
@@ -250,7 +121,7 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={41}
-                  transform="matrix(1 0 0 1 2274.04 1010)"
+                  transform="matrix(1 0 0 1 1106.02 646)"
                >
                   50
                </text>
@@ -261,7 +132,7 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={41}
-                  transform="matrix(1 0 0 1 2467.01 1010)"
+                  transform="matrix(1 0 0 1 1106.02 577)"
                >
                   60
                </text>
@@ -272,7 +143,7 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={41}
-                  transform="matrix(1 0 0 1 2659.97 1010)"
+                  transform="matrix(1 0 0 1 1106.02 509)"
                >
                   70
                </text>
@@ -282,8 +153,162 @@ export default function FCGraph() {
                   fill="#595959"
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1106.02 440)"
+               >
+                  80
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1106.02 372)"
+               >
+                  90
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1085.12 303)"
+               >
+                  100
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1175.63 973)"
+               >
+                  0
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1299.21 973)"
+               >
+                  10
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1433.24 973)"
+               >
+                  20
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1567.27 973)"
+               >
+                  30
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1701.3 973)"
+               >
+                  40
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1835.33 973)"
+               >
+                  50
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1969.36 973)"
+               >
+                  60
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2103.38 973)"
+               >
+                  70
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2237.41 973)"
+               >
+                  80
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2371.44 973)"
+               >
+                  90
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2495.02 973)"
+               >
+                  100
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
                   fontSize={46}
-                  transform="matrix(6.12323e-17 -1 1 6.12323e-17 1203.48 712)"
+                  transform="matrix(6.12323e-17 -1 1 6.12323e-17 1059.43 675)"
                >
                   Q
                </text>
@@ -294,7 +319,7 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={46}
-                  transform="matrix(6.12323e-17 -1 1 6.12323e-17 1203.48 681)"
+                  transform="matrix(6.12323e-17 -1 1 6.12323e-17 1059.43 644)"
                >
                   -
                </text>
@@ -305,7 +330,7 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={46}
-                  transform="matrix(6.12323e-17 -1 1 6.12323e-17 1203.48 667)"
+                  transform="matrix(6.12323e-17 -1 1 6.12323e-17 1059.43 630)"
                >
                   Value
                </text>
@@ -316,9 +341,9 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={46}
-                  transform="matrix(1 0 0 1 1741.49 1079)"
+                  transform="matrix(1 0 0 1 1712.64 1042)"
                >
-                  Fecal coliform (col / 100 mL)
+                  Turbidity (NTU)
                </text>
             </g>
             <g>
@@ -327,9 +352,9 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={64}
-                  transform="matrix(1 0 0 1 1618.86 254)"
+                  transform="matrix(1 0 0 1 1544.57 217)"
                >
-                  Fecal Coliform Q
+                  Turbidity Q
                </text>
             </g>
             <g>
@@ -338,7 +363,7 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={64}
-                  transform="matrix(1 0 0 1 2046.83 254)"
+                  transform="matrix(1 0 0 1 1833.03 217)"
                >
                   -
                </text>
@@ -349,14 +374,14 @@ export default function FCGraph() {
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
                   fontSize={64}
-                  transform="matrix(1 0 0 1 2066.47 254)"
+                  transform="matrix(1 0 0 1 1852.67 217)"
                >
                   Values
                </text>
             </g>
             <rect
-               x="1102.5"
-               y="159.5"
+               x="958.5"
+               y="122.5"
                width={1650}
                height={990}
                stroke="#D9D9D9"

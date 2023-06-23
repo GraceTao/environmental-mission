@@ -138,7 +138,7 @@ export default function WQIPart2() {
          ></Instr>
          <Instr
             title="Part Two:"
-            contents="Determine the quality values (Q-values) based on the provided graphs. Record the Q-values in the chart on the left. Click the top right arrow to continue."
+            contents="Determine the quality values (Q-values) based on the provided graphs. Use whole numbers. Record the Q-values in the table on the left. Click the top right arrow to continue."
          ></Instr>
       </Box>
    );

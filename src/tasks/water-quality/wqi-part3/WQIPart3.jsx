@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import TopBar from "../../../components/TopBar";
 import Instr from "../Instr";
 import Instructions from "../../../components/Instructions";
@@ -10,6 +10,8 @@ import {
    OutlinedInput,
    TextField,
    Tooltip,
+   Dialog,
+   DialogContent,
 } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { Link, useLocation } from "react-router-dom";
@@ -20,16 +22,23 @@ export default function WQIPart3() {
    const instructions = (
       <Box display="flex" flexDirection="column" justifyContent="center">
          <Instr
-            title="Task:"
-            contents="Find the water quality index (WQI) of this pond and use the WQI to determine the water quality rating. If the rating is correct, you will receive a clue."
-         ></Instr>
-         <Instr
             title="Part Three:"
-            contents="Find the weighted sum of the Q-values using the weighting factors; this is the water quality index (WQI). Submit the WQI for approval. If correct, check the rating that corresponds with the WQI to receive your clue."
+            contents={
+               <div>
+                  Find the weighted sum of the Q-values using the weighting
+                  factors; this is the water quality index (WQI). Submit the WQI
+                  for approval.
+                  <br/><br/>
+                  Note: the WQI is a number between 0 and 100. Round to one decimal place.
+                  Answers within &plusmn;&nbsp;0.2 will be accepted.
+               </div>
+            }
          ></Instr>
       </Box>
    );
 
+   const displayClue = sessionStorage.getItem("displayWQIClue");
+   console.log(displayClue);
 
    return (
       <Box
