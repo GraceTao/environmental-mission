@@ -22,15 +22,15 @@ function Instructions({ name, title, content, style }) {
 
    return (
       <div>
-         {name ? (
+         {name && (
             <Box sx={{ flexGrow: 1 }}>
                <Button onClick={() => setOpen(true)} size="large" sx={style}>
                   {name}
                </Button>
             </Box>
-         ) : null}
+         )}
 
-         <Dialog open={open} onClose={handleClose} position="fixed" >
+         <Dialog open={open} onClose={handleClose} position="fixed" fullWidth maxWidth="md">
          {title && <DialogTitle onClose={handleClose} sx={{ backgroundColor: "#79C1A1" }}>{title}</DialogTitle>}
             {/* {title && <Header onClose={handleClose}> {title} </Header>} */}
             <div style={{ maxHeight: "400px", overflow: "auto" }}>

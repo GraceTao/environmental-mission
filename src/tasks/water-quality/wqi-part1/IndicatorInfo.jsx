@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, IconButton, Popover, Fade, Popper } from "@mui/material";
+import { Box, Button, IconButton, Popover, Fade, } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default function IndicatorInfo({
@@ -45,7 +45,7 @@ export default function IndicatorInfo({
             open={open}
             onClose={handleClose}
             sx={{ display: "flex", width: {xs: "95%", sm: "90%", lg: "80%"}, "& .MuiPopover-paper": {
-					backgroundColor: "lightblue", // Set your desired background color
+					backgroundColor: "lightsteelblue", // Set your desired background color
 				 } }}
          >
             {openPage2 ? (

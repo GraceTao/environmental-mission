@@ -30,7 +30,7 @@ export default function WQIPart3() {
                   for approval.
                   <br/><br/>
                   Note: the WQI is a number between 0 and 100. Round to one decimal place.
-                  Answers within &plusmn;&nbsp;0.2 will be accepted.
+                  Answers within &plusmn;&nbsp;0.5 will be accepted.
                </div>
             }
          ></Instr>
