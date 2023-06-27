@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, React } from "react";
 import {
    Typography,
    Box,
@@ -23,6 +23,7 @@ import Instr from "../Instr";
 import AssignmentTwoToneIcon from '@mui/icons-material/AssignmentTwoTone';
 import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
+import chat_animation from "./chat_animation.gif";
 
 function CalendarAndInstructions() {
    const hasEnabledInstr = sessionStorage.getItem("hasEnabledWQIInstr");
@@ -159,7 +160,7 @@ export default function WQIHome() {
          <Turbidity />
          <NitratesPhosphates />
          <TS />
-
+         <img width="50%" src={chat_animation} alt="text messages"></img>
          <ImageCredits/>
       </Box>
    );
