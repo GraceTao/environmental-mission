@@ -161,17 +161,8 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
             <DialogActions
                sx={{
                   backgroundColor: "lightgray",
-                  justifyContent: "space-between",
                }}
             >
-               <Button
-                  variant="contained"
-                  onClick={() => {
-                     setOpenSampleConversion(true);
-                  }}
-               >
-                  Sample unit conversion
-               </Button>
                <Link to="/wqi-p2">
                   <Tooltip title="continue" arrow>
                      <ArrowCircleRightIcon
@@ -180,70 +171,6 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
                   </Tooltip>
                </Link>
             </DialogActions>
-         </Dialog>
-         <Dialog
-            maxWidth="md"
-            fullWidth
-            open={openSampleConversion}
-            onClose={() => {
-               setOpenSampleConversion(false);
-            }}
-         >
-            <DialogContent>
-               <Typography fontSize="1.1rem">
-                  The goal is to use{" "}
-                  <span style={{ color: "blue" }}>
-                     <b>intermediate units</b>
-                  </span>{" "}
-                  to convert between the{" "}
-                  <span style={{ color: "green" }}>
-                     <b>initial</b>
-                  </span>{" "}
-                  and{" "}
-                  <span style={{ color: "purple" }}>
-                     <b>final</b>
-                  </span>{" "}
-                  units, then <s>cancel out</s> those intermediate units along the way
-                  with fractions.
-                  <br />
-                  <br />
-                  <b>Convert 3 days to seconds.</b>
-                  <br />
-                  <span style={{ color: "green" }}>
-                     <b>days</b>
-                  </span>
-                  &nbsp;&rarr;&nbsp;
-                  <span style={{ color: "blue" }}>
-                     <b>hours</b>
-                  </span>
-                  &nbsp;&rarr;&nbsp;
-                  <span style={{ color: "blue" }}>
-                     <b>minutes</b>
-                  </span>
-                  &nbsp;&rarr;&nbsp;
-                  <span style={{ color: "purple" }}>
-                     <b>seconds</b>
-                  </span>
-                  <br />
-                  <br />
-                  Step
-                  1:&emsp;3&nbsp;<s>days</s>&nbsp;*&nbsp;(24&nbsp;hours&nbsp;/&nbsp;1&nbsp;<s>day</s>)&nbsp;=&nbsp;72&nbsp;hours
-                  <br />
-                  Step
-                  2:&emsp;72&nbsp;<s>hours</s>&nbsp;*&nbsp;60&nbsp;minutes&nbsp;/&nbsp;1&nbsp;<s>hour</s>&nbsp;=&nbsp;4320&nbsp;minutes
-                  <br />
-                  Step
-                  3:&emsp;4320&nbsp;<s>minutes</s>&nbsp;*&nbsp;60&nbsp;seconds&nbsp;/&nbsp;1&nbsp;<s>minute</s>&nbsp;=&nbsp;259200&nbsp;seconds
-                  <br />
-                  <br />
-                  In one line: <br />
-                  3&nbsp;days&nbsp;*&nbsp;(24&nbsp;hours&nbsp;/&nbsp;1&nbsp;day)&nbsp;*&nbsp;(60&nbsp;minutes&nbsp;/&nbsp;1&nbsp;hour)&nbsp;*&nbsp;(60&nbsp;seconds&nbsp;/&nbsp;1&nbsp;minute)
-                  =&nbsp;259200&nbsp;seconds
-                  <br />
-                  <br />
-                  <b>3&nbsp;days&nbsp;=&nbsp;259200&nbsp;seconds</b>
-               </Typography>
-            </DialogContent>
          </Dialog>
       </div>
    );

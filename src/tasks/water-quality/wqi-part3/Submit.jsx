@@ -16,20 +16,21 @@ import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import { useLocation } from "react-router-dom";
 
 const wqi = 75.31;
-const marginOfError = 0.2;
+const marginOfError = 0.5;
 
 export default function Submit() {
    const storedWQI = sessionStorage.getItem("inputWQI");
    const displayWQIClue = sessionStorage.getItem("displayWQIClue");
+   const answerWithinMargin = storedWQI && storedWQI >= (wqi-marginOfError) && storedWQI <= (wqi+marginOfError);
    const [inputWQI, setInputWQI] = useState(storedWQI);
-   const [correct, setCorrect] = useState(storedWQI === wqi);
-   const [submitted, setSubmitted] = useState(storedWQI === wqi);
+   const [correct, setCorrect] = useState(answerWithinMargin);
+   const [submitted, setSubmitted] = useState(answerWithinMargin);
    const [displayClue, setDisplayClue] = useState(displayWQIClue);
 
    const handleSubmit = (e) => {
       e.preventDefault();
       const answer = parseFloat(inputWQI);
-      setCorrect(answer >= (wqi-marginOfError) && answer <= wqi+marginOfError);
+      setCorrect(answer >= (wqi-marginOfError) && answer <= (wqi+marginOfError));
       setSubmitted(true);
       sessionStorage.setItem("inputWQI", inputWQI);
    };
@@ -47,24 +48,24 @@ export default function Submit() {
    const buttons = [
       <Button
          key="excellent"
-         sx={{ "&:hover": { backgroundColor: "#1D9C4F  " } }}
+         sx={{ backgroundColor: "silver", "&:hover": { backgroundColor: "#1D9C4F" } }}
       >
          Excellent (&gt;90)
       </Button>,
       <Button
          key="good"
-         sx={{ "&:hover": { backgroundColor: "#B7E73E" } }}
+         sx={{ backgroundColor: "silver", "&:hover": { backgroundColor: "#B7E73E" } }}
          onClick={onCorrectRating}
       >
          Good (&gt;70&ndash;90)
       </Button>,
-      <Button key="medium" sx={{ "&:hover": { backgroundColor: "#FFDE47" } }}>
+      <Button key="medium" sx={{ backgroundColor: "silver", "&:hover": { backgroundColor: "#FFDE47" } }}>
          Medium (&gt;50&ndash;70)
       </Button>,
-      <Button key="bad" sx={{ "&:hover": { backgroundColor: "#E52F02 " } }}>
+      <Button key="bad" sx={{ backgroundColor: "silver", "&:hover": { backgroundColor: "#E52F02 " } }}>
          Bad (25&ndash;50)
       </Button>,
-      <Button key="very bad" sx={{ "&:hover": { backgroundColor: "darkred" } }}>
+      <Button key="very bad" sx={{ backgroundColor: "silver", "&:hover": { backgroundColor: "darkred" } }}>
          Very bad (&lt;25)
       </Button>,
    ];
@@ -118,6 +119,7 @@ export default function Submit() {
                      <ButtonGroup
                         orientation={isSmallScreen ? "horizontal" : "vertical"}
                         variant="contained"
+                        color="inherit"
                      >
                         {buttons}
                      </ButtonGroup>

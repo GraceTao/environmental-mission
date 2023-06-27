@@ -1,10 +1,12 @@
-import { useEffect, useState, React } from "react";
+import { useEffect, useState, useRef, React } from "react";
 import {
    Typography,
    Box,
    IconButton,
    Button,
    Tooltip,
+   Dialog,
+   DialogContent,
 } from "@mui/material";
 import Instructions from "../../../components/Instructions";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -20,18 +22,24 @@ import NitratesPhosphates from "./NitratesPhosphates";
 import TS from "./TS";
 import Readings from "./Readings";
 import Instr from "../Instr";
-import AssignmentTwoToneIcon from '@mui/icons-material/AssignmentTwoTone';
+import AssignmentTwoToneIcon from "@mui/icons-material/AssignmentTwoTone";
+import ChatIcon from "@mui/icons-material/Chat";
 import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
-import chat_animation from "./chat_animation.gif";
+import chat_animation from "../chat_animation.webm";
 
 function CalendarAndInstructions() {
    const hasEnabledInstr = sessionStorage.getItem("hasEnabledWQIInstr");
-   const [enableInstr, setEnableInstr] = useState(false);
-   const [openInstr, setOpenInstr] = useState(hasEnabledInstr && true);
+   const [enableInstr, setEnableInstr] = useState(Boolean(hasEnabledInstr));
+   const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
 
    return openInstr ? (
-      <Box display="flex" flexDirection="column" justifyContent="center">
+      <Box
+         display="flex"
+         flexDirection="column"
+         justifyContent="center"
+         width="100%"
+      >
          <Instr
             title={"Task:"}
             contents={
@@ -51,39 +59,48 @@ function CalendarAndInstructions() {
       <div>
          <Box
             display="flex"
-            flexDirection="column"
-            justifyContent="center"
+            flexDirection="row"
+            justifyContent="space-around"
             margin="auto"
          >
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-               <DateCalendar
-                  onChange={(date) => {
-                     const selectedDate = date["$d"].toLocaleDateString();
-                     const today = new Date().toLocaleDateString();
-                     setEnableInstr(selectedDate === today ? true : false);
+            <div>
+               <video controls autoPlay style={{ width: "85%" }}>
+                  <source
+                     src={chat_animation}
+                     alt="text messages"
+                     type="video/webm"
+                  />
+               </video>
+            </div>
+            <Box display="flex" flexDirection="column">
+               <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DateCalendar
+                     onChange={(date) => {
+                        const selectedDate = date["$d"].toLocaleDateString();
+                        const today = new Date().toLocaleDateString();
+                        setEnableInstr(selectedDate === today ? true : false);
+                     }}
+                  />
+               </LocalizationProvider>
+               <Button
+                  variant="contained"
+                  disabled={!enableInstr}
+                  sx={{
+                     backgroundColor: "#417B88",
+                     "&:hover": { backgroundColor: "#4AB0C7 " },
                   }}
-               />
-            </LocalizationProvider>
-            <Button
-               variant="contained"
-               disabled={!enableInstr}
-               sx={{
-                  backgroundColor: "#417B88",
-                  "&:hover": { backgroundColor: "#4AB0C7 " },
-               }}
-               onClick={() => {
-                  setOpenInstr(true);
-                  sessionStorage.setItem("hasEnabledWQIInstr", true);
-               }
-               }
-            >
-               to-do: stream visit
-            </Button>
+                  onClick={() => {
+                     setOpenInstr(true);
+                     sessionStorage.setItem("hasEnabledWQIInstr", true);
+                  }}
+               >
+                  to-do: stream visit
+               </Button>
+            </Box>
          </Box>
       </div>
    );
 }
-
 
 export default function WQIHome() {
    const name = (
@@ -92,6 +109,8 @@ export default function WQIHome() {
       </Typography>
    );
    const [openClipboard, setOpenClipboard] = useState(false);
+   const [openMessages, setOpenMessages] = useState(false);
+
    return (
       <Box
          sx={{
@@ -126,29 +145,47 @@ export default function WQIHome() {
                ></Instructions>
             }
          />
-         <Box display="flex" flexDirection="row" justifyContent="flex-start">
-            <IconButton
-               sx={{
-                  backgroundColor: "lightgray",
-                  position: { top: 5, left: 5 },
-                  borderRadius: 5,
-                  width: 70,
-                  height: 75,
-                  mr: 3,
-                  "&:hover": {backgroundColor: "white"}
-               }}
-               onClick={() => setOpenClipboard(true)}
-               
-            >
-               <Tooltip title="Clipboard" arrow>
-                  <AssignmentTwoToneIcon sx={{ fontSize: 65, color: 'black' }} />
-               </Tooltip>
-            </IconButton>
-            <Readings
-               openClipboard={openClipboard}
-               setOpenClipboard={setOpenClipboard}
-            />
-            <SampleUnitConversion />
+         <Box display="flex" flexDirection="row" justifyContent="space-between">
+            <Box display="flex" justifyContent="flex-start" flexDirection="row">
+               <IconButton
+                  sx={{
+                     backgroundColor: "lightgray",
+                     position: { top: 5, left: 5 },
+                     borderRadius: 5,
+                     width: 70,
+                     height: 75,
+                     mr: 3,
+                     "&:hover": { backgroundColor: "white" },
+                  }}
+                  onClick={() => setOpenClipboard(true)}
+               >
+                  <Tooltip title="Clipboard" arrow>
+                     <AssignmentTwoToneIcon
+                        sx={{ fontSize: 65, color: "black" }}
+                     />
+                  </Tooltip>
+               </IconButton>
+               <Readings
+                  openClipboard={openClipboard}
+                  setOpenClipboard={setOpenClipboard}
+               />
+               <SampleUnitConversion />
+            </Box>
+
+            <Box>
+               <IconButton onClick={() => setOpenMessages(true)}>
+                  <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
+               </IconButton>
+            </Box>
+            <Dialog open={openMessages} onClose={() => setOpenMessages(false)}>
+               <video controls autoPlay style={{ width: "100%" }}>
+                  <source
+                     src={chat_animation}
+                     alt="text messages"
+                     type="video/webm"
+                  />
+               </video>
+            </Dialog>
          </Box>
 
          <Readings />
@@ -160,8 +197,8 @@ export default function WQIHome() {
          <Turbidity />
          <NitratesPhosphates />
          <TS />
-         <img width="50%" src={chat_animation} alt="text messages"></img>
-         <ImageCredits/>
+
+         <ImageCredits />
       </Box>
    );
 }
