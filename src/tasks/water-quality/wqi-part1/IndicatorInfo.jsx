@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, IconButton, Popover, Fade } from "@mui/material";
+import { Box, Button, IconButton, Popover, Fade, Popper } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default function IndicatorInfo({
