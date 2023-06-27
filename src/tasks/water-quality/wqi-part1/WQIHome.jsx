@@ -5,10 +5,7 @@ import {
    IconButton,
    Button,
    Tooltip,
-   Grid,
-   Popover,
 } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
 import Instructions from "../../../components/Instructions";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -21,12 +18,11 @@ import PH from "./PH";
 import Turbidity from "./Turbidity";
 import NitratesPhosphates from "./NitratesPhosphates";
 import TS from "./TS";
-import HomeIcon from "@mui/icons-material/Home";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import ForwardIcon from "@mui/icons-material/Forward";
 import Readings from "./Readings";
 import Instr from "../Instr";
 import AssignmentTwoToneIcon from '@mui/icons-material/AssignmentTwoTone';
+import ImageCredits from "./ImageCredits";
+import SampleUnitConversion from "./SampleUnitConversion";
 
 function CalendarAndInstructions() {
    const hasEnabledInstr = sessionStorage.getItem("hasEnabledWQIInstr");
@@ -129,7 +125,7 @@ export default function WQIHome() {
                ></Instructions>
             }
          />
-         <Box display="flex" flexDirection="row" justifyContent="space-between">
+         <Box display="flex" flexDirection="row" justifyContent="flex-start">
             <IconButton
                sx={{
                   backgroundColor: "lightgray",
@@ -137,9 +133,11 @@ export default function WQIHome() {
                   borderRadius: 5,
                   width: 70,
                   height: 75,
+                  mr: 3,
                   "&:hover": {backgroundColor: "white"}
                }}
                onClick={() => setOpenClipboard(true)}
+               
             >
                <Tooltip title="Clipboard" arrow>
                   <AssignmentTwoToneIcon sx={{ fontSize: 65, color: 'black' }} />
@@ -149,6 +147,7 @@ export default function WQIHome() {
                openClipboard={openClipboard}
                setOpenClipboard={setOpenClipboard}
             />
+            <SampleUnitConversion />
          </Box>
 
          <Readings />
@@ -161,7 +160,7 @@ export default function WQIHome() {
          <NitratesPhosphates />
          <TS />
 
-
+         <ImageCredits/>
       </Box>
    );
 }
