@@ -436,9 +436,9 @@ export default function TemperatureGraph() {
                   fill="#595959"
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
-                  fontSize={64}
+                  fontSize={50}
                   transform="matrix(1 0 0 1 1320.04 210)"
-                  letterSpacing="1"
+                  letterSpacing="-1"
                >
                   Change in Temperature Q
                </text>
@@ -448,9 +448,9 @@ export default function TemperatureGraph() {
                   fill="#595959"
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
-                  fontSize={64}
+                  fontSize={50}
                   transform="matrix(1 0 0 1 1983.36 210)"
-                  letterSpacing="1"
+                  letterSpacing="-1"
                >
                   -
                </text>
@@ -460,9 +460,9 @@ export default function TemperatureGraph() {
                   fill="#595959"
                   fontFamily="Calibri,Calibri_MSFontService,sans-serif"
                   fontWeight={400}
-                  fontSize={64}
+                  fontSize={50}
                   transform="matrix(1 0 0 1 2003 210)"
-                  letterSpacing="1"
+                  letterSpacing="-1"
                >
                   Values
                </text>
