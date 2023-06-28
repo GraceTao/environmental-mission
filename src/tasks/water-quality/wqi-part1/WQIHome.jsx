@@ -7,6 +7,8 @@ import {
    Tooltip,
    Dialog,
    DialogContent,
+   useTheme,
+   useMediaQuery
 } from "@mui/material";
 import Instructions from "../../../components/Instructions";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -32,6 +34,9 @@ function CalendarAndInstructions() {
    const hasEnabledInstr = sessionStorage.getItem("hasEnabledWQIInstr");
    const [enableInstr, setEnableInstr] = useState(Boolean(hasEnabledInstr));
    const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
+
+   const theme = useTheme();
+   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
    return openInstr ? (
       <Box
@@ -59,12 +64,12 @@ function CalendarAndInstructions() {
       <div>
          <Box
             display="flex"
-            flexDirection="row"
-            justifyContent="space-around"
+            flexDirection={isSmallScreen ? "column" : "row"}
+            justifyContent="center"
             margin="auto"
          >
             <div>
-               <video controls autoPlay style={{ width: "85%" }}>
+               <video controls autoPlay style={{ width: "90%" }}>
                   <source
                      src={wqi_chat_animation}
                      alt="text messages"
