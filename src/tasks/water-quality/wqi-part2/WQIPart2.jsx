@@ -227,14 +227,14 @@ export default function WQIPart2() {
                   </Table>
                </TableContainer>
             </Box>
-            <Box sx={{ position: "relative" }} width="95%">
+            <Box sx={{ position: "relative" }} minWidth="50%">
                <Box
                   sx={{
                      position: "absolute",
                      top: {xs: "100%", md: "15%"},
                      left: "5%",
                      zIndex: 1,
-                     width: "100%",
+                     width: "93%",
                      mt: {xs: "10%", md: 0},
                   }}
                >
