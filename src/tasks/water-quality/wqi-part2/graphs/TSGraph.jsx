@@ -340,31 +340,10 @@ export default function TSGraph() {
                   fontSize={64}
                   transform="matrix(1 0 0 1 1625.42 199)"
                >
-                  Total Solids Q
+                  Total Solids Q-Values
                </text>
             </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1974.8 199)"
-               >
-                  -
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1994.44 199)"
-               >
-                  Values
-               </text>
-            </g>
+            
             <rect
                x="1069.5"
                y="104.5"

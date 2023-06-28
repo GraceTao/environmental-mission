@@ -406,31 +406,10 @@ export default function DO() {
                   fontSize={64}
                   transform="matrix(1 0 0 1 1358.28 267)"
                >
-                  Dissolved Oxygen Q
+                  Dissolved Oxygen Q-Values
                </text>
             </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1870.91 267)"
-               >
-                  -
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1890.54 267)"
-               >
-                  Values
-               </text>
-            </g>
+            
             <rect
                x="884.5"
                y="172.5"

@@ -329,31 +329,10 @@ export default function PhosphatesGraph() {
                   fontSize={64}
                   transform="matrix(1 0 0 1 1369.49 204)"
                >
-                  Total Phosphates Q
+                  Total Phosphates Q-Values
                </text>
             </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1868.43 204)"
-               >
-                  -
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1888.07 204)"
-               >
-                  Values
-               </text>
-            </g>
+            
             <rect
                x="888.5"
                y="108.5"
