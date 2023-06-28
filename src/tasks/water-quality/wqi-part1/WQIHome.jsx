@@ -26,7 +26,7 @@ import AssignmentTwoToneIcon from "@mui/icons-material/AssignmentTwoTone";
 import ChatIcon from "@mui/icons-material/Chat";
 import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
-import chat_animation from "../chat_animation.webm";
+import wqi_chat_animation from "../wqi_chat_animation.mp4";
 
 function CalendarAndInstructions() {
    const hasEnabledInstr = sessionStorage.getItem("hasEnabledWQIInstr");
@@ -66,9 +66,9 @@ function CalendarAndInstructions() {
             <div>
                <video controls autoPlay style={{ width: "85%" }}>
                   <source
-                     src={chat_animation}
+                     src={wqi_chat_animation}
                      alt="text messages"
-                     type="video/webm"
+                     type="video/mp4"
                   />
                </video>
             </div>
@@ -180,9 +180,9 @@ export default function WQIHome() {
             <Dialog open={openMessages} onClose={() => setOpenMessages(false)}>
                <video controls autoPlay style={{ width: "100%" }}>
                   <source
-                     src={chat_animation}
+                     src={wqi_chat_animation}
                      alt="text messages"
-                     type="video/webm"
+                     type="video/mp4"
                   />
                </video>
             </Dialog>
