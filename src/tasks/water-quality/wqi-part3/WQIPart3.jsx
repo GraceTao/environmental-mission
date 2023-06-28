@@ -37,9 +37,6 @@ export default function WQIPart3() {
       </Box>
    );
 
-   const displayClue = sessionStorage.getItem("displayWQIClue");
-   console.log(displayClue);
-
    return (
       <Box
          sx={{
