@@ -384,51 +384,7 @@ export default function TemperatureGraph() {
                   fontSize={46}
                   transform="matrix(1 0 0 1 1560.66 1036)"
                >
-                  upstream{" "}
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={46}
-                  transform="matrix(1 0 0 1 1749.81 1036)"
-               >
-                  -
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={46}
-                  transform="matrix(1 0 0 1 1774.2 1036)"
-               >
-                  downstream (
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={46}
-                  transform="matrix(1 0 0 1 2034.19 1036)"
-               >
-                  °
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={46}
-                  transform="matrix(1 0 0 1 2049.72 1036)"
-               >
-                  C)
+                  upstream &minus; downstream (&deg;C)
                </text>
             </g>
             <g>

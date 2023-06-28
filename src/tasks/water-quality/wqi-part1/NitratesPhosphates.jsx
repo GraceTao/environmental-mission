@@ -32,9 +32,10 @@ function Page2() {
    return (
       <div>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
-            The nitrate and total phosphate levels were measured to be
-            <b> {nitrates}&nbsp;&#181;g&nbsp;/&nbsp;fl&nbsp;oz</b> and{" "}
-            <b>{phosphates}&nbsp;ng&nbsp;/&nbsp;mL</b>, respectively.
+            The total phosphate and nitrate levels were measured to be{" "}
+            <b>{phosphates}&nbsp;ng&nbsp;/&nbsp;mL</b> and{" "}
+            <b> {nitrates}&nbsp;&#181;g&nbsp;/&nbsp;fl&nbsp;oz</b>
+            , respectively.
             <br /><br />
             
             <Typography fontSize="1rem">
