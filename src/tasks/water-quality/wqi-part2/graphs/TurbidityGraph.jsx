@@ -354,31 +354,10 @@ export default function TurbidityGraph() {
                   fontSize={64}
                   transform="matrix(1 0 0 1 1544.57 217)"
                >
-                  Turbidity Q
+                  Turbidity Q-Values
                </text>
             </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1833.03 217)"
-               >
-                  -
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1852.67 217)"
-               >
-                  Values
-               </text>
-            </g>
+            
             <rect
                x="958.5"
                y="122.5"

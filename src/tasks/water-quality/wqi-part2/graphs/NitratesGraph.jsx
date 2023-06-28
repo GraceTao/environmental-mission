@@ -329,31 +329,10 @@ export default function NitratesGraph() {
                   fontSize={64}
                   transform="matrix(1 0 0 1 1414.76 313)"
                >
-                  Nitrates Q
+                  Nitrates Q-Values
                </text>
             </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1679.11 313)"
-               >
-                  -
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1698.75 313)"
-               >
-                  Values
-               </text>
-            </g>
+            
             <rect
                x="816.5"
                y="218.5"

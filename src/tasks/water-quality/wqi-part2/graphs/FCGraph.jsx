@@ -329,31 +329,10 @@ export default function FCGraph() {
                   fontSize={64}
                   transform="matrix(1 0 0 1 1618.86 254)"
                >
-                  Fecal Coliform Q
+                  Fecal Coliform Q-Values
                </text>
             </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 2046.83 254)"
-               >
-                  -
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 2066.47 254)"
-               >
-                  Values
-               </text>
-            </g>
+            
             <rect
                x="1102.5"
                y="159.5"

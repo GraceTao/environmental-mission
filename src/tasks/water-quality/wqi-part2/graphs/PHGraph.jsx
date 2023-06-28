@@ -406,31 +406,10 @@ export default function PHGraph() {
                   fontSize={64}
                   transform="matrix(1 0 0 1 1668.94 226)"
                >
-                  pH Q
+                  pH Q-Values
                </text>
             </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1800.32 226)"
-               >
-                  -
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1819.96 226)"
-               >
-                  Values
-               </text>
-            </g>
+            
             <rect
                x="1004.5"
                y="130.5"

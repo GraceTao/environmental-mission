@@ -417,29 +417,7 @@ export default function BODGraph() {
                   fontSize={64}
                   transform="matrix(1 0 0 1 1782.13 479)"
                >
-                  BOD5 Q
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 1989.2 479)"
-               >
-                  -
-               </text>
-            </g>
-            <g>
-               <text
-                  fill="#595959"
-                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-                  fontWeight={400}
-                  fontSize={64}
-                  transform="matrix(1 0 0 1 2008.84 479)"
-               >
-                  Values
+                  BOD5 Q-Values
                </text>
             </g>
             <rect
