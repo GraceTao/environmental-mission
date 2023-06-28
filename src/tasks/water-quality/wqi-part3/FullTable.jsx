@@ -110,7 +110,7 @@ export default function FullTable() {
          name: <div>&Delta; Temperature</div>,
          readingWithUnits: (
             <div>
-               <b>{formValues ? formValues.FC : ""}</b> &deg;C
+               <b>{formValues ? formValues.deltaTemp : ""}</b> &deg;C
             </div>
          ),
          qValue: (
