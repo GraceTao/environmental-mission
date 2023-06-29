@@ -150,6 +150,7 @@ export default function WQIHome() {
                ></Instructions>
             }
          />
+
          <Box display="flex" flexDirection="row" justifyContent="space-between">
             <Box display="flex" justifyContent="flex-start" flexDirection="row">
                <IconButton
@@ -192,7 +193,12 @@ export default function WQIHome() {
                </video>
             </Dialog>
          </Box>
-
+         <div style={{marginTop: 5, width: "50px", height: "50px", backgroundImage: "url('https://linangdata.com/calculatorEmbed/icons/48x48.png')"}}>
+          <iframe id="linangcalc" src="https://linangdata.com/calculatorEmbed/embeddable.html?placement=right" 
+              width="30%" height="60%" scrolling="auto" frameBorder="0" 
+              style={{border:0, position: "absolute", opacity:1.0}}>
+          </iframe>
+        </div>
          <Readings />
          <DO />
          <Temperature upstream={true}></Temperature>
