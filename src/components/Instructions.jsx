@@ -10,28 +10,6 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation } from "react-router-dom";
 
-function Header(props) {
-   const { children, onClose, ...other } = props;
-
-   return (
-      <DialogTitle sx={{ backgroundColor: "#79C1A1" }}>
-         {children}
-         {onClose ? (
-            <IconButton
-               aria-label="close"
-               onClick={onClose}
-               sx={{
-                  position: "absolute",
-                  right: 8,
-                  top: 8,
-               }}
-            >
-               <CloseIcon />
-            </IconButton>
-         ) : null}
-      </DialogTitle>
-   );
-}
 
 function Instructions({ name, title, content, style }) {
    const location = useLocation().pathname;
@@ -44,16 +22,17 @@ function Instructions({ name, title, content, style }) {
 
    return (
       <div>
-         {name ? (
+         {name && (
             <Box sx={{ flexGrow: 1 }}>
                <Button onClick={() => setOpen(true)} size="large" sx={style}>
                   {name}
                </Button>
             </Box>
-         ) : null}
+         )}
 
-         <Dialog open={open} onClose={handleClose} position="fixed">
-            {title && <Header onClose={handleClose}> {title} </Header>}
+         <Dialog open={open} onClose={handleClose} position="fixed" fullWidth maxWidth="md">
+         {title && <DialogTitle onClose={handleClose} sx={{ backgroundColor: "#79C1A1" }}>{title}</DialogTitle>}
+            {/* {title && <Header onClose={handleClose}> {title} </Header>} */}
             <div style={{ maxHeight: "400px", overflow: "auto" }}>
                <DialogContent
                   dividers
