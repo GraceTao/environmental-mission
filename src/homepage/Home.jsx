@@ -15,7 +15,8 @@ import WarningIcon from "@mui/icons-material/Warning";
 import { Link } from "react-router-dom";
 
 function Notification() {
-   const [open, setOpen] = useState(true);
+   const openNotification = sessionStorage.getItem("openNotification");
+   const [open, setOpen] = useState(openNotification == null);
 
    const theme = createTheme();
 
@@ -35,7 +36,10 @@ function Notification() {
                <Alert
                   severity="warning"
                   action={
-                     <Button variant="outlined" onClick={() => setOpen(false)}>
+                     <Button variant="outlined" onClick={() => {
+                        setOpen(false);
+                        sessionStorage.setItem("openNotification", false);
+                        }}>
                         close
                      </Button>
                   }
@@ -52,7 +56,7 @@ function Notification() {
                </Alert>
             </Box>
          ) : (
-            <Tooltip title="open me">
+            <Tooltip title="Notification">
                <IconButton
                   onClick={() => {
                      setOpen(true);
@@ -131,8 +135,8 @@ function Home() {
                ></Instructions>
                <Grid
                   container
-                  rowSpacing={{ xs: 4, sm: 5, md: 12, lg: 18 }}
-                  columnSpacing={{ xs: 6, sm: 15, md: 20, lg: 25 }}
+                  rowSpacing={{ xs: 8, sm: 10, md: 12, lg: 18 }}
+                  columnSpacing={{ xs: 15, sm: 20, md: 20, lg: 25 }}
                   justifyContent="center"
                   alignItems="center"
                   style={{ marginTop: "2%", marginBottom: "2%" }}
