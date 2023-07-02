@@ -17,6 +17,7 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { Link, useLocation } from "react-router-dom";
 import FullTable from "./FullTable";
 import Submit from "./Submit";
+import Calculator from "../../../components/Calculator";
 
 export default function WQIPart3() {
    const instructions = (
@@ -67,11 +68,15 @@ export default function WQIPart3() {
                ></Instructions>
             }
          />
-         <IconButton component={Link} to="/wqi-p2" sx={{ ml: "41%" }}>
+         <Box display="flex" flexDirection="row">
+            <Calculator />
+         <IconButton component={Link} to="/wqi-p2" sx={{ ml: "36%" }}>
             <Tooltip title="back" arrow>
                <ArrowCircleLeftIcon sx={{ fontSize: 55, color: "blue" }} />
             </Tooltip>
          </IconButton>
+         </Box>
+
          <Box
             display="flex"
             flexDirection={{ xs: "column", md: "row" }}

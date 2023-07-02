@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, React } from "react";
+import { useEffect, useState, React } from "react";
 import {
    Typography,
    Box,
@@ -6,9 +6,8 @@ import {
    Button,
    Tooltip,
    Dialog,
-   DialogContent,
    useTheme,
-   useMediaQuery
+   useMediaQuery,
 } from "@mui/material";
 import Instructions from "../../../components/Instructions";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -29,6 +28,8 @@ import ChatIcon from "@mui/icons-material/Chat";
 import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
 import wqi_chat_animation from "../wqi_chat_animation.mp4";
+import PopperTest from "./PopperTest";
+import Calculator from "../../../components/Calculator";
 
 function CalendarAndInstructions() {
    const hasEnabledInstr = sessionStorage.getItem("hasEnabledWQIInstr");
@@ -161,6 +162,7 @@ export default function WQIHome() {
                      width: 70,
                      height: 75,
                      mr: 3,
+                     mb: 1,
                      "&:hover": { backgroundColor: "white" },
                   }}
                   onClick={() => setOpenClipboard(true)}
@@ -193,13 +195,18 @@ export default function WQIHome() {
                </video>
             </Dialog>
          </Box>
-         <div style={{marginTop: 5, width: "50px", height: "50px", backgroundImage: "url('https://linangdata.com/calculatorEmbed/icons/48x48.png')"}}>
+         {/* <div style={{ marginTop: 5, width: "50px", height: "50px", backgroundImage: "url('https://linangdata.com/calculatorEmbed/icons/48x48.png')"}}>
           <iframe id="linangcalc" src="https://linangdata.com/calculatorEmbed/embeddable.html?placement=right" 
               width="30%" height="60%" scrolling="auto" frameBorder="0" 
-              style={{border:0, position: "absolute", opacity:1.0}}>
+              style={{border:0, position: "absolute", zIndex: 1, opacity:1.0}}>
           </iframe>
-        </div>
+        </div> */}
+
          <Readings />
+         <div>
+         <Calculator />
+         </div>
+         
          <DO />
          <Temperature upstream={true}></Temperature>
          <Temperature upstream={false}></Temperature>

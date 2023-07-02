@@ -62,10 +62,10 @@ export default function WQIPart2() {
    const [qValues, setQValues] = useState(savedQValues);
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage
-      const storedFormValues = JSON.parse(sessionStorage.getItem("qValues"));
-      if (storedFormValues) {
+      const storedQValues = JSON.parse(sessionStorage.getItem("qValues"));
+      if (storedQValues) {
          // If there are saved form values, update the state with them
-         setQValues(storedFormValues);
+         setQValues(storedQValues);
       }
    }, []);
 

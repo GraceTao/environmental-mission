@@ -98,7 +98,6 @@ function Home() {
          Online Escape Room: Environmental Mission
       </Typography>
    );
-
   
 
    return (
