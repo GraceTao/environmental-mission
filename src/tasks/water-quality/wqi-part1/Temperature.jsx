@@ -1,9 +1,7 @@
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import IndicatorInfo from "./IndicatorInfo";
 import { Box, Typography } from "@mui/material";
-
-const upstreamTemp = 11.53;
-const downstreamTemp = 13.91;
+import {measured} from "../solns";
 
 function Page1() {
    return (
@@ -23,7 +21,7 @@ function Page2({upstream}) {
    return (
       <div>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
-            Assume this location is {upstream ? "upstream" : "downstream"}. The temperature here is <b>{upstream ? upstreamTemp : downstreamTemp}
+            Assume this location is {upstream ? "upstream" : "downstream"}. The temperature here is <b>{upstream ? measured.tempUp : measured.tempDown}
             &deg;C</b>.
          </Typography>
       </div>

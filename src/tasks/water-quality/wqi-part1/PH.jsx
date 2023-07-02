@@ -33,21 +33,21 @@ function Page1() {
 
 function Page2() {
    const pHColors = [
-      { color: "darkred", value: 0 },
-      { color: "red", value: 1 },
-      { color: "darkorange", value: 2 },
-      { color: "orange", value: 3 },
-      { color: "#d4c84a", value: 4 },
-      { color: "#A6B93C ", value: 5 },
-      { color: "#75A439 ", value: 6 },
-      { color: "#46A439 ", value: 7 },
-      { color: "#328541 ", value: 8 },
-      { color: "#2E7042 ", value: 9 },
-      { color: "#265946 ", value: 10 },
-      { color: "#235243 ", value: 11 },
-      { color: "#234752 ", value: 12 },
-      { color: "#2A3F61 ", value: 13 },
-      { color: "#2A2352 ", value: 14 },
+      "darkred",
+      "red",
+      "darkorange",
+      "orange", 
+      "#d4c84a", 
+      "#A6B93C ",
+      "#75A439 ", 
+      "#46A439 ",
+      "#328541 ", 
+      "#2E7042 ", 
+      "#265946 ", 
+      "#235243 ", 
+      "#234752 ",
+      "#2A3F61 ",
+      "#2A2352 ", 
    ];
    return (
       <Box >
@@ -71,7 +71,7 @@ function Page2() {
             </Box>
             <Box display="flex" flexDirection="column">
                <Typography>pH strip after use: </Typography>
-               <Box sx={{ backgroundColor: "#469e3a", width: 30, height: 130 }}>
+               <Box sx={{ backgroundColor: "#399949", width: 30, height: 130 }}>
                   <div>
                      <Box
                         sx={{
@@ -90,16 +90,16 @@ function Page2() {
             </Typography>
             <Box alignItems="center">
                <Box display="flex" flexDirection="row" p={2} sx={{ pt: 0 }}>
-                  {pHColors.map((pH) => (
-                     <Box display="flex" flexDirection="column" key={pH.value}>
+                  {pHColors.map((color, index) => (
+                     <Box display="flex" flexDirection="column" key={index}>
                         <Box
                            sx={{
-                              backgroundColor: pH.color,
+                              backgroundColor: color,
                               width: 30,
                               height: 45,
                            }}
                         ></Box>
-                        <Typography align="center">{pH.value}</Typography>
+                        <Typography align="center">{index}</Typography>
                      </Box>
                   ))}
                </Box>
@@ -120,7 +120,6 @@ export default function FC() {
             ></img>
          }
          position={{ top: "0vh", left: "60vw" }}
-         anchor={{ vertical: "bottom", horizontal: "center" }}
          page1={<Page1 />}
          page2={<Page2 />}
       />
