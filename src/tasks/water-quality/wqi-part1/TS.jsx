@@ -1,9 +1,7 @@
 import IndicatorInfo from "./IndicatorInfo";
 import { Box, Typography } from "@mui/material";
-
-const emptyBeaker = 55;
-const waterAdded = 50;
-const beakerWithResidue = 55.015;
+import {MathJax, MathJaxContext} from "better-react-mathjax";
+import {measured} from "../solns";
 
 function Page1() {
    return (
@@ -38,14 +36,18 @@ function Page2() {
          water sample. First, the water sample is added to a beaker. The water is 
          then evaporated and the remaining residue inside the beaker is dried and 
          weighed.<br/><br/>At this visit:<br/>
-         (A) Mass of empty beaker = {emptyBeaker}&nbsp;g <br />
-         (B) Volume of water added = {waterAdded}&nbsp;mL <br />
-         (C) Mass of beaker with residue = {beakerWithResidue}&nbsp;g <br /><br />
-         <Typography fontFamily="cambria math" fontSize="1.2rem" align="center">
-            total solids (g / mL) = (C &minus; A) / B
-         </Typography>
+         <i>(A)</i> Mass of empty beaker = {measured.TSEmptyBeakerMass}&nbsp;g <br />
+         <i>(B)</i> Volume of water added = {measured.TSWaterAdded}&nbsp;mL <br />
+         <i>(C)</i> Mass of beaker with residue = {measured.TSFullBeakerMass}&nbsp;g <br /><br />
+         <MathJaxContext>
+            <MathJax style={{fontSize: "1rem"}}>
+               {`$$${`\\text{total solids} = \\frac{\\text{mass of residue}}{\\text{volume of water}}
+                = \\frac{C-A}{B}`}$$`}
+            </MathJax>
+         </MathJaxContext>
          <br/>
-         Now convert g&nbsp;/&nbsp;mL to mg&nbsp;/&nbsp;L.&emsp;
+         Remember to convert the units of the above equation to ppm.<br/>
+         1&nbsp;ppm&nbsp;=&nbsp;1&nbsp;mg&nbsp;/&nbsp;L<br/>
          <i>1&nbsp;g&nbsp;=&nbsp;1000&nbsp;mg, 1&nbsp;L&nbsp;=&nbsp;1000&nbsp;mL</i>
       </Typography>
    );
@@ -62,7 +64,6 @@ export default function TS() {
             ></img>
          }
          position={{ top: "-20vh", left: "42vw" }}
-         anchor={{ vertical: "bottom", horizontal: "center" }}
          page1={<Page1 />}
          page2={<Page2 />}
       />

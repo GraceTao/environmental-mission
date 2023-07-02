@@ -39,20 +39,20 @@ function CalculatorNoButton() {
          }
 
          console.log(`evaluating ${op1AsNum} ${op} ${op2AsNum}`);
-         if (op == "+") {
-            setResult(op1AsNum + op2AsNum);
+         if (op === "+") {
             res = op1AsNum + op2AsNum;
-         } else if (op == "-") {
+         } else if (op === "-") {
             setResult(op1AsNum - op2AsNum);
             res = op1AsNum - op2AsNum;
-         } else if (op == "*") {
+         } else if (op === "*") {
             setResult(op1AsNum * op2AsNum);
             res = op1AsNum * op2AsNum;
-         } else if (op == "/") {
+         } else if (op === "/") {
             setResult(op1AsNum / op2AsNum);
             res = op1AsNum / op2AsNum;
          }
-
+         res = parseFloat(res.toFixed(8));
+         setResult(res);
          setOperand1(`${res}`);
          setOperand2("");
       }
@@ -89,7 +89,13 @@ function CalculatorNoButton() {
    };
 
    const handleEqualsClick = () => {
-      evaluate();
+      if (!op) {
+         setResult(operand1);
+      } else {
+         evaluate();
+      }
+      
+      
    };
 
    const handleClearClick = () => {

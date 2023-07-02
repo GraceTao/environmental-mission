@@ -13,27 +13,30 @@ import {
 import { useState, useEffect } from "react";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
-import { useLocation } from "react-router-dom";
-
-const wqi = 75.31;
-const marginOfError = 0.5;
+import {wqiFinal, marginOfError} from "../solns";
 
 export default function Submit() {
    const storedWQI = sessionStorage.getItem("inputWQI");
    const displayWQIClue = sessionStorage.getItem("displayWQIClue");
-   const answerWithinMargin = storedWQI && storedWQI >= (wqi-marginOfError) && storedWQI <= (wqi+marginOfError);
+   const answerWithinMargin = (ans) => {
+      return ans && ans >= (wqiFinal-marginOfError) && ans <= (wqiFinal+marginOfError)};
+   
    const [inputWQI, setInputWQI] = useState(storedWQI);
-   const [correct, setCorrect] = useState(answerWithinMargin);
-   const [submitted, setSubmitted] = useState(answerWithinMargin);
+   const [correct, setCorrect] = useState(answerWithinMargin(storedWQI));
+   const [submitted, setSubmitted] = useState(answerWithinMargin(storedWQI));
    const [displayClue, setDisplayClue] = useState(displayWQIClue);
+   const [attempts, setAttempts] = useState(0);
 
    const handleSubmit = (e) => {
       e.preventDefault();
       const answer = parseFloat(inputWQI);
-      setCorrect(answer >= (wqi-marginOfError) && answer <= (wqi+marginOfError));
+      setCorrect(answerWithinMargin(answer));
       setSubmitted(true);
+      setAttempts((attempts) => answerWithinMargin(answer) ? 0 : attempts + 1);
       sessionStorage.setItem("inputWQI", inputWQI);
    };
+
+
 
    const handleChange = (e) => {
       setInputWQI(e.target.value);
@@ -82,7 +85,7 @@ export default function Submit() {
             label="Enter WQI"
             variant="filled"
             defaultValue={correct ? inputWQI : ""}
-            disabled={correct}
+            disabled={!!correct}
             inputProps={{
                pattern: "[0-9]*",
                title: "numbers only",
@@ -98,7 +101,7 @@ export default function Submit() {
             }}
             onChange={handleChange}
          ></TextField>
-         <Button variant="contained" onClick={handleSubmit} disabled={correct}>
+         <Button variant="contained" onClick={handleSubmit} disabled={!!correct}>
             Submit
          </Button>
          {submitted && (
@@ -137,7 +140,7 @@ export default function Submit() {
             </Box>
          )}
          <Dialog
-            open={displayClue}
+            open={!!displayClue}
             onClose={() => {
                setDisplayClue(false);
             }}

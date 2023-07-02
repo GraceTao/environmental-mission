@@ -44,7 +44,6 @@ export default function FC() {
             ></img>
          }
          position={{ top: "0vh", left: "35vw" }}
-         anchor={{ vertical: "bottom", horizontal: "center" }}
          page1={<Page1 />}
          page2={<Page2 />}
       />

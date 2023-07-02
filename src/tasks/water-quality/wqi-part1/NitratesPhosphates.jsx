@@ -1,8 +1,6 @@
 import IndicatorInfo from "./IndicatorInfo";
 import { Box, Typography } from "@mui/material";
-
-const nitrates = 14.5;
-const phosphates = 350;
+import {measured} from "../solns";
 
 function Page1() {
    return (
@@ -33,8 +31,8 @@ function Page2() {
       <div>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
             The total phosphate and nitrate levels were measured to be<br/>
-            <b>{phosphates}&nbsp;ng&nbsp;/&nbsp;mL</b> and{" "}
-            <b> {nitrates}&nbsp;&#181;g&nbsp;/&nbsp;fl&nbsp;oz</b>
+            <b>{measured.Phosphates}&nbsp;ng&nbsp;/&nbsp;mL</b> and{" "}
+            <b> {measured.Nitrates}&nbsp;&#181;g&nbsp;/&nbsp;fl&nbsp;oz</b>
             , respectively.
             <br /><br />
             
@@ -65,7 +63,6 @@ export default function NitratesPhosphates() {
             ></img>
          }
          position={{ top: "-32vh", left: "68vw" }}
-         anchor={{ vertical: "bottom", horizontal: "left" }}
          page1={<Page1 />}
          page2={<Page2 />}
       />

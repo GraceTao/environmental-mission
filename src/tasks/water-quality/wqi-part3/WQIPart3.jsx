@@ -28,7 +28,7 @@ export default function WQIPart3() {
                <div>
                   Find the weighted sum of the Q-values using the weighting
                   factors; this is the water quality index (WQI). Submit the WQI
-                  for approval.
+                  for approval. A calculator is provided at the top left.
                   <br/><br/>
                   Note: the WQI is a number between 0 and 100. Round to one decimal place.
                   Answers within &plusmn;&nbsp;0.5 will be accepted.

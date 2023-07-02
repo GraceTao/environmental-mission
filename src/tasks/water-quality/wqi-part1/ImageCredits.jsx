@@ -12,7 +12,7 @@ export default function ImageCredits() {
    const id = open ? "image-popper" : undefined;
 
    return (
-      <Box display="flex" flexDirection="row" justifyContent="flex-end">
+      <Box display="flex" flexDirection="row" justifyContent="flex-end" position="sticky">
          <Button
             onClick={handleClick}
             sx={{ color: "blue", fontWeight: "bold" }}
