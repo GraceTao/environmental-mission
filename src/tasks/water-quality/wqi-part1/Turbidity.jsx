@@ -6,6 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import {measured, solutions} from "../solns";
 
 const disk = (
    <img
@@ -14,8 +15,6 @@ const disk = (
       src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Secchi_disk_pattern.svg"
    ></img>
 );
-
-const turbidity = "1 foot 1 inch";
 
 function Page1() {
    return (
@@ -60,11 +59,12 @@ function Page2() {
             which the disk disappears is the measure of turbidity.
             <br />
             <br />
-            In this stream, the Secchi disk disappeared at <b>{turbidity}</b>.
+            In this stream, the Secchi disk disappeared at <b>{measured.Turbidity}, which
+            is about {solutions.Turbidity.converted} {solutions.Turbidity.units}</b>.
             <br />
-            Use the following table to convert to NTU. <i>1 in = 2.54 cm</i>
+            {/* Use the following table to convert to NTU. <i>1 in = 2.54 cm</i> */}
          </Typography>
-         <TableContainer>
+         {/* <TableContainer>
             <Table size="small">
                <TableHead>
                   <TableRow>
@@ -85,7 +85,7 @@ function Page2() {
                   ))}
                </TableBody>
             </Table>
-         </TableContainer>
+         </TableContainer> */}
       </>
    );
 }

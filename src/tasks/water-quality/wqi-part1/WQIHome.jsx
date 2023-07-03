@@ -28,7 +28,6 @@ import ChatIcon from "@mui/icons-material/Chat";
 import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
 import wqi_chat_animation from "../wqi_chat_animation.mp4";
-import PopperTest from "./PopperTest";
 import Calculator from "../../../components/Calculator";
 
 function CalendarAndInstructions() {

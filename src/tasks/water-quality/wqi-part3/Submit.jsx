@@ -1,4 +1,7 @@
 import {
+   Alert,
+   Collapse,
+   Snackbar,
    TextField,
    Button,
    ButtonGroup,
@@ -10,20 +13,16 @@ import {
    Dialog,
    DialogContent,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
-import { wqiFinal, marginOfError, solutions, fullNames } from "../solns";
+import { wqiFinal, marginOfError, solutions } from "../solns";
 
 export default function Submit() {
    const storedWQI = sessionStorage.getItem("inputWQI");
    const displayWQIClue = sessionStorage.getItem("displayWQIClue");
    const answerWithinMargin = (ans) => {
-      return (
-         ans &&
-         ans >= wqiFinal - marginOfError &&
-         ans <= wqiFinal + marginOfError
-      );
+      return (Math.abs(ans - wqiFinal) <= marginOfError);
    };
 
    const [inputWQI, setInputWQI] = useState(storedWQI);
@@ -31,20 +30,15 @@ export default function Submit() {
    const [submitted, setSubmitted] = useState(answerWithinMargin(storedWQI));
    const [displayClue, setDisplayClue] = useState(displayWQIClue);
 
-   const storedWeightedValues = JSON.parse(
-      sessionStorage.getItem("weightedValues")
-   );
    const storedMeasurements = JSON.parse(sessionStorage.getItem("formValues"));
    const storedQValues = JSON.parse(sessionStorage.getItem("qValues"));
+   const storedWeightedValues = JSON.parse(sessionStorage.getItem("weightedValues"));
+   
+   // const [storedWeightedValues, setStoredWeightedValues] = useState(null);
+   const [openAlert, setOpenAlert] = useState(false);
+   const [alertMessage, setAlertMessage] = useState("");
 
-   const errorStyle = {
-      fontFamily: "tahoma",
-      fontSize: "1.1rem",
-      color: "darkred",
-      mb: 3,
-   };
-
-   const check = (obj, toCheck) => {
+   const checkCond = (obj, toCheck) => {
       let res = null;
       Object.keys(obj).forEach((key) => {
          if (!toCheck(key)) {
@@ -54,38 +48,100 @@ export default function Submit() {
       return res;
    };
 
-   const checkExists = (obj) => {
+   const checkContains = (obj) => {
       let res = true;
       Object.values(obj).forEach((val) => {
          if (!val) {
             res = false;
          }
       });
-      return res;
+      return Object.values(obj).length === 9 && res;
    };
 
-   const checkWeighted = check(storedWeightedValues, (key) => {
-      return Number(storedWeightedValues[key]).toFixed(2) ===
-         (storedQValues[key] * solutions[key].weight).toFixed(2);});
+   const checkExists = () => {
+      return (
+         storedMeasurements &&
+         storedQValues &&
+         storedWeightedValues &&
+         checkContains(storedMeasurements) &&
+         checkContains(storedQValues) &&
+         checkContains(storedWeightedValues)
+      );
+   };
 
-   const checkMeasurement = check(storedMeasurements, (key) => {
-      return key === "DO" ? 
-      storedMeasurements.DO >= (solutions.DO.converted - marginOfError) &&
-      storedMeasurements.DO <= (solutions.DO.converted + marginOfError) :
-      Number(storedMeasurements[key]) === Number(solutions[key].converted);
-   });
+   const checkWeighted = () => {
+      return (
+         storedWeightedValues &&
+         checkCond(storedWeightedValues, (key) => {
+            return (
+               Number(storedWeightedValues[key]).toFixed(2) ===
+               (storedQValues[key] * solutions[key].weight).toFixed(2)
+            );
+         })
+      );
+   };
 
-   const checkQValue = check(storedQValues, (key) => {
-      return storedQValues[key] >= (solutions[key].qValue - 1) &&
-             storedQValues[key] <= (solutions[key].qValue + 1);
-   })
+   const checkMeasurement = () => {
+      return (
+         storedMeasurements &&
+         checkCond(storedMeasurements, (key) => {
+            return key === "DO"
+               ? storedMeasurements.DO >=
+                    solutions.DO.converted - marginOfError &&
+                    storedMeasurements.DO <=
+                       solutions.DO.converted + marginOfError
+               : Number(storedMeasurements[key]) ===
+                    Number(solutions[key].converted);
+         })
+      );
+   };
 
-   const handleSubmit = (e) => {
-      e.preventDefault();
-      const answer = parseFloat(inputWQI);
-      setCorrect(answerWithinMargin(answer));
+   const checkQValue = () => {
+      return (
+         storedQValues &&
+         checkCond(storedQValues, (key) => {
+            return (Math.abs(storedQValues[key] - solutions[key].qValue) <= 1);
+         })
+      );
+   };
+      const checkConditions = () => {
+         if (!inputWQI) {
+            setAlertMessage(<>Enter a value before submitting.</>);
+         } else if (!checkExists()) {
+            setAlertMessage(<>You are missing one or more entries in the Measurement, Q-Value, and/or Weighted Q-Value columns.</>);
+         } else if (checkMeasurement()) {
+            setAlertMessage(
+               <>Check your measurement for <b>{solutions[String(checkMeasurement())].fullName}. </b>Don't forget to adjust the Q-Values if you change any measurements!</>
+            );
+         } else if (checkQValue()) {
+            setAlertMessage(
+               <>Check your Q-Value for <b>{solutions[checkQValue()].fullName}</b></>
+            );
+         } else if (checkWeighted()) {
+            setAlertMessage(
+               <>Check your Weighted Q-Value calculation for <b>{solutions[checkWeighted()].fullName}</b>.
+               <br/>Round to <i>two</i> decimal places!
+               </>
+            );
+         } else {
+            setAlertMessage(
+               <>Check that you are correctly adding up the Weighted Q-Values. Remember that this sum equals the WQI.</>
+            );
+         }
+      };
+
+   
+
+   const handleSubmit = () => {
+      const answerCheck = answerWithinMargin(parseFloat(inputWQI).toFixed(2));
+      setCorrect(answerCheck);
       setSubmitted(true);
       sessionStorage.setItem("inputWQI", inputWQI);
+      
+      setOpenAlert(true);
+      if (!answerCheck) {
+         checkConditions();
+      }
    };
 
    const handleChange = (e) => {
@@ -158,7 +214,7 @@ export default function Submit() {
          <TextField
             label="Enter WQI"
             variant="filled"
-            defaultValue={correct ? inputWQI : ""}
+            defaultValue={inputWQI}
             disabled={!!correct}
             inputProps={{
                pattern: "[0-9]*",
@@ -167,6 +223,7 @@ export default function Submit() {
             InputLabelProps={{
                sx: {
                   "&.Mui-focused": { color: "black" },
+                  zIndex: 0
                },
             }}
             sx={{
@@ -214,34 +271,22 @@ export default function Submit() {
                         </Icon>{" "}
                         <b>Incorrect.</b> Please try again.
                      </Typography>
-                     {!storedMeasurements ||
-                     !storedQValues ||
-                     !storedWeightedValues ||
-                     !checkExists(storedMeasurements) ||
-                     !checkExists(storedQValues) ||
-                     !checkExists(storedWeightedValues) ? (
-                        <Typography sx={errorStyle}>
-                           **You are missing one or more entries in the
-                           Measurement, Q-Value, and/or Weighted Q-Value
-                           columns.**
-                        </Typography>
-                     ) : checkWeighted ? (
-                        <Typography sx={errorStyle}>
-                           Check your Weighted Q-Value calculation for{" "}
-                           <b>{fullNames[checkWeighted]}</b>.<br/>
-                           **weighted q-value = q-value &times; weighting factor**
-                        </Typography>
-                     ) : checkMeasurement ? (
-                        <Typography sx={errorStyle}>
-                           Check your Measurement for <b>{fullNames[checkMeasurement]}</b>
-                           <br/>
-                           Don't forget to adjust the Q-Value after changing any Measurements!
-                        </Typography>
-                     ) : checkQValue ? (
-                        <Typography sx={errorStyle}>
-                           Check your Q-Value for <b>{fullNames[checkQValue]}</b>
-                        </Typography>
-                     ) : null}
+                     <Snackbar
+                        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                        sx={{ width: "80%" }}
+                        open={openAlert}
+                        // onClose={() => setOpenAlert(false)}
+                     >
+                        <Alert
+                           severity="error"
+                           onClose={() => setOpenAlert(false)}
+                        >
+                           <Typography color="#CD0B0B" sx={{fontSize: {xs: "0.9rem", sm: "1rem"}}}>
+                              {alertMessage}
+                           </Typography>
+                           
+                        </Alert>
+                     </Snackbar>
                   </Box>
                )}
             </Box>

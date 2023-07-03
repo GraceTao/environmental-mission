@@ -1,7 +1,7 @@
 import IndicatorInfo from "./IndicatorInfo";
 import { Box, Typography } from "@mui/material";
-import {MathJax, MathJaxContext} from "better-react-mathjax";
-import {measured} from "../solns";
+import { MathJax, MathJaxContext } from "better-react-mathjax";
+import { measured } from "../solns";
 
 function Page1() {
    return (
@@ -33,22 +33,34 @@ function Page2() {
    return (
       <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
          Total solids are measured by weighing the amount of solids present in a
-         water sample. First, the water sample is added to a beaker. The water is 
-         then evaporated and the remaining residue inside the beaker is dried and 
-         weighed.<br/><br/>At this visit:<br/>
-         <i>(A)</i> Mass of empty beaker = {measured.TSEmptyBeakerMass}&nbsp;g <br />
-         <i>(B)</i> Volume of water added = {measured.TSWaterAdded}&nbsp;mL <br />
-         <i>(C)</i> Mass of beaker with residue = {measured.TSFullBeakerMass}&nbsp;g <br /><br />
+         water sample. First, the water sample is added to a beaker. The water
+         is then evaporated and the remaining residue inside the beaker is dried
+         and weighed.
+         <br />
+         <br />
+         At this visit:
+         <br />
+         <i>(A)</i> Mass of empty beaker = {measured.TSEmptyBeakerMass}
+         <br />
+         <i>(B)</i> Volume of water added = {measured.TSWaterAdded}
+         <br />
+         <i>(C)</i> Mass of beaker with residue = {measured.TSFullBeakerMass}
+         <br />
+         <br />
          <MathJaxContext>
-            <MathJax style={{fontSize: "1rem"}}>
+            <MathJax style={{ fontSize: "1rem" }}>
                {`$$${`\\text{total solids} = \\frac{\\text{mass of residue}}{\\text{volume of water}}
                 = \\frac{C-A}{B}`}$$`}
             </MathJax>
          </MathJaxContext>
-         <br/>
-         Remember to convert the units of the above equation to ppm.<br/>
-         1&nbsp;ppm&nbsp;=&nbsp;1&nbsp;mg&nbsp;/&nbsp;L<br/>
-         <i>1&nbsp;g&nbsp;=&nbsp;1000&nbsp;mg, 1&nbsp;L&nbsp;=&nbsp;1000&nbsp;mL</i>
+         <br />
+         Remember to convert the units of the above equation to ppm.
+         <br />
+         1&nbsp;ppm&nbsp;=&nbsp;1&nbsp;mg&nbsp;/&nbsp;L
+         <br />
+         <i>
+            1&nbsp;g&nbsp;=&nbsp;1000&nbsp;mg, 1&nbsp;L&nbsp;=&nbsp;1000&nbsp;mL
+         </i>
       </Typography>
    );
 }

@@ -20,21 +20,17 @@ import { Link, useLocation } from "react-router-dom";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import { solutions } from "../solns";
 
-function createData(
-   name,
-   abbrName,
-   units,
-   preFilled,
-   formValues,
-   setFormValues
-) {
+function createData(abbrName, formValues, setFormValues) {
+   const name = solutions[abbrName].fullName;
+   const units = solutions[abbrName].units;
+
    const handleChange = (e) => {
-      
       const { name, value } = e.target;
-      console.log(`updating ${name} to ${value}`)
       const updatedFormValues = { ...formValues, [name]: value };
+
       setFormValues(updatedFormValues);
       sessionStorage.setItem("formValues", JSON.stringify(updatedFormValues));
+      
    };
 
    const inputBox = (
@@ -42,12 +38,16 @@ function createData(
          name={abbrName}
          align="right"
          endAdornment={<InputAdornment position="end">{units}</InputAdornment>}
-         sx={{ maxWidth: 200, maxHeight: 43, "& .MuiInputBase-input.Mui-disabled": {
-            WebkitTextFillColor: "#454545",
-         }, }}
+         sx={{
+            maxWidth: 200,
+            maxHeight: 43,
+            "& .MuiInputBase-input.Mui-disabled": {
+               WebkitTextFillColor: "#454545",
+            },
+         }}
          onChange={handleChange}
          value={formValues[abbrName] || ""}
-         disabled={preFilled}
+         disabled={solutions[abbrName].preFilled}
       ></OutlinedInput>
    );
 
@@ -56,13 +56,17 @@ function createData(
 
 export default function Readings({ openClipboard, setOpenClipboard }) {
    const location = useLocation();
-   const savedFormValues = location.state?.formValues || {
+   const initial = {
       FC: solutions.FC.converted,
       BOD: solutions.BOD.converted,
-      Turbidity: solutions.Turbidity.converted
-   };
+      Turbidity: solutions.Turbidity.converted,
+   }
+   
+   const savedFormValues = location.state?.formValues || initial;
+  
 
    const [formValues, setFormValues] = useState(savedFormValues);
+   sessionStorage.getItem("formValues") || sessionStorage.setItem("formValues", JSON.stringify(initial));
 
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage
@@ -74,66 +78,9 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
       }
    }, []);
 
-   const rows = [
-      createData(
-         "Dissolved oxygen",
-         "DO",
-         "% saturation",
-         false,
-         formValues,
-         setFormValues
-      ),
-      createData(
-         "Fecal coliform",
-         "FC",
-         "col / 100 mL",
-         true,
-         formValues,
-         setFormValues
-      ),
-      createData("pH", "pH", "", false, formValues, setFormValues),
-      createData(
-         <p>BOD5 (day 0 DO &minus; day 5 DO)</p>,
-         "BOD",
-         "ppm",
-         true,
-         formValues,
-         setFormValues
-      ),
-      createData(
-         <p>&Delta; Temperature (upstream &minus; downstream)</p>,
-         "deltaTemp",
-         <p>&deg;C</p>,
-         false,
-         formValues,
-         setFormValues
-      ),
-      createData(
-         "Phosphates",
-         "Phosphates",
-         "ppm",
-         false,
-         formValues,
-         setFormValues
-      ),
-      createData(
-         "Nitrates",
-         "Nitrates",
-         "ppm",
-         false,
-         formValues,
-         setFormValues
-      ),
-      createData(
-         "Turbidity",
-         "Turbidity",
-         "NTU",
-         true,
-         formValues,
-         setFormValues
-      ),
-      createData("Total solids", "TS", "ppm", false, formValues, setFormValues),
-   ];
+   const rows = Object.keys(solutions).map((key) => {
+      return createData(key, formValues, setFormValues);
+   });
 
    return (
       <div>
