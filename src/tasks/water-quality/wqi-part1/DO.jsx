@@ -434,7 +434,7 @@ function Page2() {
                   {`$$${`\\text{% saturation} = 100 \\text{%} \\times \\frac{\\text{measured DO}}{\\text{max DO}}`}$$`}
                </MathJax>
             </MathJaxContext>
-            The DO was measured to be <b>{measured.day0DO}&nbsp;mg&nbsp;/&nbsp;L</b>.
+            The DO was measured to be <b>{measured.day0DO}</b>.
             Given the following graph displaying the maximum oxygen
             concentration at different temperatures, calculate the % saturation
             and record it. 

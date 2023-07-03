@@ -1,7 +1,6 @@
 import IndicatorInfo from "./IndicatorInfo";
 import { Box, Typography } from "@mui/material";
-
-const fcValue = 45;
+import {measured} from "../solns";
 
 function Page1() {
    return (
@@ -26,8 +25,7 @@ function Page2() {
    return (
       <div>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
-            The fecal coliform was measured to be <b>{fcValue}&nbsp;col&nbsp;/&nbsp;L</b>. 
-            <br/><i>0.1&nbsp;L&nbsp;=&nbsp;100&nbsp;mL</i>
+            The fecal coliform was measured to be <b>{measured.FC}</b>. 
          </Typography>
       </div>
    )

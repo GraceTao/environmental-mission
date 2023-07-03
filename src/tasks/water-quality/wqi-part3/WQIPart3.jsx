@@ -5,16 +5,11 @@ import Instructions from "../../../components/Instructions";
 import {
    Box,
    IconButton,
-   Button,
    Typography,
-   OutlinedInput,
-   TextField,
    Tooltip,
-   Dialog,
-   DialogContent,
 } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FullTable from "./FullTable";
 import Submit from "./Submit";
 import Calculator from "../../../components/Calculator";
@@ -26,14 +21,14 @@ export default function WQIPart3() {
          <Instr
             title="Part Three:"
             contents={
-               <div>
+               <>
                   Find the weighted sum of the Q-values using the weighting
                   factors; this is the water quality index (WQI). Submit the WQI
                   for approval. A calculator is provided at the top left.
                   <br/><br/>
                   Note: the WQI is a number between 0 and 100. <b>Round to two decimal places.</b>
                   {" "}Answers within &plusmn;&nbsp;{marginOfError} will be accepted.
-               </div>
+               </>
             }
          ></Instr>
       </Box>
@@ -70,7 +65,7 @@ export default function WQIPart3() {
             }
          />
          <Box display="flex" flexDirection="row">
-            <Calculator />
+            <Calculator sx={{zIndex: 1}} />
          <IconButton component={Link} to="/wqi-p2" sx={{ ml: "36%" }}>
             <Tooltip title="back" arrow>
                <ArrowCircleLeftIcon sx={{ fontSize: 55, color: "blue" }} />
@@ -80,7 +75,7 @@ export default function WQIPart3() {
 
          <Box
             display="flex"
-            flexDirection={{ xs: "column", md: "row" }}
+            flexDirection={{ xs: "column-reverse", md: "row" }}
             justifyContent="space-around"
          >
             <FullTable></FullTable>

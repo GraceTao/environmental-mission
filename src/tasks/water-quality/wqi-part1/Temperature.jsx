@@ -21,8 +21,7 @@ function Page2({upstream}) {
    return (
       <div>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
-            Assume this location is {upstream ? "upstream" : "downstream"}. The temperature here is <b>{upstream ? measured.tempUp : measured.tempDown}
-            &deg;C</b>.
+            Assume this location is {upstream ? "upstream" : "downstream"}. The temperature here is <b>{upstream ? measured.tempUp : measured.tempDown}</b>.
          </Typography>
       </div>
    );
