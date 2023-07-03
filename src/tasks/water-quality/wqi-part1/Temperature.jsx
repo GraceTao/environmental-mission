@@ -40,7 +40,7 @@ export default function Temperature({upstream}) {
                }}
             />
          }
-         position={upstream ? {top: "55vh", left: "30vw"} : {top: "-22vh", left: "51vw"}}
+         position={upstream ? {top: "50vh", left: "30vw"} : {top: "-28vh", left: "51vw"}}
          anchor={{ vertical: "bottom", horizontal: "center" }}
          page1={<Page1 />}
          page2={<Page2 upstream={upstream}/>}

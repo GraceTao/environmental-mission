@@ -55,9 +55,9 @@ function GraphSlideShow() {
       makeGraph("TS", <TSGraph />, "Turbidity", "DO", setOpen),
    ];
    return (
-      <div>
+      <Box mb={3}>
          {graphs.map((graph) => open[graph.name] && graph.graphWithArrows)}
-      </div>
+      </Box>
    );
 }
 

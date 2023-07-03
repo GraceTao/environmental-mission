@@ -13,7 +13,7 @@ const measured = {
    TSFullBeakerMass: 55.015,
 };
 const solutions = {
-   DO: { converted: 78, qValue: 87, weight: 0.17 },
+   DO: { converted: 78.3, qValue: 87, weight: 0.17 },
    FC: { converted: 4.5, qValue: 83, weight: 0.16 },
    pH: { converted: 8, qValue: 81, weight: 0.11 },
    BOD: { converted: 2.47, qValue: 71, weight: 0.11 },
@@ -29,6 +29,16 @@ const wqiFinal = Object.values(solutions).reduce((acc, vals) => {
 }, 0).toFixed(2);
 
 const marginOfError = 1;
+const fullNames = {
+   DO: "Dissolved oxygen",
+   FC: "Fecal coliform",
+   pH: "pH",
+   BOD: "Biochemical oxygen demand",
+   deltaTemp: "Change in temperature",
+   Phosphates: "Phosphates",
+   Nitrates: "Nitrates",
+   Turbidity: "Turbidity",
+   TS: "Total solids"
+}
 
-
-export { measured, solutions, wqiFinal, marginOfError };
+export { measured, solutions, wqiFinal, marginOfError, fullNames };
