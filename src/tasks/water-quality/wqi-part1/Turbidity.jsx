@@ -94,7 +94,7 @@ export default function Turbidity() {
    return (
       <IndicatorInfo
          icon={disk}
-         position={{ top: "-30vh", left: "48vw" }}
+         position={{ top: "-36vh", left: "48vw" }}
          page1={<Page1 />}
          page2={<Page2 />}
       />
