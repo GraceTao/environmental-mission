@@ -20,14 +20,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import GraphSlideShow from "./graphs/GraphSlideShow";
+import { solutions } from "../solns";
 
-function createData(name, abbrName, units, formValues, qValues, setQValues) {
+function createData(abbrName, formValues, qValues, setQValues) {
    const formValue = formValues ? formValues[abbrName] : "";
-   const readingWithUnits = (
-      <div>
-         <b>{formValue}</b> {units}
-      </div>
-   );
+   const name = solutions[abbrName].fullName;
+   const readingWithUnits = <><b>{formValue}</b> {solutions[abbrName].units}</>;
 
    const handleChange = (e) => {
       const { name, value } = e.target;
@@ -62,73 +60,16 @@ export default function WQIPart2() {
    const [qValues, setQValues] = useState(savedQValues);
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage
-      const storedFormValues = JSON.parse(sessionStorage.getItem("qValues"));
-      if (storedFormValues) {
+      const storedQValues = JSON.parse(sessionStorage.getItem("qValues"));
+      if (storedQValues) {
          // If there are saved form values, update the state with them
-         setQValues(storedFormValues);
+         setQValues(storedQValues);
       }
    }, []);
 
-   const rows = [
-      createData(
-         "Dissolved oxygen",
-         "DO",
-         "% saturation",
-         formValues,
-         qValues,
-         setQValues
-      ),
-      createData(
-         "Fecal coliform",
-         "FC",
-         "col / 100 mL",
-         formValues,
-         qValues,
-         setQValues
-      ),
-      createData("pH", "pH", "", formValues, qValues, setQValues),
-      createData(
-         "Biochemical oxygen demand (BOD5)",
-         "BOD",
-         "ppm",
-         formValues,
-         qValues,
-         setQValues
-      ),
-      createData(
-         <p>&Delta; Temperature</p>,
-         "deltaTemp",
-         <>&deg;C</>,
-         formValues,
-         qValues,
-         setQValues
-      ),
-      createData(
-         "Phosphates",
-         "Phosphates",
-         "ppm",
-         formValues,
-         qValues,
-         setQValues
-      ),
-      createData(
-         "Nitrates",
-         "Nitrates",
-         "ppm",
-         formValues,
-         qValues,
-         setQValues
-      ),
-      createData(
-         "Turbidity",
-         "Turbidity",
-         "NTU",
-         formValues,
-         qValues,
-         setQValues
-      ),
-      createData("Total solids", "TS", "ppm", formValues, qValues, setQValues),
-   ];
+   const rows = Object.keys(solutions).map((key) => {
+      return createData(key, formValues, qValues, setQValues);
+   })
 
    const instructions = (
       <Box display="flex" flexDirection="column" justifyContent="center">

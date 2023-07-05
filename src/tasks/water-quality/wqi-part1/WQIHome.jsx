@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, React } from "react";
+import { useEffect, useState, React } from "react";
 import {
    Typography,
    Box,
@@ -6,9 +6,8 @@ import {
    Button,
    Tooltip,
    Dialog,
-   DialogContent,
    useTheme,
-   useMediaQuery
+   useMediaQuery,
 } from "@mui/material";
 import Instructions from "../../../components/Instructions";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -29,6 +28,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
 import wqi_chat_animation from "../wqi_chat_animation.mp4";
+import Calculator from "../../../components/Calculator";
 
 function CalendarAndInstructions() {
    const hasEnabledInstr = sessionStorage.getItem("hasEnabledWQIInstr");
@@ -48,15 +48,17 @@ function CalendarAndInstructions() {
          <Instr
             title={"Task:"}
             contents={
-               "Find the water quality index (WQI) of this pond and use the WQI to determine the" +
-               " water quality rating. If the rating is correct, you will receive the clue word."
+               `Find the water quality index (WQI) of this pond and use the WQI to determine the
+               water quality rating. If the rating is correct, you will receive the clue word.`
             }
          ></Instr>
          <Instr
             title={"Part One:"}
             contents={
-               "Click on the water quality indicators in the picture and calculate the unit-converted measurements for each indicator. " +
-               "Record the values on the top left clipboard as you go. Once you’ve filled out all values, click the arrow on the clipboard to continue."
+               `Click on the water quality indicators in the picture to learn more about them. Then calculate
+               the unit-converted measurements for each indicator. Some values are filled in for you.
+               Record the values on the top left clipboard as you go. A calculator is provided
+               beneath the clipboard. Once you’ve filled out all values, click the arrow on the clipboard to continue.`
             }
          ></Instr>
       </Box>
@@ -161,6 +163,7 @@ export default function WQIHome() {
                      width: 70,
                      height: 75,
                      mr: 3,
+                     mb: 1,
                      "&:hover": { backgroundColor: "white" },
                   }}
                   onClick={() => setOpenClipboard(true)}
@@ -193,13 +196,18 @@ export default function WQIHome() {
                </video>
             </Dialog>
          </Box>
-         <div style={{marginTop: 5, width: "50px", height: "50px", backgroundImage: "url('https://linangdata.com/calculatorEmbed/icons/48x48.png')"}}>
+         {/* <div style={{ marginTop: 5, width: "50px", height: "50px", backgroundImage: "url('https://linangdata.com/calculatorEmbed/icons/48x48.png')"}}>
           <iframe id="linangcalc" src="https://linangdata.com/calculatorEmbed/embeddable.html?placement=right" 
               width="30%" height="60%" scrolling="auto" frameBorder="0" 
-              style={{border:0, position: "absolute", opacity:1.0}}>
+              style={{border:0, position: "absolute", zIndex: 1, opacity:1.0}}>
           </iframe>
-        </div>
+        </div> */}
+
          <Readings />
+         <div>
+         <Calculator />
+         </div>
+         
          <DO />
          <Temperature upstream={true}></Temperature>
          <Temperature upstream={false}></Temperature>
