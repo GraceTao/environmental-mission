@@ -33,21 +33,21 @@ function Page1() {
 
 function Page2() {
    const pHColors = [
-      { color: "darkred", value: 0 },
-      { color: "red", value: 1 },
-      { color: "darkorange", value: 2 },
-      { color: "orange", value: 3 },
-      { color: "#d4c84a", value: 4 },
-      { color: "#A6B93C ", value: 5 },
-      { color: "#75A439 ", value: 6 },
-      { color: "#46A439 ", value: 7 },
-      { color: "#328541 ", value: 8 },
-      { color: "#2E7042 ", value: 9 },
-      { color: "#265946 ", value: 10 },
-      { color: "#235243 ", value: 11 },
-      { color: "#234752 ", value: 12 },
-      { color: "#2A3F61 ", value: 13 },
-      { color: "#2A2352 ", value: 14 },
+      "darkred",
+      "red",
+      "darkorange",
+      "orange", 
+      "#d4c84a", 
+      "#A6B93C ",
+      "#75A439 ", 
+      "#46A439 ",
+      "#328541 ", 
+      "#2E7042 ", 
+      "#265946 ", 
+      "#235243 ", 
+      "#234752 ",
+      "#2A3F61 ",
+      "#2A2352 ", 
    ];
    return (
       <Box >
@@ -71,7 +71,7 @@ function Page2() {
             </Box>
             <Box display="flex" flexDirection="column">
                <Typography>pH strip after use: </Typography>
-               <Box sx={{ backgroundColor: "#469e3a", width: 30, height: 130 }}>
+               <Box sx={{ backgroundColor: "#399949", width: 30, height: 130 }}>
                   <div>
                      <Box
                         sx={{
@@ -90,16 +90,16 @@ function Page2() {
             </Typography>
             <Box alignItems="center">
                <Box display="flex" flexDirection="row" p={2} sx={{ pt: 0 }}>
-                  {pHColors.map((pH) => (
-                     <Box display="flex" flexDirection="column" key={pH.value}>
+                  {pHColors.map((color, index) => (
+                     <Box display="flex" flexDirection="column" key={index}>
                         <Box
                            sx={{
-                              backgroundColor: pH.color,
+                              backgroundColor: color,
                               width: 30,
                               height: 45,
                            }}
                         ></Box>
-                        <Typography align="center">{pH.value}</Typography>
+                        <Typography align="center">{index}</Typography>
                      </Box>
                   ))}
                </Box>
@@ -119,8 +119,7 @@ export default function FC() {
                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAEd0lEQVR4nO2bz29UVRTHv9N2pi1VtNIWMEOaSESphfBTgwtro5aEFNCAowkmLNRKWEDbvKQB/oAOkVaiS11VV66NRusCV26kC5QESDDGOOWXYqIGkNYcc8mbZNLMve++N2/mTt98P8nd3Tltvt/37r3n3PMAQgghhBBCSCOSATAN4A8AwoFaaPC7r7nSHh9QdLh68JQJD9zgkw8nGtykAXD68N1QBkzxDYArA94vbsLf0ATUWvxzANqKJ6GVAOZ0kzPpJvn6410iF/fXxYDm/0x5ufoYuRcFzU0m8S8A6Fx6HO0GcFn3o4c7WuSHzweciy/1bsDhIUFr2iT+VQBrdTnBegDXdD/ufqxVLn3xEg3wNOK/s0ewoi3o1PNUUGK2GcCfuiBPZDtk/txuvgHeEvGP7hd0PmQS/y8A22yz40EA93TBNm1YKbe/38MlyPPFP/aaoKfTJP6/AIYQklcBLOqCDuzskrtze7kHjB0U9K42if8fgBwicsR0lDo5sqHhDcCzTwcdN4+jQj7VBX+8p40GdBg33ZlKxR8DsKD7A2u7aQDMBiz4GoamHcBnAa+WnHj3Sb4BzwUuQeKvIkpTK3pNWXFxvLU3KwsX9jW8Aanx1wV9vTYmnPe1NfICgOumQM3NKcmP9zEP8JbkAUM7BE3G8oP4pf+XdeKPALhvCrDq0YzMfvI8M2FPkwm/ORiUCYt/tJ8oFb7FdNIpjq0bH5FfZl9xLr7Uey1oZDgoKSvdFx5cSU4GTT40nJU754edCy/LwQA1Rg8INlrtC+o6GLd1E1qaUzI90e9ccFluBhTH4BZBU8pkgGqEwK80IOfUgMCuCC5BuaouQWoj4CbsxbgJrw63CfMY6rk9hjIR8+ojEWMpwqtqKWLOphRRpN1mX5h4m8U4BN8HiF/YtC7GWZej13S1NnwegCqVo0uZ0f0BXsjkggxQq0hFGK8kT73HK0kEL0GjUcXnpbwX26X8G2HFZ1uKF2tbiirz77YVn41ZXtUas7YHic/WRK+qrYm3TK2JPQCu6H7M5txcXM25P5drzmV7ulfT9vQfS9vTVUVu1iKb40CsGnxX/EBDfalHceFEA/V5GL+ShLsHUG3KNACODeASBLcfamf8tUi5wb0ANXvyzyy9kiSEEEIIIYSQ5UoGwGkA8wAKAPKahMd2HglJvkzmma9gHgnJfBlhr1Uwj4REV3+JOi/xZErW4nKC/APgJwBnAfRbxKMBIcmHqCKq3vqPAjZLGhCSQoRy7rcGE2hASCTi+JAGuDVgEcAzIeJFnZd4pNIrPct4UeclHgkQIgvgS0ODk20829FwiIUQ6wwNr7bxaAANWJ5vwDoAX3EJqr0BYjHOxByPewDCHUP7aIC7N+BsyHhR5yUeiTBUO306ZLyo8xKPhBgL/pOfjhAv6rzEIwHjbz/hmtKs+bbxos5LPBKzEDTAsQGFMrF+q2Be4pGYDSh3wTNZwbzEIzEbkPHFLVi0pdjMSzzCzdAtBa7FbslzLXZLhmsxIYQQQgghBA3E/+Q2LaNSr+VXAAAAAElFTkSuQmCC"
             ></img>
          }
-         position={{ top: "0vh", left: "60vw" }}
-         anchor={{ vertical: "bottom", horizontal: "center" }}
+         position={{ top: "-2vh", left: "60vw" }}
          page1={<Page1 />}
          page2={<Page2 />}
       />

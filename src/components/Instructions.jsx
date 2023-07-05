@@ -10,7 +10,6 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation } from "react-router-dom";
 
-
 function Instructions({ name, title, content, style }) {
    const location = useLocation().pathname;
    const [open, setOpen] = useState(sessionStorage.getItem(location) == null);
@@ -30,8 +29,21 @@ function Instructions({ name, title, content, style }) {
             </Box>
          )}
 
-         <Dialog open={open} onClose={handleClose} position="fixed" fullWidth maxWidth="md">
-         {title && <DialogTitle onClose={handleClose} sx={{ backgroundColor: "#79C1A1" }}>{title}</DialogTitle>}
+         <Dialog
+            open={open}
+            onClose={handleClose}
+            position="fixed"
+            fullWidth
+            maxWidth="md"
+         >
+            {title && (
+               <DialogTitle
+                  onClose={handleClose}
+                  sx={{ backgroundColor: "#79C1A1" }}
+               >
+                  {title}
+               </DialogTitle>
+            )}
             {/* {title && <Header onClose={handleClose}> {title} </Header>} */}
             <div style={{ maxHeight: "400px", overflow: "auto" }}>
                <DialogContent

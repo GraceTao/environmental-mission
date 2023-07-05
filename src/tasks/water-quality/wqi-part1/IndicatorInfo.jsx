@@ -1,67 +1,110 @@
 import { useState } from "react";
-import { Box, Button, IconButton, Popover, Fade, } from "@mui/material";
+import { Box, Button, IconButton, Popper, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function IndicatorInfo({
    icon,
    position,
-   anchor,
    page1,
    page2,
 }) {
    const [anchorEl, setAnchorEl] = useState(null);
+   const [open, setOpen] = useState(false);
    const [openPage2, setOpenPage2] = useState(false);
 
    const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
+      setOpen(!open);
+      setOpenPage2(false);
    };
 
    const handleClose = () => {
-		setAnchorEl(null); // Close the popover
-		setOpenPage2(false);
+      setOpen(false);
+      setAnchorEl(null);
+      setOpenPage2(false);
    };
-
-   const open = Boolean(anchorEl);
-   const id = open ? "popover-button" : undefined;
 
    return (
       <div>
-         <Button onClick={handleClick} component="span" sx={{ position: position, width: "5%" }}>
+         <Button
+            onClick={handleClick}
+            component="span"
+            sx={{ position: position, width: "5%" }}
+         >
             {icon}
          </Button>
-			
-         <Popover
-            id={id}
-            anchorOrigin={anchor}
+
+         <Popper
             anchorEl={anchorEl}
-            transformOrigin={{
-               vertical: "bottom",
-               horizontal: "center",
-               display: "flex",
-               width: {xs: "95%", sm: "85%", lg: "70%"}
-            }}
-				TransitionComponent={Fade}
-    			TransitionProps={{ timeout: 0 }}
             open={open}
             onClose={handleClose}
-            sx={{ display: "flex", width: {xs: "95%", sm: "90%", lg: "80%"}, "& .MuiPopover-paper": {
-					backgroundColor: "lightsteelblue", // Set your desired background color
-				 } }}
+            sx={{
+               backgroundColor: "lightsteelblue",
+               // display: "flex",
+               maxWidth: { xs: "80%", sm: "70%", lg: "60%" },
+               borderRadius: 3,
+               boxShadow: 6
+            }}
          >
-            {openPage2 ? (
-               <div>
-						{page2}
-					</div>
-            ) : (
-               <Box display="flex" flexDirection="column" alignItems="flex-end">
-                  {page1}
-                  <IconButton onClick={() => setOpenPage2(true)} disableRipple>
-                     <ArrowForwardIcon sx={{fontSize: 40, color: "#39555D", mr: 1, "&:hover": {color: "black"}}}/>
-                  </IconButton>
-               </Box>
-            )}
-         </Popover>
+            <div style={{ overflow: "auto", maxHeight: "50vh" }}>
+               {openPage2 ? (
+                  <Box>
+                     <Box
+                        display="flex"
+                        flexDirection="row"
+                        justifyContent="space-between"
+                     >
+                        <IconButton
+                        onClick={() => setOpenPage2(false)}
+                        disableRipple
+                     >
+                        <ArrowBackIcon
+                           sx={{
+                              fontSize: 40,
+                              color: "#39555D",
+
+                              "&:hover": { color: "black" },
+                           }}
+                        />
+                     </IconButton>
+                        <Typography pt={2} pl={2} pb={0}>
+                           <i>You may need to scroll down</i>
+                        </Typography>
+                        <IconButton onClick={handleClose}>
+                           <CloseIcon sx={{ fontSize: 35, m: 0 }} />
+                        </IconButton>
+                     </Box>
+
+                     {page2}
+                     
+                  </Box>
+               ) : (
+                  <Box display="flex" flexDirection="column">
+                     <Typography pt={2} pl={2} pb={0}>
+                        <i>You may need to scroll down</i>
+                     </Typography>
+                     {page1}
+                     <Box display="flex" justifyContent="end">
+                        <IconButton
+                           onClick={() => setOpenPage2(true)}
+                           disableRipple
+                        >
+                           <ArrowForwardIcon
+                              sx={{
+                                 fontSize: 40,
+                                 color: "#39555D",
+                                 mr: 1,
+                                 "&:hover": { color: "black" },
+                              }}
+                           />
+                        </IconButton>
+                     </Box>
+                  </Box>
+               )}
+            </div>
+         </Popper>
       </div>
    );
 }
-
