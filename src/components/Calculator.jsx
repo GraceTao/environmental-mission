@@ -23,9 +23,13 @@ function CalculatorNoButton() {
 
 useEffect(() => {
    const handleKeyDown = (event) => {
+     const target = event.target;
+     if (target.tagName === "INPUT" && target.type === "text") {
+      return;
+    }
      event.preventDefault();
      const key = event.key;
-     const shiftKey = event.shiftKey;
+
 
      if (key.match(/[0-9.]$/)) {
       handleNumberClick(key);

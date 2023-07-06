@@ -298,7 +298,7 @@ export default function Submit() {
             }}
          >
             <DialogContent sx={{ backgroundColor: "lightblue" }}>
-               <Typography fontSize={{ xs: "1.3rem", md: "1.5rem" }}>
+               <Typography align="center" fontSize={{ xs: "1.3rem", md: "1.5rem" }} fontFamily="tahoma">
                   Correct! The stream rating is GOOD.
                   <br />
                   Your clue word is <b>water</b>.
