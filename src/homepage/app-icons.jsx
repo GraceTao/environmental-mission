@@ -31,7 +31,7 @@ export function appIcons() {
         },
         {
            icon: MapIcon,
-           path: "/",
+           path: "/map-home",
            color: "brown",
         },
         {
