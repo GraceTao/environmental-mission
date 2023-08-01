@@ -1,6 +1,6 @@
 import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
 import IconInfo from "./IconInfo";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 function Page1() {
    return (
@@ -32,7 +32,7 @@ export default function Hydrogen() {
                }}
             />
          }
-         position={{ top: "-32vh", left: "70vw" }}
+         position={{ top: "13vh", left: "70vw" }}
          page1={<Page1 />}
       />
    );

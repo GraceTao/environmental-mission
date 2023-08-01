@@ -1,6 +1,6 @@
 import StarIcon from '@mui/icons-material/Star';
 import IconInfo from "./IconInfo";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 function Page1() {
    return (

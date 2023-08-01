@@ -1,6 +1,6 @@
 import ForestRoundedIcon from '@mui/icons-material/ForestRounded';
 import IconInfo from "./IconInfo";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 function Page1() {
    return (

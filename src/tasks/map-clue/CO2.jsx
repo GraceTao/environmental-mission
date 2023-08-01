@@ -1,6 +1,6 @@
 import Co2Icon from '@mui/icons-material/Co2';
 import IconInfo from "./IconInfo";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 function Page1() {
    return (
@@ -17,11 +17,11 @@ function Page1() {
    );
 }
 
-export default function Temperature({upstream}) {
+export default function CO2() {
    return (
       <IconInfo
          icon={
-            <ThermostatIcon
+            <Co2Icon
                sx={{
                   color: "red",
                   width: "100%",

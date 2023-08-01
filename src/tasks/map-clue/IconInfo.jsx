@@ -5,7 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 export default function IconInfo({
    icon,
    position,
-   page1
+   page1,
 }) {
    const [anchorEl, setAnchorEl] = useState(null);
    const [open, setOpen] = useState(false);
@@ -42,6 +42,26 @@ export default function IconInfo({
                boxShadow: 6
             }}
          >
+            <div style={{ overflow: "auto", maxHeight: "50vh" }}>
+               <Box>
+                     <Box
+                        display="flex"
+                        flexDirection="row"
+                        justifyContent="space-between"
+                     >
+                        
+                        <Typography pt={2} pl={2} pb={0}>
+                           <i>You may need to scroll down</i>
+                        </Typography>
+                        <IconButton onClick={handleClose}>
+                           <CloseIcon sx={{ fontSize: 35, m: 0 }} />
+                        </IconButton>
+                     </Box>
+
+                     {page1}
+                     
+               </Box>
+            </div>
          </Popper>
       </div>
    );
