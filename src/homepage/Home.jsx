@@ -2,6 +2,8 @@ import {
    Alert,
    Box,
    Button,
+   Dialog,
+   DialogContent,
    Grid,
    IconButton,
    Tooltip,
@@ -10,9 +12,11 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Instructions from "../components/Instructions";
-import {appIcons} from "./app-icons";
+import { appIcons } from "./app-icons";
 import WarningIcon from "@mui/icons-material/Warning";
+import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
 import { Link } from "react-router-dom";
+import logo from "../components/PortCC-logo-horizontal-white.png";
 
 function Notification() {
    const openNotification = sessionStorage.getItem("openNotification");
@@ -36,10 +40,13 @@ function Notification() {
                <Alert
                   severity="warning"
                   action={
-                     <Button variant="outlined" onClick={() => {
-                        setOpen(false);
-                        sessionStorage.setItem("openNotification", false);
-                        }}>
+                     <Button
+                        variant="outlined"
+                        onClick={() => {
+                           setOpen(false);
+                           sessionStorage.setItem("openNotification", false);
+                        }}
+                     >
                         close
                      </Button>
                   }
@@ -73,6 +80,31 @@ function Notification() {
    );
 }
 
+function PhoneContent({ open, setOpen }) {
+   return (
+      <Dialog open={open} onClose={() => setOpen(!open)}>
+         <DialogContent
+            sx={{
+               display: "flex",
+               flexDirection: "column",
+               alignItems: "center",
+               background: "radial-gradient(#E7A388,#F37542)"
+            }}
+         >
+            <Typography fontSize="1.2rem">
+               Sorry, this area has <b>no service</b>!
+            </Typography>
+            <br></br>
+            <PhoneDisabledIcon
+               sx={{ transform: "rotate(90deg)", fontSize: "45px" }}
+            />
+            <br></br>
+            <Typography fontSize="1.2rem">Please try again later.</Typography>
+         </DialogContent>
+      </Dialog>
+   );
+}
+
 function Home() {
    const purpose = (
       <div>
@@ -98,7 +130,8 @@ function Home() {
          Online Escape Room: Environmental Mission
       </Typography>
    );
-  
+
+   const [openPhone, setOpenPhone] = useState(false);
 
    return (
       <>
@@ -111,12 +144,12 @@ function Home() {
          >
             <div style={{ position: "relative" }}>
                <img
-                  src="https://portofcc.com/wp-content/uploads/PortCC-2016-logo-hor.png"
+                  src={logo}
                   alt="Port of Corpus Christi Logo"
                   width="300px"
                   style={{ position: "absolute", left: 5 }}
                />
-               <Notification></Notification>
+               <Notification />
                <Instructions
                   name={<Typography color="white">instructions</Typography>}
                   title={mission}
@@ -140,11 +173,16 @@ function Home() {
                   alignItems="center"
                   style={{ marginTop: "2%", marginBottom: "2%" }}
                >
-                  {appIcons().map((app, index) => (
-                     <Grid item key={index}>
+                  {appIcons.map((app) => (
+                     <Grid item key={app.color}>
                         <IconButton
-                           component={Link}
-                           to={app.path}
+                           component={app.path !== "/" ? Link : null}
+                           to={app.path !== "/" ? app.path : null}
+                           onClick={() => {
+                              app.icon.type.render.displayName == "PhoneIcon"
+                                 ? setOpenPhone(!openPhone)
+                                 : null;
+                           }}
                            sx={{
                               border: "solid",
                               borderColor: app.color,
@@ -175,6 +213,7 @@ function Home() {
                      </Grid>
                   ))}
                </Grid>
+               <PhoneContent open={openPhone} setOpen={setOpenPhone}/>
             </div>
          </Box>
       </>

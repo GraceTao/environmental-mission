@@ -1,18 +1,19 @@
 import { AppBar, Toolbar, Tooltip, IconButton } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
+import logo from "./PortCC-logo-horizontal-white.png";
 
 export default function TopBar({ instruction }) {
    return (
       <>
          <AppBar
             position="static"
-            sx={{ backgroundColor: "#94B2B980", boxShadow: 0 }}
+            sx={{ backgroundColor: "seagreen", boxShadow: 0 }}
          >
             <Toolbar style={{ position: "relative" }}>
                <div style={{ position: "absolute", left: 5 }}>
                   <img
-                     src="./PortCC-logo-horizontal-white.png"
+                     src={logo}
                      alt="Port of Corpus Christi Logo"
                      width="250px"
                   />

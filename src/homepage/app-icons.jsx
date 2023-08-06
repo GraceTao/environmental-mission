@@ -5,14 +5,14 @@ import MailIcon from "@mui/icons-material/Mail";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CollectionsIcon from "@mui/icons-material/Collections";
-import CoPresentIcon from "@mui/icons-material/CoPresent";
+import ForestIcon from '@mui/icons-material/Forest';
 
-export function appIcons() {
-    return ([
+const appIcons = 
+    [
         {
            icon: PhoneIcon,
            path: "/",
-           color: "green",
+           color: "black",
         },
         {
            icon: ContactsIcon,
@@ -37,17 +37,18 @@ export function appIcons() {
         {
            icon: MailIcon,
            path: "/",
-           color: "darkred",
+           color: "darksteelblue",
         },
         {
            icon: CollectionsIcon,
            path: "/",
-           color: "orange",
+           color: "darkorange",
         },
         {
-           icon: CoPresentIcon,
+           icon: ForestIcon,
            path: "/",
-           color: "black",
+           color: "green",
         },
-     ])
-    };
+     ];
+
+export {appIcons};
