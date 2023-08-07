@@ -18,6 +18,7 @@ import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
 import { Link } from "react-router-dom";
 import logo from "../components/PortCC-logo-horizontal-white.png";
 import StopWatch from "./StopWatch";
+import ContactsList from "./ContactsList";
 
 function Notification() {
    const openNotification = sessionStorage.getItem("openNotification");
@@ -92,7 +93,7 @@ function PhoneContent({ open, setOpen }) {
                display: "flex",
                flexDirection: "column",
                alignItems: "center",
-               background: "radial-gradient(#E7A388,#F37542)",
+               backgroundColor: "lightgreen",
             }}
          >
             <Typography fontSize="1.2rem">
@@ -261,6 +262,10 @@ function Home() {
                      </Grid>
                   ))}
                </Grid>
+               <ContactsList
+                  open={showIconContent}
+                  setOpen={setShowIconContent}
+               />
                <PhoneContent
                   open={showIconContent}
                   setOpen={setShowIconContent}

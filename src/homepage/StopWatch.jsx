@@ -32,7 +32,7 @@ export default function StopWatch() {
 
    return (
       <Box>
-         <Typography fontSize="1.2rem">
+         <Typography fontSize="1.2rem" align="center">
             (Defective) Stopwatch
          </Typography>
          <Timer time={timeElapsed} /><br/>
