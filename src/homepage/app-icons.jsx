@@ -9,45 +9,48 @@ import ForestIcon from '@mui/icons-material/Forest';
 
 const appIcons = 
     [
-        {
-           icon: PhoneIcon,
-           path: "/",
-           color: "#E7513F",
-        },
+      {
+         icon: MailIcon,
+         path: "/",
+         color: "black",
+      },
+      {
+         icon: PhoneIcon,
+         path: "/",
+         color: "darkgreen",
+      },
+      {
+         icon: CalendarMonthIcon,
+         path: "/wqi-p1",
+         color: "mediumblue",
+      },
         {
            icon: ContactsIcon,
            path: "/",
-           color: "blue",
+           color: "orangered",
         },
-        {
-           icon: CalendarMonthIcon,
-           path: "/wqi-p1",
-           color: "black",
-        },
+
         {
            icon: AssignmentIcon,
+           path: "/",
+           color: "mediumvioletred",
+        },
+
+        {
+           icon: MapIcon,
+           path: "/",
+           color: "firebrick",
+        },
+
+        {
+           icon: WatchLaterIcon,
            path: "/",
            color: "purple",
         },
         {
-           icon: MapIcon,
-           path: "/",
-           color: "brown",
-        },
-        {
-           icon: MailIcon,
-           path: "/",
-           color: "darksteelblue",
-        },
-        {
-           icon: WatchLaterIcon,
-           path: "/",
-           color: "#8C38FF",
-        },
-        {
            icon: ForestIcon,
            path: "/",
-           color: "green",
+           color: "forestgreen",
         },
      ];
 

@@ -51,9 +51,9 @@ export default function SampleUnitConversion() {
             anchorEl={anchorEl}
             sx={{
                backgroundColor: "white",
-               maxWidth: { xs: "85%", sm: "75%", md: "50%", lg: "45%" }, // Adjust the maximum width as needed
+               maxWidth: { xs: "85%", sm: "75%", md: "50%", lg: "45%" }, 
                width: "auto",
-               maxHeight: "80vh", // Adjust the maximum height as needed
+               maxHeight: "80vh", 
                overflow: "auto",
                whiteSpace: "pre-wrap",
                wordWrap: "break-word",
