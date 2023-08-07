@@ -4,7 +4,7 @@ import MapIcon from "@mui/icons-material/Map";
 import MailIcon from "@mui/icons-material/Mail";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import CollectionsIcon from "@mui/icons-material/Collections";
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import ForestIcon from '@mui/icons-material/Forest';
 
 const appIcons = 
@@ -12,7 +12,7 @@ const appIcons =
         {
            icon: PhoneIcon,
            path: "/",
-           color: "black",
+           color: "#E7513F",
         },
         {
            icon: ContactsIcon,
@@ -22,7 +22,7 @@ const appIcons =
         {
            icon: CalendarMonthIcon,
            path: "/wqi-p1",
-           color: "red",
+           color: "black",
         },
         {
            icon: AssignmentIcon,
@@ -40,9 +40,9 @@ const appIcons =
            color: "darksteelblue",
         },
         {
-           icon: CollectionsIcon,
+           icon: WatchLaterIcon,
            path: "/",
-           color: "darkorange",
+           color: "#8C38FF",
         },
         {
            icon: ForestIcon,
