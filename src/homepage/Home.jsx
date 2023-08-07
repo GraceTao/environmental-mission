@@ -16,7 +16,8 @@ import { appIcons } from "./app-icons";
 import WarningIcon from "@mui/icons-material/Warning";
 import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
 import { Link } from "react-router-dom";
-import logo from "../components/PortCC-logo-horizontal-white.png";
+import logo from "../../public/PortCC-logo-horizontal-white.png";
+import StopWatch from "./StopWatch";
 
 function Notification() {
    const openNotification = sessionStorage.getItem("openNotification");
@@ -82,13 +83,16 @@ function Notification() {
 
 function PhoneContent({ open, setOpen }) {
    return (
-      <Dialog open={open} onClose={() => setOpen(!open)}>
+      <Dialog
+         open={open.PhoneIcon}
+         onClose={() => setOpen({ ...open, PhoneIcon: false })}
+      >
          <DialogContent
             sx={{
                display: "flex",
                flexDirection: "column",
                alignItems: "center",
-               background: "radial-gradient(#E7A388,#F37542)"
+               background: "radial-gradient(#E7A388,#F37542)",
             }}
          >
             <Typography fontSize="1.2rem">
@@ -100,6 +104,43 @@ function PhoneContent({ open, setOpen }) {
             />
             <br></br>
             <Typography fontSize="1.2rem">Please try again later.</Typography>
+         </DialogContent>
+      </Dialog>
+   );
+}
+
+function ClockContent({ open, setOpen }) {
+   const [date, setDate] = useState(new Date());
+
+   useEffect(() => {
+      const timer = setInterval(() => setDate(new Date()), 1000);
+
+      return () => clearInterval(timer);
+   }, [date]);
+
+   return (
+      <Dialog
+         open={open.WatchLaterIcon}
+         onClose={() => setOpen({ ...open, WatchLaterIcon: false })}
+      >
+         <DialogContent
+            sx={{
+               backgroundColor: "#C695F1",
+            }}
+         >
+            <Typography fontSize="1.2rem" align="center">
+               {date.toString().substring(0, 15)}
+            </Typography>
+            <Typography fontSize="1.3rem" align="center">
+               <b>{date.toLocaleTimeString()}</b>
+            </Typography>
+            <Typography fontSize="1rem" align="center">
+               {date.toString().substring(25)}
+            </Typography>
+            <br></br>
+            <hr color="black"></hr>
+            <br />
+            <StopWatch />
          </DialogContent>
       </Dialog>
    );
@@ -131,7 +172,11 @@ function Home() {
       </Typography>
    );
 
-   const [openPhone, setOpenPhone] = useState(false);
+   const [showIconContent, setShowIconContent] = useState({
+      PhoneIcon: false,
+      WatchLaterIcon: false,
+      ContactsIcon: false,
+   });
 
    return (
       <>
@@ -179,8 +224,11 @@ function Home() {
                            component={app.path !== "/" ? Link : null}
                            to={app.path !== "/" ? app.path : null}
                            onClick={() => {
-                              app.icon.type.render.displayName == "PhoneIcon"
-                                 ? setOpenPhone(!openPhone)
+                              app.path === "/"
+                                 ? setShowIconContent({
+                                      ...showIconContent,
+                                      [app.icon.type.render.displayName]: true,
+                                   })
                                  : null;
                            }}
                            sx={{
@@ -213,7 +261,14 @@ function Home() {
                      </Grid>
                   ))}
                </Grid>
-               <PhoneContent open={openPhone} setOpen={setOpenPhone}/>
+               <PhoneContent
+                  open={showIconContent}
+                  setOpen={setShowIconContent}
+               />
+               <ClockContent
+                  open={showIconContent}
+                  setOpen={setShowIconContent}
+               />
             </div>
          </Box>
       </>
