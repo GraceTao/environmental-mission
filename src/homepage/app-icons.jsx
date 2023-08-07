@@ -33,7 +33,7 @@ const appIcons =
         {
            icon: AssignmentIcon,
            path: "/",
-           color: "mediumvioletred",
+           color: "rebeccapurple",
         },
 
         {
@@ -45,11 +45,11 @@ const appIcons =
         {
            icon: WatchLaterIcon,
            path: "/",
-           color: "purple",
+           color: "mediumvioletred",
         },
         {
            icon: ForestIcon,
-           path: "/",
+           path: "/account",
            color: "forestgreen",
         },
      ];

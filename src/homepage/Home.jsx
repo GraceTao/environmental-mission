@@ -58,10 +58,8 @@ function Notification() {
                      },
                   }}
                >
-                  You have been locked out of your TCC Environmental Solutions
-                  proposal submission portal.
-                  <br />
-                  Unlock your password now, or your account will be terminated!
+                  You have been locked out of the Environmental Portal.
+                  Unlock your account now or it will be terminated!
                </Alert>
             </Box>
          ) : (
@@ -126,7 +124,7 @@ function ClockContent({ open, setOpen }) {
       >
          <DialogContent
             sx={{
-               backgroundColor: "#C695F1",
+               backgroundColor: "#EFD5EB",
             }}
          >
             <Typography fontSize="1.2rem" align="center">
