@@ -16,7 +16,7 @@ import { appIcons } from "./app-icons";
 import WarningIcon from "@mui/icons-material/Warning";
 import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
 import { Link } from "react-router-dom";
-import logo from "../../public/PortCC-logo-horizontal-white.png";
+import logo from "../components/PortCC-logo-horizontal-white.png";
 import StopWatch from "./StopWatch";
 
 function Notification() {
