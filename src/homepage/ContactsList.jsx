@@ -72,7 +72,7 @@ export default function ContactsList({ open, setOpen }) {
                   <List sx={{ pr: 3 }}>
                      <Divider color="#B6B6B6" />
                      {contacts.map((person) => (
-                        <Box>
+                        <Box key={person.name}>
                            <ListItem
                               key={person.name}
                               disablePadding
