@@ -6,7 +6,6 @@ import ContactsIcon from "@mui/icons-material/Contacts";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import ForestIcon from '@mui/icons-material/Forest';
-
 const appIcons = 
     [
       {

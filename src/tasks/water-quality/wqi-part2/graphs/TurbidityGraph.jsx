@@ -357,7 +357,7 @@ export default function TurbidityGraph() {
                   Turbidity Q-Values
                </text>
             </g>
-            
+
             <rect
                x="958.5"
                y="122.5"
