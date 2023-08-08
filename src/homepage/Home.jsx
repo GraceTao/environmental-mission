@@ -1,14 +1,10 @@
 import {
-   Alert,
    Box,
-   Button,
    Dialog,
    DialogContent,
    Grid,
    IconButton,
-   Tooltip,
    Typography,
-   createTheme,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Instructions from "../components/Instructions";
@@ -19,7 +15,6 @@ import logo from "../components/PortCC-logo-horizontal-white.png";
 import StopWatch from "./StopWatch";
 import ContactsList from "./ContactsList";
 import Notification from "./Notification";
-
 
 function PhoneContent({ open, setOpen }) {
    return (
@@ -60,8 +55,8 @@ function ClockContent({ open, setOpen }) {
 
    return (
       <Dialog
-         open={open.WatchLaterIcon}
-         onClose={() => setOpen({ ...open, WatchLaterIcon: false })}
+         open={open.ClockIcon}
+         onClose={() => setOpen({ ...open, ClockIcon: false })}
       >
          <DialogContent
             sx={{
@@ -114,7 +109,7 @@ function Home() {
 
    const [showIconContent, setShowIconContent] = useState({
       PhoneIcon: false,
-      WatchLaterIcon: false,
+      ClockIcon: false,
       ContactsIcon: false,
    });
 
@@ -159,17 +154,16 @@ function Home() {
                   style={{ marginTop: "2%", marginBottom: "2%" }}
                >
                   {appIcons.map((app) => (
-                     <Grid item key={app.color}>
+                     <Grid item key={app.name}>
                         <IconButton
                            component={app.path !== "/" ? Link : null}
                            to={app.path !== "/" ? app.path : null}
                            onClick={() => {
-                              app.path === "/"
-                                 ? setShowIconContent({
-                                      ...showIconContent,
-                                      [app.icon.type.render.displayName]: true,
-                                   })
-                                 : null;
+                              app.path === "/" &&
+                                 setShowIconContent({
+                                    ...showIconContent,
+                                    [app.name]: !showIconContent[app.name],
+                                 });
                            }}
                            sx={{
                               border: "solid",
