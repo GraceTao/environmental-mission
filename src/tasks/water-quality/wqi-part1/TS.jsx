@@ -1,5 +1,5 @@
 import IndicatorInfo from "./IndicatorInfo";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { MathJax, MathJaxContext } from "better-react-mathjax";
 import { measured } from "../solns";
 

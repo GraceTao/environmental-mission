@@ -1,4 +1,4 @@
-import { useEffect, useState, React } from "react";
+import { useState, React } from "react";
 import {
    Typography,
    Box,
@@ -47,19 +47,15 @@ function CalendarAndInstructions() {
       >
          <Instr
             title={"Task:"}
-            contents={
-               `Find the water quality index (WQI) of this pond and use the WQI to determine the
-               water quality rating. If the rating is correct, you will receive the clue word.`
-            }
+            contents={`Find the water quality index (WQI) of this pond and use the WQI to determine the
+               water quality rating. If the rating is correct, you will receive the clue word.`}
          ></Instr>
          <Instr
             title={"Part One:"}
-            contents={
-               `Click on the water quality indicators in the picture to learn more about them. Then calculate
+            contents={`Click on the water quality indicators in the picture to learn more about them. Then calculate
                the unit-converted measurements for each indicator. Some values are filled in for you.
                Record the values on the top left clipboard as you go. A calculator is provided
-               beneath the clipboard. Once you’ve filled out all values, click the arrow on the clipboard to continue.`
-            }
+               beneath the clipboard. Once you’ve filled out all values, click the arrow on the clipboard to continue.`}
          ></Instr>
       </Box>
    ) : (
@@ -196,18 +192,12 @@ export default function WQIHome() {
                </video>
             </Dialog>
          </Box>
-         {/* <div style={{ marginTop: 5, width: "50px", height: "50px", backgroundImage: "url('https://linangdata.com/calculatorEmbed/icons/48x48.png')"}}>
-          <iframe id="linangcalc" src="https://linangdata.com/calculatorEmbed/embeddable.html?placement=right" 
-              width="30%" height="60%" scrolling="auto" frameBorder="0" 
-              style={{border:0, position: "absolute", zIndex: 1, opacity:1.0}}>
-          </iframe>
-        </div> */}
 
          <Readings />
          <div>
-         <Calculator />
+            <Calculator />
          </div>
-         
+
          <DO />
          <Temperature upstream={true}></Temperature>
          <Temperature upstream={false}></Temperature>

@@ -8,46 +8,46 @@ import CollectionsIcon from "@mui/icons-material/Collections";
 import CoPresentIcon from "@mui/icons-material/CoPresent";
 
 export function appIcons() {
-    return ([
-        {
-           icon: PhoneIcon,
-           path: "/",
-           color: "green",
-        },
-        {
-           icon: ContactsIcon,
-           path: "/",
-           color: "blue",
-        },
-        {
-           icon: CalendarMonthIcon,
-           path: "/wqi-p1",
-           color: "red",
-        },
-        {
-           icon: AssignmentIcon,
-           path: "/",
-           color: "purple",
-        },
-        {
-           icon: MapIcon,
-           path: "/",
-           color: "brown",
-        },
-        {
-           icon: MailIcon,
-           path: "/",
-           color: "darkred",
-        },
-        {
-           icon: CollectionsIcon,
-           path: "/",
-           color: "orange",
-        },
-        {
-           icon: CoPresentIcon,
-           path: "/",
-           color: "black",
-        },
-     ])
-    };
+   return [
+      {
+         icon: PhoneIcon,
+         path: "/",
+         color: "green",
+      },
+      {
+         icon: ContactsIcon,
+         path: "/",
+         color: "blue",
+      },
+      {
+         icon: CalendarMonthIcon,
+         path: "/wqi-p1",
+         color: "red",
+      },
+      {
+         icon: AssignmentIcon,
+         path: "/",
+         color: "purple",
+      },
+      {
+         icon: MapIcon,
+         path: "/",
+         color: "brown",
+      },
+      {
+         icon: MailIcon,
+         path: "/",
+         color: "darkred",
+      },
+      {
+         icon: CollectionsIcon,
+         path: "/",
+         color: "orange",
+      },
+      {
+         icon: CoPresentIcon,
+         path: "/",
+         color: "black",
+      },
+   ];
+}
