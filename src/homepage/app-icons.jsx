@@ -4,50 +4,54 @@ import MapIcon from "@mui/icons-material/Map";
 import MailIcon from "@mui/icons-material/Mail";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import CollectionsIcon from "@mui/icons-material/Collections";
-import CoPresentIcon from "@mui/icons-material/CoPresent";
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
+import ForestIcon from '@mui/icons-material/Forest';
 
-export function appIcons() {
-    return ([
-        {
-           icon: PhoneIcon,
-           path: "/",
-           color: "green",
-        },
+const appIcons = 
+    [
+      {
+         icon: MailIcon,
+         path: "/",
+         color: "black",
+      },
+      {
+         icon: PhoneIcon,
+         path: "/",
+         color: "darkgreen",
+      },
+      {
+         icon: CalendarMonthIcon,
+         path: "/wqi-p1",
+         color: "mediumblue",
+      },
         {
            icon: ContactsIcon,
            path: "/",
-           color: "blue",
+           color: "orangered",
         },
-        {
-           icon: CalendarMonthIcon,
-           path: "/wqi-p1",
-           color: "red",
-        },
+
         {
            icon: AssignmentIcon,
            path: "/",
-           color: "purple",
+           color: "rebeccapurple",
         },
+
         {
            icon: MapIcon,
            path: "/",
-           color: "brown",
+           color: "firebrick",
+        },
+
+        {
+           icon: WatchLaterIcon,
+           path: "/",
+           color: "mediumvioletred",
         },
         {
-           icon: MailIcon,
-           path: "/",
-           color: "darkred",
+           icon: ForestIcon,
+           path: "/account",
+           color: "forestgreen",
         },
-        {
-           icon: CollectionsIcon,
-           path: "/",
-           color: "orange",
-        },
-        {
-           icon: CoPresentIcon,
-           path: "/",
-           color: "black",
-        },
-     ])
-    };
+     ];
+
+export {appIcons};

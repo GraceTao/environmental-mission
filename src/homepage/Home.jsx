@@ -2,6 +2,8 @@ import {
    Alert,
    Box,
    Button,
+   Dialog,
+   DialogContent,
    Grid,
    IconButton,
    Tooltip,
@@ -10,66 +12,77 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Instructions from "../components/Instructions";
-import {appIcons} from "./app-icons";
-import WarningIcon from "@mui/icons-material/Warning";
+import { appIcons } from "./app-icons";
+import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
 import { Link } from "react-router-dom";
+import logo from "../components/PortCC-logo-horizontal-white.png";
+import StopWatch from "./StopWatch";
+import ContactsList from "./ContactsList";
+import Notification from "./Notification";
 
-function Notification() {
-   const openNotification = sessionStorage.getItem("openNotification");
-   const [open, setOpen] = useState(openNotification == null);
 
-   const theme = createTheme();
+function PhoneContent({ open, setOpen }) {
+   return (
+      <Dialog
+         open={open.PhoneIcon}
+         onClose={() => setOpen({ ...open, PhoneIcon: false })}
+      >
+         <DialogContent
+            sx={{
+               display: "flex",
+               flexDirection: "column",
+               alignItems: "center",
+               backgroundColor: "lightgreen",
+            }}
+         >
+            <Typography fontSize="1.2rem">
+               Sorry, this area has <b>no service</b>!
+            </Typography>
+            <br></br>
+            <PhoneDisabledIcon
+               sx={{ transform: "rotate(90deg)", fontSize: "45px" }}
+            />
+            <br></br>
+            <Typography fontSize="1.2rem">Please try again later.</Typography>
+         </DialogContent>
+      </Dialog>
+   );
+}
+
+function ClockContent({ open, setOpen }) {
+   const [date, setDate] = useState(new Date());
+
+   useEffect(() => {
+      const timer = setInterval(() => setDate(new Date()), 1000);
+
+      return () => clearInterval(timer);
+   }, [date]);
 
    return (
-      <div
-         style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "5px",
-         }}
+      <Dialog
+         open={open.WatchLaterIcon}
+         onClose={() => setOpen({ ...open, WatchLaterIcon: false })}
       >
-         {open ? (
-            <Box
-               sx={{ width: "70%" }}
-               style={{ position: "absolute", zIndex: 1 }}
-            >
-               <Alert
-                  severity="warning"
-                  action={
-                     <Button variant="outlined" onClick={() => {
-                        setOpen(false);
-                        sessionStorage.setItem("openNotification", false);
-                        }}>
-                        close
-                     </Button>
-                  }
-                  sx={{
-                     [theme.breakpoints.up("sm")]: {
-                        fontSize: "1.1rem",
-                     },
-                  }}
-               >
-                  You have been locked out of your TCC Environmental Solutions
-                  proposal submission portal.
-                  <br />
-                  Unlock your password now, or your account will be terminated!
-               </Alert>
-            </Box>
-         ) : (
-            <Tooltip title="Notification">
-               <IconButton
-                  onClick={() => {
-                     setOpen(true);
-                  }}
-                  style={{ position: "absolute", zIndex: 1 }}
-               >
-                  <WarningIcon
-                     sx={{ color: "#CAC653", fontSize: 50 }}
-                  ></WarningIcon>
-               </IconButton>
-            </Tooltip>
-         )}
-      </div>
+         <DialogContent
+            sx={{
+               backgroundColor: "#EFD5EB",
+            }}
+         >
+            <Typography fontSize="1.2rem" align="center">
+               {date.toString().substring(0, 15)}
+            </Typography>
+            <Typography fontSize="1.3rem" align="center">
+               <b>{date.toLocaleTimeString()}</b>
+            </Typography>
+            <Typography fontSize="1rem" align="center">
+               {date.toString().substring(25)}
+            </Typography>
+            <br></br>
+            <hr color="black"></hr>
+            <br />
+            <StopWatch />
+         </DialogContent>
+      </Dialog>
    );
 }
 
@@ -98,7 +111,12 @@ function Home() {
          Online Escape Room: Environmental Mission
       </Typography>
    );
-  
+
+   const [showIconContent, setShowIconContent] = useState({
+      PhoneIcon: false,
+      WatchLaterIcon: false,
+      ContactsIcon: false,
+   });
 
    return (
       <>
@@ -111,12 +129,12 @@ function Home() {
          >
             <div style={{ position: "relative" }}>
                <img
-                  src="https://portofcc.com/wp-content/uploads/PortCC-2016-logo-hor.png"
+                  src={logo}
                   alt="Port of Corpus Christi Logo"
                   width="300px"
                   style={{ position: "absolute", left: 5 }}
                />
-               <Notification></Notification>
+               <Notification />
                <Instructions
                   name={<Typography color="white">instructions</Typography>}
                   title={mission}
@@ -140,11 +158,19 @@ function Home() {
                   alignItems="center"
                   style={{ marginTop: "2%", marginBottom: "2%" }}
                >
-                  {appIcons().map((app, index) => (
-                     <Grid item key={index}>
+                  {appIcons.map((app) => (
+                     <Grid item key={app.color}>
                         <IconButton
-                           component={Link}
-                           to={app.path}
+                           component={app.path !== "/" ? Link : null}
+                           to={app.path !== "/" ? app.path : null}
+                           onClick={() => {
+                              app.path === "/"
+                                 ? setShowIconContent({
+                                      ...showIconContent,
+                                      [app.icon.type.render.displayName]: true,
+                                   })
+                                 : null;
+                           }}
                            sx={{
                               border: "solid",
                               borderColor: app.color,
@@ -175,6 +201,18 @@ function Home() {
                      </Grid>
                   ))}
                </Grid>
+               <ContactsList
+                  open={showIconContent}
+                  setOpen={setShowIconContent}
+               />
+               <PhoneContent
+                  open={showIconContent}
+                  setOpen={setShowIconContent}
+               />
+               <ClockContent
+                  open={showIconContent}
+                  setOpen={setShowIconContent}
+               />
             </div>
          </Box>
       </>
