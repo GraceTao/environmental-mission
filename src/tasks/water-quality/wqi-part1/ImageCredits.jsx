@@ -12,7 +12,12 @@ export default function ImageCredits() {
    const id = open ? "image-popper" : undefined;
 
    return (
-      <Box display="flex" flexDirection="row" justifyContent="flex-end" position="sticky">
+      <Box
+         display="flex"
+         flexDirection="row"
+         justifyContent="flex-end"
+         position="sticky"
+      >
          <Button
             onClick={handleClick}
             sx={{ color: "blue", fontWeight: "bold" }}
@@ -33,7 +38,7 @@ export default function ImageCredits() {
                CC BY-SA 3.0
             </a>
             , via Wikimedia Commons
-            <br/>
+            <br />
             <a href="https://commons.wikimedia.org/wiki/File:Secchi_disk_pattern.svg">
                Secchi disk
             </a>

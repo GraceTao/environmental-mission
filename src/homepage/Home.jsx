@@ -8,9 +8,9 @@ import {
    Typography,
    createTheme,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Instructions from "../components/Instructions";
-import {appIcons} from "./app-icons";
+import { appIcons } from "./app-icons";
 import WarningIcon from "@mui/icons-material/Warning";
 import { Link } from "react-router-dom";
 
@@ -36,10 +36,13 @@ function Notification() {
                <Alert
                   severity="warning"
                   action={
-                     <Button variant="outlined" onClick={() => {
-                        setOpen(false);
-                        sessionStorage.setItem("openNotification", false);
-                        }}>
+                     <Button
+                        variant="outlined"
+                        onClick={() => {
+                           setOpen(false);
+                           sessionStorage.setItem("openNotification", false);
+                        }}
+                     >
                         close
                      </Button>
                   }
@@ -98,7 +101,6 @@ function Home() {
          Online Escape Room: Environmental Mission
       </Typography>
    );
-  
 
    return (
       <>

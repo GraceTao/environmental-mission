@@ -13,7 +13,7 @@ import {
    Dialog,
    DialogContent,
 } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import { wqiFinal, marginOfError, solutions } from "../solns";
@@ -22,7 +22,7 @@ export default function Submit() {
    const storedWQI = sessionStorage.getItem("inputWQI");
    const displayWQIClue = sessionStorage.getItem("displayWQIClue");
    const answerWithinMargin = (ans) => {
-      return (Math.abs(ans - wqiFinal) <= marginOfError);
+      return Math.abs(ans - wqiFinal) <= marginOfError;
    };
 
    const [inputWQI, setInputWQI] = useState(storedWQI);
@@ -32,8 +32,10 @@ export default function Submit() {
 
    const storedMeasurements = JSON.parse(sessionStorage.getItem("formValues"));
    const storedQValues = JSON.parse(sessionStorage.getItem("qValues"));
-   const storedWeightedValues = JSON.parse(sessionStorage.getItem("weightedValues"));
-   
+   const storedWeightedValues = JSON.parse(
+      sessionStorage.getItem("weightedValues")
+   );
+
    // const [storedWeightedValues, setStoredWeightedValues] = useState(null);
    const [openAlert, setOpenAlert] = useState(false);
    const [alertMessage, setAlertMessage] = useState("");
@@ -100,44 +102,59 @@ export default function Submit() {
       return (
          storedQValues &&
          checkCond(storedQValues, (key) => {
-            return (Math.abs(storedQValues[key] - solutions[key].qValue) <= 1);
+            return Math.abs(storedQValues[key] - solutions[key].qValue) <= 1;
          })
       );
    };
-      const checkConditions = () => {
-         if (!inputWQI) {
-            setAlertMessage(<>Enter a value before submitting.</>);
-         } else if (!checkExists()) {
-            setAlertMessage(<>You are missing one or more entries in the Measurement, Q-Value, and/or Weighted Q-Value columns.</>);
-         } else if (checkMeasurement()) {
-            setAlertMessage(
-               <>Check your measurement for <b>{solutions[String(checkMeasurement())].fullName}. </b>Don't forget to adjust the Q-Values if you change any measurements!</>
-            );
-         } else if (checkQValue()) {
-            setAlertMessage(
-               <>Check your Q-Value for <b>{solutions[checkQValue()].fullName}</b></>
-            );
-         } else if (checkWeighted()) {
-            setAlertMessage(
-               <>Check your Weighted Q-Value calculation for <b>{solutions[checkWeighted()].fullName}</b>.
-               <br/>Round to <i>two</i> decimal places!
-               </>
-            );
-         } else {
-            setAlertMessage(
-               <>Check that you are correctly adding up the Weighted Q-Values. Remember that this sum equals the WQI.</>
-            );
-         }
-      };
-
-   
+   const checkConditions = () => {
+      if (!inputWQI) {
+         setAlertMessage(<>Enter a value before submitting.</>);
+      } else if (!checkExists()) {
+         setAlertMessage(
+            <>
+               You are missing one or more entries in the Measurement, Q-Value,
+               and/or Weighted Q-Value columns.
+            </>
+         );
+      } else if (checkMeasurement()) {
+         setAlertMessage(
+            <>
+               Check your measurement for{" "}
+               <b>{solutions[String(checkMeasurement())].fullName}. </b>Don't
+               forget to adjust the Q-Values if you change any measurements!
+            </>
+         );
+      } else if (checkQValue()) {
+         setAlertMessage(
+            <>
+               Check your Q-Value for <b>{solutions[checkQValue()].fullName}</b>
+            </>
+         );
+      } else if (checkWeighted()) {
+         setAlertMessage(
+            <>
+               Check your Weighted Q-Value calculation for{" "}
+               <b>{solutions[checkWeighted()].fullName}</b>.
+               <br />
+               Round to <i>two</i> decimal places!
+            </>
+         );
+      } else {
+         setAlertMessage(
+            <>
+               Check that you are correctly adding up the Weighted Q-Values.
+               Remember that this sum equals the WQI.
+            </>
+         );
+      }
+   };
 
    const handleSubmit = () => {
       const answerCheck = answerWithinMargin(parseFloat(inputWQI).toFixed(2));
       setCorrect(answerCheck);
       setSubmitted(true);
       sessionStorage.setItem("inputWQI", inputWQI);
-      
+
       setOpenAlert(true);
       if (!answerCheck) {
          checkConditions();
@@ -223,7 +240,7 @@ export default function Submit() {
             InputLabelProps={{
                sx: {
                   "&.Mui-focused": { color: "black" },
-                  zIndex: 0
+                  zIndex: 0,
                },
             }}
             sx={{
@@ -281,10 +298,12 @@ export default function Submit() {
                            severity="error"
                            onClose={() => setOpenAlert(false)}
                         >
-                           <Typography color="#CD0B0B" sx={{fontSize: {xs: "0.9rem", sm: "1rem"}}}>
+                           <Typography
+                              color="#CD0B0B"
+                              sx={{ fontSize: { xs: "0.9rem", sm: "1rem" } }}
+                           >
                               {alertMessage}
                            </Typography>
-                           
                         </Alert>
                      </Snackbar>
                   </Box>
@@ -298,7 +317,11 @@ export default function Submit() {
             }}
          >
             <DialogContent sx={{ backgroundColor: "lightblue" }}>
-               <Typography align="center" fontSize={{ xs: "1.3rem", md: "1.5rem" }} fontFamily="tahoma">
+               <Typography
+                  align="center"
+                  fontSize={{ xs: "1.3rem", md: "1.5rem" }}
+                  fontFamily="tahoma"
+               >
                   Correct! The stream rating is GOOD.
                   <br />
                   Your clue word is <b>water</b>.

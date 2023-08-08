@@ -409,7 +409,7 @@ export default function PHGraph() {
                   pH Q-Values
                </text>
             </g>
-            
+
             <rect
                x="1004.5"
                y="130.5"

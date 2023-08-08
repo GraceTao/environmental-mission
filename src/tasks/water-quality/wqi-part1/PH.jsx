@@ -14,13 +14,14 @@ function Page1() {
             >
                pH = &minus;log<sub>10</sub>(H<sup>+</sup>)
             </Typography>
-            H<sup>+</sup> is the concentration of hydrogen ions.<br/>
+            H<sup>+</sup> is the concentration of hydrogen ions.
+            <br />
             <br />A pH of 7 is considered neutral, while a pH between 0 and 7 is
-            acidic and one between 7 and 14 is basic. Elevated pH levels can cause
-            ammonia poisoning in aquatic organisms. Heavy metals dissolve in low
-            pH waters, which can be toxic to the organisms. Algal blooms from
-            excess nutrients also release CO<sub>2</sub> which lowers pH and
-            causes ocean acidification.
+            acidic and one between 7 and 14 is basic. Elevated pH levels can
+            cause ammonia poisoning in aquatic organisms. Heavy metals dissolve
+            in low pH waters, which can be toxic to the organisms. Algal blooms
+            from excess nutrients also release CO<sub>2</sub> which lowers pH
+            and causes ocean acidification.
             <b>
                {" "}
                A pH in the range of 6.5&ndash;9 is most suitable for aquatic
@@ -36,26 +37,26 @@ function Page2() {
       "darkred",
       "red",
       "darkorange",
-      "orange", 
-      "#d4c84a", 
+      "orange",
+      "#d4c84a",
       "#A6B93C ",
-      "#75A439 ", 
+      "#75A439 ",
       "#46A439 ",
-      "#328541 ", 
-      "#2E7042 ", 
-      "#265946 ", 
-      "#235243 ", 
+      "#328541 ",
+      "#2E7042 ",
+      "#265946 ",
+      "#235243 ",
       "#234752 ",
       "#2A3F61 ",
-      "#2A2352 ", 
+      "#2A2352 ",
    ];
    return (
-      <Box >
+      <Box>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
-            A pH test strip is a simple way to measure pH. The strip's color will
-            change when dipped in water. Below is the pH value corresponding to
-            the color. The strip used to test this water is also provided.{" "}
-            <b>Record the pH of the water.</b>
+            A pH test strip is a simple way to measure pH. The strip's color
+            will change when dipped in water. Below is the pH value
+            corresponding to the color. The strip used to test this water is
+            also provided. <b>Record the pH of the water.</b>
          </Typography>
          <Box
             display="flex"

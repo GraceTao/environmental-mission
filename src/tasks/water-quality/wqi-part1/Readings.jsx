@@ -30,7 +30,6 @@ function createData(abbrName, formValues, setFormValues) {
 
       setFormValues(updatedFormValues);
       sessionStorage.setItem("formValues", JSON.stringify(updatedFormValues));
-      
    };
 
    const inputBox = (
@@ -60,13 +59,13 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
       FC: solutions.FC.converted,
       BOD: solutions.BOD.converted,
       Turbidity: solutions.Turbidity.converted,
-   }
-   
+   };
+
    const savedFormValues = location.state?.formValues || initial;
-  
 
    const [formValues, setFormValues] = useState(savedFormValues);
-   sessionStorage.getItem("formValues") || sessionStorage.setItem("formValues", JSON.stringify(initial));
+   sessionStorage.getItem("formValues") ||
+      sessionStorage.setItem("formValues", JSON.stringify(initial));
 
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage

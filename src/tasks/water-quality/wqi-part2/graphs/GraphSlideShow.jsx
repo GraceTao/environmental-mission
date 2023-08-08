@@ -18,11 +18,23 @@ function makeGraph(name, graph, prev, next, setOpen) {
       setOpen((graphs) => ({ ...graphs, [name]: false, [next]: true }));
    };
    const graphWithArrows = (
-      <Box display="flex" flexDirection="column" key={name} sx={{mt: -5}}>
+      <Box display="flex" flexDirection="column" key={name} sx={{ mt: -5 }}>
          {graph}
          <Box display="flex" flexDirection="row" justifyContent="space-between">
-            <Button variant="contained" onClick={handlePrevClick} sx={{width: "50%", borderRadius: 0, boxShadow: 0}}>prev</Button>
-            <Button variant="contained" onClick={handleNextClick} sx={{width: "50%", borderRadius: 0, boxShadow: 0}}>next</Button>
+            <Button
+               variant="contained"
+               onClick={handlePrevClick}
+               sx={{ width: "50%", borderRadius: 0, boxShadow: 0 }}
+            >
+               prev
+            </Button>
+            <Button
+               variant="contained"
+               onClick={handleNextClick}
+               sx={{ width: "50%", borderRadius: 0, boxShadow: 0 }}
+            >
+               next
+            </Button>
          </Box>
       </Box>
    );
@@ -48,9 +60,27 @@ function GraphSlideShow() {
       makeGraph("FC", <FCGraph />, "DO", "pH", setOpen),
       makeGraph("pH", <PHGraph />, "FC", "BOD", setOpen),
       makeGraph("BOD", <BODGraph />, "pH", "deltaTemp", setOpen),
-      makeGraph("deltaTemp", <TemperatureGraph />, "BOD", "Phosphates", setOpen),
-      makeGraph("Phosphates", <PhosphatesGraph />, "deltaTemp", "Nitrates", setOpen),
-      makeGraph("Nitrates", <NitratesGraph />, "Phosphates", "Turbidity", setOpen),
+      makeGraph(
+         "deltaTemp",
+         <TemperatureGraph />,
+         "BOD",
+         "Phosphates",
+         setOpen
+      ),
+      makeGraph(
+         "Phosphates",
+         <PhosphatesGraph />,
+         "deltaTemp",
+         "Nitrates",
+         setOpen
+      ),
+      makeGraph(
+         "Nitrates",
+         <NitratesGraph />,
+         "Phosphates",
+         "Turbidity",
+         setOpen
+      ),
       makeGraph("Turbidity", <TurbidityGraph />, "Nitrates", "TS", setOpen),
       makeGraph("TS", <TSGraph />, "Turbidity", "DO", setOpen),
    ];
