@@ -1,6 +1,6 @@
 import IndicatorInfo from "./IndicatorInfo";
-import { Box, Typography } from "@mui/material";
-import {measured} from "../solns";
+import { Typography } from "@mui/material";
+import { measured } from "../solns";
 
 function Page1() {
    return (
@@ -30,12 +30,12 @@ function Page2() {
    return (
       <div>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
-            The total phosphate and nitrate levels were measured to be<br/>
-            <b>{measured.Phosphates}</b> and{" "}
-            <b> {measured.Nitrates}</b>
+            The total phosphate and nitrate levels were measured to be
+            <br />
+            <b>{measured.Phosphates}</b> and <b> {measured.Nitrates}</b>
             , respectively.
-            <br /><br />
-            
+            <br />
+            <br />
             <Typography fontSize="1rem">
                <i>1&nbsp;mg = 1000&nbsp;&#181;g</i>
                <br />

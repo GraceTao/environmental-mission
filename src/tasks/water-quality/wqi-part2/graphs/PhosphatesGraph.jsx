@@ -332,7 +332,7 @@ export default function PhosphatesGraph() {
                   Total Phosphates Q-Values
                </text>
             </g>
-            
+
             <rect
                x="888.5"
                y="108.5"

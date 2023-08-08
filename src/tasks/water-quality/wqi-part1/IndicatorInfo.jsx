@@ -4,12 +4,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function IndicatorInfo({
-   icon,
-   position,
-   page1,
-   page2,
-}) {
+export default function IndicatorInfo({ icon, position, page1, page2 }) {
    const [anchorEl, setAnchorEl] = useState(null);
    const [open, setOpen] = useState(false);
    const [openPage2, setOpenPage2] = useState(false);
@@ -42,10 +37,9 @@ export default function IndicatorInfo({
             onClose={handleClose}
             sx={{
                backgroundColor: "lightsteelblue",
-               // display: "flex",
                maxWidth: { xs: "80%", sm: "70%", lg: "60%" },
                borderRadius: 3,
-               boxShadow: 6
+               boxShadow: 6,
             }}
          >
             <div style={{ overflow: "auto", maxHeight: "50vh" }}>
@@ -57,18 +51,18 @@ export default function IndicatorInfo({
                         justifyContent="space-between"
                      >
                         <IconButton
-                        onClick={() => setOpenPage2(false)}
-                        disableRipple
-                     >
-                        <ArrowBackIcon
-                           sx={{
-                              fontSize: 40,
-                              color: "#39555D",
+                           onClick={() => setOpenPage2(false)}
+                           disableRipple
+                        >
+                           <ArrowBackIcon
+                              sx={{
+                                 fontSize: 40,
+                                 color: "#39555D",
 
-                              "&:hover": { color: "black" },
-                           }}
-                        />
-                     </IconButton>
+                                 "&:hover": { color: "black" },
+                              }}
+                           />
+                        </IconButton>
                         <Typography pt={2} pl={2} pb={0}>
                            <i>You may need to scroll down</i>
                         </Typography>
@@ -78,7 +72,6 @@ export default function IndicatorInfo({
                      </Box>
 
                      {page2}
-                     
                   </Box>
                ) : (
                   <Box display="flex" flexDirection="column">
