@@ -87,9 +87,9 @@ function Home() {
          <Typography sx={{ fontSize: "1.2rem" }} color="darkgreen">
             You are an environmental compliance specialist working alongside
             your peers to analyze the Port of Corpus Christi environment. You’re
-            specifically interested in XYZ watershed and its surrounding
-            buildings. You will be presenting a report to your manager on your
-            findings and any recommendations for new environmental regulations.
+            specifically interested in the local watershed and its surrounding
+            buildings. You will be presenting a report to your manager on the 
+            status and actions of the Port with respect to environmental health. 
             <br />
             <br />
          </Typography>
