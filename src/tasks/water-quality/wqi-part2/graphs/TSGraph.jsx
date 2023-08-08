@@ -343,7 +343,7 @@ export default function TSGraph() {
                   Total Solids Q-Values
                </text>
             </g>
-            
+
             <rect
                x="1069.5"
                y="104.5"

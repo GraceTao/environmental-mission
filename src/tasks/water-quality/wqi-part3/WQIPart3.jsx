@@ -1,13 +1,7 @@
-import { useState } from "react";
 import TopBar from "../../../components/TopBar";
 import Instr from "../Instr";
 import Instructions from "../../../components/Instructions";
-import {
-   Box,
-   IconButton,
-   Typography,
-   Tooltip,
-} from "@mui/material";
+import { Box, IconButton, Typography, Tooltip } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { Link } from "react-router-dom";
 import FullTable from "./FullTable";
@@ -25,9 +19,11 @@ export default function WQIPart3() {
                   Find the weighted sum of the Q-values using the weighting
                   factors; this is the water quality index (WQI). Submit the WQI
                   for approval. A calculator is provided at the top left.
-                  <br/><br/>
-                  Note: the WQI is a number between 0 and 100. <b>Round to two decimal places.</b>
-                  {" "}Answers within &plusmn;&nbsp;{marginOfError} will be accepted.
+                  <br />
+                  <br />
+                  Note: the WQI is a number between 0 and 100.{" "}
+                  <b>Round to two decimal places.</b> Answers within
+                  &plusmn;&nbsp;{marginOfError} will be accepted.
                </>
             }
          ></Instr>
@@ -65,12 +61,12 @@ export default function WQIPart3() {
             }
          />
          <Box display="flex" flexDirection="row">
-            <Calculator sx={{zIndex: 1}} />
-         <IconButton component={Link} to="/wqi-p2" sx={{ ml: "36%" }}>
-            <Tooltip title="back" arrow>
-               <ArrowCircleLeftIcon sx={{ fontSize: 55, color: "blue" }} />
-            </Tooltip>
-         </IconButton>
+            <Calculator sx={{ zIndex: 1 }} />
+            <IconButton component={Link} to="/wqi-p2" sx={{ ml: "36%" }}>
+               <Tooltip title="back" arrow>
+                  <ArrowCircleLeftIcon sx={{ fontSize: 55, color: "blue" }} />
+               </Tooltip>
+            </IconButton>
          </Box>
 
          <Box

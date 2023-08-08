@@ -1,14 +1,14 @@
 import IndicatorInfo from "./IndicatorInfo";
-import { Box, Typography } from "@mui/material";
-import {measured} from "../solns";
+import { Typography } from "@mui/material";
+import { measured } from "../solns";
 
 function Page1() {
    return (
       <div>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
             <b>Fecal coliforms</b> are bacteria that grow in the intestines of
-            warm- and cold-blooded organisms, including humans. The major fecal coliform species
-            is
+            warm- and cold-blooded organisms, including humans. The major fecal
+            coliform species is
             <i> Escherichia (E.) coli</i>. Fecal coliforms themselves are
             generally not harmful, but their presence in water indicates that
             other pathogenic bacteria and viruses that live in humans' and
@@ -25,10 +25,10 @@ function Page2() {
    return (
       <div>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
-            The fecal coliform was measured to be <b>{measured.FC}</b>. 
+            The fecal coliform was measured to be <b>{measured.FC}</b>.
          </Typography>
       </div>
-   )
+   );
 }
 
 export default function FC() {

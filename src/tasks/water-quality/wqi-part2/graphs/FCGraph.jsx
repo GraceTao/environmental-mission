@@ -332,7 +332,7 @@ export default function FCGraph() {
                   Fecal Coliform Q-Values
                </text>
             </g>
-            
+
             <rect
                x="1102.5"
                y="159.5"

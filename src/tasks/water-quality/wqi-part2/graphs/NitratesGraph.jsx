@@ -332,7 +332,7 @@ export default function NitratesGraph() {
                   Nitrates Q-Values
                </text>
             </g>
-            
+
             <rect
                x="816.5"
                y="218.5"
