@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 
 const RESTRICT_INPUT = /^[a-zA-Z ]+$/;
 const USERNAME = "me";
-const PASSWORD = "watersoilairpolicy";
+const PASSWORD = /^water[ ]*soil[ ]*air[ ]*policy$/;
 const accountCircles = ["mediumpurple", "springgreen", "turquoise", "orange"];
 
 export default function FinalTaskLogin() {
@@ -31,7 +31,7 @@ export default function FinalTaskLogin() {
    const [hasClicked, setHasClicked] = useState(false);
 
    const handleLogin = () => {
-      if (password.toLocaleLowerCase().trim() === PASSWORD) {
+      if (PASSWORD.test(password.toLocaleLowerCase().trim())) {
          setCorrect(true);
          setTimeout(() => setDisplayLogin(!displayLogin), 2000);
       }
