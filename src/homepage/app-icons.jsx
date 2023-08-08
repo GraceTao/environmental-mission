@@ -11,44 +11,52 @@ const appIcons =
     [
       {
          icon: MailIcon,
+         name: "MailIcon",
          path: "/",
          color: "black",
       },
       {
          icon: PhoneIcon,
+         name: "PhoneIcon",
          path: "/",
          color: "darkgreen",
       },
       {
          icon: CalendarMonthIcon,
+         name: "CalendarIcon",
          path: "/wqi-p1",
          color: "mediumblue",
       },
         {
            icon: ContactsIcon,
+           name: "ContactsIcon",
            path: "/",
            color: "orangered",
         },
 
         {
            icon: AssignmentIcon,
+           name: "AssignmentIcon",
            path: "/",
            color: "rebeccapurple",
         },
 
         {
            icon: MapIcon,
+           name: "MapIcon",
            path: "/",
            color: "firebrick",
         },
 
         {
            icon: WatchLaterIcon,
+           name: "ClockIcon",
            path: "/",
            color: "mediumvioletred",
         },
         {
            icon: ForestIcon,
+           name: "ForestIcon",
            path: "/account",
            color: "forestgreen",
         },
