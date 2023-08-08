@@ -394,12 +394,11 @@ export default function TemperatureGraph() {
                   fontWeight={400}
                   fontSize={64}
                   transform="matrix(1 0 0 1 1320.04 210)"
-                  
                >
                   Change in Temperature Q-Values
                </text>
             </g>
-            
+
             <rect
                x="921.5"
                y="115.5"

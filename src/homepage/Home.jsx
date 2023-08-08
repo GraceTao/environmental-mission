@@ -6,7 +6,7 @@ import {
    IconButton,
    Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Instructions from "../components/Instructions";
 import { appIcons } from "./app-icons";
 import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
