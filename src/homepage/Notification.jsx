@@ -7,10 +7,10 @@ import {
    createTheme,
 } from "@mui/material";
 import WarningIcon from "@mui/icons-material/Warning";
-import {useState} from "react";
+import { useState } from "react";
 
 export default function Notification() {
-   const openNotification = sessionStorage.getItem("openNotification");
+   const openNotification = localStorage.getItem("openNotification");
    const [open, setOpen] = useState(openNotification == null);
 
    const theme = createTheme();
@@ -35,7 +35,7 @@ export default function Notification() {
                         variant="outlined"
                         onClick={() => {
                            setOpen(false);
-                           sessionStorage.setItem("openNotification", false);
+                           localStorage.setItem("openNotification", false);
                         }}
                      >
                         close
@@ -47,8 +47,8 @@ export default function Notification() {
                      },
                   }}
                >
-                  You have been locked out of the Environmental Portal.
-                  Unlock your account now or it will be terminated!
+                  You have been locked out of the Environmental Portal. Unlock
+                  your account now or it will be terminated!
                </Alert>
             </Box>
          ) : (

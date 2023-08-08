@@ -35,7 +35,7 @@ function createData(abbrName, formValues, qValues, setQValues) {
       const { name, value } = e.target;
       const updatedQValues = { ...qValues, [name]: value };
       setQValues(updatedQValues);
-      sessionStorage.setItem("qValues", JSON.stringify(updatedQValues));
+      localStorage.setItem("qValues", JSON.stringify(updatedQValues));
    };
 
    const inputBox = (
@@ -52,7 +52,7 @@ function createData(abbrName, formValues, qValues, setQValues) {
 }
 
 export default function WQIPart2() {
-   const formValues = JSON.parse(sessionStorage.getItem("formValues"));
+   const formValues = JSON.parse(localStorage.getItem("formValues"));
 
    const tableHeaders = ["Water Quality Indicator", "Measurement", "Q-Value"];
    const location = useLocation();
@@ -60,7 +60,7 @@ export default function WQIPart2() {
    const [qValues, setQValues] = useState(savedQValues);
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage
-      const storedQValues = JSON.parse(sessionStorage.getItem("qValues"));
+      const storedQValues = JSON.parse(localStorage.getItem("qValues"));
       if (storedQValues) {
          // If there are saved form values, update the state with them
          setQValues(storedQValues);
