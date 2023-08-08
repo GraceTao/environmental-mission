@@ -13,72 +13,13 @@ import {
 import React, { useEffect, useState } from "react";
 import Instructions from "../components/Instructions";
 import { appIcons } from "./app-icons";
-import WarningIcon from "@mui/icons-material/Warning";
 import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
 import { Link } from "react-router-dom";
 import logo from "../components/PortCC-logo-horizontal-white.png";
 import StopWatch from "./StopWatch";
 import ContactsList from "./ContactsList";
+import Notification from "./Notification";
 
-function Notification() {
-   const openNotification = sessionStorage.getItem("openNotification");
-   const [open, setOpen] = useState(openNotification == null);
-
-   const theme = createTheme();
-
-   return (
-      <div
-         style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "5px",
-         }}
-      >
-         {open ? (
-            <Box
-               sx={{ width: "70%" }}
-               style={{ position: "absolute", zIndex: 1 }}
-            >
-               <Alert
-                  severity="warning"
-                  action={
-                     <Button
-                        variant="outlined"
-                        onClick={() => {
-                           setOpen(false);
-                           sessionStorage.setItem("openNotification", false);
-                        }}
-                     >
-                        close
-                     </Button>
-                  }
-                  sx={{
-                     [theme.breakpoints.up("sm")]: {
-                        fontSize: "1.1rem",
-                     },
-                  }}
-               >
-                  You have been locked out of the Environmental Portal.
-                  Unlock your account now or it will be terminated!
-               </Alert>
-            </Box>
-         ) : (
-            <Tooltip title="Notification">
-               <IconButton
-                  onClick={() => {
-                     setOpen(true);
-                  }}
-                  style={{ position: "absolute", zIndex: 1 }}
-               >
-                  <WarningIcon
-                     sx={{ color: "#CAC653", fontSize: 50 }}
-                  ></WarningIcon>
-               </IconButton>
-            </Tooltip>
-         )}
-      </div>
-   );
-}
 
 function PhoneContent({ open, setOpen }) {
    return (
