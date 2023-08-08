@@ -4,50 +4,61 @@ import MapIcon from "@mui/icons-material/Map";
 import MailIcon from "@mui/icons-material/Mail";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import CollectionsIcon from "@mui/icons-material/Collections";
-import CoPresentIcon from "@mui/icons-material/CoPresent";
-
-export function appIcons() {
-   return [
-      {
-         icon: PhoneIcon,
-         path: "/",
-         color: "green",
-      },
-      {
-         icon: ContactsIcon,
-         path: "/",
-         color: "blue",
-      },
-      {
-         icon: CalendarMonthIcon,
-         path: "/wqi-p1",
-         color: "red",
-      },
-      {
-         icon: AssignmentIcon,
-         path: "/",
-         color: "purple",
-      },
-      {
-         icon: MapIcon,
-         path: "/",
-         color: "brown",
-      },
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
+import ForestIcon from '@mui/icons-material/Forest';
+const appIcons = 
+    [
       {
          icon: MailIcon,
-         path: "/",
-         color: "darkred",
-      },
-      {
-         icon: CollectionsIcon,
-         path: "/",
-         color: "orange",
-      },
-      {
-         icon: CoPresentIcon,
+         name: "MailIcon",
          path: "/",
          color: "black",
       },
-   ];
-}
+      {
+         icon: PhoneIcon,
+         name: "PhoneIcon",
+         path: "/",
+         color: "darkgreen",
+      },
+      {
+         icon: CalendarMonthIcon,
+         name: "CalendarIcon",
+         path: "/wqi-p1",
+         color: "mediumblue",
+      },
+        {
+           icon: ContactsIcon,
+           name: "ContactsIcon",
+           path: "/",
+           color: "orangered",
+        },
+
+        {
+           icon: AssignmentIcon,
+           name: "AssignmentIcon",
+           path: "/",
+           color: "rebeccapurple",
+        },
+
+        {
+           icon: MapIcon,
+           name: "MapIcon",
+           path: "/",
+           color: "firebrick",
+        },
+
+        {
+           icon: WatchLaterIcon,
+           name: "ClockIcon",
+           path: "/",
+           color: "mediumvioletred",
+        },
+        {
+           icon: ForestIcon,
+           name: "ForestIcon",
+           path: "/account",
+           color: "forestgreen",
+        },
+     ];
+
+export {appIcons};
