@@ -84,3 +84,4 @@ const wqiFinal = Object.values(solutions)
 const marginOfError = 1;
 
 export { measured, solutions, wqiFinal, marginOfError };
+
