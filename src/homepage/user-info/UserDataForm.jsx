@@ -34,10 +34,9 @@ export default function UserDataForm() {
       e.preventDefault();
 
       console.log("submitted");
-      console.log(formData);
 
       try {
-         await axios.post("/api/submituserdata", { formData });
+         await axios.post("/api/submituserdata", formData);
       } catch (err) {
          console.log("Error:", err);
       }
