@@ -24,10 +24,11 @@ const auth = new google.auth.GoogleAuth({
 const service = google.sheets("v4");
 
 exports.handler = async (event, context) => {
+   console.log("inside submituserdata.js");
    try {
-      console.log("Received event: ", event);
       const requestBody = JSON.parse(event.body);
       const { state, county, school, order } = requestBody.formData;
+      console.log(requestBody.formData);
 
       service.spreadsheets.values.append({
          auth,
@@ -38,6 +39,7 @@ exports.handler = async (event, context) => {
             values: [[state, county, school, order]],
          },
       });
+      console.log("Write operation successful");
 
       return {
          statusCode: 200,
