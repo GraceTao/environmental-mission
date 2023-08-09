@@ -8,7 +8,7 @@ const serviceAccount = {
    type: "service_account",
    project_id: "learn-undef-environ-mission",
    private_key_id: "24b57096704a611844ffb47eba08be1849c321a2",
-   private_key: process.env.PRIVATE_KEY, // Replace escaped newline characters
+   private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'), // Replace escaped newline characters
    client_email: "environmental-mission-account@learn-undef-environ-mission.iam.gserviceaccount.com",
    client_id: "114049106431711445783",
    auth_uri: "https://accounts.google.com/o/oauth2/auth",
@@ -17,7 +17,7 @@ const serviceAccount = {
    client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/environmental-mission-account%40learn-undef-environ-mission.iam.gserviceaccount.com",
    universe_domain: "googleapis.com"
 }
-console.log(private_key);
+console.log(serviceAccount.private_key);
 const api = express();
 const router = Router();
 
