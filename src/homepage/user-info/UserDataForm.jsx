@@ -7,6 +7,7 @@ import {
    MenuItem,
    FormLabel,
    Button,
+   Typography,
 } from "@mui/material";
 import axios from "axios";
 import { locationData } from "./locationData";
