@@ -32,7 +32,7 @@ export default function Tree() {
                }}
             />
          }
-         position={{top: "50vh", left: "30vw"}}
+         position={{top: "50vh", left: "10vw"}}
          page1={<Page1 />}
       />
    );

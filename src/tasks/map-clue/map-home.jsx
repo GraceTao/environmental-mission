@@ -21,7 +21,6 @@ import Tree from "./Tree";
 import Hydrogen from "./Hydrogen";
 import CO2 from "./CO2";
 import chat from "./map_chat_animation.mp4"
-//import MapBackground from "./MapBackground";
 
 function MapInstructions() {
    const hasEnabledInstr = sessionStorage.getItem("hasEnabledMapInstr");
@@ -29,7 +28,7 @@ function MapInstructions() {
 
    const theme = useTheme();
    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  
+
    return openInstr ? (
       <Box
          display="flex"
@@ -59,7 +58,8 @@ function MapInstructions() {
             contents={
                `Click around on the map to learn more about the Port of Corpus Christi’s efforts to operate in a manner 
                “conducive to environmental sustainability and resiliency.” Each window will either ask you a question whose 
-               answer is a number, or give a number in *bold*. Determine the clue word based on the numerical answers. `
+               answer is a number, or give a number in *bold*. Determine the clue word based on the numerical answers. You 
+               may need to scroll. `
             }
          ></Instr>
 
@@ -82,40 +82,38 @@ function MapInstructions() {
                </video>
             </div>
             <Button
-                  variant="contained"
-                  sx={{
-                     backgroundColor: "#417B88",
-                     "&:hover": { backgroundColor: "#4AB0C7 " },
-                  }}
-                  onClick={() => {
-                     setOpenInstr(true);
-                     sessionStorage.setItem("hasEnabledMapInstr", true);
-                  }}
-               >
-                  Visit the Port of Corpus Christi!
-               </Button>
+               variant="contained"
+               sx={{
+                  backgroundColor: "#417B88",
+                  "&:hover": { backgroundColor: "#4AB0C7 " },
+               }}
+               onClick={() => {
+                  setOpenInstr(true);
+                  sessionStorage.setItem("hasEnabledMapInstr", true);
+               }}
+            >
+               Visit the Port of Corpus Christi!
+            </Button>
          </Box>
       </div>
    );
 }
 
 export default function MapHome() {
-   const name = (
-      <Typography variant="button" sx={{ fontSize: "1.2vw" }}>
-         Instructions
-      </Typography>
-   );
    const [openMessages, setOpenMessages] = useState(false);
 
    return (
       <Box
          sx={{
             backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/d/d8/Hafen_Corpus_Christi.svg')", //<MapBackground />,
-            backgroundSize: "cover",
+            backgroundSize: 'cover',
+            width: '150vw',
+            height: '150vh',
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             minHeight: "100vh",
-            overflow: "auto",
+            overflowY: "scroll",
+            overflowX: "scroll",
             backgroundAttachment: "local",
          }}
       >
@@ -139,9 +137,9 @@ export default function MapHome() {
                   }}
                ></Instructions>
             }
-         />
 
-         <Box display="flex" flexDirection="row" justifyContent="space-between">
+         />
+         <Box display="flex" flexDirection="row" justifyContent="space-between" marginTop='8vh' marginLeft='2vw' position='fixed'>
             <Box>
                <IconButton onClick={() => setOpenMessages(true)}>
                   <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
@@ -157,14 +155,14 @@ export default function MapHome() {
                </video>
             </Dialog>
          </Box>
-
+         
          <CO2 />
          <Hydrogen />
          <Ship />
          <AirQuality />
          <Star />
          <Tree />
-    
+
       </Box>
    );
 }

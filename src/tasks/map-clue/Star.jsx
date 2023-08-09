@@ -49,7 +49,7 @@ export default function Star() {
                }}
             />
          }
-         position={{top: "-7vh", left: "35vw" }}
+         position={{top: "35vh", left: "30vw" }}
          page1={<Page1 />}
       />
    );
