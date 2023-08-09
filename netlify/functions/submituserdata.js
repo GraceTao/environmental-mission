@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import { serviceAccount } from "./creds.js";
+import { serviceAccount } from "./creds";
 
 const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
 
@@ -12,6 +12,7 @@ const service = google.sheets("v4");
 
 exports.handler = async (event, context) => {
    try {
+      console.log("Received event: ", event);
       const requestBody = JSON.parse(event.body);
       const { state, county, school, order } = requestBody.formData;
 

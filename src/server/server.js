@@ -19,7 +19,7 @@ const auth = new google.auth.GoogleAuth({
 
 const service = google.sheets('v4');
 
-app.post('/submituserdata', async (req, res) => {
+app.post('/sub', async (req, res) => {
    const { state, county, school, order } = req.body.formData;
    
    try {
