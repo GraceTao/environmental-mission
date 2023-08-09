@@ -59,6 +59,7 @@ export default function UserDataForm() {
 
    return (
       <form onSubmit={handleSubmit}>
+         <Typography>Please select your state, county, and school.</Typography>
          <FormControl
             sx={{
                display: "flex",
