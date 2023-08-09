@@ -59,7 +59,7 @@ function MapInstructions() {
             contents={
                `Click around on the map to learn more about the Port of Corpus Christi’s efforts to operate in a manner 
                “conducive to environmental sustainability and resiliency.” Each window will either ask you a question whose 
-               answer is a number, or give a number in <b>bold<\b>. Determine the clue word based on the numerical answers. `
+               answer is a number, or give a number in *bold*. Determine the clue word based on the numerical answers. `
             }
          ></Instr>
 
