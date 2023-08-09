@@ -8,7 +8,7 @@ const serviceAccount = {
    type: process.env.TYPE,
    project_id: process.env.PROJECT_ID,
    private_key_id: process.env.PRIVATE_KEY_ID,
-   private_key: process.env.PRIVATE_KEY,
+   private_key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"), // Replace escaped newline characters
    client_email: process.env.CLIENT_EMAIL,
    client_id: process.env.CLIENT_ID,
    auth_uri: process.env.AUTH_URI,
@@ -26,7 +26,7 @@ const auth = new google.auth.GoogleAuth({
    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
-const service = google.sheets(({version: 'v4', auth}));
+const service = google.sheets('v4');
 
 router.post('/submituserdata', (req, res) => {
    const { state, county, school, order } = req.body.formData;
