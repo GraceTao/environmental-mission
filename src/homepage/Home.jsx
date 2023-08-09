@@ -15,6 +15,7 @@ import logo from "../components/PortCC-logo-horizontal-white.png";
 import StopWatch from "./StopWatch";
 import ContactsList from "./ContactsList";
 import Notification from "./Notification";
+import UserDataForm from "./user-info/UserDataForm"; 
 
 function PhoneContent({ open, setOpen }) {
    return (
@@ -209,6 +210,7 @@ function Home() {
                />
             </div>
          </Box>
+         <UserDataForm />
       </>
    );
 }
