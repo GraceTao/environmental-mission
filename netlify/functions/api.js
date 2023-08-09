@@ -1,22 +1,24 @@
 import { google } from "googleapis";
-import express, { Router } from 'express';
-import serverless from 'serverless-http';
+import express, { Router } from "express";
+import serverless from "serverless-http";
 
 const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
 
 const serviceAccount = {
    type: "service_account",
    project_id: "learn-undef-environ-mission",
-   private_key_id: "24b57096704a611844ffb47eba08be1849c321a2",
-   private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'), // Replace escaped newline characters
-   client_email: "environmental-mission-account@learn-undef-environ-mission.iam.gserviceaccount.com",
-   client_id: "114049106431711445783",
+   private_key_id: "ea10f8c9d60f90bb6c77c4ea0dbcbfe8c3c28b69",
+   private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
+   client_email:
+      "env-mission@learn-undef-environ-mission.iam.gserviceaccount.com",
+   client_id: "113578363875197552143",
    auth_uri: "https://accounts.google.com/o/oauth2/auth",
    token_uri: "https://oauth2.googleapis.com/token",
    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-   client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/environmental-mission-account%40learn-undef-environ-mission.iam.gserviceaccount.com",
-   universe_domain: "googleapis.com"
-}
+   client_x509_cert_url:
+      "https://www.googleapis.com/robot/v1/metadata/x509/env-mission%40learn-undef-environ-mission.iam.gserviceaccount.com",
+   universe_domain: "googleapis.com",
+};
 console.log("KEYYYYY: ", serviceAccount.private_key);
 const api = express();
 const router = Router();
@@ -28,32 +30,32 @@ const auth = new google.auth.GoogleAuth({
 
 console.log("AUTHHHHH: ", auth);
 
-const service = google.sheets('v4');
+const service = google.sheets("v4");
 
-router.post('/submituserdata', (req, res) => {
+router.post("/submituserdata", (req, res) => {
    console.log("Request body:", req.body);
    const { state, county, school, order } = req.body;
-   
+
    try {
       service.spreadsheets.values.append({
          auth,
          spreadsheetId: SHEET_ID,
-         range: 'Sheet1',
-         valueInputOption: 'RAW',
+         range: "Sheet1",
+         valueInputOption: "RAW",
          resource: {
-            values: [[state, county, school, order]]
-         }
-      })
+            values: [[state, county, school, order]],
+         },
+      });
 
-      console.log('Data added successfully');
-      res.status(200).send('Data added successfully');
+      console.log("Data added successfully");
+      res.status(200).send("Data added successfully");
    } catch (err) {
-      console.error('Error adding user data: ', err);
-      res.status(500).json({message: 'An error occurred'});
+      console.error("Error adding user data: ", err);
+      res.status(500).json({ message: "An error occurred" });
    }
 });
 
-api.use('/api/', router);
+api.use("/api/", router);
 export const handler = serverless(api);
 
 // exports.handler = async (event, context) => {
