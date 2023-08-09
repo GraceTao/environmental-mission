@@ -5,17 +5,17 @@ import serverless from 'serverless-http';
 const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
 
 const serviceAccount = {
-   type: process.env.TYPE,
+   type: "service_account",
    project_id: process.env.PROJECT_ID,
    private_key_id: process.env.PRIVATE_KEY_ID,
    private_key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"), // Replace escaped newline characters
    client_email: process.env.CLIENT_EMAIL,
    client_id: process.env.CLIENT_ID,
-   auth_uri: process.env.AUTH_URI,
-   token_uri: process.env.TOKEN_URI,
-   auth_provider_x509_cert_url: process.env.AUTH_PROVIDER_X509_CERT_URL,
+   auth_uri: "https://accounts.google.com/o/oauth2/auth",
+   token_uri: "https://oauth2.googleapis.com/token",
+   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
    client_x509_cert_url: process.env.CLIENT_X509_CERT_URL,
-   universe_domain: process.env.UNIVERSE_DOMAIN
+   universe_domain: "googleapis.com"
 }
 
 const api = express();
