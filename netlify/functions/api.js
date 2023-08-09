@@ -8,7 +8,7 @@ const serviceAccount = {
    type: "service_account",
    project_id: process.env.PROJECT_ID,
    private_key_id: process.env.PRIVATE_KEY_ID,
-   private_key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"), // Replace escaped newline characters
+   private_key: Buffer.from(process.env.PRIVATE_KEY, 'base64').toString('utf8'), // Replace escaped newline characters
    client_email: process.env.CLIENT_EMAIL,
    client_id: process.env.CLIENT_ID,
    auth_uri: "https://accounts.google.com/o/oauth2/auth",
@@ -25,6 +25,8 @@ const auth = new google.auth.GoogleAuth({
    credentials: serviceAccount,
    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
+
+console.log(auth.credentials);
 
 const service = google.sheets('v4');
 
