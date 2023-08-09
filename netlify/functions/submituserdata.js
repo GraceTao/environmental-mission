@@ -21,14 +21,18 @@ const auth = new google.auth.GoogleAuth({
    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
+console.log("Auth:", auth);
+
 const service = google.sheets("v4");
+
+console.log("Service:", service);
 
 exports.handler = async (event, context) => {
    console.log("inside submituserdata.js");
    try {
       const requestBody = JSON.parse(event.body);
       const { state, county, school, order } = requestBody.formData;
-      console.log(requestBody.formData);
+      console.log("Data received:", requestBody.formData);
 
       service.spreadsheets.values.append({
          auth,
