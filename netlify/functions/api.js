@@ -24,7 +24,7 @@ const api = express();
 const router = Router();
 
 const auth = new google.auth.GoogleAuth({
-   serviceAccount,
+   credentials: serviceAccount,
    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
