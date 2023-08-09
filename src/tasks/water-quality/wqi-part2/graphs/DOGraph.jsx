@@ -409,7 +409,7 @@ export default function DO() {
                   Dissolved Oxygen Q-Values
                </text>
             </g>
-            
+
             <rect
                x="884.5"
                y="172.5"

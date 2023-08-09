@@ -5,18 +5,16 @@ import {
    DialogTitle,
    DialogContent,
    Button,
-   IconButton,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import { useLocation } from "react-router-dom";
 
 function Instructions({ name, title, content, style }) {
    const location = useLocation().pathname;
-   const [open, setOpen] = useState(sessionStorage.getItem(location) == null);
+   const [open, setOpen] = useState(localStorage.getItem(location) == null);
 
    const handleClose = () => {
       setOpen(false);
-      sessionStorage.setItem(location, true);
+      localStorage.setItem(location, true);
    };
 
    return (
@@ -44,15 +42,13 @@ function Instructions({ name, title, content, style }) {
                   {title}
                </DialogTitle>
             )}
-            {/* {title && <Header onClose={handleClose}> {title} </Header>} */}
+
             <div style={{ maxHeight: "400px", overflow: "auto" }}>
                <DialogContent
                   dividers
                   sx={{
                      backgroundColor: "#CFEFE5",
                      display: "flex",
-                     justifyContent: "center",
-                     alignItems: "center",
                   }}
                >
                   {content}

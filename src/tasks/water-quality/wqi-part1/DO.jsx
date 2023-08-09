@@ -1,396 +1,393 @@
 import IndicatorInfo from "./IndicatorInfo";
-import HomeIcon from "@mui/icons-material/Home";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { MathJaxContext, MathJax } from "better-react-mathjax";
-import {measured} from "../solns";
+import { measured } from "../solns";
 
 const graph = (
    <>
-  {/* Hello world */}
-  <svg
-    viewBox="0 0 1647 984"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    xmlSpace="preserve"
-    overflow="hidden"
-  >
-    <defs>
-      <clipPath id="clip0">
-        <rect x={1082} y={246} width={1647} height={984} />
-      </clipPath>
-      <clipPath id="clip1">
-        <rect x={1321} y={417} width={1338} height={610} />
-      </clipPath>
-    </defs>
-    <g clipPath="url(#clip0)" transform="translate(-1082 -246)">
-      <rect x={1083} y={247} width={1644} height={981} fill="#FFFFFF" />
-      <g>
-        <path
-          d="M1321.5 948.531 2655.5 948.531M1321.5 872.529 2655.5 872.529M1321.5 796.526 2655.5 796.526M1321.5 720.524 2655.5 720.524M1321.5 644.521 2655.5 644.521M1321.5 568.519 2655.5 568.519M1321.5 492.516 2655.5 492.516M1321.5 417.5 2655.5 417.5"
-          stroke="#D9D9D9"
-          strokeWidth="3.4375"
-          strokeLinejoin="round"
-          strokeMiterlimit={10}
-          fill="none"
-        />
-      </g>
-      <g>
-        <path
-          d="M1416.55 417.5 1416.55 1024.5M1512.55 417.5 1512.55 1024.5M1607.55 417.5 1607.55 1024.5M1702.56 417.5 1702.56 1024.5M1797.56 417.5 1797.56 1024.5M1893.56 417.5 1893.56 1024.5M1988.57 417.5 1988.57 1024.5M2083.57 417.5 2083.57 1024.5M2179.57 417.5 2179.57 1024.5M2274.57 417.5 2274.57 1024.5M2369.58 417.5 2369.58 1024.5M2465.58 417.5 2465.58 1024.5M2560.58 417.5 2560.58 1024.5M2655.5 417.5 2655.5 1024.5"
-          stroke="#D9D9D9"
-          strokeWidth="3.4375"
-          strokeLinejoin="round"
-          strokeMiterlimit={10}
-          fill="none"
-        />
-      </g>
-      <g>
-        <path
-          d="M0 0 0.000360892 607"
-          stroke="#BFBFBF"
-          strokeWidth="3.4375"
-          strokeLinejoin="round"
-          strokeMiterlimit={10}
-          fill="none"
-          fillRule="evenodd"
-          transform="matrix(1 0 0 -1 1321.5 1024.5)"
-        />
-      </g>
-      <g>
-        <path
-          d="M1321.5 1024.5 2655.5 1024.5"
-          stroke="#BFBFBF"
-          strokeWidth="3.4375"
-          strokeLinejoin="round"
-          strokeMiterlimit={10}
-          fill="none"
-          fillRule="evenodd"
-        />
-      </g>
-      <g clipPath="url(#clip1)">
-        <path
-          d="M1226.5 447.5 1321.54 492.516 1416.55 538.518 1512.55 584.519 1607.55 629.521 1702.56 675.522 1797.56 705.523 1893.56 735.524 1988.57 781.526 2083.57 811.527 2179.57 842.528 2274.57 872.529 2369.58 902.53 2465.58 933.531 2560.58 963.532 2655.5 993.5"
-          stroke="#4472C4"
-          strokeWidth="6.875"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeMiterlimit={10}
-          fill="none"
-        />
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1262.36 1036)"
-        >
-          9
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1231.05 960)"
-        >
-          9.5
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1241.46 884)"
-        >
-          10
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1210.15 808)"
-        >
-          10.5
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1241.46 732)"
-        >
-          11
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1210.15 656)"
-        >
-          11.5
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1241.46 580)"
-        >
-          12
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1210.15 504)"
-        >
-          12.5
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1241.46 429)"
-        >
-          13
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1311.08 1089)"
-        >
-          6
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1406.37 1089)"
-        >
-          7
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1501.67 1089)"
-        >
-          8
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1596.97 1089)"
-        >
-          9
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1681.82 1089)"
-        >
-          10
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1777.12 1089)"
-        >
-          11
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1872.42 1089)"
-        >
-          12
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 1967.71 1089)"
-        >
-          13
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 2063.01 1089)"
-        >
-          14
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 2158.31 1089)"
-        >
-          15
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 2253.61 1089)"
-        >
-          16
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 2348.91 1089)"
-        >
-          17
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 2444.21 1089)"
-        >
-          18
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 2539.5 1089)"
-        >
-          19
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={41}
-          transform="matrix(1 0 0 1 2634.8 1089)"
-        >
-          20
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={46}
-          transform="matrix(6.12323e-17 -1 1 6.12323e-17 1184.46 873)"
-        >
-          Max DO (mg / L)
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={46}
-          transform="matrix(1 0 0 1 1789.74 1159)"
-        >
-          Temperature (deg. C)
-        </text>
-      </g>
-      <g>
-        <text
-          fill="#595959"
-          fontFamily="Calibri,Calibri_MSFontService,sans-serif"
-          fontWeight={400}
-          fontSize={64}
-          transform="matrix(1 0 0 1 1516.45 342)"
-        >
-          Temperature vs Maximum DO
-        </text>
-      </g>
-      <rect
-        x="1083.5"
-        y="247.5"
-        width={1644}
-        height={981}
-        stroke="#D9D9D9"
-        strokeWidth="3.4375"
-        strokeLinejoin="round"
-        strokeMiterlimit={10}
-        fill="none"
-      />
-    </g>
-  </svg>
-</>
-
-)
+      <svg
+         viewBox="0 0 1647 984"
+         xmlns="http://www.w3.org/2000/svg"
+         xmlnsXlink="http://www.w3.org/1999/xlink"
+         xmlSpace="preserve"
+         overflow="hidden"
+      >
+         <defs>
+            <clipPath id="clip0">
+               <rect x={1082} y={246} width={1647} height={984} />
+            </clipPath>
+            <clipPath id="clip1">
+               <rect x={1321} y={417} width={1338} height={610} />
+            </clipPath>
+         </defs>
+         <g clipPath="url(#clip0)" transform="translate(-1082 -246)">
+            <rect x={1083} y={247} width={1644} height={981} fill="#FFFFFF" />
+            <g>
+               <path
+                  d="M1321.5 948.531 2655.5 948.531M1321.5 872.529 2655.5 872.529M1321.5 796.526 2655.5 796.526M1321.5 720.524 2655.5 720.524M1321.5 644.521 2655.5 644.521M1321.5 568.519 2655.5 568.519M1321.5 492.516 2655.5 492.516M1321.5 417.5 2655.5 417.5"
+                  stroke="#D9D9D9"
+                  strokeWidth="3.4375"
+                  strokeLinejoin="round"
+                  strokeMiterlimit={10}
+                  fill="none"
+               />
+            </g>
+            <g>
+               <path
+                  d="M1416.55 417.5 1416.55 1024.5M1512.55 417.5 1512.55 1024.5M1607.55 417.5 1607.55 1024.5M1702.56 417.5 1702.56 1024.5M1797.56 417.5 1797.56 1024.5M1893.56 417.5 1893.56 1024.5M1988.57 417.5 1988.57 1024.5M2083.57 417.5 2083.57 1024.5M2179.57 417.5 2179.57 1024.5M2274.57 417.5 2274.57 1024.5M2369.58 417.5 2369.58 1024.5M2465.58 417.5 2465.58 1024.5M2560.58 417.5 2560.58 1024.5M2655.5 417.5 2655.5 1024.5"
+                  stroke="#D9D9D9"
+                  strokeWidth="3.4375"
+                  strokeLinejoin="round"
+                  strokeMiterlimit={10}
+                  fill="none"
+               />
+            </g>
+            <g>
+               <path
+                  d="M0 0 0.000360892 607"
+                  stroke="#BFBFBF"
+                  strokeWidth="3.4375"
+                  strokeLinejoin="round"
+                  strokeMiterlimit={10}
+                  fill="none"
+                  fillRule="evenodd"
+                  transform="matrix(1 0 0 -1 1321.5 1024.5)"
+               />
+            </g>
+            <g>
+               <path
+                  d="M1321.5 1024.5 2655.5 1024.5"
+                  stroke="#BFBFBF"
+                  strokeWidth="3.4375"
+                  strokeLinejoin="round"
+                  strokeMiterlimit={10}
+                  fill="none"
+                  fillRule="evenodd"
+               />
+            </g>
+            <g clipPath="url(#clip1)">
+               <path
+                  d="M1226.5 447.5 1321.54 492.516 1416.55 538.518 1512.55 584.519 1607.55 629.521 1702.56 675.522 1797.56 705.523 1893.56 735.524 1988.57 781.526 2083.57 811.527 2179.57 842.528 2274.57 872.529 2369.58 902.53 2465.58 933.531 2560.58 963.532 2655.5 993.5"
+                  stroke="#4472C4"
+                  strokeWidth="6.875"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeMiterlimit={10}
+                  fill="none"
+               />
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1262.36 1036)"
+               >
+                  9
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1231.05 960)"
+               >
+                  9.5
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1241.46 884)"
+               >
+                  10
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1210.15 808)"
+               >
+                  10.5
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1241.46 732)"
+               >
+                  11
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1210.15 656)"
+               >
+                  11.5
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1241.46 580)"
+               >
+                  12
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1210.15 504)"
+               >
+                  12.5
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1241.46 429)"
+               >
+                  13
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1311.08 1089)"
+               >
+                  6
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1406.37 1089)"
+               >
+                  7
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1501.67 1089)"
+               >
+                  8
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1596.97 1089)"
+               >
+                  9
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1681.82 1089)"
+               >
+                  10
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1777.12 1089)"
+               >
+                  11
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1872.42 1089)"
+               >
+                  12
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 1967.71 1089)"
+               >
+                  13
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2063.01 1089)"
+               >
+                  14
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2158.31 1089)"
+               >
+                  15
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2253.61 1089)"
+               >
+                  16
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2348.91 1089)"
+               >
+                  17
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2444.21 1089)"
+               >
+                  18
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2539.5 1089)"
+               >
+                  19
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={41}
+                  transform="matrix(1 0 0 1 2634.8 1089)"
+               >
+                  20
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={46}
+                  transform="matrix(6.12323e-17 -1 1 6.12323e-17 1184.46 873)"
+               >
+                  Max DO (mg / L)
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={46}
+                  transform="matrix(1 0 0 1 1789.74 1159)"
+               >
+                  Temperature (deg. C)
+               </text>
+            </g>
+            <g>
+               <text
+                  fill="#595959"
+                  fontFamily="Calibri,Calibri_MSFontService,sans-serif"
+                  fontWeight={400}
+                  fontSize={64}
+                  transform="matrix(1 0 0 1 1516.45 342)"
+               >
+                  Temperature vs Maximum DO
+               </text>
+            </g>
+            <rect
+               x="1083.5"
+               y="247.5"
+               width={1644}
+               height={981}
+               stroke="#D9D9D9"
+               strokeWidth="3.4375"
+               strokeLinejoin="round"
+               strokeMiterlimit={10}
+               fill="none"
+            />
+         </g>
+      </svg>
+   </>
+);
 
 function Page1() {
    return (
@@ -430,21 +427,23 @@ function Page2() {
             (measured DO) to the maximum amount of oxygen that will dissolve
             under stable equilibrium conditions (i.e. 100% saturation). <br />
             <MathJaxContext>
-               <MathJax style={{ fontSize: "1rem", paddingTop: 5, paddingBottom: 5 }}>
+               <MathJax
+                  style={{ fontSize: "1rem", paddingTop: 5, paddingBottom: 5 }}
+               >
                   {`$$${`\\text{% saturation} = 100 \\text{%} \\times \\frac{\\text{measured DO}}{\\text{max DO}}`}$$`}
                </MathJax>
             </MathJaxContext>
-            The DO was measured to be <b>{measured.day0DO}</b>.
-            Given the following graph displaying the maximum oxygen
-            concentration at different temperatures, calculate the % saturation
-            and record it. 
-            <br/><span style={{color: "blue"}}>Use the average temperature between upstream and
-            downstream as the temperature value.</span>
-            
+            The DO was measured to be <b>{measured.day0DO}</b>. Given the
+            following graph displaying the maximum oxygen concentration at
+            different temperatures, calculate the % saturation and record it.
+            <br />
+            <span style={{ color: "blue" }}>
+               Use the average temperature between upstream and downstream as
+               the temperature value.
+            </span>
          </Typography>
          <Box width="70%" pb={2}>
-
-         {graph}
+            {graph}
          </Box>
       </Box>
    );

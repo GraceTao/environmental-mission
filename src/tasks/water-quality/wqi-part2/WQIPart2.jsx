@@ -25,13 +25,17 @@ import { solutions } from "../solns";
 function createData(abbrName, formValues, qValues, setQValues) {
    const formValue = formValues ? formValues[abbrName] : "";
    const name = solutions[abbrName].fullName;
-   const readingWithUnits = <><b>{formValue}</b> {solutions[abbrName].units}</>;
+   const readingWithUnits = (
+      <>
+         <b>{formValue}</b> {solutions[abbrName].units}
+      </>
+   );
 
    const handleChange = (e) => {
       const { name, value } = e.target;
       const updatedQValues = { ...qValues, [name]: value };
       setQValues(updatedQValues);
-      sessionStorage.setItem("qValues", JSON.stringify(updatedQValues));
+      localStorage.setItem("qValues", JSON.stringify(updatedQValues));
    };
 
    const inputBox = (
@@ -48,19 +52,15 @@ function createData(abbrName, formValues, qValues, setQValues) {
 }
 
 export default function WQIPart2() {
-   const formValues = JSON.parse(sessionStorage.getItem("formValues"));
+   const formValues = JSON.parse(localStorage.getItem("formValues"));
 
-   const tableHeaders = [
-      "Water Quality Indicator",
-      "Measurement",
-      "Q-Value",
-   ];
+   const tableHeaders = ["Water Quality Indicator", "Measurement", "Q-Value"];
    const location = useLocation();
    const savedQValues = location.state?.qValues || {};
    const [qValues, setQValues] = useState(savedQValues);
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage
-      const storedQValues = JSON.parse(sessionStorage.getItem("qValues"));
+      const storedQValues = JSON.parse(localStorage.getItem("qValues"));
       if (storedQValues) {
          // If there are saved form values, update the state with them
          setQValues(storedQValues);
@@ -69,7 +69,7 @@ export default function WQIPart2() {
 
    const rows = Object.keys(solutions).map((key) => {
       return createData(key, formValues, qValues, setQValues);
-   })
+   });
 
    const instructions = (
       <Box display="flex" flexDirection="column" justifyContent="center">
@@ -125,9 +125,16 @@ export default function WQIPart2() {
                </Tooltip>
             </IconButton>
          </Box>
-         <Box display="flex" flexDirection={{xs: "column", md: "row"}} justifyContent="space-between">
-            <Box width={{xs: "100%", md: "50%"}} ml="1%">
-               <TableContainer component={Paper} sx={{backgroundColor: "#fff5"}}>
+         <Box
+            display="flex"
+            flexDirection={{ xs: "column", md: "row" }}
+            justifyContent="space-between"
+         >
+            <Box width={{ xs: "100%", md: "50%" }} ml="1%">
+               <TableContainer
+                  component={Paper}
+                  sx={{ backgroundColor: "#fff5" }}
+               >
                   <Table size="small">
                      <TableHead>
                         <TableRow>
@@ -172,11 +179,11 @@ export default function WQIPart2() {
                <Box
                   sx={{
                      position: "absolute",
-                     top: {xs: "100%", md: "15%"},
+                     top: { xs: "100%", md: "15%" },
                      left: "5%",
                      zIndex: 1,
                      width: "93%",
-                     mt: {xs: "10%", md: 0},
+                     mt: { xs: "10%", md: 0 },
                   }}
                >
                   <GraphSlideShow />
