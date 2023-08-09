@@ -33,7 +33,7 @@ export default function UserDataForm() {
       e.preventDefault();
 
       try {
-         await axios.post("http://localhost:3001/submituserdata", { formData });
+         await axios.post("./netlify/functions/submituserdata", { formData });
       } catch (err) {
          console.log("Error:", err);
       }
