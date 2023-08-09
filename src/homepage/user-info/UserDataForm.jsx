@@ -36,7 +36,7 @@ export default function UserDataForm() {
       console.log("submitted");
 
       try {
-         await axios.post("/.netlify/functions/submituserdata", { formData });
+         await axios.post("/api/submituserdata", { formData });
       } catch (err) {
          console.log("Error:", err);
       }
