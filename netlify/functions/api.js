@@ -21,6 +21,7 @@ const serviceAccount = {
 };
 
 const api = express();
+api.use(express.json());
 const router = Router();
 
 const auth = new google.auth.GoogleAuth({
@@ -34,7 +35,7 @@ const service = google.sheets({ version: "v4", auth });
 router.post("/submituserdata", async (req, res) => {
    const { state, county, school, order } = req.body;
 
-   console.log("State: ", state);
+   console.log("State county school order: " + state + county + school + order);
 
    try {
       service.spreadsheets.values.append({
@@ -46,14 +47,6 @@ router.post("/submituserdata", async (req, res) => {
             values: [[state, county, school, order]],
          },
       });
-
-      const response = await service.spreadsheets.values.get({
-         spreadsheetId: SHEET_ID,
-         range: "A1:A3",
-       });
-   
-       const rows = response.data.values;
-       console.log("Row data:", rows);
 
       console.log("Data added successfully");
       res.status(200).send("Data added successfully");
