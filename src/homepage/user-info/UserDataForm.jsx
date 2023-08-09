@@ -33,15 +33,15 @@ export default function UserDataForm() {
       e.preventDefault();
 
       try {
-         await axios.post("./netlify/functions/submituserdata", { formData });
+         await axios.post("/.netlify/functions/submituserdata", { formData });
       } catch (err) {
          console.log("Error:", err);
       }
    };
 
    let states = Object.keys(locationData).sort();
-
    let counties = ["OTHER - NOT LISTED"];
+
    if (formData.state) {
       counties = counties.concat(
          Object.keys(locationData[formData.state]).sort()
