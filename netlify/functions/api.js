@@ -29,6 +29,7 @@ const auth = new google.auth.GoogleAuth({
 const service = google.sheets('v4');
 
 router.post('/submituserdata', (req, res) => {
+   console.log("Request body:", req.body);
    const { state, county, school, order } = req.body.formData;
    
    try {
