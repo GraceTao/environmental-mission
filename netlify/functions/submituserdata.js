@@ -1,6 +1,8 @@
 import { google } from "googleapis";
 import { serviceAccount } from "./creds";
 
+console.log(serviceAccount);
+
 const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
 
 const auth = new google.auth.GoogleAuth({
@@ -16,7 +18,7 @@ exports.handler = async (event, context) => {
       const requestBody = JSON.parse(event.body);
       const { state, county, school, order } = requestBody.formData;
 
-      await service.spreadsheets.values.append({
+      service.spreadsheets.values.append({
          auth,
          spreadsheetId: SHEET_ID,
          range: "Sheet1",
