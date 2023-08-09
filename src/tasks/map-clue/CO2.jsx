@@ -29,7 +29,7 @@ export default function CO2() {
                }}
             />
          }
-         position={{top: "28vh", left: "51vw"}}
+         position={{top: "70vh", left: "100vw"}}
          page1={<Page1 />}
       />
    );

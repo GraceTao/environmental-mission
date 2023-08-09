@@ -1,7 +1,7 @@
 import FactoryIcon from '@mui/icons-material/Factory';
 import IndicatorInfo from "./IndicatorInfo";
 import { Box, Typography } from "@mui/material";
-import AirQualityTable from './AirQualityTable';
+import table from './Air Quality Table.png'
 
 
 
@@ -38,7 +38,11 @@ function Page2() {
          </Typography>
 
          <Box width="70%" pb={2}>
-            <AirQualityTable />
+               <img
+                     src={table}
+                     alt="Air Quality Table"
+                     width="100%"
+                  />
          </Box>
 
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
@@ -78,7 +82,7 @@ export default function AirQuality() {
                }}
             />
          }
-         position={{ top: "30vh", left: "30vw" }}
+         position={{top: "-20vh", left: "40vw" }}
          page1={<Page1 />}
          page2={<Page2 />}
       />

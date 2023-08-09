@@ -39,7 +39,7 @@ export default function Ship() {
                }}
             />
          }
-         position={{ top: "-36vh", left: "48vw" }}
+         position={{ top: "80vh", left: "120vw" }}
          page1={<Page1 />}
       />
    );
