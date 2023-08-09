@@ -30,7 +30,7 @@ const service = google.sheets('v4');
 
 router.post('/submituserdata', (req, res) => {
    console.log("Request body:", req.body);
-   const { state, county, school, order } = req.body.formData;
+   const { state, county, school, order } = req.body;
    
    try {
       service.spreadsheets.values.append({
