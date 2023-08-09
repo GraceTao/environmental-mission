@@ -1,7 +1,7 @@
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import IndicatorInfo from "./IndicatorInfo";
-import { Box, Typography } from "@mui/material";
-import {measured} from "../solns";
+import { Typography } from "@mui/material";
+import { measured } from "../solns";
 
 function Page1() {
    return (
@@ -17,17 +17,19 @@ function Page1() {
    );
 }
 
-function Page2({upstream}) {
+function Page2({ upstream }) {
    return (
       <div>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
-            Assume this location is {upstream ? "upstream" : "downstream"}. The temperature here is <b>{upstream ? measured.tempUp : measured.tempDown}</b>.
+            Assume this location is {upstream ? "upstream" : "downstream"}. The
+            temperature here is{" "}
+            <b>{upstream ? measured.tempUp : measured.tempDown}</b>.
          </Typography>
       </div>
    );
 }
 
-export default function Temperature({upstream}) {
+export default function Temperature({ upstream }) {
    return (
       <IndicatorInfo
          icon={
@@ -39,10 +41,14 @@ export default function Temperature({upstream}) {
                }}
             />
          }
-         position={upstream ? {top: "50vh", left: "30vw"} : {top: "-28vh", left: "51vw"}}
+         position={
+            upstream
+               ? { top: "50vh", left: "30vw" }
+               : { top: "-28vh", left: "51vw" }
+         }
          anchor={{ vertical: "bottom", horizontal: "center" }}
          page1={<Page1 />}
-         page2={<Page2 upstream={upstream}/>}
+         page2={<Page2 upstream={upstream} />}
       />
    );
 }

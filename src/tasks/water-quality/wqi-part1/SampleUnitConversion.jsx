@@ -14,15 +14,15 @@ export default function SampleUnitConversion() {
    const eqns = [
       {
          eqn: `$$${`3 \\cancel{\\text{ days}} \\times \\frac{24 \\text{ hours}}{1 \\cancel{\\text{ day}}} = 72 \\text{ hours}`}$$`,
-         text: "Step 1:"
+         text: "Step 1:",
       },
       {
          eqn: `$$${`72 \\cancel{\\text{ hours}} \\times \\frac{60 \\text{ minutes}}{1 \\cancel{\\text{ hour}}} = 4320 \\text{ minutes}`}$$`,
-         text: "Step 2:"
+         text: "Step 2:",
       },
       {
          eqn: `$$${`4320 \\cancel{\\text{ minutes}} \\times \\frac{60 \\text{ seconds}}{1 \\cancel{\\text{ minute}}} = 259200 \\text{ seconds}`}$$`,
-         text: "Step 3:"
+         text: "Step 3:",
       },
       {
          eqn: `$$${`3 {\\color{green}{\\cancel{\\text {days}}}} \\times 
@@ -30,10 +30,9 @@ export default function SampleUnitConversion() {
                \\frac{60 \\color{blue}{\\cancel{\\text{ minutes}}}}{1 \\color{blue}{\\cancel{\\text{ hour}}}} 
                \\times \\frac{60 \\color{magenta}{\\text{ seconds}}}{1 \\color{blue}{\\cancel{\\text{ minute}}}}
                = 259200 \\text{ seconds}`}$$`,
-         text: "In one line:"
-      }
-      
-   ]
+         text: "In one line:",
+      },
+   ];
 
    return (
       <div>
@@ -51,9 +50,9 @@ export default function SampleUnitConversion() {
             anchorEl={anchorEl}
             sx={{
                backgroundColor: "white",
-               maxWidth: { xs: "85%", sm: "75%", md: "50%", lg: "45%" }, // Adjust the maximum width as needed
+               maxWidth: { xs: "85%", sm: "75%", md: "50%", lg: "45%" }, 
                width: "auto",
-               maxHeight: "80vh", // Adjust the maximum height as needed
+               maxHeight: "80vh", 
                overflow: "auto",
                whiteSpace: "pre-wrap",
                wordWrap: "break-word",
@@ -74,8 +73,8 @@ export default function SampleUnitConversion() {
                <span style={{ color: "magenta" }}>
                   <b>final</b>
                </span>{" "}
-               units, then cancel out those intermediate units along the
-               way with fractions.
+               units, then cancel out those intermediate units along the way
+               with fractions.
                <br />
                <br />
                <b>Convert 3 days to seconds.</b>
@@ -104,20 +103,19 @@ export default function SampleUnitConversion() {
                >
                   {eqns.map((eqn, index) => (
                      <Box
-                     display="flex"
-                     flexDirection="row"
-                     justifyContent="flex-start"
-                     key={index}
-                  >
-                     {eqn.text}&emsp;
-                     <MathJaxContext>
-                        <MathJax style={{ fontSize: "0.9rem" }}>
-                           {eqn.eqn}
-                        </MathJax>
-                     </MathJaxContext>
-                  </Box>
+                        display="flex"
+                        flexDirection="row"
+                        justifyContent="flex-start"
+                        key={index}
+                     >
+                        {eqn.text}&emsp;
+                        <MathJaxContext>
+                           <MathJax style={{ fontSize: "0.9rem" }}>
+                              {eqn.eqn}
+                           </MathJax>
+                        </MathJaxContext>
+                     </Box>
                   ))}
-                  
                </Box>
                <b>3&nbsp;days&nbsp;=&nbsp;259200&nbsp;seconds</b>
             </Typography>

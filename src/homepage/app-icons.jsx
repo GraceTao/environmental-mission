@@ -4,50 +4,61 @@ import MapIcon from "@mui/icons-material/Map";
 import MailIcon from "@mui/icons-material/Mail";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import CollectionsIcon from "@mui/icons-material/Collections";
-import CoPresentIcon from "@mui/icons-material/CoPresent";
-
-export function appIcons() {
-    return ([
-        {
-           icon: PhoneIcon,
-           path: "/",
-           color: "green",
-        },
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
+import ForestIcon from '@mui/icons-material/Forest';
+const appIcons = 
+    [
+      {
+         icon: MailIcon,
+         name: "MailIcon",
+         path: "/",
+         color: "black",
+      },
+      {
+         icon: PhoneIcon,
+         name: "PhoneIcon",
+         path: "/",
+         color: "darkgreen",
+      },
+      {
+         icon: CalendarMonthIcon,
+         name: "CalendarIcon",
+         path: "/wqi-p1",
+         color: "mediumblue",
+      },
         {
            icon: ContactsIcon,
+           name: "ContactsIcon",
            path: "/",
-           color: "blue",
+           color: "orangered",
         },
-        {
-           icon: CalendarMonthIcon,
-           path: "/wqi-p1",
-           color: "red",
-        },
+
         {
            icon: AssignmentIcon,
+           name: "AssignmentIcon",
            path: "/",
-           color: "purple",
+           color: "rebeccapurple",
         },
+
         {
            icon: MapIcon,
+           name: "MapIcon",
            path: "/map-home",
-           color: "brown",
+           color: "firebrick",
+        },
+
+        {
+           icon: WatchLaterIcon,
+           name: "ClockIcon",
+           path: "/",
+           color: "mediumvioletred",
         },
         {
-           icon: MailIcon,
-           path: "/",
-           color: "darkred",
+           icon: ForestIcon,
+           name: "ForestIcon",
+           path: "/account",
+           color: "forestgreen",
         },
-        {
-           icon: CollectionsIcon,
-           path: "/",
-           color: "orange",
-        },
-        {
-           icon: CoPresentIcon,
-           path: "/",
-           color: "black",
-        },
-     ])
-    };
+     ];
+
+export {appIcons};
