@@ -1,5 +1,6 @@
 import { google } from "googleapis";
 import express, { Router } from 'express';
+import serverless from 'serverless-http';
 
 const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
 
