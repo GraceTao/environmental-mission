@@ -1,6 +1,6 @@
 import { google } from "googleapis";
 
-const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
+const SHEET_ID = "1DUZs3rfB4FVY41n7SKRRMAY-E3xqKa8M7JyAybnLB-E";
 
 const serviceAccount = {
    type: process.env.TYPE,
@@ -23,7 +23,7 @@ const auth = new google.auth.GoogleAuth({
 
 console.log("Auth:", auth);
 
-const service = google.sheets("v4");
+const service = google.sheets(({version: 'v4', auth}));
 
 console.log("Service:", service);
 
