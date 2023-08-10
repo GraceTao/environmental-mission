@@ -33,7 +33,8 @@ export default function FinalTask() {
 
    const handleSubmit = async () => {
       const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
-      const allData = { ...prevData, ...answers };
+      const dataString = JSON.stringify(answers.q2);
+      const allData = { ...prevData, ...answers, q2: dataString };
       console.log(allData);
 
       try {
