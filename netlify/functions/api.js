@@ -31,9 +31,9 @@ const auth = new google.auth.GoogleAuth({
 const service = google.sheets({ version: "v4", auth });
 
 router.post("/submituserdata", async (req, res) => {
-   const { state, county, school, order } = req.body;
+   const { state, county, school, order, attempts, q1, q2, q3, q4, q5 } = req.body;
 
-   console.log("State county school order: " + state + county + school + order);
+   console.log(req.body);
 
    try {
       await service.spreadsheets.values.append({
@@ -41,7 +41,7 @@ router.post("/submituserdata", async (req, res) => {
          range: "Sheet1",
          valueInputOption: "RAW",
          resource: {
-            values: [[state, county, school, order]],
+            values: [[state, county, school, order, attempts, q1, q2, q3, q4, q5]],
          },
       });
 

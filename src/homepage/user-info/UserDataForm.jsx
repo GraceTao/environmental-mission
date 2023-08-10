@@ -33,7 +33,7 @@ export default function UserDataForm({ open, setOpen }) {
       setIsCompleted({ ...isCompleted, [key]: true });
    };
 
-   const handleSubmit = async (e) => {
+   const handleSubmit = (e) => {
       e.preventDefault();
 
       setOpenAlert(true);

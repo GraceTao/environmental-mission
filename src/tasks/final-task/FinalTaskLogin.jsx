@@ -10,6 +10,7 @@ import {
    InputAdornment,
    OutlinedInput,
    Typography,
+   Tooltip,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -32,7 +33,10 @@ export default function FinalTaskLogin() {
    useEffect(() => {
       if (correct) {
          const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
-         sessionStorage.setItem("allFormData", JSON.stringify({...prevData, attempts: attempts}));
+         sessionStorage.setItem(
+            "allFormData",
+            JSON.stringify({ ...prevData, attempts: attempts })
+         );
       }
    }, [correct, attempts]);
 
@@ -46,7 +50,7 @@ export default function FinalTaskLogin() {
    };
 
    return (
-      <Dialog open={displayLogin}>
+      <Dialog open={displayLogin} sx={{ backgroundColor: "lightgray" }}>
          <DialogTitle
             fontSize="1.2rem"
             fontWeight="bold"
@@ -64,7 +68,9 @@ export default function FinalTaskLogin() {
                disableRipple
                sx={{ padding: 0 }}
             >
-               <HomeIcon sx={{ fontSize: 35, color: "black" }} />
+               <Tooltip title="Go home" arrow>
+                  <HomeIcon sx={{ fontSize: 35, color: "black" }} />
+               </Tooltip>
             </IconButton>
          </DialogTitle>
          <DialogContent
@@ -74,7 +80,7 @@ export default function FinalTaskLogin() {
          >
             <Box display="flex" flexDirection="column">
                {hasClicked && !correct && (
-                  <Alert severity="error" sx={{ mb: 2 }}>
+                  <Alert severity="error" sx={{ mb: 2, boxShadow: 5 }}>
                      Incorrect password entered.
                   </Alert>
                )}
@@ -117,7 +123,10 @@ export default function FinalTaskLogin() {
                   }}
                />
                {correct ? (
-                  <Alert severity="success" variant="filled" sx={{ mt: 3, mb: 2, fontSize: "1rem" }}>
+                  <Alert
+                     severity="success"
+                     sx={{ mt: 3, mb: 2, fontSize: "1rem", boxShadow: 5 }}
+                  >
                      Success! Logging in...
                   </Alert>
                ) : (
