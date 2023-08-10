@@ -60,7 +60,7 @@ router.get("/getdata", async (req, res) => {
    try {
       const response = await service.spreadsheets.values.get({
          spreadsheetId: SHEET_ID,
-         range: "A1:A3",
+         range: "A1:C1",
        });
    
        const rows = response.data.values;
