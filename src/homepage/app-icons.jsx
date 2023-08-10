@@ -43,7 +43,7 @@ const appIcons =
         {
            icon: MapIcon,
            name: "MapIcon",
-           path: "/",
+           path: "/map-home",
            color: "firebrick",
         },
 
