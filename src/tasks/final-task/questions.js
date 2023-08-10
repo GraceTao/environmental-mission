@@ -34,7 +34,19 @@ const q2 = [
       id: "box4",
       label: "Checkbox 4"
    }
-]
+];
+
+const q3 = `As you’ve experienced today, environment compliance specialists
+work with people in many other fields. Name at least two other
+occupations (from today’s mission) that environment compliance
+specialists collaborate with to fulfill their duties. You can
+also enter the names of the people you “texted” with today.`;
+
+const q4 = `What does the Port of Corpus Christi do to ensure its
+environmental goals?`;
+
+const q5 = `What does the Port of Corpus Christi do to make sure its work has
+minimal effects on the surrounding community?`;
 
 
-export { q1, q2 };
+export { q1, q2, q3, q4, q5 };
