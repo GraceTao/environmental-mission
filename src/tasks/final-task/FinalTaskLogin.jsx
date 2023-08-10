@@ -40,7 +40,8 @@ export default function FinalTaskLogin({ showAlert, setShowAlert }) {
       if (trimmed === PASSWORD) {
          setCorrect(true);
          const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
-         const newData = { ...prevData, attempts: storedAttempts };
+         const prevAttempts = sessionStorage.getItem("taskAttempts");
+         const newData = { ...prevData, attempts: prevAttempts };
          sessionStorage.setItem("allFormData", JSON.stringify(newData));
          setTimeout(() => {
             setDisplayLogin(!displayLogin);
