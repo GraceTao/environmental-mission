@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import FinalTaskLogin from "./FinalTaskLogin";
-import { q1, q2 } from "./questions";
+import { q1, q2, q3, q4, q5 } from "./questions";
 
 export default function FinalTask() {
    const [answers, setAnswers] = useState({
@@ -107,11 +107,7 @@ export default function FinalTask() {
             </FormGroup>
             <br />
             <Typography>
-               As you’ve experienced today, environment compliance specialists
-               work with people in many other fields. Name at least two other
-               occupations (from today’s mission) that environment compliance
-               specialists collaborate with to fulfill their duties. You can
-               also enter the names of the people you “texted” with today.
+               {q3}
             </Typography>
             <br />
             <TextField
@@ -124,8 +120,7 @@ export default function FinalTask() {
             />
             <br />
             <Typography>
-               What does the Port of Corpus Christi do to ensure its
-               environmental goals?
+               {q4}
             </Typography>
             <br />
             <TextField
@@ -138,8 +133,7 @@ export default function FinalTask() {
             />
             <br />
             <Typography>
-               What does the Port of Corpus Christi do to make sure its work has
-               minimal effects on the surrounding community?
+               {q5}
             </Typography>
             <br />
             <TextField
