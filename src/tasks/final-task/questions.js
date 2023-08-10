@@ -36,11 +36,11 @@ const q2 = [
    }
 ];
 
-const q3 = `As you’ve experienced today, environment compliance specialists
+const q3 = `As you’ve learned today, environment compliance specialists
 work with people in many other fields. Name at least two other
 occupations (from today’s mission) that environment compliance
-specialists collaborate with to fulfill their duties. You can
-also enter the names of the people you “texted” with today.`;
+specialists collaborate with to fulfill their duties. Or,
+name two people you “texted” with today.`;
 
 const q4 = `What does the Port of Corpus Christi do to ensure its
 environmental goals?`;
