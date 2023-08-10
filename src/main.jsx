@@ -16,7 +16,7 @@ function App() {
             <Route path="/wqi-p2" element={<WQIPart2 />} />
             <Route path="/wqi-p3" element={<WQIPart3 />} />
             <Route path="/account" element={<FinalTask />} />
-         </Routes>
+         </Routes> 
       </Router>
    );
 }
