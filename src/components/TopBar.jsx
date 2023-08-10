@@ -7,7 +7,7 @@ export default function TopBar({ instruction }) {
    return (
       <>
          <AppBar
-            position="static" // make fixed
+            position="fixed"
             sx={{ backgroundColor: "seagreen", boxShadow: 0 }}
          >
             <Toolbar style={{ position: "relative" }}>
