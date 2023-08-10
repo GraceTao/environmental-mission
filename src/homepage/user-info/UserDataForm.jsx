@@ -40,15 +40,17 @@ export default function UserDataForm({ open, setOpen }) {
       setTimeout(() => {
          setOpen(!open);
          sessionStorage.setItem("submittedStartForm", true);
-         sessionStorage.setItem("allFormData", formData);
+         sessionStorage.setItem("allFormData", JSON.stringify(formData));
+
       }, 2000);
 
-      try {
-         await axios.post("/api/submituserdata", formData);
-         console.log("Data submitted successfully");
-      } catch (err) {
-         console.log("Error:", err);
-      }
+      
+      // try {
+      //    await axios.post("/api/submituserdata", formData);
+      //    console.log("Data submitted successfully");
+      // } catch (err) {
+      //    console.log("Error:", err);
+      // }
       // try {
       //    await axios.get("/api/getdata");
       //    console.log("Data retrieved successfully");
