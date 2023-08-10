@@ -22,7 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.mp4
 creds.json
 getLocationData.js
 schoolData.xls
-wqi_chat_animation.mp4
+
