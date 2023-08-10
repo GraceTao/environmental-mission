@@ -5,6 +5,7 @@ import {
    Grid,
    IconButton,
    Typography,
+   Fade,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Instructions from "../components/Instructions";
@@ -15,6 +16,7 @@ import logo from "../components/PortCC-logo-horizontal-white.png";
 import StopWatch from "./StopWatch";
 import ContactsList from "./ContactsList";
 import Notification from "./Notification";
+import UserDataForm from "./user-info/UserDataForm";
 
 function PhoneContent({ open, setOpen }) {
    return (
@@ -88,8 +90,8 @@ function Home() {
             You are an environmental compliance specialist working alongside
             your peers to analyze the Port of Corpus Christi environment. You’re
             specifically interested in the local watershed and its surrounding
-            buildings. You will be presenting a report to your manager on the 
-            status and actions of the Port with respect to environmental health. 
+            buildings. You will be presenting a report to your manager on the
+            status and actions of the Port with respect to environmental health.
             <br />
             <br />
          </Typography>
@@ -113,6 +115,8 @@ function Home() {
       ContactsIcon: false,
    });
 
+   const [showUserForm, setShowUserForm] = useState(sessionStorage.getItem("submittedStartForm") == null);
+
    return (
       <>
          <Box
@@ -122,92 +126,102 @@ function Home() {
                overflow: "auto",
             }}
          >
-            <div style={{ position: "relative" }}>
-               <img
-                  src={logo}
-                  alt="Port of Corpus Christi Logo"
-                  width="300px"
-                  style={{ position: "absolute", left: 5 }}
-               />
-               <Notification />
-               <Instructions
-                  name={<Typography color="white">instructions</Typography>}
-                  title={mission}
-                  content={purpose}
-                  style={{
-                     left: "87%",
-                     position: "sticky",
-                     boxShadow: 2,
-                     backgroundColor: "#356696",
-                     "&:hover": {
-                        backgroundColor: "#294E72",
-                        boxShadow: 3,
-                     },
-                  }}
-               ></Instructions>
-               <Grid
-                  container
-                  rowSpacing={{ xs: 8, sm: 10, md: 12, lg: 18 }}
-                  columnSpacing={{ xs: 15, sm: 20, md: 20, lg: 25 }}
-                  justifyContent="center"
-                  alignItems="center"
-                  style={{ marginTop: "2%", marginBottom: "2%" }}
-               >
-                  {appIcons.map((app) => (
-                     <Grid item key={app.name}>
-                        <IconButton
-                           component={app.path !== "/" ? Link : null}
-                           to={app.path !== "/" ? app.path : null}
-                           onClick={() => {
-                              app.path === "/" &&
-                                 setShowIconContent({
-                                    ...showIconContent,
-                                    [app.name]: !showIconContent[app.name],
-                                 });
-                           }}
-                           sx={{
-                              border: "solid",
-                              borderColor: app.color,
-                              borderRadius: "45%",
-                              "&:hover": {
-                                 backgroundColor: "#FCECFC70",
-                                 boxShadow: 7,
-                              },
-                              boxShadow: 2,
-                              width: {
-                                 xs: "85px",
-                                 sm: "90px",
-                                 md: "100px",
-                                 lg: "100px",
-                              },
-                              height: {
-                                 xs: "85px",
-                                 sm: "90px",
-                                 md: "100px",
-                                 lg: "100px",
-                              },
-                           }}
-                        >
-                           <app.icon
-                              sx={{ fontSize: "60px", color: app.color }}
-                           ></app.icon>
-                        </IconButton>
-                     </Grid>
-                  ))}
-               </Grid>
-               <ContactsList
-                  open={showIconContent}
-                  setOpen={setShowIconContent}
-               />
-               <PhoneContent
-                  open={showIconContent}
-                  setOpen={setShowIconContent}
-               />
-               <ClockContent
-                  open={showIconContent}
-                  setOpen={setShowIconContent}
-               />
-            </div>
+            {showUserForm ? (
+               <Dialog open={true} >
+                  <DialogContent>
+                     <UserDataForm open={showUserForm} setOpen={setShowUserForm} />
+                  </DialogContent>
+               </Dialog>
+            ) : (
+               <div style={{ position: "relative" }}>
+                  <img
+                     src={logo}
+                     alt="Port of Corpus Christi Logo"
+                     width="300px"
+                     style={{ position: "absolute", left: 5 }}
+                  />
+                  <Notification />
+
+                  
+                  <Instructions
+                     name={<Typography color="white">instructions</Typography>}
+                     title={mission}
+                     content={purpose}
+                     style={{
+                        left: "87%",
+                        position: "sticky",
+                        boxShadow: 5,
+                        backgroundColor: "#356696",
+                        "&:hover": {
+                           backgroundColor: "#294E72",
+                           boxShadow: 5,
+                        },
+                     }}
+                  ></Instructions>
+                  <Grid
+                     container
+                     rowSpacing={{ xs: 8, sm: 10, md: 12, lg: 18 }}
+                     columnSpacing={{ xs: 15, sm: 20, md: 20, lg: 25 }}
+                     justifyContent="center"
+                     alignItems="center"
+                     style={{ marginTop: "2%", marginBottom: "2%" }}
+                  >
+                     {appIcons.map((app) => (
+                        <Grid item key={app.name}>
+                           <IconButton
+                              component={app.path !== "/" ? Link : null}
+                              to={app.path !== "/" ? app.path : null}
+                              onClick={() => {
+                                 app.path === "/" &&
+                                    setShowIconContent({
+                                       ...showIconContent,
+                                       [app.name]: !showIconContent[app.name],
+                                    });
+                              }}
+                              sx={{
+                                 border: "solid",
+                                 borderColor: app.color,
+                                 borderRadius: "45%",
+                                 "&:hover": {
+                                    backgroundColor: "#FCECFC70",
+                                    boxShadow: 7,
+                                 },
+                                 boxShadow: 2,
+                                 width: {
+                                    xs: "85px",
+                                    sm: "90px",
+                                    md: "100px",
+                                    lg: "100px",
+                                 },
+                                 height: {
+                                    xs: "85px",
+                                    sm: "90px",
+                                    md: "100px",
+                                    lg: "100px",
+                                 },
+                              }}
+                           >
+                              <app.icon
+                                 sx={{ fontSize: "60px", color: app.color }}
+                              ></app.icon>
+                           </IconButton>
+                        </Grid>
+                     ))}
+                  </Grid>
+                  <ContactsList
+                     open={showIconContent}
+                     setOpen={setShowIconContent}
+                  />
+                  <PhoneContent
+                     open={showIconContent}
+                     setOpen={setShowIconContent}
+                  />
+                  <ClockContent
+                     open={showIconContent}
+                     setOpen={setShowIconContent}
+                  />
+               </div>
+            )}
          </Box>
       </>
    );

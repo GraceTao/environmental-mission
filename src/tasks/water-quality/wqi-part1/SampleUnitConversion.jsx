@@ -96,10 +96,13 @@ export default function SampleUnitConversion() {
                </span>
                <br />
                <br />
-               <Box
+               
+            </Typography>
+            <Box
                   display="flex"
                   flexDirection="column"
                   justifyContent="flex-start"
+                  ml={2}
                >
                   {eqns.map((eqn, index) => (
                      <Box
@@ -108,17 +111,20 @@ export default function SampleUnitConversion() {
                         justifyContent="flex-start"
                         key={index}
                      >
-                        {eqn.text}&emsp;
+                        <Typography>
+                           {eqn.text}&emsp;
+                        </Typography>
+                        
                         <MathJaxContext>
-                           <MathJax style={{ fontSize: "0.9rem" }}>
+                           <MathJax style={{ fontSize: "1.1rem" }}>
                               {eqn.eqn}
                            </MathJax>
                         </MathJaxContext>
                      </Box>
                   ))}
                </Box>
-               <b>3&nbsp;days&nbsp;=&nbsp;259200&nbsp;seconds</b>
-            </Typography>
+               <Typography sx={{ml: 2, mb: 2}}><b>3&nbsp;days&nbsp;=&nbsp;259200&nbsp;seconds</b>
+                  </Typography>
          </Popper>
       </div>
    );
