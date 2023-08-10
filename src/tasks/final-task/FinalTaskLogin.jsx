@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 
 const RESTRICT_INPUT = /^[a-zA-Z ]+$/;
 const USERNAME = "me";
-const PASSWORD = /^water[ ]*soil[ ]*air[ ]*policy$/;
+const PASSWORD = "watersoilairpolicy";
 const accountCircles = ["mediumpurple", "springgreen", "turquoise", "orange"];
 
 export default function FinalTaskLogin({ showAlert, setShowAlert }) {
@@ -28,29 +28,27 @@ export default function FinalTaskLogin({ showAlert, setShowAlert }) {
    const [correct, setCorrect] = useState(false);
    const [password, setPassword] = useState("");
    const [hasClicked, setHasClicked] = useState(false);
-   const [attempts, setAttempts] = useState(0);
-
-   useEffect(() => {
-      if (correct) {
-         const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
-         sessionStorage.setItem(
-            "allFormData",
-            JSON.stringify({ ...prevData, attempts: attempts })
-         );
-      }
-   }, [correct, attempts]);
 
    const handleLogin = () => {
-      const trimmed = password.toLocaleLowerCase().trim();
-      if (PASSWORD.test(trimmed)) {
+      let trimmed = password.toLocaleLowerCase().trim().replace(/\s/g, "");
+      const storedAttempts = sessionStorage.getItem("taskAttempts");
+      if (trimmed) {
+         const attempts = storedAttempts ? parseInt(storedAttempts) + 1 : 1;
+         sessionStorage.setItem("taskAttempts", attempts.toString());
+         console.log(`Number of Attempts: ${attempts}`);
+      }
+      if (trimmed === PASSWORD) {
          setCorrect(true);
+         const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
+         const newData = { ...prevData, attempts: storedAttempts };
+         sessionStorage.setItem("allFormData", JSON.stringify(newData));
          setTimeout(() => {
             setDisplayLogin(!displayLogin);
-            setShowAlert(true);
+            setShowAlert(!showAlert);
          }, 2000);
-      } else if (trimmed) {
-         setAttempts(attempts + 1);
+         console.log(JSON.parse(sessionStorage.getItem("allFormData")));
       }
+
       setHasClicked(!hasClicked);
    };
 
