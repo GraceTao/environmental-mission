@@ -19,7 +19,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 
 const RESTRICT_INPUT = /^[a-zA-Z ]+$/;
-const USERNAME = "me";
+const USERNAME = "me@greensolns.org";
 const PASSWORD = "watersoilairpolicy";
 const accountCircles = ["mediumpurple", "springgreen", "turquoise", "orange"];
 

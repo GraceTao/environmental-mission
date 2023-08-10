@@ -11,7 +11,6 @@ import {
    Button,
    Typography,
 } from "@mui/material";
-import axios from "axios";
 import { locationData } from "./locationData";
 
 export default function UserDataForm({ open, setOpen }) {

@@ -29,6 +29,7 @@ export default function FinalReport({
    });
 
    const [showError, setShowError] = useState(false);
+   const [showSubmitting, setShowSubmitting] = useState(false);
 
    const handleChange = (e) => {
       const { name, value } = e.target;
@@ -55,12 +56,12 @@ export default function FinalReport({
          setShowSubmissionPage(!showSubmissionPage);
          setShowError(false);
 
-         // try {
-         //    await axios.post("/api/submituserdata", allData);
-         //    console.log("Data added successfully");
-         // } catch (err) {
-         //    console.log("Error:", err);
-         // }
+         try {
+            await axios.post("/api/submituserdata", allData);
+            console.log("Data added successfully");
+         } catch (err) {
+            console.log("Error:", err);
+         }
       } else {
          setShowError(true);
       }
