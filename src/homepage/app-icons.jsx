@@ -11,7 +11,7 @@ const appIcons =
       {
          icon: MailIcon,
          name: "MailIcon",
-         path: "/",
+         path: "/email",
          color: "black",
       },
       {
@@ -36,14 +36,14 @@ const appIcons =
         {
            icon: AssignmentIcon,
            name: "AssignmentIcon",
-           path: "/",
+           path: "/inspection",
            color: "rebeccapurple",
         },
 
         {
            icon: MapIcon,
            name: "MapIcon",
-           path: "/",
+           path: "/map-home",
            color: "firebrick",
         },
 
