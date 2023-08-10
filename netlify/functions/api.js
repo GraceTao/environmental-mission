@@ -32,7 +32,7 @@ const auth = new google.auth.GoogleAuth({
 
 const service = google.sheets({ version: "v4", auth });
 
-router.post("/submituserdata", async (req, res) => {
+router.post("/submituserdata", (req, res) => {
    const { state, county, school, order } = req.body;
 
    console.log("State county school order: " + state + county + school + order);
@@ -56,7 +56,7 @@ router.post("/submituserdata", async (req, res) => {
    }
 });
 
-api.use("/api/", router);
+api.use("/api", router);
 export const handler = serverless(api);
 
 // exports.handler = async (event, context) => {
