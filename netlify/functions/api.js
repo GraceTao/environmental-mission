@@ -32,14 +32,13 @@ const auth = new google.auth.GoogleAuth({
 
 const service = google.sheets({ version: "v4", auth });
 
-router.post("/submituserdata", (req, res) => {
+router.post("/submituserdata", async (req, res) => {
    const { state, county, school, order } = req.body;
 
    console.log("State county school order: " + state + county + school + order);
 
    try {
       service.spreadsheets.values.append({
-         auth,
          spreadsheetId: SHEET_ID,
          range: "Sheet1",
          valueInputOption: "RAW",
