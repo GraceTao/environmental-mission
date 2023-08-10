@@ -35,7 +35,9 @@ export default function FinalReport({
 
    const handleSubmit = async () => {
       const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
-      const filtered = Object.keys(answers.q2).filter((key) => answers.q2[key] == true);
+      let filtered = Object.keys(answers.q2).filter((key) => answers.q2[key] == true);
+      filtered = filtered.sort();
+      filtered = filtered.join(",");
       const allData = { ...prevData, ...answers, q2: filtered };
       console.log(allData);
 
@@ -47,12 +49,12 @@ export default function FinalReport({
          answers.q5
       ) {
          setShowSubmissionPage(!showSubmissionPage);
-         try {
-            await axios.post("/api/submituserdata", allData);
-            console.log("Data added successfully");
-         } catch (err) {
-            console.log("Error:", err);
-         }
+         // try {
+         //    await axios.post("/api/submituserdata", allData);
+         //    console.log("Data added successfully");
+         // } catch (err) {
+         //    console.log("Error:", err);
+         // }
       }
    };
 
