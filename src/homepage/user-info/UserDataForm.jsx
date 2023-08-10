@@ -188,7 +188,7 @@ export default function UserDataForm({ open, setOpen }) {
             </Select>
          </FormControl>
          {openAlert ? (
-            <Alert severity="success" sx={{m: 2, fontSize: "1rem"}}>
+            <Alert severity="success" variant="filled" sx={{m: 2, fontSize: "1rem"}}>
                Thanks! Now onto the task...
             </Alert>
          ) : (

@@ -35,8 +35,8 @@ export default function FinalReport({
 
    const handleSubmit = async () => {
       const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
-      const dataString = JSON.stringify(answers.q2);
-      const allData = { ...prevData, ...answers, q2: dataString };
+      const filtered = Object.keys(answers.q2).filter((key) => answers.q2[key] == true);
+      const allData = { ...prevData, ...answers, q2: filtered };
       console.log(allData);
 
       if (
@@ -46,13 +46,13 @@ export default function FinalReport({
          answers.q4 &&
          answers.q5
       ) {
-         setOpen(!open);
-         // try {
-         //    await axios.post("/api/submituserdata", allData);
-         //    console.log("Data added successfully");
-         // } catch (err) {
-         //    console.log("Error:", err);
-         // }
+         setShowSubmissionPage(!showSubmissionPage);
+         try {
+            await axios.post("/api/submituserdata", allData);
+            console.log("Data added successfully");
+         } catch (err) {
+            console.log("Error:", err);
+         }
       }
    };
 
