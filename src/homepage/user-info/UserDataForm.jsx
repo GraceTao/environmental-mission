@@ -36,8 +36,8 @@ export default function UserDataForm() {
       console.log("submitted");
 
       try {
-         await axios.post("/api/submituserdata", formData);
-         console.log("Data submitted successfully");
+         await axios.get("/api/getdata");
+         console.log("Data retrieved successfully");
       } catch (err) {
          console.log("Error:", err);
       }
