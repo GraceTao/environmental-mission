@@ -55,53 +55,22 @@ router.post("/submituserdata", async (req, res) => {
    }
 });
 
-router.get("/getdata", async (req, res) => {
+// router.get("/getdata", async (req, res) => {
 
-   try {
-      const response = await service.spreadsheets.values.get({
-         spreadsheetId: SHEET_ID,
-         range: "A1:C1",
-       });
+//    try {
+//       const response = await service.spreadsheets.values.get({
+//          spreadsheetId: SHEET_ID,
+//          range: "A1:C1",
+//        });
    
-       const rows = response.data.values;
-       console.log("Row data:", rows);
-      res.status(200).send("Row fetched successfully");
-   } catch (err) {
-      console.error("Error adding user data: ", err);
-      res.status(500).json({ message: "An error occurred" });
-   }
-});
+//        const rows = response.data.values;
+//        console.log("Row data:", rows);
+//       res.status(200).send("Row fetched successfully");
+//    } catch (err) {
+//       console.error("Error adding user data: ", err);
+//       res.status(500).json({ message: "An error occurred" });
+//    }
+// });
 
 api.use("/api", router);
 export const handler = serverless(api);
-
-// exports.handler = async (event, context) => {
-//    console.log("inside submituserdata.js");
-//    try {
-//       const requestBody = JSON.parse(event.body);
-//       const { state, county, school, order } = requestBody.formData;
-//       console.log("Data received:", requestBody.formData);
-
-//       service.spreadsheets.values.append({
-//          auth,
-//          spreadsheetId: SHEET_ID,
-//          range: "Sheet1",
-//          valueInputOption: "RAW",
-//          resource: {
-//             values: [[state, county, school, order]],
-//          },
-//       });
-//       console.log("Write operation successful");
-
-//       return {
-//          statusCode: 200,
-//          body: JSON.stringify({ message: "Data added successfully" }),
-//       };
-//    } catch (error) {
-//       console.error("Error adding user data: ", error);
-//       return {
-//          statusCode: 500,
-//          body: JSON.stringify({ message: "An error occurred" }),
-//       };
-//    }
-// };
