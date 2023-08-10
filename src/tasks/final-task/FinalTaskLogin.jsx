@@ -71,11 +71,6 @@ export default function FinalTaskLogin() {
                      Incorrect password entered.
                   </Alert>
                )}
-               {correct && (
-                  <Alert severity="success" sx={{ mb: 2 }} >
-                     Success! Logging in...
-                  </Alert>
-               )}
                <Typography fontSize="1.1rem">Username</Typography>
                <OutlinedInput
                   disabled
@@ -114,21 +109,27 @@ export default function FinalTaskLogin() {
                      maxHeight: 48,
                   }}
                />
-               <Button
-                  variant="contained"
-                  onClick={handleLogin}
-                  sx={{
-                     mt: 4,
-                     mb: 3,
-                     backgroundColor: "#277056",
-                     color: "beige",
-                     // fontWeight: "bold",
-                     fontSize: "1rem",
-                     "&:hover": { backgroundColor: "#277056" },
-                  }}
-               >
-                  log in
-               </Button>
+               {correct ? (
+                  <Alert severity="success" variant="filled" sx={{ mt: 3, mb: 2, fontSize: "1rem" }}>
+                     Success! Logging in...
+                  </Alert>
+               ) : (
+                  <Button
+                     variant="contained"
+                     onClick={handleLogin}
+                     sx={{
+                        mt: 4,
+                        mb: 3,
+                        backgroundColor: "#277056",
+                        color: "beige",
+                        // fontWeight: "bold",
+                        fontSize: "1rem",
+                        "&:hover": { backgroundColor: "#277056" },
+                     }}
+                  >
+                     log in
+                  </Button>
+               )}
             </Box>
             <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
                {accountCircles.map((color) => (

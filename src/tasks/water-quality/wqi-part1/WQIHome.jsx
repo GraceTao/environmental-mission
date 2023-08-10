@@ -31,7 +31,7 @@ import wqi_chat_animation from "../wqi_chat_animation.mp4";
 import Calculator from "../../../components/Calculator";
 
 function CalendarAndInstructions() {
-   const hasEnabledInstr = localStorage.getItem("hasEnabledWQIInstr");
+   const hasEnabledInstr = sessionStorage.getItem("hasEnabledWQIInstr");
    const [enableInstr, setEnableInstr] = useState(Boolean(hasEnabledInstr));
    const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
 
@@ -94,7 +94,7 @@ function CalendarAndInstructions() {
                   }}
                   onClick={() => {
                      setOpenInstr(true);
-                     localStorage.setItem("hasEnabledWQIInstr", true);
+                     sessionStorage.setItem("hasEnabledWQIInstr", true);
                   }}
                >
                   to-do: stream visit

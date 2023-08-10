@@ -1,7 +1,9 @@
 import { useState } from "react";
 import {
+   Alert,
    Autocomplete,
    Select,
+   Box,
    FormControl,
    TextField,
    MenuItem,
@@ -12,7 +14,7 @@ import {
 import axios from "axios";
 import { locationData } from "./locationData";
 
-export default function UserDataForm() {
+export default function UserDataForm({ open, setOpen }) {
    const [formData, setFormData] = useState({
       state: null,
       county: null,
@@ -25,6 +27,7 @@ export default function UserDataForm() {
       school: false,
       order: false,
    });
+   const [openAlert, setOpenAlert] = useState(false);
 
    const handleInput = (key) => {
       setIsCompleted({ ...isCompleted, [key]: true });
@@ -33,13 +36,20 @@ export default function UserDataForm() {
    const handleSubmit = async (e) => {
       e.preventDefault();
 
-      console.log("submitted");
       try {
          await axios.post("/api/submituserdata", formData);
          console.log("Data submitted successfully");
       } catch (err) {
          console.log("Error:", err);
       }
+
+      setOpenAlert(true);
+      setTimeout(() => {
+         setOpen(!open);
+         sessionStorage.setItem("submittedStartForm", true);
+         sessionStorage.setItem("allFormData", formData);
+      }, 2000);
+
 
       // try {
       //    await axios.get("/api/getdata");
@@ -68,13 +78,15 @@ export default function UserDataForm() {
    }
 
    return (
-      <form onSubmit={handleSubmit}>
-         <Typography>Please select your state, county, and school.</Typography>
+      <Box>
+         <Typography fontSize="1.4rem" align="center" fontWeight="bold">
+            Before starting, please fill out this form.
+         </Typography>
+
          <FormControl
             sx={{
                display: "flex",
                flexDirection: "column",
-               justifyContent: "flex-start",
                margin: 3,
             }}
          >
@@ -108,7 +120,7 @@ export default function UserDataForm() {
                      }
                   />
                )}
-               sx={{ minWidth: 200 }}
+               sx={{ minWidth: 200, mb: 2 }}
             />
 
             <Autocomplete
@@ -142,7 +154,7 @@ export default function UserDataForm() {
                      }
                   />
                )}
-               sx={{ minWidth: 200 }}
+               sx={{ minWidth: 200, mb: 2 }}
             />
 
             <Autocomplete
@@ -169,9 +181,9 @@ export default function UserDataForm() {
                      }
                   />
                )}
-               sx={{ minWidth: 200 }}
+               sx={{ minWidth: 200, mb: 2 }}
             />
-            <FormLabel required={true}>
+            <FormLabel required={true} sx={{ color: "#616061" }}>
                Are you completing this before or after the Breakout Box
                experience?
             </FormLabel>
@@ -189,9 +201,22 @@ export default function UserDataForm() {
                <MenuItem value="Not sure">Not sure</MenuItem>
             </Select>
          </FormControl>
-         <Button type="submit" variant="contained" disabled={!formData.order}>
-            Submit
-         </Button>
-      </form>
+         {openAlert ? (
+            <Alert severity="success" sx={{m: 2, fontSize: "1rem"}}>
+               Thanks! Now onto the task...
+            </Alert>
+         ) : (
+            <Box align="center">
+               <Button
+                  onClick={handleSubmit}
+                  variant="contained"
+                  disabled={!formData.order}
+                  sx={{ width: "25%", height: 40 }}
+               >
+                  Submit
+               </Button>
+            </Box>
+         )}
+      </Box>
    );
 }
