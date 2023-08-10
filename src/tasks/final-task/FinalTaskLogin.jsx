@@ -11,9 +11,7 @@ import {
    OutlinedInput,
    Typography,
 } from "@mui/material";
-import { useState } from "react";
-// import ParkTwoToneIcon from '@mui/icons-material/ParkTwoTone';
-// import WaterDropTwoToneIcon from '@mui/icons-material/WaterDropTwoTone';
+import { useState, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import HomeIcon from "@mui/icons-material/Home";
@@ -29,6 +27,14 @@ export default function FinalTaskLogin() {
    const [correct, setCorrect] = useState(false);
    const [password, setPassword] = useState("");
    const [hasClicked, setHasClicked] = useState(false);
+   const [attempts, setAttempts] = useState(0);
+
+   useEffect(() => {
+      if (correct) {
+         const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
+         sessionStorage.setItem("allFormData", JSON.stringify({...prevData, attempts: attempts}));
+      }
+   }, [correct, attempts]);
 
    const handleLogin = () => {
       if (PASSWORD.test(password.toLocaleLowerCase().trim())) {
@@ -36,6 +42,7 @@ export default function FinalTaskLogin() {
          setTimeout(() => setDisplayLogin(!displayLogin), 2000);
       }
       setHasClicked(!hasClicked);
+      setAttempts(attempts + 1);
    };
 
    return (
