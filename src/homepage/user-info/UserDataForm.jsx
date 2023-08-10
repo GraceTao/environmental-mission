@@ -34,13 +34,19 @@ export default function UserDataForm() {
       e.preventDefault();
 
       console.log("submitted");
-
       try {
-         await axios.get("/api/getdata");
-         console.log("Data retrieved successfully");
+         await axios.post("/api/submituserdata", formData);
+         console.log("Data submitted successfully");
       } catch (err) {
          console.log("Error:", err);
       }
+
+      // try {
+      //    await axios.get("/api/getdata");
+      //    console.log("Data retrieved successfully");
+      // } catch (err) {
+      //    console.log("Error:", err);
+      // }
    };
 
    let states = Object.keys(locationData).sort();

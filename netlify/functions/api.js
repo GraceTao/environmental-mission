@@ -38,7 +38,7 @@ router.post("/submituserdata", async (req, res) => {
    console.log("State county school order: " + state + county + school + order);
 
    try {
-      service.spreadsheets.values.append({
+      await service.spreadsheets.values.append({
          spreadsheetId: SHEET_ID,
          range: "Sheet1",
          valueInputOption: "RAW",
