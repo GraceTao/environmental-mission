@@ -23,7 +23,7 @@ const USERNAME = "me";
 const PASSWORD = /^water[ ]*soil[ ]*air[ ]*policy$/;
 const accountCircles = ["mediumpurple", "springgreen", "turquoise", "orange"];
 
-export default function FinalTaskLogin() {
+export default function FinalTaskLogin({ showAlert, setShowAlert }) {
    const [displayLogin, setDisplayLogin] = useState(true);
    const [correct, setCorrect] = useState(false);
    const [password, setPassword] = useState("");
@@ -41,22 +41,28 @@ export default function FinalTaskLogin() {
    }, [correct, attempts]);
 
    const handleLogin = () => {
-      if (PASSWORD.test(password.toLocaleLowerCase().trim())) {
+      const trimmed = password.toLocaleLowerCase().trim();
+      if (PASSWORD.test(trimmed)) {
          setCorrect(true);
-         setTimeout(() => setDisplayLogin(!displayLogin), 2000);
+         setTimeout(() => {
+            setDisplayLogin(!displayLogin);
+            setShowAlert(true);
+         }, 2000);
+      } else if (trimmed) {
+         setAttempts(attempts + 1);
       }
       setHasClicked(!hasClicked);
-      setAttempts(attempts + 1);
    };
 
    return (
       <Dialog open={displayLogin} sx={{ backgroundColor: "lightgray" }}>
          <DialogTitle
-            fontSize="1.2rem"
+            fontSize="1.3rem"
             fontWeight="bold"
             display="flex"
             justifyContent="space-between"
             color="#277056"
+            lineHeight={1.5}
             sx={{
                backgroundColor: "#D5EFE5",
             }}
@@ -125,6 +131,7 @@ export default function FinalTaskLogin() {
                {correct ? (
                   <Alert
                      severity="success"
+                     variant="filled"
                      sx={{ mt: 3, mb: 2, fontSize: "1rem", boxShadow: 5 }}
                   >
                      Success! Logging in...
@@ -134,8 +141,8 @@ export default function FinalTaskLogin() {
                      variant="contained"
                      onClick={handleLogin}
                      sx={{
-                        mt: 4,
-                        mb: 3,
+                        mt: 3,
+                        mb: 2,
                         backgroundColor: "#277056",
                         color: "beige",
                         // fontWeight: "bold",
@@ -148,12 +155,23 @@ export default function FinalTaskLogin() {
                )}
             </Box>
             <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
-               {accountCircles.map((color) => (
-                  <AccountCircleIcon
-                     key={color}
-                     sx={{ color: color, fontSize: 35 }}
-                  />
-               ))}
+               <Box
+                  sx={{
+                     backgroundColor: "azure",
+                     boxShadow: 3,
+                     pl: 3,
+                     pr: 3,
+                     pt: 0.6,
+                     borderRadius: 6,
+                  }}
+               >
+                  {accountCircles.map((color) => (
+                     <AccountCircleIcon
+                        key={color}
+                        sx={{ color: color, fontSize: 35 }}
+                     />
+                  ))}
+               </Box>
             </DialogActions>
          </DialogContent>
       </Dialog>

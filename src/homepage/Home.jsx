@@ -150,11 +150,11 @@ function Home() {
                      style={{
                         left: "87%",
                         position: "sticky",
-                        boxShadow: 2,
+                        boxShadow: 5,
                         backgroundColor: "#356696",
                         "&:hover": {
                            backgroundColor: "#294E72",
-                           boxShadow: 3,
+                           boxShadow: 5,
                         },
                      }}
                   ></Instructions>

@@ -1,154 +1,80 @@
 import { useState } from "react";
 import {
+   Alert,
    Box,
-   TextField,
-   FormLabel,
-   Button,
    Typography,
-   Checkbox,
-   RadioGroup,
-   Radio,
-   FormControlLabel,
-   FormGroup,
    Grid,
+   IconButton,
+   Dialog,
+   DialogContent,
+   DialogTitle,
 } from "@mui/material";
-import axios from "axios";
 import FinalTaskLogin from "./FinalTaskLogin";
-import { q1, q2, q3, q4, q5 } from "./questions";
+import Menu from "./Menu";
+import FinalReport from "./FinalReport";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export default function FinalTask() {
-   const [answers, setAnswers] = useState({
-      q1: "",
-      q2: {},
-      q3: "",
-      q4: "",
-      q5: "",
-   });
-
-   const handleChange = (e) => {
-      const { name, value } = e.target;
-
-      setAnswers({ ...answers, [name]: value });
-   };
-
-   const handleSubmit = async () => {
-      const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
-      const dataString = JSON.stringify(answers.q2);
-      const allData = { ...prevData, ...answers, q2: dataString };
-      console.log(allData);
-
-      try {
-         await axios.post("/api/submituserdata", allData);
-         console.log("Data added successfully");
-      } catch (err) {
-         console.log("Error:", err);
-      }
-   };
+   const [showSubmissionPage, setShowSubmissionPage] = useState(false);
+   const [openMenu, setOpenMenu] = useState(true);
+   const [showAlert, setShowAlert] = useState(false);
 
    return (
-      <Grid
-         container
-         justifyContent="center"
-         sx={{
-            height: "100vh",
-            overflow: "auto",
-            backgroundColor: "black",
-         }}
-      >
-         <FinalTaskLogin />
-         <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="flex-start"
+      <Box>
+         <FinalTaskLogin showAlert={showAlert} setShowAlert={setShowAlert} />
+         <Grid
+            container
+            justifyContent="space-evenly"
             sx={{
-               backgroundColor: "white",
-               width: "50%",
-               minWidth: 300,
-               p: 5,
+               height: "100vh",
+               overflow: "auto",
+               backgroundImage:
+                  "linear-gradient(to bottom, mediumseagreen, lightgreen, lightskyblue, royalblue)",
             }}
          >
-            <FormLabel sx={{ color: "black" }}>Question 1</FormLabel>
-            <RadioGroup
-               name="q1"
-               value={answers.q1}
-               onChange={(e) => setAnswers({ ...answers, q1: e.target.value })}
-               sx={{ m: 2 }}
+            <Dialog
+               open={showAlert}
+               maxWidth="md"
+               onClose={() => setShowAlert(!showAlert)}
+               sx={{ position: "fixed", top: "-10%" }}
             >
-               {q1.map((choice) => (
-                  <FormControlLabel
-                     key={choice.id}
-                     value={choice.id}
-                     control={<Radio color="success" />}
-                     label={choice.label}
-                  />
-               ))}
-            </RadioGroup>
-            <FormLabel sx={{ color: "black" }}>Question 2</FormLabel>
-            <FormGroup>
-               {q2.map((choice) => (
-                  <FormControlLabel
-                     key={choice.id}
-                     control={
-                        <Checkbox
-                           name={choice.id}
-                           checked={answers.q2[choice.id] || false}
-                           onChange={(e) => {
-                              const prev = answers.q2;
-                              const { name, checked } = e.target;
-                              setAnswers({
-                                 ...answers,
-                                 q2: { ...prev, [name]: checked },
-                              });
-                           }}
-                        />
-                     }
-                     label={choice.label}
-                  ></FormControlLabel>
-               ))}
-            </FormGroup>
-            <br />
-            <Typography>
-               {q3}
-            </Typography>
-            <br />
-            <TextField
-               name="q3"
-               label="Your response here"
-               multiline
-               rows={3}
-               onChange={handleChange}
-               sx={{ minWidth: "90%", mb: 3 }}
+               <DialogTitle sx={{backgroundColor: "skyblue", mb: 2}}>
+                  <b>Welcome back</b> to the Environmental Portal!
+               </DialogTitle>
+               <DialogContent>
+                  <Alert severity="info" sx={{ fontSize: "1.1rem" }}>
+                     You have [ONE] task assigned but not completed: <br />
+                     <br />
+                     <b>1. Complete the environmental report for the Port of Corpus
+                     Christi</b>
+                     <ul>
+                        <li><i>Due: </i>{new Date().toLocaleDateString()}</li>
+                        <li><i>Criteria: </i>answer questions thoroughly and be specific</li>
+                        <li><i>Submit to: </i>Environmental Affairs Manager</li>
+                     </ul>
+                  </Alert>
+               </DialogContent>
+            </Dialog>
+
+            <Box
+               position="fixed"
+               top={0}
+               left={0}
+               zIndex={2} // Ensure the icon is above the content
+               padding={2}
+            >
+               <IconButton onClick={() => setOpenMenu(!openMenu)}>
+                  <MenuIcon sx={{ fontSize: 35, color: "black" }} />
+               </IconButton>
+            </Box>
+
+            {openMenu && <Menu openMenu={openMenu} setOpenMenu={setOpenMenu} />}
+
+            <FinalReport
+               showSubmissionPage={showSubmissionPage}
+               setShowSubmissionPage={setShowSubmissionPage}
             />
-            <br />
-            <Typography>
-               {q4}
-            </Typography>
-            <br />
-            <TextField
-               name="q4"
-               label="Your response here"
-               multiline
-               rows={3}
-               onChange={handleChange}
-               sx={{ minWidth: "90%", mb: 3 }}
-            />
-            <br />
-            <Typography>
-               {q5}
-            </Typography>
-            <br />
-            <TextField
-               name="q5"
-               label="Your response here"
-               multiline
-               rows={3}
-               onChange={handleChange}
-               sx={{ minWidth: "90%", mb: 3 }}
-            />
-            <Button variant="contained" onClick={handleSubmit}>
-               turn in to manager
-            </Button>
-         </Box>
-      </Grid>
+         </Grid>
+      </Box>
    );
 }
