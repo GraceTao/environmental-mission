@@ -52,7 +52,7 @@ export default function FinalReport({
          setShowError(false);
          setShowSubmitting(true);
          // console.log(allData);
-         setInterval(() => {
+         setTimeout(() => {
             setShowSubmissionPage(!showSubmissionPage);
             setShowSubmitting(false);
          }, 4000);
@@ -94,7 +94,8 @@ export default function FinalReport({
          )}
          <Dialog open={showSubmitting}>
             <DialogContent>
-               
+               <Typography>Submission Successful!
+                  </Typography>
             </DialogContent>
          </Dialog>
          <Box sx={{ p: 5, pt: 3 }}>
