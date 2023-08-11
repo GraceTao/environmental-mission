@@ -11,15 +11,15 @@ import {
    Radio,
    FormControlLabel,
    FormGroup,
-   Grid,
+   CircularProgress,
+   Dialog,
+   DialogContent,
 } from "@mui/material";
 import axios from "axios";
 import { q1, q2, q3, q4, q5 } from "./questions";
+import logo from "../../components/PortCC-logo-horizontal-white.png";
 
-export default function FinalReport({
-   showSubmissionPage,
-   setShowSubmissionPage,
-}) {
+export default function FinalReport() {
    const [answers, setAnswers] = useState({
       q1: "",
       q2: {},
@@ -30,6 +30,7 @@ export default function FinalReport({
 
    const [showError, setShowError] = useState(false);
    const [showSubmitting, setShowSubmitting] = useState(false);
+   const [showFinalPage, setShowFinalPage] = useState(false);
 
    const handleChange = (e) => {
       const { name, value } = e.target;
@@ -43,25 +44,23 @@ export default function FinalReport({
       );
       filtered = filtered.sort();
       filtered = filtered.join(",");
-      if (
-         answers.q1 &&
-         filtered &&
-         answers.q3 &&
-         answers.q4 &&
-         answers.q5
-      ) {
+      if (answers.q1 && filtered && answers.q3 && answers.q4 && answers.q5) {
          const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
          const allData = { ...prevData, ...answers, q2: filtered };
-         console.log(allData);
-         setShowSubmissionPage(!showSubmissionPage);
          setShowError(false);
+         setShowSubmitting(true);
+         // console.log(allData);
+         setTimeout(() => {
+            setShowFinalPage(true);
+            setShowSubmitting(false);
+         }, 4000);
 
-         try {
-            await axios.post("/api/submituserdata", allData);
-            console.log("Data added successfully");
-         } catch (err) {
-            console.log("Error:", err);
-         }
+         // try {
+         //    await axios.post("/api/submituserdata", allData);
+         //    console.log("Data added successfully");
+         // } catch (err) {
+         //    console.log("Error:", err);
+         // }
       } else {
          setShowError(true);
       }
@@ -81,24 +80,90 @@ export default function FinalReport({
          }}
       >
          {showError && (
-            <Alert severity="error" variant="filled" sx={{ position: "fixed", zIndex: 3, boxShadow: 10 }}>
+            <Alert
+               severity="error"
+               variant="filled"
+               sx={{ position: "fixed", zIndex: 3, boxShadow: 10 }}
+            >
                <Typography fontSize="1.05rem" align="center">
                   One or more questions have not been answered.
                </Typography>
             </Alert>
          )}
+         <Dialog open={showSubmitting}>
+            <DialogContent sx={{ backgroundColor: "seagreen" }}>
+               <Alert severity="success" sx={{ fontSize: "1.1rem", mb: 2 }}>
+                  Submission successful!
+               </Alert>
+               <CircularProgress size={30} sx={{ mb: 2, color: "white" }} />
+               <Typography color="#F5FFFA" fontSize="1.1rem">
+                  Your responses are being processed...
+               </Typography>
+            </DialogContent>
+         </Dialog>
+         <Dialog open={showFinalPage}>
+            <DialogContent sx={{ backgroundColor: "#EEFEF6" }}>
+               <Typography
+                  fontSize="1.1rem"
+                  color="darkgreen"
+                  align="center"
+                  sx={{ mb: 3 }}
+               >
+                  Your report has been <b>approved</b>! The Port of Corpus
+                  Christi thanks you for your efforts!
+               </Typography>
+
+               <Typography
+                  fontSize="1.1rem"
+                  color="navy"
+                  sx={{ mb: 2 }}
+                  align="center"
+               >
+                  Thank you for completing today's mission. Click the button to
+                  exit.
+               </Typography>
+               <Box align="center">
+                  <Button
+                     variant="contained"
+                     sx={{
+                        backgroundColor: "royalblue",
+                        "&:hover": { backgroundColor: "mediumblue" },
+                     }}
+                  >
+                     exit
+                  </Button>
+               </Box>
+            </DialogContent>
+         </Dialog>
          <Box sx={{ p: 5, pt: 3 }}>
-            <Typography
-               fontSize="1.5rem"
-               fontFamily="Courier"
-               align="center"
-               fontWeight="bold"
-            >
-               ENVIRONMENTAL REPORT
-            </Typography>
-            <Typography align="center" fontFamily="Courier" fontSize="1.1rem">
-               Port of Corpus Christi
-            </Typography>
+            <Box align="center">
+               <Typography
+                  fontSize="1.7rem"
+                  fontFamily="Courier"
+                  align="center"
+                  fontWeight="bold"
+               >
+                  ENVIRONMENTAL REPORT
+               </Typography>
+               <Box
+                  align="center"
+                  sx={{
+                     backgroundColor: "royalblue",
+                     pt: 1,
+                     pb: 1,
+                     mb: 3,
+                     maxWidth: 280,
+                     borderRadius: 2,
+                  }}
+               >
+                  <img
+                     src={logo}
+                     alt="Port of Corpus Christi logo"
+                     style={{ maxWidth: 225 }}
+                  />
+               </Box>
+            </Box>
+
             <Box display="flex" flexDirection="column" alignItems="flex-start">
                <FormLabel sx={{ color: "black" }}>Question 1</FormLabel>
                <RadioGroup

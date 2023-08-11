@@ -8,7 +8,7 @@ export default function TopBar({ instruction }) {
       <>
          <AppBar
             position="fixed"
-            sx={{ backgroundColor: "seagreen", boxShadow: 0 }}
+            sx={{ backgroundColor: "seagreen", boxShadow: 0, }}
          >
             <Toolbar style={{ position: "relative" }}>
                <div style={{ position: "absolute", left: 5 }}>
@@ -23,6 +23,8 @@ export default function TopBar({ instruction }) {
                      position: "absolute",
                      left: "50%",
                      transform: "translateX(-50%)",
+                     backgroundColor: "lightgreen",
+                     borderRadius: 5
                   }}
                >
                   {instruction}

@@ -19,7 +19,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 
 const RESTRICT_INPUT = /^[a-zA-Z ]+$/;
-const USERNAME = "me@greensolns.org";
+const USERNAME = "me@green-solns.org";
 const PASSWORD = "watersoilairpolicy";
 const accountCircles = ["mediumpurple", "springgreen", "turquoise", "orange"];
 
@@ -103,6 +103,7 @@ export default function FinalTaskLogin({ showAlert, setShowAlert }) {
                <br />
                <Typography fontSize="1.1rem">Password</Typography>
                <OutlinedInput
+                  // disabled={!displayLogin}
                   value={password}
                   endAdornment={
                      <InputAdornment position="end">
