@@ -39,7 +39,6 @@ export default function SampleUnitConversion() {
          <Button
             variant="contained"
             onClick={handleClick}
-            sx={{position: "fixed", top: {xs: 135, sm: 145}, left: 10 }}
          >
             sample unit conversion
          </Button>

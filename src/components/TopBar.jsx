@@ -9,7 +9,7 @@ export default function TopBar(props) {
       <>
          <AppBar
             position="fixed"
-            sx={{ backgroundColor: "seagreen", boxShadow: 0, }}
+            sx={{ backgroundColor: "seagreen", boxShadow: 0, height: 65}}
          >
             <Toolbar style={{ position: "relative" }}>
                <div style={{ position: "absolute", left: 5 }}>
