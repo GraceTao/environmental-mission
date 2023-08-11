@@ -4,10 +4,8 @@ import {
    Box,
    IconButton,
    Button,
-   //Tooltip,
+   Tooltip,
    Dialog,
-   useTheme,
-   useMediaQuery,
 } from "@mui/material";
 import Instructions from "../../components/Instructions";
 import TopBar from "../../components/TopBar";
@@ -20,14 +18,14 @@ import Star from "./Star";
 import Tree from "./Tree";
 import Hydrogen from "./Hydrogen";
 import CO2 from "./CO2";
+import PolicyClue from "./PolicyClue";
 import chat from "./map_chat_animation.mp4"
+import Calculator from "../../components/Calculator";
+
 
 function MapInstructions() {
    const hasEnabledInstr = sessionStorage.getItem("hasEnabledMapInstr");
    const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
-
-   const theme = useTheme();
-   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
    return openInstr ? (
       <Box
@@ -56,10 +54,12 @@ function MapInstructions() {
          <Instr
             title={"Task:"}
             contents={
-               `Click around on the map to learn more about the Port of Corpus Christi’s efforts to operate in a manner 
-               “conducive to environmental sustainability and resiliency.” Each window will either ask you a question whose 
-               answer is a number, or give a number in *bold*. Determine the clue word based on the numerical answers. You 
-               may need to scroll. `
+               <Typography sx={{ p: 2, fontSize: "1.2rem"}}>
+                  Click around on the map to learn more about the Port of Corpus Christi’s efforts to operate in a manner 
+                  “conducive to environmental sustainability and resiliency.” Each window will either ask you a question whose 
+                  answer is a number, or give a number in <b>bold</b>. Determine the clue word based on the numerical answers. You 
+                  may need to scroll. 
+               </Typography>
             }
          ></Instr>
 
@@ -68,24 +68,27 @@ function MapInstructions() {
       <div>
          <Box
             display="flex"
-            flexDirection={isSmallScreen ? "column" : "row"}
-            justifyContent="center"
+            flexDirection="column"
+            justifyContent={"center"}
+            alignContent="center"
             margin="auto"
          >
-            <div>
-               <video controls autoPlay style={{ width: "90%" }}>
+            <Box display='flex' alignContent="center" justifyContent={"center"}>
+               <video controls autoPlay style={{ width: "50%" }}>
                   <source
                      src={chat}
                      alt="text messages"
                      type="video/mp4"
                   />
                </video>
-            </div>
+            </Box>
+            <Box display='flex' alignContent="center" justifyContent={"center"} marginTop="10px">
             <Button
                variant="contained"
                sx={{
                   backgroundColor: "#417B88",
                   "&:hover": { backgroundColor: "#4AB0C7 " },
+                  width:"50%"
                }}
                onClick={() => {
                   setOpenInstr(true);
@@ -94,6 +97,7 @@ function MapInstructions() {
             >
                Visit the Port of Corpus Christi!
             </Button>
+            </Box>
          </Box>
       </div>
    );
@@ -139,10 +143,22 @@ export default function MapHome() {
             }
 
          />
-         <Box display="flex" flexDirection="row" justifyContent="space-between" marginTop='8vh' marginLeft='2vw' position='fixed'>
+         <Box display="flex" flexDirection="column" justifyContent="space-between" marginTop='70px' marginLeft='20px' position='fixed'>
             <Box>
-               <IconButton onClick={() => setOpenMessages(true)}>
-                  <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
+               <IconButton
+                  onClick={() => setOpenMessages(true)}
+                  sx={{
+                     borderRadius: 2,
+                     backgroundColor: "green ",
+                     width: 64,
+                     height: 64,
+                     position: { top: 2, left: 5 },
+                     "&:hover": { backgroundColor: "green" },
+                     marginBottom: '10px'
+                  }} >
+                  <Tooltip title="Chat" arrow>
+                     <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
+                  </Tooltip>
                </IconButton>
             </Box>
             <Dialog open={openMessages} onClose={() => setOpenMessages(false)}>
@@ -154,14 +170,17 @@ export default function MapHome() {
                   />
                </video>
             </Dialog>
+            <Calculator />
+            <PolicyClue/>
          </Box>
-         
+
          <CO2 />
          <Hydrogen />
          <Ship />
          <AirQuality />
          <Star />
          <Tree />
+
 
       </Box>
    );
