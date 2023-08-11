@@ -13,16 +13,13 @@ import {
    FormGroup,
    CircularProgress,
    Dialog,
-   DialogContent
+   DialogContent,
 } from "@mui/material";
 import axios from "axios";
 import { q1, q2, q3, q4, q5 } from "./questions";
 import logo from "../../components/PortCC-logo-horizontal-white.png";
 
-export default function FinalReport({
-   showSubmissionPage,
-   setShowSubmissionPage,
-}) {
+export default function FinalReport() {
    const [answers, setAnswers] = useState({
       q1: "",
       q2: {},
@@ -33,6 +30,7 @@ export default function FinalReport({
 
    const [showError, setShowError] = useState(false);
    const [showSubmitting, setShowSubmitting] = useState(false);
+   const [showFinalPage, setShowFinalPage] = useState(false);
 
    const handleChange = (e) => {
       const { name, value } = e.target;
@@ -53,16 +51,16 @@ export default function FinalReport({
          setShowSubmitting(true);
          // console.log(allData);
          setTimeout(() => {
-            setShowSubmissionPage(!showSubmissionPage);
+            setShowFinalPage(true);
             setShowSubmitting(false);
          }, 4000);
 
-         try {
-            await axios.post("/api/submituserdata", allData);
-            console.log("Data added successfully");
-         } catch (err) {
-            console.log("Error:", err);
-         }
+         // try {
+         //    await axios.post("/api/submituserdata", allData);
+         //    console.log("Data added successfully");
+         // } catch (err) {
+         //    console.log("Error:", err);
+         // }
       } else {
          setShowError(true);
       }
@@ -93,9 +91,48 @@ export default function FinalReport({
             </Alert>
          )}
          <Dialog open={showSubmitting}>
-            <DialogContent>
-               <Typography>Submission Successful!
-                  </Typography>
+            <DialogContent sx={{ backgroundColor: "seagreen" }}>
+               <Alert severity="success" sx={{ fontSize: "1.1rem", mb: 2 }}>
+                  Submission successful!
+               </Alert>
+               <CircularProgress size={30} sx={{ mb: 2, color: "white" }} />
+               <Typography color="#F5FFFA" fontSize="1.1rem">
+                  Your responses are being processed...
+               </Typography>
+            </DialogContent>
+         </Dialog>
+         <Dialog open={showFinalPage}>
+            <DialogContent sx={{ backgroundColor: "#EEFEF6" }}>
+               <Typography
+                  fontSize="1.1rem"
+                  color="darkgreen"
+                  align="center"
+                  sx={{ mb: 3 }}
+               >
+                  Your report has been <b>approved</b>! The Port of Corpus
+                  Christi thanks you for your efforts!
+               </Typography>
+
+               <Typography
+                  fontSize="1.1rem"
+                  color="navy"
+                  sx={{ mb: 2 }}
+                  align="center"
+               >
+                  Thank you for completing today's mission. Click the button to
+                  exit.
+               </Typography>
+               <Box align="center">
+                  <Button
+                     variant="contained"
+                     sx={{
+                        backgroundColor: "royalblue",
+                        "&:hover": { backgroundColor: "mediumblue" },
+                     }}
+                  >
+                     exit
+                  </Button>
+               </Box>
             </DialogContent>
          </Dialog>
          <Box sx={{ p: 5, pt: 3 }}>
