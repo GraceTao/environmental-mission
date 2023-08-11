@@ -20,6 +20,7 @@ import Map from "./sitemap.jpg";
 import DraggablePopper from "./DraggablePopper";
 import TopBar from "../../components/TopBar";
 import Instructions from "../../components/Instructions";
+// ADD CALCULATOR!!!
 
 function EmailInstructions() {
    return (
@@ -86,9 +87,9 @@ const Documents = () => {
 
    const handleSolve = () => {
       if (
-         parseInt(inputs.width) === 300 &&
-         parseInt(inputs.length) === 33 &&
          parseInt(inputs.height) === 215 &&
+			parseInt(inputs.width) === 300 &&
+			parseInt(inputs.length) === 33 &&
          parseInt(inputs.volume) === 2128500 &&
          parseInt(inputs.sa) === 162990
       ) {
