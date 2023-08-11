@@ -7,6 +7,8 @@ import WQIPart2 from "./tasks/water-quality/wqi-part2/WQIPart2";
 import WQIPart3 from "./tasks/water-quality/wqi-part3/WQIPart3";
 import MapHome from "./tasks/map-clue/map-home";
 import FinalTask from "./tasks/final-task/FinalTask";
+import Email from "./tasks/email/Documents";
+
 
 function App() {
    return (
@@ -17,6 +19,9 @@ function App() {
             <Route path="/wqi-p2" element={<WQIPart2 />} />
             <Route path="/wqi-p3" element={<WQIPart3 />} />
             <Route path="/account" element={<FinalTask />} />
+            <Route path="/email" element={<Email />} />
+
+            
             <Route path="/map-home" element={<MapHome />}/>
          </Routes> 
       </Router>
