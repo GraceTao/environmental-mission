@@ -148,16 +148,17 @@ export default function WQIHome() {
                ></Instructions>
             }
          />
-
          <Box display="flex" flexDirection="row" justifyContent="space-between">
             <Box display="flex" justifyContent="flex-start" flexDirection="row">
                <IconButton
                   sx={{
                      backgroundColor: "lightgray",
-                     position: { top: 5, left: 5 },
                      borderRadius: 5,
+                     top: { xs: 58, sm: 65 },
+                     left: 10,
                      width: 70,
                      height: 75,
+                     position: "fixed",
                      mr: 3,
                      mb: 1,
                      "&:hover": { backgroundColor: "white" },
@@ -177,7 +178,7 @@ export default function WQIHome() {
                <SampleUnitConversion />
             </Box>
 
-            <Box>
+            <Box sx={{ mt: {xs: 5, sm: 6} }}>
                <IconButton onClick={() => setOpenMessages(true)}>
                   <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
                </IconButton>
@@ -193,21 +194,21 @@ export default function WQIHome() {
             </Dialog>
          </Box>
 
-         <Readings />
-         <div>
+         <Box sx={{ position: "fixed", top: {xs: 58, sm: 66}, left: 80 }}>
             <Calculator />
-         </div>
+         </Box>
+         <Box sx={{mt: "4%"}}>
+            <DO />
+            <Temperature upstream={true}></Temperature>
+            <Temperature upstream={false}></Temperature>
+            <FC />
+            <PH />
+            <Turbidity />
+            <NitratesPhosphates />
+            <TS />
 
-         <DO />
-         <Temperature upstream={true}></Temperature>
-         <Temperature upstream={false}></Temperature>
-         <FC />
-         <PH />
-         <Turbidity />
-         <NitratesPhosphates />
-         <TS />
-
-         <ImageCredits />
+            <ImageCredits />
+         </Box>
       </Box>
    );
 }

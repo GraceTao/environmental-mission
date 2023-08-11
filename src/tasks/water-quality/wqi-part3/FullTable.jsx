@@ -34,9 +34,16 @@ function createData(abbrName, weightedValues, setWeightedValues) {
 
    const inputBox = (
       <OutlinedInput
+         disabled={solutions[abbrName].preFilled}
          name={abbrName}
          align="right"
-         sx={{ maxHeight: 42, maxWidth: 120 }}
+         sx={{
+            maxHeight: 42,
+            maxWidth: 120,
+            "& .MuiInputBase-input.Mui-disabled": {
+               WebkitTextFillColor: "#454545",
+            },
+         }}
          onChange={handleChange}
          value={weightedValues[abbrName] || ""}
       ></OutlinedInput>
@@ -45,7 +52,14 @@ function createData(abbrName, weightedValues, setWeightedValues) {
 }
 
 export default function FullTable() {
-   const savedWeightedValues = location.state?.weightedValues || {};
+   const initial = {
+      FC: (solutions.FC.qValue * solutions.FC.weight).toFixed(2),
+      BOD: (solutions.BOD.qValue * solutions.BOD.weight).toFixed(2),
+      Turbidity: (
+         solutions.Turbidity.qValue * solutions.Turbidity.weight
+      ).toFixed(2),
+   };
+   const savedWeightedValues = location.state?.weightedValues || initial;
    const [weightedValues, setWeightedValues] = useState(savedWeightedValues);
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage

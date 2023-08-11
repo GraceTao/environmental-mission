@@ -18,6 +18,8 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import { wqiFinal, marginOfError, solutions } from "../solns";
 
+const doErrorMargin = 1.5;
+
 export default function Submit() {
    const storedWQI = localStorage.getItem("inputWQI");
    const displayWQIClue = localStorage.getItem("displayWQIClue");
@@ -89,9 +91,9 @@ export default function Submit() {
          checkCond(storedMeasurements, (key) => {
             return key === "DO"
                ? storedMeasurements.DO >=
-                    solutions.DO.converted - marginOfError &&
+                    solutions.DO.converted - doErrorMargin &&
                     storedMeasurements.DO <=
-                       solutions.DO.converted + marginOfError
+                       solutions.DO.converted + doErrorMargin
                : Number(storedMeasurements[key]) ===
                     Number(solutions[key].converted);
          })
@@ -106,6 +108,7 @@ export default function Submit() {
          })
       );
    };
+
    const checkConditions = () => {
       if (!inputWQI) {
          setAlertMessage(<>Enter a value before submitting.</>);
@@ -120,8 +123,8 @@ export default function Submit() {
          setAlertMessage(
             <>
                Check your measurement for{" "}
-               <b>{solutions[String(checkMeasurement())].fullName}. </b>Don't
-               forget to adjust the Q-Values if you change any measurements!
+               <b>{solutions[String(checkMeasurement())].fullName}.</b> Round to 2 decimal places. Don't
+               forget to adjust the Q-Values and Weighted Q-Values if you change any measurements!
             </>
          );
       } else if (checkQValue()) {
@@ -154,8 +157,8 @@ export default function Submit() {
       setCorrect(answerCheck);
       setSubmitted(true);
       localStorage.setItem("inputWQI", inputWQI);
-
       setOpenAlert(true);
+
       if (!answerCheck) {
          checkConditions();
       }

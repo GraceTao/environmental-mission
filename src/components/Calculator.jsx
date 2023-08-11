@@ -45,6 +45,52 @@ function CalculatorNoButton() {
       };
    }, [result, input, operand1, operand2, op]);
 
+   // useEffect(() => {
+   //    evaluate();
+   // }, [operand1, operand2, op])
+
+   // const handleNumberClick = (number) => {
+   //    setInput((prevInput) => prevInput + number);
+   
+   //    if (op) {
+   //       setOperand2((prevOp2) => prevOp2 + number);
+   //    } else {
+   //       setOperand1((prevOp1) => prevOp1 + number);
+   //    }
+   
+   //    if (!op) {
+   //       setResult(0); // Reset the result when starting a new number
+   //    }
+   // };
+   
+   // const handleOperationClick = (operation) => {
+   //    setInput((prevInput) => prevInput + operation);
+   
+   //    if (operation === "-") {
+   //       if (!op && !operand1) {
+   //          // Handle negative numbers
+   //          setOperand1("-");
+   //       } else if (operand1) {
+   //          if (input && !operand2) {
+   //             let lastChar = input.charAt(input.length - 1);
+   //             if (lastChar.match(/[\+|\-|\*|\/]$/)) {
+   //                setOperand2(operation);
+   //             } else {
+   //                setOp(operation);
+   //             }
+   //          } else {
+   //             evaluate();
+   //             setOp(operation);
+   //          }
+   //       } else {
+   //          setOperand1(operation);
+   //       }
+   //    } else {
+   //       evaluate();
+   //       setOp(operation);
+   //    }
+   // };
+   
    const handleNumberClick = (number) => {
       setInput((prevInput) => prevInput + number);
 
@@ -55,34 +101,7 @@ function CalculatorNoButton() {
       }
    };
 
-   const evaluate = () => {
-      let res;
-      if (op && operand1 !== "" && operand2 !== "") {
-         let op1AsNum = Number(operand1),
-            op2AsNum = Number(operand2);
-         if (!op1AsNum && op1AsNum != 0) {
-            op1AsNum = "";
-         }
-         if (!op2AsNum && op2AsNum != 0) {
-            op2AsNum = "";
-         }
-
-         console.log(`evaluating ${op1AsNum} ${op} ${op2AsNum}`);
-         if (op === "+") {
-            res = op1AsNum + op2AsNum;
-         } else if (op === "-") {
-            res = op1AsNum - op2AsNum;
-         } else if (op === "*") {
-            res = op1AsNum * op2AsNum;
-         } else if (op === "/") {
-            res = op1AsNum / op2AsNum;
-         }
-         res = parseFloat(res.toFixed(8));
-         setResult(res);
-         setOperand1(res.toString());
-         setOperand2("");
-      }
-   };
+  
 
    const handleOperationClick = (operation) => {
       setInput((prevInput) => prevInput + operation);
@@ -109,16 +128,54 @@ function CalculatorNoButton() {
       }
    };
 
+ const evaluate = () => {
+      let res;
+      if (op && operand1 !== "" && operand2 !== "") {
+         console.log("bye");
+         let op1AsNum = Number(operand1),
+            op2AsNum = Number(operand2);
+         if (!op1AsNum && op1AsNum != 0) {
+            op1AsNum = "";
+         }
+         if (!op2AsNum && op2AsNum != 0) {
+            op2AsNum = "";
+         }
+
+         console.log(`evaluating ${op1AsNum} ${op} ${op2AsNum}`);
+         if (op === "+") {
+            res = op1AsNum + op2AsNum;
+         } else if (op === "-") {
+            res = op1AsNum - op2AsNum;
+         } else if (op === "*") {
+            res = op1AsNum * op2AsNum;
+         } else if (op === "/") {
+            res = op1AsNum / op2AsNum;
+         }
+         res = parseFloat(res.toFixed(8));
+         setResult(res);
+         setOperand1(res.toString());
+         setOperand2("");
+         
+      }
+   };
+
+   useEffect(() => {
+      setOperand1(result);
+      setOperand2("");
+   }, [result])
+
    const handleEqualsClick = () => {
       if (!op) {
+         console.log("hi");
          setResult(operand1);
       } else {
+         
          evaluate();
       }
 
-      setOp("");
-      setOperand1("");
-      setOperand2("");
+      // setOp("");
+      // setOperand1(result);
+      // setOperand2("");
    };
 
    const handleClearClick = () => {
@@ -379,7 +436,7 @@ function Calculator() {
             open={Boolean(anchorEl)}
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
-            placement="left-start"
+            placement="bottom-start"
          >
             <CalculatorNoButton />
          </Popper>
