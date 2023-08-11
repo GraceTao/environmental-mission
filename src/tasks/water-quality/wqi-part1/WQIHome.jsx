@@ -197,7 +197,7 @@ export default function WQIHome() {
          <Box sx={{ position: "fixed", top: {xs: 58, sm: 66}, left: 80 }}>
             <Calculator />
          </Box>
-         <Box sx={{mt: "3%"}}>
+         <Box sx={{mt: "4%"}}>
             <DO />
             <Temperature upstream={true}></Temperature>
             <Temperature upstream={false}></Temperature>
