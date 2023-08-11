@@ -10,42 +10,58 @@ import {
    InputAdornment,
    OutlinedInput,
    Typography,
+   Tooltip,
 } from "@mui/material";
-import { useState } from "react";
-// import ParkTwoToneIcon from '@mui/icons-material/ParkTwoTone';
-// import WaterDropTwoToneIcon from '@mui/icons-material/WaterDropTwoTone';
+import { useState, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 
 const RESTRICT_INPUT = /^[a-zA-Z ]+$/;
-const USERNAME = "me";
+const USERNAME = "me@green-solns.org";
 const PASSWORD = "watersoilairpolicy";
 const accountCircles = ["mediumpurple", "springgreen", "turquoise", "orange"];
 
-export default function FinalTaskLogin() {
+export default function FinalTaskLogin({ showAlert, setShowAlert }) {
    const [displayLogin, setDisplayLogin] = useState(true);
    const [correct, setCorrect] = useState(false);
    const [password, setPassword] = useState("");
    const [hasClicked, setHasClicked] = useState(false);
 
    const handleLogin = () => {
-      if (password.toLocaleLowerCase().trim() === PASSWORD) {
-         setCorrect(true);
-         setTimeout(() => setDisplayLogin(!displayLogin), 2000);
+      let trimmed = password.toLocaleLowerCase().trim().replace(/\s/g, "");
+      const storedAttempts = localStorage.getItem("taskAttempts");
+      if (trimmed) {
+         const attempts = storedAttempts ? parseInt(storedAttempts) + 1 : 1;
+         localStorage.setItem("taskAttempts", attempts.toString());
+         console.log(`Number of Attempts: ${attempts}`);
       }
+      if (trimmed === PASSWORD) {
+         setCorrect(true);
+         const prevData = JSON.parse(localStorage.getItem("allFormData"));
+         const prevAttempts = localStorage.getItem("taskAttempts");
+         const newData = { ...prevData, attempts: prevAttempts };
+         localStorage.setItem("allFormData", JSON.stringify(newData));
+         setTimeout(() => {
+            setDisplayLogin(!displayLogin);
+            setShowAlert(!showAlert);
+         }, 2000);
+         console.log(JSON.parse(localStorage.getItem("allFormData")));
+      }
+
       setHasClicked(!hasClicked);
    };
 
    return (
-      <Dialog open={displayLogin}>
+      <Dialog open={displayLogin} sx={{ backgroundColor: "lightgray" }}>
          <DialogTitle
-            fontSize="1.2rem"
+            fontSize="1.3rem"
             fontWeight="bold"
             display="flex"
             justifyContent="space-between"
             color="#277056"
+            lineHeight={1.5}
             sx={{
                backgroundColor: "#D5EFE5",
             }}
@@ -57,7 +73,9 @@ export default function FinalTaskLogin() {
                disableRipple
                sx={{ padding: 0 }}
             >
-               <HomeIcon sx={{ fontSize: 35, color: "black" }} />
+               <Tooltip title="Go home" arrow>
+                  <HomeIcon sx={{ fontSize: 35, color: "black" }} />
+               </Tooltip>
             </IconButton>
          </DialogTitle>
          <DialogContent
@@ -67,13 +85,8 @@ export default function FinalTaskLogin() {
          >
             <Box display="flex" flexDirection="column">
                {hasClicked && !correct && (
-                  <Alert severity="error" sx={{ mb: 2 }}>
+                  <Alert severity="error" sx={{ mb: 2, boxShadow: 5 }}>
                      Incorrect password entered.
-                  </Alert>
-               )}
-               {correct && (
-                  <Alert severity="success" sx={{ mb: 2 }} >
-                     Success! Logging in...
                   </Alert>
                )}
                <Typography fontSize="1.1rem">Username</Typography>
@@ -90,6 +103,7 @@ export default function FinalTaskLogin() {
                <br />
                <Typography fontSize="1.1rem">Password</Typography>
                <OutlinedInput
+                  // disabled={!displayLogin}
                   value={password}
                   endAdornment={
                      <InputAdornment position="end">
@@ -114,29 +128,50 @@ export default function FinalTaskLogin() {
                      maxHeight: 48,
                   }}
                />
-               <Button
-                  variant="contained"
-                  onClick={handleLogin}
-                  sx={{
-                     mt: 4,
-                     mb: 3,
-                     backgroundColor: "#277056",
-                     color: "beige",
-                     // fontWeight: "bold",
-                     fontSize: "1rem",
-                     "&:hover": { backgroundColor: "#277056" },
-                  }}
-               >
-                  log in
-               </Button>
+               {correct ? (
+                  <Alert
+                     severity="success"
+                     variant="filled"
+                     sx={{ mt: 3, mb: 2, fontSize: "1rem", boxShadow: 5 }}
+                  >
+                     Success! Logging in...
+                  </Alert>
+               ) : (
+                  <Button
+                     variant="contained"
+                     onClick={handleLogin}
+                     sx={{
+                        mt: 3,
+                        mb: 2,
+                        backgroundColor: "#277056",
+                        color: "beige",
+                        // fontWeight: "bold",
+                        fontSize: "1rem",
+                        "&:hover": { backgroundColor: "#277056" },
+                     }}
+                  >
+                     log in
+                  </Button>
+               )}
             </Box>
             <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
-               {accountCircles.map((color) => (
-                  <AccountCircleIcon
-                     key={color}
-                     sx={{ color: color, fontSize: 35 }}
-                  />
-               ))}
+               <Box
+                  sx={{
+                     backgroundColor: "azure",
+                     boxShadow: 3,
+                     pl: 3,
+                     pr: 3,
+                     pt: 0.6,
+                     borderRadius: 6,
+                  }}
+               >
+                  {accountCircles.map((color) => (
+                     <AccountCircleIcon
+                        key={color}
+                        sx={{ color: color, fontSize: 35 }}
+                     />
+                  ))}
+               </Box>
             </DialogActions>
          </DialogContent>
       </Dialog>

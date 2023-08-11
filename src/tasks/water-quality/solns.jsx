@@ -5,7 +5,7 @@ const measured = {
    pH: 8,
    tempUp: <>11.53&nbsp;&deg;C</>,
    tempDown: <>13.91&nbsp;&deg;C</>,
-   Phosphates: <>350 ng&nbsp;/&nbsp;mL</>,
+   Phosphates: <>1150 ng&nbsp;/&nbsp;mL</>,
    Nitrates: <>14.5 &#181;g&nbsp;/&nbsp;fl&nbsp;oz</>,
    Turbidity: <>1 foot 1 inch</>,
    TSEmptyBeakerMass: <>55.0&nbsp;g</>,
@@ -46,9 +46,9 @@ const solutions = {
    },
    Phosphates: {
       fullName: "Phosphates",
-      converted: 0.35,
+      converted: 1.15,
       units: "ppm",
-      qValue: 85,
+      qValue: 37,
       weight: 0.1,
    },
    Nitrates: {
@@ -81,7 +81,9 @@ const wqiFinal = Object.values(solutions)
    }, 0)
    .toFixed(2);
 
-const marginOfError = 1;
+// wqiFinal = 75.62
+
+const marginOfError = 2;
 
 export { measured, solutions, wqiFinal, marginOfError };
 

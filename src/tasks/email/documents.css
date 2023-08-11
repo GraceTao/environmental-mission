@@ -1,0 +1,55 @@
+
+
+
+.rulesRow{
+  display:"flex"; 
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+
+}
+
+.topBarContainer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+
+
+.doccontainer {
+  position: relative;
+  height: 100vh; /* Adjust the height as needed */
+  width: 100vw; /* Adjust the width as needed */
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Center the content horizontally */
+  justify-content: center; /* Center the content vertically */
+}
+
+
+
+.bar{
+  position:"absolute"
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.text{
+  position:"absolute";
+  right:"60%";
+}
+
+

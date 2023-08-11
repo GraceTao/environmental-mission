@@ -1,19 +1,23 @@
 import IndicatorInfo from "./IndicatorInfo";
 import { Box, Typography } from "@mui/material";
 
+const textStyle = { p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } };
+
 function Page1() {
    return (
       <>
-         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
+         <Typography sx={textStyle}>
             <b>pH</b> is a measure of the acidity or basicity of a solution.
-            <Typography
-               fontFamily="cambria math"
-               fontSize="1.2rem"
-               align="center"
-               lineHeight={2}
-            >
-               pH = &minus;log<sub>10</sub>(H<sup>+</sup>)
-            </Typography>
+         </Typography>
+         <Typography
+            fontFamily="cambria math"
+            fontSize="1.2rem"
+            align="center"
+            lineHeight={2}
+         >
+            pH = &minus;log<sub>10</sub>(H<sup>+</sup>)
+         </Typography>
+         <Typography sx={textStyle}>
             H<sup>+</sup> is the concentration of hydrogen ions.
             <br />
             <br />A pH of 7 is considered neutral, while a pH between 0 and 7 is

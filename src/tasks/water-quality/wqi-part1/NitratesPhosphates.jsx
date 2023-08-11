@@ -36,7 +36,7 @@ function Page2() {
             , respectively.
             <br />
             <br />
-            <Typography fontSize="1rem">
+            <span fontSize="1rem">
                <i>1&nbsp;mg = 1000&nbsp;&#181;g</i>
                <br />
                <i>1&nbsp;&#181;g = 1000&nbsp;ng</i>
@@ -46,7 +46,7 @@ function Page2() {
                <i>1&nbsp;L&nbsp;=&nbsp;1000&nbsp;mL</i>
                <br />
                <b>1 mg / L = 1 ppm</b>
-            </Typography>
+            </span>
          </Typography>
       </div>
    );
