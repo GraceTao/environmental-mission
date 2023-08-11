@@ -37,19 +37,29 @@ export default function FinalTask() {
                onClose={() => setShowAlert(!showAlert)}
                sx={{ position: "fixed", top: "-10%" }}
             >
-               <DialogTitle sx={{backgroundColor: "skyblue", mb: 2}}>
+               <DialogTitle sx={{ backgroundColor: "skyblue", mb: 2 }}>
                   <b>Welcome back</b> to the Environmental Portal!
                </DialogTitle>
                <DialogContent>
                   <Alert severity="info" sx={{ fontSize: "1.1rem" }}>
                      You have [ONE] task assigned but not completed: <br />
                      <br />
-                     <b>1. Complete the environmental report for the Port of Corpus
-                     Christi</b>
+                     <b>
+                        1. Complete the environmental report for the Port of
+                        Corpus Christi
+                     </b>
                      <ul>
-                        <li><i>Due: </i>{new Date().toLocaleDateString()}</li>
-                        <li><i>Criteria: </i>answer questions thoroughly and be specific</li>
-                        <li><i>Submit to: </i>Environmental Affairs Manager</li>
+                        <li>
+                           <i>Due: </i>
+                           {new Date().toLocaleDateString()}
+                        </li>
+                        <li>
+                           <i>Criteria: </i>answer questions thoroughly and be
+                           specific
+                        </li>
+                        <li>
+                           <i>Submit to: </i>Environmental Affairs Manager
+                        </li>
                      </ul>
                   </Alert>
                </DialogContent>
@@ -69,16 +79,7 @@ export default function FinalTask() {
 
             {openMenu && <Menu openMenu={openMenu} setOpenMenu={setOpenMenu} />}
 
-            <FinalReport
-               showSubmissionPage={showSubmissionPage}
-               setShowSubmissionPage={setShowSubmissionPage}
-            />
-
-            {/* {showSubmissionPage && (
-               <Dialog>
-                  
-               </Dialog>
-            )} */}
+            <FinalReport />
          </Grid>
       </Box>
    );
