@@ -31,23 +31,23 @@ export default function FinalTaskLogin({ showAlert, setShowAlert }) {
 
    const handleLogin = () => {
       let trimmed = password.toLocaleLowerCase().trim().replace(/\s/g, "");
-      const storedAttempts = sessionStorage.getItem("taskAttempts");
+      const storedAttempts = localStorage.getItem("taskAttempts");
       if (trimmed) {
          const attempts = storedAttempts ? parseInt(storedAttempts) + 1 : 1;
-         sessionStorage.setItem("taskAttempts", attempts.toString());
+         localStorage.setItem("taskAttempts", attempts.toString());
          console.log(`Number of Attempts: ${attempts}`);
       }
       if (trimmed === PASSWORD) {
          setCorrect(true);
-         const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
-         const prevAttempts = sessionStorage.getItem("taskAttempts");
+         const prevData = JSON.parse(localStorage.getItem("allFormData"));
+         const prevAttempts = localStorage.getItem("taskAttempts");
          const newData = { ...prevData, attempts: prevAttempts };
-         sessionStorage.setItem("allFormData", JSON.stringify(newData));
+         localStorage.setItem("allFormData", JSON.stringify(newData));
          setTimeout(() => {
             setDisplayLogin(!displayLogin);
             setShowAlert(!showAlert);
          }, 2000);
-         console.log(JSON.parse(sessionStorage.getItem("allFormData")));
+         console.log(JSON.parse(localStorage.getItem("allFormData")));
       }
 
       setHasClicked(!hasClicked);

@@ -45,7 +45,7 @@ export default function FinalReport() {
       filtered = filtered.sort();
       filtered = filtered.join(",");
       if (answers.q1 && filtered && answers.q3 && answers.q4 && answers.q5) {
-         const prevData = JSON.parse(sessionStorage.getItem("allFormData"));
+         const prevData = JSON.parse(localStorage.getItem("allFormData"));
          const allData = { ...prevData, ...answers, q2: filtered };
          setShowError(false);
          setShowSubmitting(true);
