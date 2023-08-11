@@ -76,6 +76,7 @@ export default function UserDataForm({ open, setOpen }) {
             }}
          >
             <Autocomplete
+               disabled={openAlert}
                options={states}
                value={formData.state}
                getOptionLabel={(option) => option}
@@ -109,7 +110,7 @@ export default function UserDataForm({ open, setOpen }) {
             />
 
             <Autocomplete
-               disabled={!formData.state}
+               disabled={!formData.state || openAlert}
                options={counties}
                value={formData.county}
                onChange={(e, val) => {
@@ -143,7 +144,7 @@ export default function UserDataForm({ open, setOpen }) {
             />
 
             <Autocomplete
-               disabled={!formData.county}
+               disabled={!formData.county || openAlert}
                options={schools}
                value={formData.school}
                onChange={(e, val) => {
@@ -173,7 +174,7 @@ export default function UserDataForm({ open, setOpen }) {
                experience?
             </FormLabel>
             <Select
-               disabled={!formData.school}
+               disabled={!formData.school || openAlert}
                value={formData.order}
                onChange={(e) => {
                   setFormData({ ...formData, order: e.target.value });
