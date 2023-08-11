@@ -11,7 +11,7 @@ const appIcons =
       {
          icon: MailIcon,
          name: "MailIcon",
-         path: "/",
+         path: "/email",
          color: "black",
       },
       {
