@@ -60,22 +60,26 @@ export default function WQIPart3() {
                ></Instructions>
             }
          />
-         <Box display="flex" flexDirection="row">
-            <Calculator sx={{ zIndex: 1 }} />
-            <IconButton component={Link} to="/wqi-p2" sx={{ ml: "36%" }}>
-               <Tooltip title="back" arrow>
-                  <ArrowCircleLeftIcon sx={{ fontSize: 55, color: "blue" }} />
-               </Tooltip>
-            </IconButton>
-         </Box>
+         <Box sx={{ pt: { xs: 6, sm: 8 } }}>
+            <Box display="flex" flexDirection="row" sx={{mb: 2, ml: 2}}>
+               <Calculator />
+               <IconButton component={Link} to="/wqi-p2" sx={{ ml: "36%" }}>
+                  <Tooltip title="back" arrow>
+                     <ArrowCircleLeftIcon
+                        sx={{ fontSize: 55, color: "blue" }}
+                     />
+                  </Tooltip>
+               </IconButton>
+            </Box>
 
-         <Box
-            display="flex"
-            flexDirection={{ xs: "column-reverse", md: "row" }}
-            justifyContent="space-around"
-         >
-            <FullTable></FullTable>
-            <Submit />
+            <Box
+               display="flex"
+               flexDirection={{ xs: "column-reverse", md: "row" }}
+               justifyContent="space-around"
+            >
+               <FullTable></FullTable>
+               <Submit />
+            </Box>
          </Box>
       </Box>
    );
