@@ -379,7 +379,7 @@ function Calculator() {
             open={Boolean(anchorEl)}
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
-            placement="left-start"
+            placement="bottom-start"
          >
             <CalculatorNoButton />
          </Popper>

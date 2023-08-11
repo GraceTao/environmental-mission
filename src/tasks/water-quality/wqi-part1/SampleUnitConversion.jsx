@@ -39,7 +39,7 @@ export default function SampleUnitConversion() {
          <Button
             variant="contained"
             onClick={handleClick}
-            sx={{ mt: 1, mr: 2 }}
+            sx={{position: "fixed", top: {xs: 135, sm: 145}, left: 10 }}
          >
             sample unit conversion
          </Button>
@@ -50,9 +50,9 @@ export default function SampleUnitConversion() {
             anchorEl={anchorEl}
             sx={{
                backgroundColor: "white",
-               maxWidth: { xs: "85%", sm: "75%", md: "50%", lg: "45%" }, 
+               maxWidth: { xs: "85%", sm: "75%", md: "50%", lg: "45%" },
                width: "auto",
-               maxHeight: "80vh", 
+               maxHeight: "80vh",
                overflow: "auto",
                whiteSpace: "pre-wrap",
                wordWrap: "break-word",
@@ -96,35 +96,33 @@ export default function SampleUnitConversion() {
                </span>
                <br />
                <br />
-               
             </Typography>
             <Box
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="flex-start"
-                  ml={2}
-               >
-                  {eqns.map((eqn, index) => (
-                     <Box
-                        display="flex"
-                        flexDirection="row"
-                        justifyContent="flex-start"
-                        key={index}
-                     >
-                        <Typography>
-                           {eqn.text}&emsp;
-                        </Typography>
-                        
-                        <MathJaxContext>
-                           <MathJax style={{ fontSize: "1.1rem" }}>
-                              {eqn.eqn}
-                           </MathJax>
-                        </MathJaxContext>
-                     </Box>
-                  ))}
-               </Box>
-               <Typography sx={{ml: 2, mb: 2}}><b>3&nbsp;days&nbsp;=&nbsp;259200&nbsp;seconds</b>
-                  </Typography>
+               display="flex"
+               flexDirection="column"
+               justifyContent="flex-start"
+               ml={2}
+            >
+               {eqns.map((eqn, index) => (
+                  <Box
+                     display="flex"
+                     flexDirection="row"
+                     justifyContent="flex-start"
+                     key={index}
+                  >
+                     <Typography>{eqn.text}&emsp;</Typography>
+
+                     <MathJaxContext>
+                        <MathJax style={{ fontSize: "1.1rem" }}>
+                           {eqn.eqn}
+                        </MathJax>
+                     </MathJaxContext>
+                  </Box>
+               ))}
+            </Box>
+            <Typography sx={{ ml: 2, mb: 2 }}>
+               <b>3&nbsp;days&nbsp;=&nbsp;259200&nbsp;seconds</b>
+            </Typography>
          </Popper>
       </div>
    );
