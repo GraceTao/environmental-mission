@@ -40,9 +40,16 @@ function createData(abbrName, formValues, qValues, setQValues) {
 
    const inputBox = (
       <OutlinedInput
+         disabled={solutions[abbrName].preFilled}
          name={abbrName}
          align="right"
-         sx={{ maxWidth: 100, maxHeight: 43 }}
+         sx={{
+            maxWidth: 100,
+            maxHeight: 43,
+            "& .MuiInputBase-input.Mui-disabled": {
+               WebkitTextFillColor: "#454545",
+            },
+         }}
          onChange={handleChange}
          value={qValues[abbrName] || ""}
       ></OutlinedInput>
@@ -53,10 +60,20 @@ function createData(abbrName, formValues, qValues, setQValues) {
 
 export default function WQIPart2() {
    const formValues = JSON.parse(sessionStorage.getItem("formValues"));
+   const initial = {
+      FC: solutions.FC.qValue,
+      BOD: solutions.BOD.qValue,
+      Turbidity: solutions.Turbidity.qValue,
+   };
 
    const tableHeaders = ["Water Quality Indicator", "Measurement", "Q-Value"];
    const location = useLocation();
-   const savedQValues = location.state?.qValues || {};
+   
+   const savedQValues = location.state?.qValues || initial;
+
+   sessionStorage.getItem("qValues") ||
+   sessionStorage.setItem("qValues", JSON.stringify(initial));
+
    const [qValues, setQValues] = useState(savedQValues);
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage
@@ -114,7 +131,12 @@ export default function WQIPart2() {
             }
          />
          <Box sx={{ pt: { xs: 6, sm: 8 } }}>
-            <Box display="flex" flexDirection="row" justifyContent="center" sx={{mb: 1}}>
+            <Box
+               display="flex"
+               flexDirection="row"
+               justifyContent="center"
+               sx={{ mb: 1 }}
+            >
                <IconButton component={Link} to="/wqi-p1" sx={{ mr: 8 }}>
                   <Tooltip title="back" arrow>
                      <ArrowCircleLeftIcon
