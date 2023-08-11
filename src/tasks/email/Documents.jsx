@@ -20,53 +20,51 @@ import Map from "./sitemap.jpg";
 import DraggablePopper from "./DraggablePopper";
 import TopBar from "../../components/TopBar";
 import Instructions from "../../components/Instructions";
+import Instr from "../../components/Instr";
 // ADD CALCULATOR!!!
 
 function EmailInstructions() {
-   return (
+   const content = (
       <div>
-         <h2>Instructions</h2>
-         <p>Please read the email and explore the map and rules</p>
-         <p>You can toggle the buttons and the rules popup is draggable</p>
-         <p>
-            When you have determined the <b>maximum</b> dimensions for the
-            building, click the reply button to submit
-         </p>
+         Please read the email and explore the map and rules. When you have
+         determined the <b>maximum</b> dimensions for the building that follow
+         guidelines, click the "Reply" button to submit.
       </div>
    );
+   return <Instr title="Email Task" contents={content} />;
 }
 
 const Documents = () => {
-   const [open, setOpen] = React.useState(false);
-   const [solved, setSolved] = React.useState(
-      false || localStorage.getItem("solved") == "true"
+   const [open, setOpen] = useState(false);
+   const [solved, setSolved] = useState(
+      false || sessionStorage.getItem("solved") == "true"
    );
-   const [image, setImage] = React.useState(false);
-   const [rules, showRules] = React.useState(false);
+   const [image, setImage] = useState(false);
+   const [rules, showRules] = useState(false);
    const initialHeight =
-      localStorage.getItem("height") != null
-         ? localStorage.getItem("height")
+      sessionStorage.getItem("height") != null
+         ? sessionStorage.getItem("height")
          : "";
    const initialWidth =
-      localStorage.getItem("width") != null
-         ? localStorage.getItem("width")
+      sessionStorage.getItem("width") != null
+         ? sessionStorage.getItem("width")
          : "";
    const initialSA =
-      localStorage.getItem("sa") != null ? localStorage.getItem("sa") : "";
+      sessionStorage.getItem("sa") != null ? sessionStorage.getItem("sa") : "";
    const initialVolume =
-      localStorage.getItem("volume") != null
-         ? localStorage.getItem("volume")
+      sessionStorage.getItem("volume") != null
+         ? sessionStorage.getItem("volume")
          : "";
    const initialLength =
-      localStorage.getItem("length") != null
-         ? localStorage.getItem("length")
+      sessionStorage.getItem("length") != null
+         ? sessionStorage.getItem("length")
          : "";
-   console.log(initialSA);
+   // console.log(initialSA);
 
    const [inputs, setInputs] = useState({
       height: initialHeight,
       length: initialLength,
-      width: localStorage.getItem("width"),
+      width: initialWidth,
       volume: initialVolume,
       sa: initialSA,
    });
@@ -76,11 +74,11 @@ const Documents = () => {
    };
 
    const handleClose = () => {
-      localStorage.setItem("height", inputs.height);
-      localStorage.setItem("length", inputs.length),
-         localStorage.setItem("width", inputs.width),
-         localStorage.setItem("volume", inputs.volume),
-         localStorage.setItem("sa", inputs.sa);
+      sessionStorage.setItem("height", inputs.height);
+      sessionStorage.setItem("length", inputs.length);
+      sessionStorage.setItem("width", inputs.width);
+      sessionStorage.setItem("volume", inputs.volume);
+      sessionStorage.setItem("sa", inputs.sa);
 
       setOpen(false);
    };
@@ -88,14 +86,14 @@ const Documents = () => {
    const handleSolve = () => {
       if (
          parseInt(inputs.height) === 215 &&
-			parseInt(inputs.width) === 300 &&
-			parseInt(inputs.length) === 33 &&
+         parseInt(inputs.width) === 300 &&
+         parseInt(inputs.length) === 33 &&
          parseInt(inputs.volume) === 2128500 &&
          parseInt(inputs.sa) === 162990
       ) {
          alert("Report successfully submitted!");
          setSolved(true);
-         localStorage.setItem("solved", true);
+         sessionStorage.setItem("solved", true);
       } else {
          alert("Report failed to process");
       }
@@ -126,8 +124,8 @@ const Documents = () => {
                      }}
                   ></Instructions>
                }
-            />
-         </div>
+            >
+         
          <div className="base">
             {!solved ? (
                image ? (
@@ -145,19 +143,25 @@ const Documents = () => {
                ) : (
                   <Box
                      sx={{
-                        width: "auto%",
-                        height: "auto",
+                        width: "auto",
                         maxWidth: "800px",
-                        maxHeight: "600px",
                         backgroundColor: "#FFFDD0",
                         "&:hover": {
                            backgroundColor: "#FFFDD0",
                            opacity: [0.9, 0.8, 0.7],
                         },
+                        p: 3,
+                        borderRadius: 2,
+                        boxShadow: 10,
+                        m: 3,
+                        mt: 10,
+                        position: "relative",
                      }}
                   >
-                     <p>
-                        Hey Maggie,
+                     <Typography
+                        fontSize={{ xs: "1rem", sm: "1.1rem", md: "1.2rem" }}
+                     >
+                        Hello,
                         <br />
                         <br />
                         I am interested in constructing an office building
@@ -174,10 +178,10 @@ const Documents = () => {
                         Would you be able to provide any guidance?
                         <br />
                         <br />
-                        Thanks in Advance!
+                        Thanks in advance!
                         <br />
                         Sitara Patel
-                     </p>
+                     </Typography>
                   </Box>
                )
             ) : (
@@ -194,11 +198,8 @@ const Documents = () => {
                      }}
                   >
                      <br></br>
-                     <p>
-                        Congratulations! You have correctly determined the
-                        maximum dimensions
-                     </p>
-                     <p>of the building which complies with regulations</p>
+                     Congratulations! You have correctly determined the maximum
+                     dimensions of the building which complies with regulations
                      <h3>
                         Your clue word is <b>soil</b>
                      </h3>
@@ -218,15 +219,33 @@ const Documents = () => {
                   }}
                >
                   <DraggablePopper
-                     l1="1. A building must under no circumstances stretch into a protected area or forest reserve"
-                     l2="2. There must be a minimum of 100 feet distance between any stream, pond, waterfall, stream, or any other small water body and a construction site"
-                     l3="3. A wind turbine must be at least 30 feet higher than any buildings in its vicinity"
+                     l1={
+                        <>
+                           A building must <b>under no circumstances</b> stretch
+                           into a protected area or forest reserve
+                        </>
+                     }
+                     l2={
+                        <>
+                           There must be a minimum of <b>100 feet</b> distance
+                           between any stream, pond, waterfall, stream, or any
+                           other small water body and a construction site
+                        </>
+                     }
+                     l3={
+                        <>
+                           A wind turbine must be at least <b>30 feet</b> higher
+                           than any buildings in its vicinity
+                        </>
+                     }
+                     open={rules}
+                     setOpen={showRules}
                   />
                </div>
             )}
-         </div>
-
-         <div class="docButtons">
+         </div></TopBar>
+</div>
+         <div className="docButtons">
             <Button
                style={{
                   maxHeight: "6vh",

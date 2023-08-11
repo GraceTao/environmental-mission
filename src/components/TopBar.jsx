@@ -3,7 +3,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 import logo from "./PortCC-logo-horizontal-white.png";
 
-export default function TopBar({ instruction }) {
+export default function TopBar(props) {
+   const {children, instruction} = props;
    return (
       <>
          <AppBar
@@ -38,6 +39,7 @@ export default function TopBar({ instruction }) {
                </div>
             </Toolbar>
          </AppBar>
+         {children}
       </>
    );
 }

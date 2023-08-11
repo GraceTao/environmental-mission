@@ -1,5 +1,5 @@
 import TopBar from "../../../components/TopBar";
-import Instr from "../Instr";
+import Instr from "../../../components/Instr";
 import Instructions from "../../../components/Instructions";
 import { Box, IconButton, Typography, Tooltip } from "@mui/material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
