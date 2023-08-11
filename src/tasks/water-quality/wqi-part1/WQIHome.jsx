@@ -22,13 +22,14 @@ import Turbidity from "./Turbidity";
 import NitratesPhosphates from "./NitratesPhosphates";
 import TS from "./TS";
 import Readings from "./Readings";
-import Instr from "../Instr";
+import Instr from "../../../components/Instr";
 import AssignmentTwoToneIcon from "@mui/icons-material/AssignmentTwoTone";
 import ChatIcon from "@mui/icons-material/Chat";
 import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
 import wqi_chat_animation from "../wqi_chat_animation.mp4";
 import Calculator from "../../../components/Calculator";
+import { SettingsInputAntennaTwoTone } from "@mui/icons-material";
 
 function CalendarAndInstructions() {
    const hasEnabledInstr = localStorage.getItem("hasEnabledWQIInstr");
@@ -197,7 +198,7 @@ export default function WQIHome() {
          <Box sx={{ position: "fixed", top: {xs: 58, sm: 66}, left: 80 }}>
             <Calculator />
          </Box>
-         <Box sx={{mt: "4%"}}>
+         <Box sx={{mt: {xs: "10%", sm: "4%"}}}>
             <DO />
             <Temperature upstream={true}></Temperature>
             <Temperature upstream={false}></Temperature>

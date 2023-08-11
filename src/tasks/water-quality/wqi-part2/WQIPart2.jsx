@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import TopBar from "../../../components/TopBar";
-import Instr from "../Instr";
+import Instr from "../../../components/Instr";
 import Instructions from "../../../components/Instructions";
 import {
    Box,

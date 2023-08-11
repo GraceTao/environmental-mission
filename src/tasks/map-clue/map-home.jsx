@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import Instructions from "../../components/Instructions";
 import TopBar from "../../components/TopBar";
-import Instr from "../water-quality/Instr";
+import Instr from "../../components/Instr";
 //import AssignmentTwoToneIcon from "@mui/icons-material/AssignmentTwoTone";
 import ChatIcon from "@mui/icons-material/Chat";
 import AirQuality from "./AirQuality";
