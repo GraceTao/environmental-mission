@@ -49,18 +49,19 @@ export default function FinalReport() {
          const allData = { ...prevData, ...answers, q2: filtered };
          setShowError(false);
          setShowSubmitting(true);
-         // console.log(allData);
-         setTimeout(() => {
-            setShowFinalPage(true);
-            setShowSubmitting(false);
-         }, 4000);
-
          try {
             await axios.post("/api/submituserdata", allData);
             console.log("Data added successfully");
          } catch (err) {
             console.log("Error:", err);
          }
+         // console.log(allData);
+         setTimeout(() => {
+            setShowFinalPage(true);
+            setShowSubmitting(false);
+         }, 4000);
+
+
       } else {
          setShowError(true);
       }

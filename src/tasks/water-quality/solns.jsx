@@ -81,7 +81,7 @@ const wqiFinal = Object.values(solutions)
    }, 0)
    .toFixed(2);
 
-// wqiFinal = 80.42
+// wqiFinal = 75.62
 
 const marginOfError = 2;
 
