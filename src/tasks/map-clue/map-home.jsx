@@ -23,7 +23,7 @@ import CO2 from "./CO2";
 import chat from "./map_chat_animation.mp4"
 
 function MapInstructions() {
-   const hasEnabledInstr = sessionStorage.getItem("hasEnabledMapInstr");
+   const hasEnabledInstr = localStorage.getItem("hasEnabledMapInstr");
    const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
 
    const theme = useTheme();
@@ -89,7 +89,7 @@ function MapInstructions() {
                }}
                onClick={() => {
                   setOpenInstr(true);
-                  sessionStorage.setItem("hasEnabledMapInstr", true);
+                  localStorage.setItem("hasEnabledMapInstr", true);
                }}
             >
                Visit the Port of Corpus Christi!

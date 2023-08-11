@@ -3,7 +3,7 @@ import WarningIcon from "@mui/icons-material/Warning";
 import { useState } from "react";
 
 export default function Notification() {
-   const openNotification = sessionStorage.getItem("openNotification");
+   const openNotification = localStorage.getItem("openNotification");
    const [open, setOpen] = useState(openNotification == null);
 
    const theme = createTheme();
@@ -28,7 +28,7 @@ export default function Notification() {
                         variant="outlined"
                         onClick={() => {
                            setOpen(false);
-                           sessionStorage.setItem("openNotification", false);
+                           localStorage.setItem("openNotification", false);
                         }}
                      >
                         close

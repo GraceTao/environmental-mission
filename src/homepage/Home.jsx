@@ -115,7 +115,7 @@ function Home() {
       ContactsIcon: false,
    });
 
-   const [showUserForm, setShowUserForm] = useState(sessionStorage.getItem("submittedStartForm") == null);
+   const [showUserForm, setShowUserForm] = useState(localStorage.getItem("submittedStartForm") == null);
 
    return (
       <>
