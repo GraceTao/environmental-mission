@@ -31,56 +31,60 @@ export default function WQIPart3() {
    );
 
    return (
-      <Box
-         sx={{
-            background: "linear-gradient(to top, #0093E5, #53E59E)",
-            height: "100vh",
-            overflow: "auto",
-            margin: "auto",
-         }}
+      <TopBar
+         instruction={
+            <Instructions
+               name={
+                  <Typography
+                     color="#33403d"
+                     fontWeight="bold"
+                     fontSize="1.2rem"
+                  >
+                     instructions
+                  </Typography>
+               }
+               title={null}
+               content={instructions}
+               style={{
+                  backgroundColor: "inherit",
+                  "&:hover": { backgroundColor: "#94B2B990" },
+               }}
+            ></Instructions>
+         }
       >
-         <TopBar
-            instruction={
-               <Instructions
-                  name={
-                     <Typography
-                        color="#33403d"
-                        fontWeight="bold"
-                        fontSize="1.2rem"
-                     >
-                        instructions
-                     </Typography>
-                  }
-                  title={null}
-                  content={instructions}
-                  style={{
-                     backgroundColor: "inherit",
-                     "&:hover": { backgroundColor: "#94B2B990" },
-                  }}
-               ></Instructions>
-            }
-         />
-         <Box sx={{ pt: { xs: 6, sm: 8 } }}>
-            <Box display="flex" flexDirection="row" sx={{mb: 2, ml: 2}}>
-               <Calculator />
-               <IconButton component={Link} to="/wqi-p2" sx={{ ml: "36%" }}>
-                  <Tooltip title="back" arrow>
-                     <ArrowCircleLeftIcon
-                        sx={{ fontSize: 55, color: "blue" }}
-                     />
-                  </Tooltip>
-               </IconButton>
-            </Box>
+         <Box
+            sx={{
+               background: "linear-gradient(to top, #0093E5, #53E59E)",
+               height: "100vh",
+               overflow: "auto",
+               margin: "auto",
+               position: "relative",
+               mt: 6,
+               pt: 3
+            }}
+         >
+            <Box>
+               <Box display="flex" flexDirection="row" sx={{ mb: 2, ml: 2 }}>
+                  <Calculator />
+                  <IconButton component={Link} to="/wqi-p2" sx={{ ml: "36%" }}>
+                     <Tooltip title="back" arrow>
+                        <ArrowCircleLeftIcon
+                           sx={{ fontSize: 55, color: "blue" }}
+                        />
+                     </Tooltip>
+                  </IconButton>
+               </Box>
 
-            <Box
-               display="flex"
-               flexDirection={{ xs: "column-reverse", md: "row" }}
-               justifyContent="space-around"
-            >
-               <FullTable></FullTable>
-               <Submit />
+               <Box
+                  display="flex"
+                  flexDirection={{ xs: "column-reverse", md: "row" }}
+                  justifyContent="space-around"
+               >
+                  <FullTable></FullTable>
+                  <Submit />
+               </Box>
             </Box>
          </Box>
-      </Box>
+      </TopBar>
    );
 }

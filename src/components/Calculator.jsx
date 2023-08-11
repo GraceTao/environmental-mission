@@ -424,7 +424,6 @@ function Calculator() {
                backgroundColor: "#312AC2 ",
                width: 64,
                height: 64,
-               position: { top: 2, left: 5 },
                "&:hover": { backgroundColor: "#312AC2 " },
             }}
          >

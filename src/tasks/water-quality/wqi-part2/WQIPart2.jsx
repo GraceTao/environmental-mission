@@ -68,11 +68,11 @@ export default function WQIPart2() {
 
    const tableHeaders = ["Water Quality Indicator", "Measurement", "Q-Value"];
    const location = useLocation();
-   
+
    const savedQValues = location.state?.qValues || initial;
 
    localStorage.getItem("qValues") ||
-   localStorage.setItem("qValues", JSON.stringify(initial));
+      localStorage.setItem("qValues", JSON.stringify(initial));
 
    const [qValues, setQValues] = useState(savedQValues);
    useEffect(() => {
@@ -102,122 +102,135 @@ export default function WQIPart2() {
    );
 
    return (
-      <Box
-         sx={{
-            background: "linear-gradient(to top, #0093E5, #53E59E)",
-            minHeight: "100vh",
-            overflow: "auto",
-         }}
+      <TopBar
+         instruction={
+            <Instructions
+               name={
+                  <Typography
+                     color="#33403d"
+                     fontWeight="bold"
+                     fontSize="1.2rem"
+                  >
+                     instructions
+                  </Typography>
+               }
+               title={null}
+               content={instructions}
+               style={{
+                  backgroundColor: "inherit",
+                  "&:hover": { backgroundColor: "#94B2B990" },
+               }}
+            ></Instructions>
+         }
       >
-         <TopBar
-            instruction={
-               <Instructions
-                  name={
-                     <Typography
-                        color="#33403d"
-                        fontWeight="bold"
-                        fontSize="1.2rem"
-                     >
-                        instructions
-                     </Typography>
-                  }
-                  title={null}
-                  content={instructions}
-                  style={{
-                     backgroundColor: "inherit",
-                     "&:hover": { backgroundColor: "#94B2B990" },
-                  }}
-               ></Instructions>
-            }
-         />
-         <Box sx={{ pt: { xs: 6, sm: 8 } }}>
-            <Box
-               display="flex"
-               flexDirection="row"
-               justifyContent="center"
-               sx={{ mb: 1 }}
-            >
-               <IconButton component={Link} to="/wqi-p1" sx={{ mr: 8 }}>
-                  <Tooltip title="back" arrow>
-                     <ArrowCircleLeftIcon
-                        sx={{ fontSize: 55, color: "blue" }}
-                     />
-                  </Tooltip>
-               </IconButton>
-               <IconButton component={Link} to="/wqi-p3" sx={{ ml: 8 }}>
-                  <Tooltip title="continue" arrow>
-                     <ArrowCircleRightIcon
-                        sx={{ fontSize: 55, color: "blue" }}
-                     />
-                  </Tooltip>
-               </IconButton>
-            </Box>
-            <Box
-               display="flex"
-               flexDirection={{ xs: "column", md: "row" }}
-               justifyContent="space-between"
-            >
-               <Box width={{ xs: "100%", md: "50%" }} ml="1%">
-                  <TableContainer
-                     component={Paper}
-                     sx={{ backgroundColor: "#fff5" }}
-                  >
-                     <Table size="small">
-                        <TableHead>
-                           <TableRow>
-                              {tableHeaders.map((heading) => (
-                                 <TableCell
-                                    key={heading}
-                                    sx={{
-                                       fontSize: { xs: "1rem", md: "1.2rem" },
-                                       fontWeight: "bold",
-                                    }}
-                                 >
-                                    {heading}
-                                 </TableCell>
-                              ))}
-                           </TableRow>
-                        </TableHead>
-                        <TableBody>
-                           {rows.map((row) => (
-                              <TableRow key={row.name}>
-                                 <TableCell
-                                    sx={{
-                                       fontSize: { xs: "0.9rem", md: "1.1rem" },
-                                    }}
-                                 >
-                                    {row.name}
-                                 </TableCell>
-                                 <TableCell
-                                    sx={{
-                                       fontSize: { xs: "0.9rem", md: "1.1rem" },
-                                    }}
-                                 >
-                                    {row.readingWithUnits}
-                                 </TableCell>
-                                 <TableCell>{row.inputBox}</TableCell>
-                              </TableRow>
-                           ))}
-                        </TableBody>
-                     </Table>
-                  </TableContainer>
+         <Box
+            sx={{
+               background: "linear-gradient(to top, #0093E5, #53E59E)",
+               minHeight: "100vh",
+               overflow: "auto",
+               position: "relative",
+               mt: 8,
+               pt: 1
+            }}
+         >
+            <Box>
+               <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="center"
+                  sx={{ mb: 1 }}
+               >
+                  <IconButton component={Link} to="/wqi-p1" sx={{ mr: 8 }}>
+                     <Tooltip title="back" arrow>
+                        <ArrowCircleLeftIcon
+                           sx={{ fontSize: 55, color: "blue" }}
+                        />
+                     </Tooltip>
+                  </IconButton>
+                  <IconButton component={Link} to="/wqi-p3" sx={{ ml: 8 }}>
+                     <Tooltip title="continue" arrow>
+                        <ArrowCircleRightIcon
+                           sx={{ fontSize: 55, color: "blue" }}
+                        />
+                     </Tooltip>
+                  </IconButton>
                </Box>
-               <Box sx={{ position: "relative" }} minWidth="50%">
-                  <Box
-                     sx={{
-                        position: "absolute",
-                        top: { xs: "100%", md: "15%" },
-                        left: "5%",
-                        zIndex: 1,
-                        width: "93%",
-                        mt: { xs: "10%", md: 0 },
-                     }}
-                  >
-                     <GraphSlideShow />
+               <Box
+                  display="flex"
+                  flexDirection={{ xs: "column", md: "row" }}
+                  justifyContent="space-between"
+               >
+                  <Box width={{ xs: "100%", md: "50%" }} ml="1%">
+                     <TableContainer
+                        component={Paper}
+                        sx={{ backgroundColor: "#fff5" }}
+                     >
+                        <Table size="small">
+                           <TableHead>
+                              <TableRow>
+                                 {tableHeaders.map((heading) => (
+                                    <TableCell
+                                       key={heading}
+                                       sx={{
+                                          fontSize: {
+                                             xs: "1rem",
+                                             md: "1.2rem",
+                                          },
+                                          fontWeight: "bold",
+                                       }}
+                                    >
+                                       {heading}
+                                    </TableCell>
+                                 ))}
+                              </TableRow>
+                           </TableHead>
+                           <TableBody>
+                              {rows.map((row) => (
+                                 <TableRow key={row.name}>
+                                    <TableCell
+                                       sx={{
+                                          fontSize: {
+                                             xs: "0.9rem",
+                                             md: "1.1rem",
+                                          },
+                                       }}
+                                    >
+                                       {row.name}
+                                    </TableCell>
+                                    <TableCell
+                                       sx={{
+                                          fontSize: {
+                                             xs: "0.9rem",
+                                             md: "1.1rem",
+                                          },
+                                       }}
+                                    >
+                                       {row.readingWithUnits}
+                                    </TableCell>
+                                    <TableCell>{row.inputBox}</TableCell>
+                                 </TableRow>
+                              ))}
+                           </TableBody>
+                        </Table>
+                     </TableContainer>
+                  </Box>
+                  <Box sx={{ position: "relative" }} minWidth="50%">
+                     <Box
+                        sx={{
+                           position: "absolute",
+                           top: { xs: "100%", md: "15%" },
+                           left: "5%",
+                           zIndex: 1,
+                           width: "93%",
+                           mt: { xs: "10%", md: 0 },
+                        }}
+                     >
+                        <GraphSlideShow />
+                     </Box>
                   </Box>
                </Box>
             </Box>
          </Box>
-      </Box>
+      </TopBar>
    );
 }
