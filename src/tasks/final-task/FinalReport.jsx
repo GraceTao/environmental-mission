@@ -55,12 +55,12 @@ export default function FinalReport() {
             setShowSubmitting(false);
          }, 4000);
 
-         // try {
-         //    await axios.post("/api/submituserdata", allData);
-         //    console.log("Data added successfully");
-         // } catch (err) {
-         //    console.log("Error:", err);
-         // }
+         try {
+            await axios.post("/api/submituserdata", allData);
+            console.log("Data added successfully");
+         } catch (err) {
+            console.log("Error:", err);
+         }
       } else {
          setShowError(true);
       }
