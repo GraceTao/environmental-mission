@@ -103,6 +103,7 @@ export default function FinalTaskLogin({ showAlert, setShowAlert }) {
                <br />
                <Typography fontSize="1.1rem">Password</Typography>
                <OutlinedInput
+                  // disabled={!displayLogin}
                   value={password}
                   endAdornment={
                      <InputAdornment position="end">
