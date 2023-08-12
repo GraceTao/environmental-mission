@@ -23,7 +23,7 @@ const DraggablePopper = ({ l1, l2, l3, open, setOpen }) => {
                   flexDirection="row"
                   justifyContent="space-between"
                >
-                  <Typography sx={{ mt: 1, ml: 2, fontSize: "0.9rem" }}>
+                  <Typography sx={{ mt: 1, ml: 2, fontSize: {xs: "0.9rem", sm: "1rem"} }}>
                      <i>Drag me!</i>
                   </Typography>
                   <IconButton onClick={() => setOpen(false)}>
