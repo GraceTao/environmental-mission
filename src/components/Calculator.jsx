@@ -7,6 +7,7 @@ import {
    Popper,
    Typography,
    Tooltip,
+   Box
 } from "@mui/material";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import { useEffect } from "react";
@@ -208,6 +209,7 @@ function CalculatorNoButton() {
          justifyContent="center"
          maxWidth={240}
          overflow="auto"
+         // position="relative"
          sx={{ backgroundColor: "lightblue", borderRadius: 3, boxShadow: 10 }}
       >
          <Grid item xs={12}>
@@ -416,7 +418,16 @@ function Calculator() {
    };
 
    return (
-      <div>
+      <Box>
+         <Popper
+            open={Boolean(anchorEl)}
+            anchorEl={anchorEl}
+            onClose={() => setAnchorEl(null)}
+            placement="bottom-start"
+            style={{zIndex: 2}}
+         >
+            <CalculatorNoButton />
+         </Popper>
          <IconButton
             onClick={handleClick}
             sx={{
@@ -431,15 +442,8 @@ function Calculator() {
                <CalculateIcon sx={{ fontSize: 60, color: "#A7E5D8 " }} />
             </Tooltip>
          </IconButton>
-         <Popper
-            open={Boolean(anchorEl)}
-            anchorEl={anchorEl}
-            onClose={() => setAnchorEl(null)}
-            placement="bottom-start"
-         >
-            <CalculatorNoButton />
-         </Popper>
-      </div>
+         
+      </Box>
    );
 }
 

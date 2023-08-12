@@ -16,21 +16,20 @@ import {
 } from "@mui/material";
 
 import Map from "./sitemap.jpg";
-
+import Calculator from "../../components/Calculator";
 import DraggablePopper from "./DraggablePopper";
 import TopBar from "../../components/TopBar";
 import Instructions from "../../components/Instructions";
 import Instr from "../../components/Instr";
 import Response from "./Response";
-// ADD CALCULATOR!!!
 
 function EmailInstructions() {
    const content = (
-      <div>
+      <>
          Please read the email and explore the map and rules. When you have
          determined the <b>maximum</b> dimensions for the building that follow
          guidelines, click the "Reply" button to submit.
-      </div>
+      </>
    );
    return <Instr title="Email Task" contents={content} />;
 }
@@ -94,7 +93,11 @@ const Documents = () => {
             ></Instructions>
          }
       >
-         <Box position="relative" mt={12}>
+         <Box position="fixed" top={70} left={"4%"} zIndex={1}>
+            <Calculator />
+         </Box>
+
+         <Box position="relative" mt={13}>
             {rules && (
                <Box
                   className="DraggablePopper"
@@ -144,8 +147,10 @@ const Documents = () => {
             <Box
                display="flex"
                flexDirection="row"
-               justifyContent={{ xs: "flex-start", sm: "center" }}
+               justifyContent={{ xs: "space-between", sm: "center" }}
                position="relative"
+               pl={2}
+               pr={2}
             >
                {image ? (
                   <img
@@ -153,16 +158,16 @@ const Documents = () => {
                      alt="Site Map"
                      useMap="#sitemap"
                      style={{
-                        width: "50%",
-                        minWidth: 600,
+                        width: "53%",
+                        minWidth: 500,
                         height: "auto",
                      }}
                   />
                ) : (
                   <Box
                      sx={{
-                        width: "47%",
-                        minWidth: 600,
+                        width: "53%",
+                        minWidth: 500,
                         backgroundColor: "#FFFDD0",
                         "&:hover": {
                            backgroundColor: "#FFFDD0",
@@ -205,7 +210,7 @@ const Documents = () => {
                   </Box>
                )}
 
-               <Box>
+               <Box pr={2}>
                   <Button
                      style={{
                         marginTop: "5vh",
@@ -249,13 +254,21 @@ const Documents = () => {
             </Box>
 
             <Dialog open={solved} onClose={() => setSolved(!solved)}>
-               <DialogContent sx={{backgroundColor: "#D2F6E3"}}>
-                  <Typography fontSize={{ xs: "1.1rem", md: "1.2rem" }} align="center">
-                     <b>Congratulations!</b> You have correctly determined the maximum
-                     dimensions of the building that comply with regulations.
+               <DialogContent sx={{ backgroundColor: "#D2F6E3" }}>
+                  <Typography
+                     fontSize={{ xs: "1.1rem", md: "1.2rem" }}
+                     align="center"
+                  >
+                     <b>Congratulations!</b> You have correctly determined the
+                     maximum dimensions of the building that comply with
+                     regulations.
                   </Typography>
-                  <br/>
-                  <Typography fontSize={{ xs: "1.2rem", md: "1.4rem" }} align="center" color="#784205">
+                  <br />
+                  <Typography
+                     fontSize={{ xs: "1.2rem", md: "1.4rem" }}
+                     align="center"
+                     color="#784205"
+                  >
                      Your clue word is <b>soil</b>.
                   </Typography>
                </DialogContent>
