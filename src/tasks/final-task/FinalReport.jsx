@@ -246,8 +246,9 @@ export default function FinalReport() {
                   variant="contained"
                   onClick={handleSubmit}
                   sx={{
-                     fontSize: "1.05rem",
+                     fontSize: {xs: "1rem", sm: "1.05rem"},
                      width: "25%",
+                     minWidth: "130px",
                      backgroundColor: "blueviolet",
                      "&:hover": {
                         backgroundColor: "#9A54E5 ",
