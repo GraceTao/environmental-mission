@@ -322,8 +322,7 @@ export default function Submit() {
             <DialogContent sx={{ backgroundColor: "lightblue" }}>
                <Typography
                   align="center"
-                  fontSize={{ xs: "1.3rem", md: "1.5rem" }}
-                  fontFamily="tahoma"
+                  fontSize={{ xs: "1.2rem", md: "1.4rem" }}
                >
                   Correct! The stream rating is GOOD.
                   <br />

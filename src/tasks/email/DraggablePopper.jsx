@@ -11,7 +11,6 @@ const DraggablePopper = ({ l1, l2, l3, open, setOpen }) => {
                elevation={3}
                className="handle"
                sx={{
-                  width: "30%",
                   backgroundColor: "#8ce9f5",
                   p: 1,
                   pl: 0,
