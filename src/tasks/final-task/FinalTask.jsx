@@ -72,7 +72,13 @@ export default function FinalTask() {
                zIndex={2} // Ensure the icon is above the content
                padding={2}
             >
-               <IconButton onClick={() => setOpenMenu(!openMenu)}>
+               <IconButton
+                  onClick={() => setOpenMenu(!openMenu)}
+                  sx={{
+                     backgroundColor: "#A5C4CB90",
+                     "&:hover": { backgroundColor: "#A5C4CB" },
+                  }}
+               >
                   <MenuIcon sx={{ fontSize: 35, color: "black" }} />
                </IconButton>
             </Box>
