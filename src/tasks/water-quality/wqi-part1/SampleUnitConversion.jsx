@@ -36,10 +36,7 @@ export default function SampleUnitConversion() {
 
    return (
       <div>
-         <Button
-            variant="contained"
-            onClick={handleClick}
-         >
+         <Button variant="contained" onClick={handleClick}>
             sample unit conversion
          </Button>
 
@@ -112,8 +109,8 @@ export default function SampleUnitConversion() {
                      <Typography>{eqn.text}&emsp;</Typography>
 
                      <MathJaxContext>
-                        <MathJax style={{ fontSize: "1.1rem" }}>
-                           {eqn.eqn}
+                        <MathJax>
+                           <span style={{ fontSize: {xs: "0.9rem", sm: "1rem"} }}>{eqn.eqn}</span>
                         </MathJax>
                      </MathJaxContext>
                   </Box>
