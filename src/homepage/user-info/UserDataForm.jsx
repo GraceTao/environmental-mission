@@ -39,7 +39,7 @@ export default function UserDataForm({ open, setOpen }) {
       setTimeout(() => {
          setOpen(!open);
          localStorage.setItem("submittedStartForm", true);
-         localStorage.setItem("allFormData", JSON.stringify(formData));
+         localStorage.setItem("userData", JSON.stringify(formData));
 
       }, 2000);
    };

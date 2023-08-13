@@ -5,12 +5,17 @@ import {
    DialogTitle,
    DialogContent,
    Button,
+   useMediaQuery,
+   useTheme,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
 function Instructions({ name, title, content, style }) {
    const location = useLocation().pathname;
    const [open, setOpen] = useState(localStorage.getItem(location) == null);
+
+   const theme = useTheme();
+   const fullScreen = useMediaQuery(theme.breakpoints.up("sm"));
 
    const handleClose = () => {
       setOpen(false);
@@ -30,9 +35,8 @@ function Instructions({ name, title, content, style }) {
          <Dialog
             open={open}
             onClose={handleClose}
-            position="fixed"
             fullWidth
-            maxWidth="md"
+            maxWidth={fullScreen ? "md" : "sm"}
          >
             {title && (
                <DialogTitle

@@ -17,6 +17,7 @@ import { useState } from "react";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 import { wqiFinal, marginOfError, solutions } from "../solns";
+import { addAttempt } from "../../../homepage/trackAttempts";
 
 const doErrorMargin = 1.5;
 
@@ -153,6 +154,8 @@ export default function Submit() {
    };
 
    const handleSubmit = () => {
+      console.log(addAttempt("wqiAttempts"));
+
       const answerCheck = answerWithinMargin(parseFloat(inputWQI).toFixed(2));
       setCorrect(answerCheck);
       setSubmitted(true);
@@ -322,8 +325,7 @@ export default function Submit() {
             <DialogContent sx={{ backgroundColor: "lightblue" }}>
                <Typography
                   align="center"
-                  fontSize={{ xs: "1.3rem", md: "1.5rem" }}
-                  fontFamily="tahoma"
+                  fontSize={{ xs: "1.2rem", md: "1.4rem" }}
                >
                   Correct! The stream rating is GOOD.
                   <br />

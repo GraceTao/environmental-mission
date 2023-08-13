@@ -1,10 +1,7 @@
-import { useState } from "react";
 import {
-   Box,
    List,
    ListItem,
    Drawer,
-   ListItemText,
    ListItemIcon,
    Typography,
    Divider,
@@ -58,10 +55,10 @@ export default function Menu({ openMenu, setOpenMenu }) {
          <List>
             <ListItem sx={{pl: "70%"}}>
                <IconButton onClick={() => setOpenMenu(!openMenu)}>
-                  <ChevronLeftIcon sx={{fontSize: 25}} />
+                  <ChevronLeftIcon sx={{fontSize: 30}} />
                </IconButton>
             </ListItem>
-            <ListItem sx={{ pt: 2, pb: 2 }}>
+            <ListItem sx={{ pb: 2 }}>
                <Typography color="darkgreen" fontWeight="bold" fontSize="1.3rem">
                   Environmental Portal
                </Typography>

@@ -22,13 +22,14 @@ import Turbidity from "./Turbidity";
 import NitratesPhosphates from "./NitratesPhosphates";
 import TS from "./TS";
 import Readings from "./Readings";
-import Instr from "../Instr";
+import Instr from "../../../components/Instr";
 import AssignmentTwoToneIcon from "@mui/icons-material/AssignmentTwoTone";
 import ChatIcon from "@mui/icons-material/Chat";
 import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
 import wqi_chat_animation from "../wqi_chat_animation.mp4";
 import Calculator from "../../../components/Calculator";
+import { SettingsInputAntennaTwoTone } from "@mui/icons-material";
 
 function CalendarAndInstructions() {
    const hasEnabledInstr = localStorage.getItem("hasEnabledWQIInstr");
@@ -115,100 +116,104 @@ export default function WQIHome() {
    const [openMessages, setOpenMessages] = useState(false);
 
    return (
-      <Box
-         sx={{
-            backgroundImage:
-               "url('https://upload.wikimedia.org/wikipedia/commons/7/71/Savage_River_%28Maryland%29_from_Allegany_Bridge.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            minHeight: "100vh",
-            overflow: "auto",
-            backgroundAttachment: "local",
-         }}
+      <TopBar
+         instruction={
+            <Instructions
+               name={
+                  <Typography
+                     color="#33403d"
+                     fontWeight="bold"
+                     fontSize="1.2rem"
+                  >
+                     instructions
+                  </Typography>
+               }
+               title={null}
+               content={<CalendarAndInstructions />}
+               style={{
+                  backgroundColor: "inherit",
+                  "&:hover": { backgroundColor: "#94B2B990" },
+               }}
+            ></Instructions>
+         }
       >
-         <TopBar
-            instruction={
-               <Instructions
-                  name={
-                     <Typography
-                        color="#33403d"
-                        fontWeight="bold"
-                        fontSize="1.2rem"
-                     >
-                        instructions
-                     </Typography>
-                  }
-                  title={null}
-                  content={<CalendarAndInstructions />}
-                  style={{
-                     backgroundColor: "inherit",
-                     "&:hover": { backgroundColor: "#94B2B990" },
-                  }}
-               ></Instructions>
-            }
-         />
-         <Box display="flex" flexDirection="row" justifyContent="space-between">
-            <Box display="flex" justifyContent="flex-start" flexDirection="row">
-               <IconButton
-                  sx={{
-                     backgroundColor: "lightgray",
-                     borderRadius: 5,
-                     top: { xs: 58, sm: 65 },
-                     left: 10,
-                     width: 70,
-                     height: 75,
-                     position: "fixed",
-                     mr: 3,
-                     mb: 1,
-                     "&:hover": { backgroundColor: "white" },
-                  }}
-                  onClick={() => setOpenClipboard(true)}
-               >
-                  <Tooltip title="Clipboard" arrow>
-                     <AssignmentTwoToneIcon
-                        sx={{ fontSize: 65, color: "black" }}
-                     />
-                  </Tooltip>
-               </IconButton>
+         <Box
+            sx={{
+               backgroundImage:
+                  "url('https://upload.wikimedia.org/wikipedia/commons/7/71/Savage_River_%28Maryland%29_from_Allegany_Bridge.jpg')",
+               backgroundSize: "cover",
+               backgroundPosition: "center",
+               backgroundRepeat: "no-repeat",
+               minHeight: "100vh",
+               overflow: "auto",
+               backgroundAttachment: "local",
+               position: "relative",
+               
+            }}
+         >
+            <Box
+               display="flex"
+               flexDirection="row"
+               justifyContent="space-between"
+               mt={8}
+            >
+               <Box display="flex" flexDirection="row" mt={0.5}>
+                  <IconButton
+                     sx={{
+                        backgroundColor: "lightgray",
+                        borderRadius: 5,
+                        width: 70,
+                        height: 75,
+                        "&:hover": { backgroundColor: "white" },
+                        mr: "5px",
+                        ml: "5px"
+                     }}
+                     onClick={() => setOpenClipboard(true)}
+                  >
+                     <Tooltip title="Clipboard" arrow>
+                        <AssignmentTwoToneIcon
+                           sx={{ fontSize: 65, color: "black" }}
+                        />
+                     </Tooltip>
+                  </IconButton>
+                  <Calculator />
+               </Box>
                <Readings
                   openClipboard={openClipboard}
                   setOpenClipboard={setOpenClipboard}
                />
-               <SampleUnitConversion />
-            </Box>
-
-            <Box sx={{ mt: {xs: 5, sm: 6} }}>
                <IconButton onClick={() => setOpenMessages(true)}>
                   <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
                </IconButton>
+               <Dialog
+                  open={openMessages}
+                  onClose={() => setOpenMessages(false)}
+               >
+                  <video controls autoPlay style={{ width: "100%" }}>
+                     <source
+                        src={wqi_chat_animation}
+                        alt="text messages"
+                        type="video/mp4"
+                     />
+                  </video>
+               </Dialog>
             </Box>
-            <Dialog open={openMessages} onClose={() => setOpenMessages(false)}>
-               <video controls autoPlay style={{ width: "100%" }}>
-                  <source
-                     src={wqi_chat_animation}
-                     alt="text messages"
-                     type="video/mp4"
-                  />
-               </video>
-            </Dialog>
-         </Box>
+            <Box ml="5px" mt="5px">
+               <SampleUnitConversion />
+            </Box>
+            <Box>
+               <DO />
+               <Temperature upstream={true}></Temperature>
+               <Temperature upstream={false}></Temperature>
+               <FC />
+               <PH />
+               <Turbidity />
+               <NitratesPhosphates />
+               <TS />
 
-         <Box sx={{ position: "fixed", top: {xs: 58, sm: 66}, left: 80 }}>
-            <Calculator />
+               <ImageCredits />
+            </Box>
          </Box>
-         <Box sx={{mt: "4%"}}>
-            <DO />
-            <Temperature upstream={true}></Temperature>
-            <Temperature upstream={false}></Temperature>
-            <FC />
-            <PH />
-            <Turbidity />
-            <NitratesPhosphates />
-            <TS />
-
-            <ImageCredits />
-         </Box>
-      </Box>
+      </TopBar>
    );
 }

@@ -17,6 +17,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
+import { addAttempt } from "../../homepage/trackAttempts";
 
 const RESTRICT_INPUT = /^[a-zA-Z ]+$/;
 const USERNAME = "me@green-solns.org";
@@ -31,23 +32,19 @@ export default function FinalTaskLogin({ showAlert, setShowAlert }) {
 
    const handleLogin = () => {
       let trimmed = password.toLocaleLowerCase().trim().replace(/\s/g, "");
-      const storedAttempts = localStorage.getItem("taskAttempts");
+
       if (trimmed) {
-         const attempts = storedAttempts ? parseInt(storedAttempts) + 1 : 1;
-         localStorage.setItem("taskAttempts", attempts.toString());
-         console.log(`Number of Attempts: ${attempts}`);
+         console.log(addAttempt("passwordAttempts"));
       }
+
       if (trimmed === PASSWORD) {
          setCorrect(true);
-         const prevData = JSON.parse(localStorage.getItem("allFormData"));
-         const prevAttempts = localStorage.getItem("taskAttempts");
-         const newData = { ...prevData, attempts: prevAttempts };
-         localStorage.setItem("allFormData", JSON.stringify(newData));
+         localStorage.setItem("correctPassword", true);
+
          setTimeout(() => {
             setDisplayLogin(!displayLogin);
             setShowAlert(!showAlert);
          }, 2000);
-         console.log(JSON.parse(localStorage.getItem("allFormData")));
       }
 
       setHasClicked(!hasClicked);

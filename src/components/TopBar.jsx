@@ -3,12 +3,14 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 import logo from "./PortCC-logo-horizontal-white.png";
 
-export default function TopBar({ instruction }) {
+export default function TopBar(props) {
+   const {children, instruction} = props;
    return (
       <>
          <AppBar
             position="fixed"
-            sx={{ backgroundColor: "seagreen", boxShadow: 0, }}
+            sx={{ backgroundColor: "seagreen", boxShadow: 0, height: 65}}
+            style={{zIndex: 1}}
          >
             <Toolbar style={{ position: "relative" }}>
                <div style={{ position: "absolute", left: 5 }}>
@@ -38,6 +40,7 @@ export default function TopBar({ instruction }) {
                </div>
             </Toolbar>
          </AppBar>
+         {children}
       </>
    );
 }
