@@ -26,7 +26,7 @@ const DraggablePopper = ({ l1, l2, l3, open, setOpen }) => {
                   <Typography sx={{ mt: 1, ml: 2, fontSize: {xs: "0.9rem", sm: "1rem"} }}>
                      <i>Drag me!</i>
                   </Typography>
-                  <IconButton onClick={() => setOpen(false)}>
+                  <IconButton onClick={() => setOpen(false)} onTouchEnd={() => setOpen(false)}>
                      <CloseIcon />
                   </IconButton>
                </Box>
