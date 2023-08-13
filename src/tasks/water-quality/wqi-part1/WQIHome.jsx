@@ -32,7 +32,7 @@ import Calculator from "../../../components/Calculator";
 import { SettingsInputAntennaTwoTone } from "@mui/icons-material";
 
 function CalendarAndInstructions() {
-   const hasEnabledInstr = sessionStorage.getItem("hasEnabledWQIInstr");
+   const hasEnabledInstr = localStorage.getItem("hasEnabledWQIInstr");
    const [enableInstr, setEnableInstr] = useState(Boolean(hasEnabledInstr));
    const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
 
@@ -95,7 +95,7 @@ function CalendarAndInstructions() {
                   }}
                   onClick={() => {
                      setOpenInstr(true);
-                     sessionStorage.setItem("hasEnabledWQIInstr", true);
+                     localStorage.setItem("hasEnabledWQIInstr", true);
                   }}
                >
                   to-do: stream visit

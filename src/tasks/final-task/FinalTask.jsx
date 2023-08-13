@@ -22,7 +22,7 @@ export default function FinalTask() {
 
    return (
       <Box>
-         {!sessionStorage.getItem("correctPassword") && (
+         {!localStorage.getItem("correctPassword") && (
             <FinalTaskLogin showAlert={showAlert} setShowAlert={setShowAlert} />
          )}
          <Grid
