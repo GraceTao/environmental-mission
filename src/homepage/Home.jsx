@@ -5,7 +5,6 @@ import {
    Grid,
    IconButton,
    Typography,
-   Fade,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Instructions from "../components/Instructions";
@@ -115,7 +114,24 @@ function Home() {
       ContactsIcon: false,
    });
 
-   const [showUserForm, setShowUserForm] = useState(localStorage.getItem("submittedStartForm") == null);
+   const [showUserForm, setShowUserForm] = useState(
+      sessionStorage.getItem("submittedStartForm") == null
+   );
+
+   useEffect(() => {
+      const storedAttempts = JSON.parse(sessionStorage.getItem("attempts"));
+      if (!storedAttempts) {
+         const initialAttempts = {
+            emailAttempts: 0,
+            inspectionAttempts: 0,
+            mapAttempts: 0,
+            wqiAttempts: 0,
+            passwordAttempts: 0,
+         };
+
+         sessionStorage.setItem("attempts", JSON.stringify(initialAttempts));
+      }
+   }, []);
 
    return (
       <>
@@ -127,9 +143,12 @@ function Home() {
             }}
          >
             {showUserForm ? (
-               <Dialog open={true} >
+               <Dialog open={true}>
                   <DialogContent>
-                     <UserDataForm open={showUserForm} setOpen={setShowUserForm} />
+                     <UserDataForm
+                        open={showUserForm}
+                        setOpen={setShowUserForm}
+                     />
                   </DialogContent>
                </Dialog>
             ) : (
@@ -142,7 +161,6 @@ function Home() {
                   />
                   <Notification />
 
-                  
                   <Instructions
                      name={<Typography color="white">instructions</Typography>}
                      title={mission}
