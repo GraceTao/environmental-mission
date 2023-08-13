@@ -30,10 +30,10 @@ const auth = new google.auth.GoogleAuth({
 const service = google.sheets({ version: "v4", auth });
 
 router.post("/submituserdata", async (req, res) => {
-   const { state, county, school, order, ...rest } = req.body;
+   const { state, county, school, order, emailAttempts, inspectionAttempts, mapAttempts, wqiAttempts, passwordAttempts, ...rest } = req.body;
+   
 
-   const toAdd = [state, county, school, order, ...Object.values(rest)];
-   console.log(toAdd);
+   const toAdd = [state, county, school, order, emailAttempts, inspectionAttempts, mapAttempts, wqiAttempts, passwordAttempts, ...Object.values(rest)];
 
    try {
       await service.spreadsheets.values.append({
