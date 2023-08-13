@@ -154,8 +154,8 @@ export default function Submit() {
    };
 
    const handleSubmit = () => {
-      addAttempt("wqiAttempt");
-      
+      addAttempt("calendarAttempts");
+
       const answerCheck = answerWithinMargin(parseFloat(inputWQI).toFixed(2));
       setCorrect(answerCheck);
       setSubmitted(true);
