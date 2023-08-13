@@ -75,8 +75,8 @@ export default function FinalTask() {
                <IconButton
                   onClick={() => setOpenMenu(!openMenu)}
                   sx={{
-                     backgroundColor: "#A5C4CB90",
-                     "&:hover": { backgroundColor: "#A5C4CB" },
+                     backgroundColor: "#ADD8E690",
+                     "&:hover": { backgroundColor: "#ADD8E6" },
                   }}
                >
                   <MenuIcon sx={{ fontSize: 35, color: "black" }} />
