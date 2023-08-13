@@ -39,7 +39,7 @@ export default function FinalTaskLogin({ showAlert, setShowAlert }) {
 
       if (trimmed === PASSWORD) {
          setCorrect(true);
-         localStorage.setItem("correctPassword", true);
+         sessionStorage.setItem("correctPassword", true);
 
          setTimeout(() => {
             setDisplayLogin(!displayLogin);

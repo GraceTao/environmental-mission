@@ -45,8 +45,8 @@ export default function FinalReport() {
       filtered = filtered.sort();
       filtered = filtered.join(",");
       if (answers.q1 && filtered && answers.q3 && answers.q4 && answers.q5) {
-         const userData = JSON.parse(localStorage.getItem("userData"));
-         const allAttempts = JSON.parse(localStorage.getItem("attempts"));
+         const userData = JSON.parse(sessionStorage.getItem("userData"));
+         const allAttempts = JSON.parse(sessionStorage.getItem("attempts"));
          const allData = { ...userData, ...allAttempts, ...answers, q2: filtered };
          console.log(allData);
 
