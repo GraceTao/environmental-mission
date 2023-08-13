@@ -19,6 +19,7 @@ function CalculatorNoButton() {
    const [operand2, setOperand2] = useState("");
    const [op, setOp] = useState("");
 
+
    useEffect(() => {
       const handleKeyDown = (event) => {
          const target = event.target;
@@ -45,52 +46,6 @@ function CalculatorNoButton() {
          document.removeEventListener("keydown", handleKeyDown);
       };
    }, [result, input, operand1, operand2, op]);
-
-   // useEffect(() => {
-   //    evaluate();
-   // }, [operand1, operand2, op])
-
-   // const handleNumberClick = (number) => {
-   //    setInput((prevInput) => prevInput + number);
-   
-   //    if (op) {
-   //       setOperand2((prevOp2) => prevOp2 + number);
-   //    } else {
-   //       setOperand1((prevOp1) => prevOp1 + number);
-   //    }
-   
-   //    if (!op) {
-   //       setResult(0); // Reset the result when starting a new number
-   //    }
-   // };
-   
-   // const handleOperationClick = (operation) => {
-   //    setInput((prevInput) => prevInput + operation);
-   
-   //    if (operation === "-") {
-   //       if (!op && !operand1) {
-   //          // Handle negative numbers
-   //          setOperand1("-");
-   //       } else if (operand1) {
-   //          if (input && !operand2) {
-   //             let lastChar = input.charAt(input.length - 1);
-   //             if (lastChar.match(/[\+|\-|\*|\/]$/)) {
-   //                setOperand2(operation);
-   //             } else {
-   //                setOp(operation);
-   //             }
-   //          } else {
-   //             evaluate();
-   //             setOp(operation);
-   //          }
-   //       } else {
-   //          setOperand1(operation);
-   //       }
-   //    } else {
-   //       evaluate();
-   //       setOp(operation);
-   //    }
-   // };
    
    const handleNumberClick = (number) => {
       setInput((prevInput) => prevInput + number);
@@ -174,9 +129,6 @@ function CalculatorNoButton() {
          evaluate();
       }
 
-      // setOp("");
-      // setOperand1(result);
-      // setOperand2("");
    };
 
    const handleClearClick = () => {

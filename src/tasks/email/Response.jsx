@@ -18,8 +18,8 @@ const solns = {
    height: 215,
    width: 300,
    length: 33,
-   volume: 215 * 300 * 33,
-   sa: 2 * (215 * 300 + 300 * 33 + 215 * 33),
+   volume: 215 * 300 * 33, // 2128500
+   sa: 2 * (215 * 300 + 300 * 33 + 215 * 33), //162990
 };
 
 export default function Response({
@@ -30,6 +30,7 @@ export default function Response({
    solved,
    setSolved,
 }) {
+
    const [error, setError] = useState("");
    const [submitted, setSubmitted] = useState(false);
 
@@ -117,7 +118,7 @@ export default function Response({
                </DialogContentText>
                <TextField
                   autoFocus
-                  disabled={solved}
+                  disabled={sessionStorage.getItem("solvedEmail") == "true"}
                   margin="dense"
                   id="height"
                   label="Height (ft)"
@@ -129,7 +130,7 @@ export default function Response({
                />
                <TextField
                   autoFocus
-                  disabled={solved}
+                  disabled={sessionStorage.getItem("solvedEmail") == "true"}
                   margin="dense"
                   id="length"
                   label="Left-Right Length (ft)"
@@ -141,7 +142,7 @@ export default function Response({
                />
                <TextField
                   autoFocus
-                  disabled={solved}
+                  disabled={sessionStorage.getItem("solvedEmail") == "true"}
                   margin="dense"
                   id="width"
                   label="Width/Depth (ft)"
@@ -154,7 +155,7 @@ export default function Response({
 
                <TextField
                   autoFocus
-                  disabled={solved}
+                  disabled={sessionStorage.getItem("solvedEmail") == "true"}
                   margin="dense"
                   id="volume"
                   label={
@@ -170,7 +171,7 @@ export default function Response({
                />
                <TextField
                   autoFocus
-                  disabled={solved}
+                  disabled={sessionStorage.getItem("solvedEmail") == "true"}
                   margin="dense"
                   id="sa"
                   label={
@@ -186,7 +187,7 @@ export default function Response({
                />
             </DialogContent>
             <DialogActions>
-               <Button variant="outlined" onClick={handleSolve}>
+               <Button variant="outlined" onClick={handleSolve} disabled={sessionStorage.getItem("solvedEmail") == "true"}>
                   Send
                </Button>
                <Button variant="outlined" onClick={handleClose}>
