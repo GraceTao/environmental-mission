@@ -7,20 +7,24 @@ import {
    Dialog,
    DialogContent,
    DialogTitle,
+   Tooltip,
 } from "@mui/material";
 import FinalTaskLogin from "./FinalTaskLogin";
 import Menu from "./Menu";
 import FinalReport from "./FinalReport";
 import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
+import { Link } from "react-router-dom";
 
 export default function FinalTask() {
-   const [showSubmissionPage, setShowSubmissionPage] = useState(false);
    const [openMenu, setOpenMenu] = useState(true);
    const [showAlert, setShowAlert] = useState(false);
 
    return (
       <Box>
-         <FinalTaskLogin showAlert={showAlert} setShowAlert={setShowAlert} />
+         {!sessionStorage.getItem("correctPassword") && (
+            <FinalTaskLogin showAlert={showAlert} setShowAlert={setShowAlert} />
+         )}
          <Grid
             container
             justifyContent="space-evenly"
@@ -45,7 +49,7 @@ export default function FinalTask() {
                      You have [ONE] task assigned but not completed: <br />
                      <br />
                      <b>
-                        1. Complete the environmental report for the Port of
+                        1. Complete the Environmental Report for the Port of
                         Corpus Christi
                      </b>
                      <ul>
@@ -81,6 +85,20 @@ export default function FinalTask() {
                >
                   <MenuIcon sx={{ fontSize: 35, color: "black" }} />
                </IconButton>
+            </Box>
+
+            <Box
+               position="fixed"
+               top={0}
+               right="2%"
+               zIndex={2} // Ensure the icon is above the content
+               pt={1}
+            >
+               <Tooltip title="Go Home" arrow>
+                  <IconButton component={Link} to="/" size="large">
+                     <HomeIcon sx={{ fontSize: 45, color: "black" }} />
+                  </IconButton>
+               </Tooltip>
             </Box>
 
             {openMenu && <Menu openMenu={openMenu} setOpenMenu={setOpenMenu} />}
