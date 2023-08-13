@@ -115,21 +115,21 @@ function Home() {
    });
 
    const [showUserForm, setShowUserForm] = useState(
-      sessionStorage.getItem("submittedStartForm") == null
+      localStorage.getItem("submittedStartForm") == null
    );
 
    useEffect(() => {
-      const storedAttempts = JSON.parse(sessionStorage.getItem("attempts"));
+      const storedAttempts = JSON.parse(localStorage.getItem("attempts"));
       if (!storedAttempts) {
          const initialAttempts = {
+            wqiAttempts: 0,
             emailAttempts: 0,
             inspectionAttempts: 0,
             mapAttempts: 0,
-            calendarAttempts: 0,
             passwordAttempts: 0,
          };
 
-         sessionStorage.setItem("attempts", JSON.stringify(initialAttempts));
+         localStorage.setItem("attempts", JSON.stringify(initialAttempts));
       }
    }, []);
 
@@ -191,7 +191,7 @@ function Home() {
                               to={
                                  app.path !== "/"
                                     ? app.name === "CalendarIcon" &&
-                                      sessionStorage.getItem(
+                                      localStorage.getItem(
                                          "displayWQIClue"
                                       ) == "true"
                                        ? "/wqi-p3"
