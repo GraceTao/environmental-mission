@@ -11,6 +11,7 @@ import {
    TextField,
 } from "@mui/material";
 import { useState } from "react";
+import { addAttempt } from "../../homepage/trackAttempts";
 
 const solns = {
    height: 215,
@@ -67,6 +68,7 @@ export default function Response({
          sessionStorage.setItem("solvedEmail", "true");
       }
       setSubmitted(true);
+      addAttempt("emailAttempts");
    };
 
    return (
