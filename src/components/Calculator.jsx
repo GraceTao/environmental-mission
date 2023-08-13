@@ -210,7 +210,7 @@ function CalculatorNoButton() {
          maxWidth={240}
          overflow="auto"
          // position="relative"
-         sx={{ backgroundColor: "lightblue", borderRadius: 3, boxShadow: 10 }}
+         sx={{ backgroundColor: "lightblue", borderRadius: 3, boxShadow: 10, border: "solid royalblue" }}
       >
          <Grid item xs={12}>
             <TextField
@@ -424,9 +424,9 @@ function Calculator() {
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
             placement="bottom-start"
-            style={{zIndex: 2}}
+            style={{zIndex: 6}}
          >
-            <CalculatorNoButton />
+               <CalculatorNoButton />
          </Popper>
          <IconButton
             onClick={handleClick}

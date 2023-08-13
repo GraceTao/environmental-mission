@@ -10,15 +10,16 @@ import {
    DialogActions,
    TextField,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addAttempt } from "../../homepage/trackAttempts";
+import Calculator from "../../components/Calculator";
 
 const solns = {
    height: 215,
    width: 300,
    length: 33,
    volume: 215 * 300 * 33,
-   sa: 2 * (215 * 300) + 2 * (300 * 33) + 2 * (215 * 33),
+   sa: 2 * (215 * 300 + 300 * 33 + 215 * 33),
 };
 
 export default function Response({
@@ -53,15 +54,18 @@ export default function Response({
 
    const handleSolve = () => {
       if (parseInt(inputs.height) !== solns.height) {
-         setError("Height");
-      } else if (parseInt(inputs.width) !== solns.width) {
-         setError("Width");
+         setError(<>Check your value for <b>Height</b>.</>);
       } else if (parseInt(inputs.length) !== solns.length) {
-         setError("Length");
+         setError(<>Check your value for <b>Length</b>.</>);
+      } else if (parseInt(inputs.width) !== solns.width) {
+         setError(<>Check your value for <b>Width</b>.</>);
       } else if (parseInt(inputs.volume) !== solns.volume) {
-         setError("Volume");
+         setError(<>Check your value for <b>Volume</b>. <br/>V = l * w * h</>);
       } else if (parseInt(inputs.sa) !== solns.sa) {
-         setError("Surface Area");
+         setError(<>Check your value for <b>Surface Area</b>. <br/>
+                  The surface area of a rectangular prism is the sum of the 
+                  areas of each of the six sides.
+                  </>);
       } else {
          setSolved(true);
          setOpen(false);
@@ -73,13 +77,33 @@ export default function Response({
 
    return (
       <Box>
-         <Dialog open={open} onClose={handleClose}>
+         <Dialog open={open} disableEnforceFocus style={{ zIndex: 5 }}>
             <DialogTitle>
-               {submitted && error && (
-                  <Alert severity="error" onClose={() => setError("")} sx={{fontSize: "1.05rem", boxShadow: 5}}>
-                     Check your value for <b>{error}</b>
-                  </Alert>
-               )}
+               <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+               >
+                  {submitted && error ? (
+                     <Alert
+                        severity="error"
+                        onClose={() => setError("")}
+                        sx={{ fontSize: "1.05rem", boxShadow: 5, pb: 0 }}
+                     >
+                        {error}
+                     </Alert>
+                  ) : (
+                     <Typography
+                        fontSize={{ xs: "1.1rem", sm: "1.2rem", md: "1.3rem" }}
+                        pt={2}
+                     >
+                        Replying to Sitara
+                     </Typography>
+                  )}
+                  <Box width="50px" height="50px">
+                     <Calculator />
+                  </Box>
+               </Box>
             </DialogTitle>
             <DialogContent>
                <DialogContentText>
@@ -93,9 +117,10 @@ export default function Response({
                </DialogContentText>
                <TextField
                   autoFocus
+                  disabled={solved}
                   margin="dense"
                   id="height"
-                  label="Height"
+                  label="Height (ft)"
                   fullWidth
                   variant="standard"
                   name="height"
@@ -104,20 +129,10 @@ export default function Response({
                />
                <TextField
                   autoFocus
-                  margin="dense"
-                  id="width"
-                  label="Width"
-                  name="width"
-                  value={inputs.width}
-                  fullWidth
-                  variant="standard"
-                  onChange={handleChange}
-               />
-               <TextField
-                  autoFocus
+                  disabled={solved}
                   margin="dense"
                   id="length"
-                  label="Length (left-right)"
+                  label="Left-Right Length (ft)"
                   value={inputs.length}
                   fullWidth
                   name="length"
@@ -126,9 +141,27 @@ export default function Response({
                />
                <TextField
                   autoFocus
+                  disabled={solved}
+                  margin="dense"
+                  id="width"
+                  label="Width/Depth (ft)"
+                  name="width"
+                  value={inputs.width}
+                  fullWidth
+                  variant="standard"
+                  onChange={handleChange}
+               />
+
+               <TextField
+                  autoFocus
+                  disabled={solved}
                   margin="dense"
                   id="volume"
-                  label="Volume"
+                  label={
+                     <>
+                        Volume (ft<sup>3</sup>)
+                     </>
+                  }
                   name="volume"
                   value={inputs.volume}
                   fullWidth
@@ -137,9 +170,14 @@ export default function Response({
                />
                <TextField
                   autoFocus
+                  disabled={solved}
                   margin="dense"
                   id="sa"
-                  label="Surface Area"
+                  label={
+                     <>
+                        Surface Area (ft<sup>2</sup>)
+                     </>
+                  }
                   value={inputs.sa}
                   fullWidth
                   name="sa"
