@@ -125,7 +125,7 @@ function Home() {
             emailAttempts: 0,
             inspectionAttempts: 0,
             mapAttempts: 0,
-            wqiAttempts: 0,
+            calendarAttempts: 0,
             passwordAttempts: 0,
          };
 
