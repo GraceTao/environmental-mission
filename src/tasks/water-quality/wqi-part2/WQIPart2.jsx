@@ -35,7 +35,7 @@ function createData(abbrName, formValues, qValues, setQValues) {
       const { name, value } = e.target;
       const updatedQValues = { ...qValues, [name]: value };
       setQValues(updatedQValues);
-      localStorage.setItem("qValues", JSON.stringify(updatedQValues));
+      sessionStorage.setItem("qValues", JSON.stringify(updatedQValues));
    };
 
    const inputBox = (
@@ -59,7 +59,7 @@ function createData(abbrName, formValues, qValues, setQValues) {
 }
 
 export default function WQIPart2() {
-   const formValues = JSON.parse(localStorage.getItem("formValues"));
+   const formValues = JSON.parse(sessionStorage.getItem("formValues"));
    const initial = {
       FC: solutions.FC.qValue,
       BOD: solutions.BOD.qValue,
@@ -71,13 +71,13 @@ export default function WQIPart2() {
 
    const savedQValues = location.state?.qValues || initial;
 
-   localStorage.getItem("qValues") ||
-      localStorage.setItem("qValues", JSON.stringify(initial));
+   sessionStorage.getItem("qValues") ||
+      sessionStorage.setItem("qValues", JSON.stringify(initial));
 
    const [qValues, setQValues] = useState(savedQValues);
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage
-      const storedQValues = JSON.parse(localStorage.getItem("qValues"));
+      const storedQValues = JSON.parse(sessionStorage.getItem("qValues"));
       if (storedQValues) {
          // If there are saved form values, update the state with them
          setQValues(storedQValues);

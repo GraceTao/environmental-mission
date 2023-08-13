@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+import { useState, React, useEffect } from "react";
 import {
    Typography,
    Box,
@@ -6,6 +6,7 @@ import {
    Button,
    Tooltip,
    Dialog,
+   DialogContent,
    useTheme,
    useMediaQuery,
 } from "@mui/material";
@@ -29,15 +30,19 @@ import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
 import wqi_chat_animation from "../wqi_chat_animation.mp4";
 import Calculator from "../../../components/Calculator";
-import { SettingsInputAntennaTwoTone } from "@mui/icons-material";
 
 function CalendarAndInstructions() {
-   const hasEnabledInstr = localStorage.getItem("hasEnabledWQIInstr");
-   const [enableInstr, setEnableInstr] = useState(Boolean(hasEnabledInstr));
-   const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
+   const hasEnabledInstr = Boolean(sessionStorage.getItem("hasEnabledWQIInstr"));
+   const [enableInstr, setEnableInstr] = useState(hasEnabledInstr);
+   const [openInstr, setOpenInstr] = useState(hasEnabledInstr);
+   const [videoPlayed, setVideoPlayed] = useState(hasEnabledInstr);
 
    const theme = useTheme();
    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+   useEffect(() => {
+      setTimeout(() => setVideoPlayed(true), 24000)
+   }, []);
 
    return openInstr ? (
       <Box
@@ -79,10 +84,11 @@ function CalendarAndInstructions() {
             <Box display="flex" flexDirection="column">
                <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DateCalendar
+                     disabled={!videoPlayed}
                      onChange={(date) => {
                         const selectedDate = date["$d"].toLocaleDateString();
                         const today = new Date().toLocaleDateString();
-                        setEnableInstr(selectedDate === today ? true : false);
+                        setEnableInstr(selectedDate === today);
                      }}
                   />
                </LocalizationProvider>
@@ -95,7 +101,7 @@ function CalendarAndInstructions() {
                   }}
                   onClick={() => {
                      setOpenInstr(true);
-                     localStorage.setItem("hasEnabledWQIInstr", true);
+                     sessionStorage.setItem("hasEnabledWQIInstr", true);
                   }}
                >
                   to-do: stream visit
@@ -107,11 +113,6 @@ function CalendarAndInstructions() {
 }
 
 export default function WQIHome() {
-   const name = (
-      <Typography variant="button" sx={{ fontSize: "1.2vw" }}>
-         Instructions
-      </Typography>
-   );
    const [openClipboard, setOpenClipboard] = useState(false);
    const [openMessages, setOpenMessages] = useState(false);
 
