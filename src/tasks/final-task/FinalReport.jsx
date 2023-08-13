@@ -85,6 +85,7 @@ export default function FinalReport() {
                severity="error"
                variant="filled"
                sx={{ position: "fixed", zIndex: 3, boxShadow: 10 }}
+               onClose={() => setShowError(!showError)}
             >
                <Typography fontSize="1.05rem" align="center">
                   One or more questions have not been answered.
