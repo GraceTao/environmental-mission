@@ -15,8 +15,8 @@ import email_chat_animation from "./email_chat_animation.mp4";
 
 function EmailInstructions() {
    useEffect(() => {
-      setTimeout(() => setVideoPlayed(true), 18000)
-   }, [])
+      setTimeout(() => setVideoPlayed(true), 18000);
+   }, []);
 
    const hasEnabledInstr = Boolean(
       sessionStorage.getItem("hasEnabledEmailInstr")
@@ -125,9 +125,17 @@ const Documents = () => {
             />
          }
       >
-         <Box position="fixed" top={70} left={"4%"} zIndex={1}>
+         {/* <Box
+            position="fixed"
+            top={70}
+            left="4%"
+            zIndex={1}
+            display="flex"
+            justifyContent="center"
+            width="50%"
+         >
             <Calculator />
-         </Box>
+         </Box> */}
 
          <Box position="relative" mt={13}>
             {rules && (

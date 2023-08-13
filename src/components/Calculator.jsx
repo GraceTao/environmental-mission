@@ -31,13 +31,14 @@ function CalculatorNoButton() {
          setResult(res);
          setHasEval(true);
       } catch (err) {
-         setResult(err);
+         setResult("Error: bad expression");
       }
    };
 
    const handleClearClick = () => {
       setExpr("");
       setResult(0);
+      setHasEval(false);
    };
 
    useEffect(() => {
@@ -68,12 +69,14 @@ function CalculatorNoButton() {
    const numberStyle = {
       pl: 2,
       pr: 2,
+      flexGrow: 1,
       backgroundColor: "#D9D9D9",
       "&:hover": { backgroundColor: "#D5D5D5" },
    };
    const opStyle = {
       pl: 2,
       pr: 2,
+      flexGrow: 1,
       backgroundColor: "#A0A0A0",
       "&:hover": { backgroundColor: "#9A9A9A" },
    };
@@ -85,9 +88,11 @@ function CalculatorNoButton() {
          pr={2}
          pb={1}
          justifyContent="center"
-         maxWidth={240}
+         width={240}
+         height={400}
+         maxWidth="50vw"
+         maxHeight="70vh"
          overflow="auto"
-         // position="relative"
          sx={{
             backgroundColor: "lightblue",
             borderRadius: 3,
@@ -106,6 +111,8 @@ function CalculatorNoButton() {
                   "& .MuiInputBase-input.Mui-disabled": {
                      WebkitTextFillColor: "#454545",
                   },
+                  maxHeight: 45,
+                  mb: 1,
                }}
             />
          </Grid>
@@ -120,6 +127,8 @@ function CalculatorNoButton() {
                   "& .MuiInputBase-input.Mui-disabled": {
                      WebkitTextFillColor: "#454545",
                   },
+                  maxHeight: 45,
+                  mb: 1
                }}
             />
          </Grid>
@@ -269,6 +278,7 @@ function Calculator() {
             onClose={() => setAnchorEl(null)}
             placement="bottom-start"
             style={{ zIndex: 6 }}
+            display="flex"
          >
             <CalculatorNoButton />
          </Popper>
