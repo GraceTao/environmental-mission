@@ -8,7 +8,7 @@ const serviceAccount = {
    type: "service_account",
    project_id: "learn-undef-environ-mission",
    private_key_id: process.env.PRIVATE_KEY_ID,
-   private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
+   private_key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"),
    client_email: process.env.CLIENT_EMAIL,
    client_id: process.env.CLIENT_ID,
    auth_uri: "https://accounts.google.com/o/oauth2/auth",
@@ -27,13 +27,13 @@ const auth = new google.auth.GoogleAuth({
    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
-
 const service = google.sheets({ version: "v4", auth });
 
 router.post("/submituserdata", async (req, res) => {
-   const { state, county, school, order, attempts, q1, q2, q3, q4, q5 } = req.body;
+   const { state, county, school, order, emailAttempts, inspectionAttempts, mapAttempts, wqiAttempts, passwordAttempts, ...rest } = req.body;
+   
 
-   console.log(req.body);
+   const toAdd = [state, county, school, order, emailAttempts, inspectionAttempts, mapAttempts, wqiAttempts, passwordAttempts, ...Object.values(rest)];
 
    try {
       await service.spreadsheets.values.append({
@@ -41,7 +41,7 @@ router.post("/submituserdata", async (req, res) => {
          range: "Sheet1",
          valueInputOption: "RAW",
          resource: {
-            values: [[state, county, school, order, attempts, q1, q2, q3, q4, q5]],
+            values: [toAdd],
          },
       });
 
@@ -60,7 +60,7 @@ router.post("/submituserdata", async (req, res) => {
 //          spreadsheetId: SHEET_ID,
 //          range: "A1:C1",
 //        });
-   
+
 //        const rows = response.data.values;
 //        console.log("Row data:", rows);
 //       res.status(200).send("Row fetched successfully");

@@ -1,51 +1,77 @@
 import React, { useState } from "react";
 import Draggable from "react-draggable";
-import Paper from "@mui/material/Paper";
+import { Box, Paper, Typography, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
-const DraggablePopper = (props) => {
-  const [open, setOpen] = useState(false);
-
-  const handleToggle = () => {
-    setOpen((prev) => !prev);
-  };
-
-  return (
-    <div>
-
-      <Draggable
-        handle=".handle"
-        position={null}
-        
-      >
-        <Paper
-          elevation={3}
-          className="handle"
-          style={{
-            width: "30%",
-            display: "flex",
-            backgroundColor: "#8ce9f5",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "1rem",
-
-          
-          }}
-            
-            
-            
-            
-         
-          
-        >
-          <h2> Rules for Development</h2>
-          <div> {props.l1}</div>
-          <div> {props.l2}</div>
-          <div> {props.l3}</div>
-          
-        </Paper>
-      </Draggable>
-    </div>
-  );
+const DraggablePopper = ({ l1, l2, l3, open, setOpen }) => {
+   return (
+      <div>
+         <Draggable handle=".handle" position={null}>
+            <Paper
+               elevation={3}
+               className="handle"
+               sx={{
+                  backgroundColor: "#8ce9f5",
+                  p: 1,
+                  pl: 0,
+                  zIndex: 2,
+                  position: "relative",
+               }}
+            >
+               <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+               >
+                  <Typography sx={{ mt: 1, ml: 2, fontSize: {xs: "0.9rem", sm: "1rem"} }}>
+                     <i>Drag me!</i>
+                  </Typography>
+                  <IconButton onClick={() => setOpen(false)} onTouchEnd={() => setOpen(false)}>
+                     <CloseIcon />
+                  </IconButton>
+               </Box>
+               <Typography
+                  fontSize={{ xs: "1rem", sm: "1.1rem", md: "1.2rem" }}
+                  fontWeight="bold"
+                  align="center"
+               >
+                  Rules for Development
+               </Typography>
+               <ol>
+                  <li>
+                     <Typography
+                        sx={{
+                           fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                           mb: 1,
+                        }}
+                     >
+                        {l1}
+                     </Typography>
+                  </li>
+                  <li>
+                     <Typography
+                        sx={{
+                           fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                           mb: 1,
+                        }}
+                     >
+                        {l2}
+                     </Typography>
+                  </li>
+                  <li>
+                     <Typography
+                        sx={{
+                           fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                        }}
+                     >
+                        {l3}
+                     </Typography>
+                  </li>
+               </ol>
+            </Paper>
+         </Draggable>
+      </div>
+   );
 };
 
 export default DraggablePopper;

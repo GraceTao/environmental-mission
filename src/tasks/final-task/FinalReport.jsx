@@ -45,10 +45,14 @@ export default function FinalReport() {
       filtered = filtered.sort();
       filtered = filtered.join(",");
       if (answers.q1 && filtered && answers.q3 && answers.q4 && answers.q5) {
-         const prevData = JSON.parse(localStorage.getItem("allFormData"));
-         const allData = { ...prevData, ...answers, q2: filtered };
+         const userData = JSON.parse(localStorage.getItem("userData"));
+         const allAttempts = JSON.parse(localStorage.getItem("attempts"));
+         const allData = { ...userData, ...allAttempts, ...answers, q2: filtered };
+         console.log(allData);
+
          setShowError(false);
          setShowSubmitting(true);
+         
          try {
             await axios.post("/api/submituserdata", allData);
             console.log("Data added successfully");
@@ -60,8 +64,6 @@ export default function FinalReport() {
             setShowFinalPage(true);
             setShowSubmitting(false);
          }, 4000);
-
-
       } else {
          setShowError(true);
       }
@@ -85,6 +87,7 @@ export default function FinalReport() {
                severity="error"
                variant="filled"
                sx={{ position: "fixed", zIndex: 3, boxShadow: 10 }}
+               onClose={() => setShowError(!showError)}
             >
                <Typography fontSize="1.05rem" align="center">
                   One or more questions have not been answered.
@@ -246,8 +249,9 @@ export default function FinalReport() {
                   variant="contained"
                   onClick={handleSubmit}
                   sx={{
-                     fontSize: "1.05rem",
+                     fontSize: { xs: "1rem", sm: "1.05rem" },
                      width: "25%",
+                     minWidth: "130px",
                      backgroundColor: "blueviolet",
                      "&:hover": {
                         backgroundColor: "#9A54E5 ",
