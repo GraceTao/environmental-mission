@@ -188,7 +188,16 @@ function Home() {
                         <Grid item key={app.name}>
                            <IconButton
                               component={app.path !== "/" ? Link : null}
-                              to={app.path !== "/" ? app.path : null}
+                              to={
+                                 app.path !== "/"
+                                    ? app.name === "CalendarIcon" &&
+                                      sessionStorage.getItem(
+                                         "displayWQIClue"
+                                      ) == "true"
+                                       ? "/wqi-p3"
+                                       : app.path
+                                    : null
+                              }
                               onClick={() => {
                                  app.path === "/" &&
                                     setShowIconContent({
