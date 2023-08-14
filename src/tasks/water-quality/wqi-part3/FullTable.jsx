@@ -9,8 +9,8 @@ import { useState, useEffect } from "react";
 import { solutions } from "../solns";
 
 function createData(abbrName, weightedValues, setWeightedValues) {
-   const formValues = JSON.parse(localStorage.getItem("formValues"));
-   const qValues = JSON.parse(localStorage.getItem("qValues"));
+   const formValues = JSON.parse(sessionStorage.getItem("formValues"));
+   const qValues = JSON.parse(sessionStorage.getItem("qValues"));
 
    const name = solutions[abbrName].fullName;
    const readingWithUnits = (
@@ -26,7 +26,7 @@ function createData(abbrName, weightedValues, setWeightedValues) {
       const { name, value } = e.target;
       const updatedWeightedValues = { ...weightedValues, [name]: value };
       setWeightedValues(updatedWeightedValues);
-      localStorage.setItem(
+      sessionStorage.setItem(
          "weightedValues",
          JSON.stringify(updatedWeightedValues)
       );
@@ -64,7 +64,7 @@ export default function FullTable() {
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage
       const storedWeightedValues = JSON.parse(
-         localStorage.getItem("weightedValues")
+         sessionStorage.getItem("weightedValues")
       );
       if (storedWeightedValues) {
          // If there are saved form values, update the state with them
