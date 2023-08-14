@@ -29,7 +29,7 @@ function createData(abbrName, formValues, setFormValues) {
       const updatedFormValues = { ...formValues, [name]: value };
 
       setFormValues(updatedFormValues);
-      localStorage.setItem("formValues", JSON.stringify(updatedFormValues));
+      sessionStorage.setItem("formValues", JSON.stringify(updatedFormValues));
    };
 
    const inputBox = (
@@ -64,12 +64,12 @@ export default function Readings({ openClipboard, setOpenClipboard }) {
    const savedFormValues = location.state?.formValues || initial;
 
    const [formValues, setFormValues] = useState(savedFormValues);
-   localStorage.getItem("formValues") ||
-      localStorage.setItem("formValues", JSON.stringify(initial));
+   sessionStorage.getItem("formValues") ||
+      sessionStorage.setItem("formValues", JSON.stringify(initial));
 
    useEffect(() => {
       // When the component mounts, retrieve the form values from session storage
-      const storedFormValues = JSON.parse(localStorage.getItem("formValues"));
+      const storedFormValues = JSON.parse(sessionStorage.getItem("formValues"));
 
       if (storedFormValues) {
          // If there are saved form values, update the state with them

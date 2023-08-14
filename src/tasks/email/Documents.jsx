@@ -19,7 +19,7 @@ function EmailInstructions() {
    }, []);
 
    const hasEnabledInstr = Boolean(
-      localStorage.getItem("hasEnabledEmailInstr")
+      sessionStorage.getItem("hasEnabledEmailInstr")
    );
    const [openInstr, setOpenInstr] = useState(hasEnabledInstr);
    const [videoPlayed, setVideoPlayed] = useState(hasEnabledInstr);
@@ -54,7 +54,7 @@ function EmailInstructions() {
             variant="contained"
             color="info"
             onClick={() => {
-               localStorage.setItem("hasEnabledEmailInstr", true);
+               sessionStorage.setItem("hasEnabledEmailInstr", true);
                setOpenInstr(!openInstr);
             }}
          >
@@ -69,27 +69,27 @@ function EmailInstructions() {
 const Documents = () => {
    const [openResponse, setOpenResponse] = useState(false);
    const [solved, setSolved] = useState(
-      false || localStorage.getItem("solvedEmail") == "true"
+      false || sessionStorage.getItem("solvedEmail") == "true"
    );
    const [image, setImage] = useState(false);
    const [rules, showRules] = useState(false);
    const initialHeight =
-      localStorage.getItem("height") != null
-         ? localStorage.getItem("height")
+      sessionStorage.getItem("height") != null
+         ? sessionStorage.getItem("height")
          : "";
    const initialWidth =
-      localStorage.getItem("width") != null
-         ? localStorage.getItem("width")
+      sessionStorage.getItem("width") != null
+         ? sessionStorage.getItem("width")
          : "";
    const initialSA =
-      localStorage.getItem("sa") != null ? localStorage.getItem("sa") : "";
+      sessionStorage.getItem("sa") != null ? sessionStorage.getItem("sa") : "";
    const initialVolume =
-      localStorage.getItem("volume") != null
-         ? localStorage.getItem("volume")
+      sessionStorage.getItem("volume") != null
+         ? sessionStorage.getItem("volume")
          : "";
    const initialLength =
-      localStorage.getItem("length") != null
-         ? localStorage.getItem("length")
+      sessionStorage.getItem("length") != null
+         ? sessionStorage.getItem("length")
          : "";
    // console.log(initialSA);
 

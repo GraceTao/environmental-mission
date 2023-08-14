@@ -22,8 +22,8 @@ import { addAttempt } from "../../../homepage/trackAttempts";
 const doErrorMargin = 1.5;
 
 export default function Submit() {
-   const storedWQI = localStorage.getItem("inputWQI");
-   const displayWQIClue = localStorage.getItem("displayWQIClue");
+   const storedWQI = sessionStorage.getItem("inputWQI");
+   const displayWQIClue = sessionStorage.getItem("displayWQIClue");
    const answerWithinMargin = (ans) => {
       return Math.abs(ans - wqiFinal) <= marginOfError;
    };
@@ -33,10 +33,10 @@ export default function Submit() {
    const [submitted, setSubmitted] = useState(answerWithinMargin(storedWQI));
    const [displayClue, setDisplayClue] = useState(displayWQIClue);
 
-   const storedMeasurements = JSON.parse(localStorage.getItem("formValues"));
-   const storedQValues = JSON.parse(localStorage.getItem("qValues"));
+   const storedMeasurements = JSON.parse(sessionStorage.getItem("formValues"));
+   const storedQValues = JSON.parse(sessionStorage.getItem("qValues"));
    const storedWeightedValues = JSON.parse(
-      localStorage.getItem("weightedValues")
+      sessionStorage.getItem("weightedValues")
    );
 
    // const [storedWeightedValues, setStoredWeightedValues] = useState(null);
@@ -159,7 +159,7 @@ export default function Submit() {
       const answerCheck = answerWithinMargin(parseFloat(inputWQI).toFixed(2));
       setCorrect(answerCheck);
       setSubmitted(true);
-      localStorage.setItem("inputWQI", inputWQI);
+      sessionStorage.setItem("inputWQI", inputWQI);
       setOpenAlert(true);
 
       if (!answerCheck) {
@@ -173,7 +173,7 @@ export default function Submit() {
    };
 
    const onCorrectRating = () => {
-      localStorage.setItem("displayWQIClue", true);
+      sessionStorage.setItem("displayWQIClue", true);
       setDisplayClue(true);
    };
 
