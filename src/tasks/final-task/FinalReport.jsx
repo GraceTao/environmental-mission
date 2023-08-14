@@ -59,13 +59,13 @@ export default function FinalReport({ setShowCert }) {
          setShowError(false);
          setShowSubmitting(true);
 
-         // try {
-         //    await axios.post("/api/submituserdata", allData);
-         //    console.log("Data added successfully");
-         // } catch (err) {
-         //    console.log("Error:", err);
-         // }
-         // console.log(allData);
+         try {
+            await axios.post("/api/submituserdata", allData);
+            console.log("Data added successfully");
+         } catch (err) {
+            console.log("Error:", err);
+         }
+
          setTimeout(() => {
             setShowFinalPage(true);
             setShowSubmitting(false);
