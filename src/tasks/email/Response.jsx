@@ -46,11 +46,11 @@ export default function Response({
       setSubmitted(false);
       setError("");
 
-      sessionStorage.setItem("height", inputs.height);
-      sessionStorage.setItem("length", inputs.length);
-      sessionStorage.setItem("width", inputs.width);
-      sessionStorage.setItem("volume", inputs.volume);
-      sessionStorage.setItem("sa", inputs.sa);
+      localStorage.setItem("height", inputs.height);
+      localStorage.setItem("length", inputs.length);
+      localStorage.setItem("width", inputs.width);
+      localStorage.setItem("volume", inputs.volume);
+      localStorage.setItem("sa", inputs.sa);
    };
 
    const handleSolve = () => {
@@ -71,7 +71,7 @@ export default function Response({
          setSolved(true);
          setOpen(false);
          setError("");
-         sessionStorage.setItem("solvedEmail", "true");
+         localStorage.setItem("solvedEmail", "true");
       }
       setSubmitted(true);
       console.log(addAttempt("emailAttempts"));
@@ -119,7 +119,7 @@ export default function Response({
                </DialogContentText>
                <TextField
                   autoFocus
-                  disabled={sessionStorage.getItem("solvedEmail") == "true"}
+                  disabled={localStorage.getItem("solvedEmail") == "true"}
                   margin="dense"
                   id="height"
                   label="Height (ft)"
@@ -131,7 +131,7 @@ export default function Response({
                />
                <TextField
                   autoFocus
-                  disabled={sessionStorage.getItem("solvedEmail") == "true"}
+                  disabled={localStorage.getItem("solvedEmail") == "true"}
                   margin="dense"
                   id="length"
                   label="Left-Right Length (ft)"
@@ -143,7 +143,7 @@ export default function Response({
                />
                <TextField
                   autoFocus
-                  disabled={sessionStorage.getItem("solvedEmail") == "true"}
+                  disabled={localStorage.getItem("solvedEmail") == "true"}
                   margin="dense"
                   id="width"
                   label="Width/Depth (ft)"
@@ -156,7 +156,7 @@ export default function Response({
 
                <TextField
                   autoFocus
-                  disabled={sessionStorage.getItem("solvedEmail") == "true"}
+                  disabled={localStorage.getItem("solvedEmail") == "true"}
                   margin="dense"
                   id="volume"
                   label={
@@ -172,7 +172,7 @@ export default function Response({
                />
                <TextField
                   autoFocus
-                  disabled={sessionStorage.getItem("solvedEmail") == "true"}
+                  disabled={localStorage.getItem("solvedEmail") == "true"}
                   margin="dense"
                   id="sa"
                   label={
@@ -188,7 +188,7 @@ export default function Response({
                />
             </DialogContent>
             <DialogActions>
-               <Button variant="outlined" onClick={handleSolve} disabled={sessionStorage.getItem("solvedEmail") == "true"}>
+               <Button variant="outlined" onClick={handleSolve} disabled={localStorage.getItem("solvedEmail") == "true"}>
                   Send
                </Button>
                <Button variant="outlined" onClick={handleClose}>

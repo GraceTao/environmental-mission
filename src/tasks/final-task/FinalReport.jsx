@@ -27,13 +27,13 @@ export default function FinalReport({ setShowCert }) {
       q4: "",
       q5: "",
    };
-   const storedAnswers = JSON.parse(sessionStorage.getItem("answers"));
+   const storedAnswers = JSON.parse(localStorage.getItem("answers"));
    if (!storedAnswers) {
-      sessionStorage.setItem("answers", JSON.stringify(initialAnswers));
+      localStorage.setItem("answers", JSON.stringify(initialAnswers));
    }
 
    const [answers, setAnswers] = useState(
-      JSON.parse(sessionStorage.getItem("answers")) || initialAnswers
+      JSON.parse(localStorage.getItem("answers")) || initialAnswers
    );
 
    const [showError, setShowError] = useState(false);
@@ -48,8 +48,8 @@ export default function FinalReport({ setShowCert }) {
    };
 
    const updateStorage = (key, val) => {
-      const prevAnswers = JSON.parse(sessionStorage.getItem("answers"));
-      sessionStorage.setItem(
+      const prevAnswers = JSON.parse(localStorage.getItem("answers"));
+      localStorage.setItem(
          "answers",
          JSON.stringify({ ...prevAnswers, [key]: val })
       );
@@ -62,8 +62,8 @@ export default function FinalReport({ setShowCert }) {
       filtered = filtered.sort();
       filtered = filtered.join(",");
       if (answers.q1 && filtered && answers.q3 && answers.q4 && answers.q5) {
-         const userData = JSON.parse(sessionStorage.getItem("userData"));
-         const allAttempts = JSON.parse(sessionStorage.getItem("attempts"));
+         const userData = JSON.parse(localStorage.getItem("userData"));
+         const allAttempts = JSON.parse(localStorage.getItem("attempts"));
          const allData = {
             ...userData,
             ...allAttempts,
@@ -157,7 +157,7 @@ export default function FinalReport({ setShowCert }) {
                      }}
                      onClick={() => {
                         setShowCert(true);
-                        sessionStorage.setItem("showCert", true);
+                        localStorage.setItem("showCert", true);
                      }}
                   >
                      get certificate
@@ -211,7 +211,7 @@ export default function FinalReport({ setShowCert }) {
                         key={choice.id}
                         value={choice.id}
                         defaultChecked={
-                           JSON.parse(sessionStorage.getItem("answers")).q1 ===
+                           JSON.parse(localStorage.getItem("answers")).q1 ===
                            choice.id
                         }
                         control={<Radio color="success" />}
@@ -245,7 +245,7 @@ export default function FinalReport({ setShowCert }) {
                         }
                         label={choice.label}
                         defaultChecked={Boolean(
-                           JSON.parse(sessionStorage.getItem("answers")).q2[
+                           JSON.parse(localStorage.getItem("answers")).q2[
                               choice.id
                            ]
                         )}
@@ -261,7 +261,7 @@ export default function FinalReport({ setShowCert }) {
                   multiline
                   rows={3}
                   onChange={handleChange}
-                  defaultValue={JSON.parse(sessionStorage.getItem("answers")).q3}
+                  defaultValue={JSON.parse(localStorage.getItem("answers")).q3}
                   sx={textFieldStyle}
                />
                <br />
@@ -273,7 +273,7 @@ export default function FinalReport({ setShowCert }) {
                   multiline
                   rows={3}
                   onChange={handleChange}
-                  defaultValue={JSON.parse(sessionStorage.getItem("answers")).q4}
+                  defaultValue={JSON.parse(localStorage.getItem("answers")).q4}
                   sx={textFieldStyle}
                />
                <br />
@@ -285,7 +285,7 @@ export default function FinalReport({ setShowCert }) {
                   multiline
                   rows={3}
                   onChange={handleChange}
-                  defaultValue={JSON.parse(sessionStorage.getItem("answers")).q5}
+                  defaultValue={JSON.parse(localStorage.getItem("answers")).q5}
                   sx={textFieldStyle}
                />
             </Box>

@@ -23,12 +23,12 @@ export default function FinalTask() {
    const [openMenu, setOpenMenu] = useState(true);
    const [showAlert, setShowAlert] = useState(false);
    const [showCert, setShowCert] = useState(
-      Boolean(sessionStorage.getItem("showCert"))
+      Boolean(localStorage.getItem("showCert"))
    );
 
    return (
       <Box>
-         {!sessionStorage.getItem("correctPassword") && (
+         {!localStorage.getItem("correctPassword") && (
             <FinalTaskLogin showAlert={showAlert} setShowAlert={setShowAlert} />
          )}
          {!showCert ? (
