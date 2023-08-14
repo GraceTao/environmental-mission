@@ -22,7 +22,7 @@ import { addAttempt } from "../../homepage/trackAttempts";
 const RESTRICT_INPUT = /^[a-zA-Z ]+$/;
 const USERNAME = "me@green-solns.org";
 const PASSWORD = "watersoilairpolicy";
-const accountCircles = ["mediumpurple", "springgreen", "turquoise", "orange"];
+const accountCircles = ["#A876DA", "#A1E876", "#83E8EB", "#FCD168"];
 
 export default function FinalTaskLogin({ showAlert, setShowAlert }) {
    const [displayLogin, setDisplayLogin] = useState(true);

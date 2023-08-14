@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
    Typography,
    Box,
@@ -84,6 +84,7 @@ function MapInstructions() {
             </Box>
             <Box display='flex' alignContent="center" justifyContent={"center"} marginTop="10px">
             <Button
+               disabled={!videoPlayed}
                variant="contained"
                sx={{
                   backgroundColor: "#417B88",
@@ -104,7 +105,12 @@ function MapInstructions() {
 }
 
 export default function MapHome() {
+   useEffect(() => {
+      setTimeout(() => setVideoPlayed(true), 18000);
+   }, []);
+
    const [openMessages, setOpenMessages] = useState(false);
+   const [videoPlayed, setVideoPlayed] = useState(false);
 
    return (
       <Box
