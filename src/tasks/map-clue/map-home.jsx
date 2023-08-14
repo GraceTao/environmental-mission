@@ -19,8 +19,10 @@ import Tree from "./Tree";
 import Hydrogen from "./Hydrogen";
 import CO2 from "./CO2";
 import PolicyClue from "./PolicyClue";
+
 import chat from "./map_chat_animation.mp4";
 import Calculator from "../../components/Calculator";
+
 
 function MapInstructions() {
    const hasEnabledInstr = sessionStorage.getItem("hasEnabledMapInstr");
