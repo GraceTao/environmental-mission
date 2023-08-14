@@ -19,7 +19,8 @@ import axios from "axios";
 import { q1, q2, q3, q4, q5 } from "./questions";
 import logo from "../../components/PortCC-logo-horizontal-white.png";
 
-export default function FinalReport() {
+
+export default function FinalReport({ setShowCert }) {
    const [answers, setAnswers] = useState({
       q1: "",
       q2: {},
@@ -47,23 +48,28 @@ export default function FinalReport() {
       if (answers.q1 && filtered && answers.q3 && answers.q4 && answers.q5) {
          const userData = JSON.parse(sessionStorage.getItem("userData"));
          const allAttempts = JSON.parse(sessionStorage.getItem("attempts"));
-         const allData = { ...userData, ...allAttempts, ...answers, q2: filtered };
+         const allData = {
+            ...userData,
+            ...allAttempts,
+            ...answers,
+            q2: filtered,
+         };
          console.log(allData);
 
          setShowError(false);
          setShowSubmitting(true);
-         
-         try {
-            await axios.post("/api/submituserdata", allData);
-            console.log("Data added successfully");
-         } catch (err) {
-            console.log("Error:", err);
-         }
+
+         // try {
+         //    await axios.post("/api/submituserdata", allData);
+         //    console.log("Data added successfully");
+         // } catch (err) {
+         //    console.log("Error:", err);
+         // }
          // console.log(allData);
          setTimeout(() => {
             setShowFinalPage(true);
             setShowSubmitting(false);
-         }, 4000);
+         }, 1000);
       } else {
          setShowError(true);
       }
@@ -123,18 +129,22 @@ export default function FinalReport() {
                   sx={{ mb: 2 }}
                   align="center"
                >
-                  Thank you for completing today's mission. Click the button to
-                  exit.
+                  Thank you for completing today's mission. Click below to exit
+                  and receive a certificate of completion.
                </Typography>
                <Box align="center">
                   <Button
                      variant="contained"
                      sx={{
                         backgroundColor: "royalblue",
-                        "&:hover": { backgroundColor: "mediumblue" },
+                        "&:hover": { backgroundColor: "#404DC7 " },
+                     }}
+                     onClick={() => {
+                        setShowCert(true);
+                        sessionStorage.setItem("showCert", true);
                      }}
                   >
-                     exit
+                     get certificate
                   </Button>
                </Box>
             </DialogContent>
