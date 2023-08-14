@@ -25,7 +25,7 @@ import Calculator from "../../components/Calculator";
 
 
 function MapInstructions() {
-   const hasEnabledInstr = localStorage.getItem("hasEnabledMapInstr");
+   const hasEnabledInstr = sessionStorage.getItem("hasEnabledMapInstr");
    const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
 
    useEffect(() => {
@@ -96,7 +96,7 @@ function MapInstructions() {
                   }}
                   onClick={() => {
                      setOpenInstr(true);
-                     localStorage.setItem("hasEnabledMapInstr", true);
+                     sessionStorage.setItem("hasEnabledMapInstr", true);
                   }}
                >
                   Visit the Port of Corpus Christi!
