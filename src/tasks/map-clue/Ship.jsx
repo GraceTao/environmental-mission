@@ -14,14 +14,14 @@ function Page1() {
             <ShipTable />
          </Box>
 
-         <Typography sx={{ p: 2, fontSize: { sm: "3rem", lg: "3.2rem" } }}>
+         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" }}}>
             What is the ratio of outbound to inbound crude oil tonnage? Round DOWN to the nearest whole number.
             <br />
             <br />
             ratio = X:1
          </Typography>
-         <Typography sx={{ p: 2, fontSize: { sm: "0.8rem", lg: "1rem" } }}>
-            source: https://portofcc.com/wp-content/uploads/Cargo_Tonnage_by_Commodity_2023_05.pdf
+         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" }}}>
+            Source: https://portofcc.com/wp-content/uploads/Cargo_Tonnage_by_Commodity_2023_05.pdf
          </Typography>
       </div>
    );
