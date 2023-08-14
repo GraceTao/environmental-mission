@@ -160,7 +160,7 @@ export default function FinalReport({ setShowCert }) {
                         localStorage.setItem("showCert", true);
                      }}
                   >
-                     get certificate
+                     view certificate
                   </Button>
                </Box>
             </DialogContent>
