@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
    IconButton,
    Button,
@@ -7,18 +7,39 @@ import {
    Popper,
    Typography,
    Tooltip,
-   Box
+   Box,
 } from "@mui/material";
 import CalculateIcon from "@mui/icons-material/Calculate";
-import { useEffect } from "react";
+import { evaluate } from "mathjs";
 
 function CalculatorNoButton() {
+   const [expr, setExpr] = useState("");
    const [result, setResult] = useState(0);
-   const [input, setInput] = useState("");
-   const [operand1, setOperand1] = useState("");
-   const [operand2, setOperand2] = useState("");
-   const [op, setOp] = useState("");
+   const [hasEval, setHasEval] = useState(false);
 
+   const handleClick = (item) => {
+      if (hasEval) {
+         setExpr(result);
+         setHasEval(false);
+      }
+      setExpr((prev) => prev + item);
+   };
+
+   const handleEqualsClick = () => {
+      try {
+         const res = parseFloat(evaluate(expr).toFixed(8));
+         setResult(res);
+         setHasEval(true);
+      } catch (err) {
+         setResult("Error: bad expression");
+      }
+   };
+
+   const handleClearClick = () => {
+      setExpr("");
+      setResult(0);
+      setHasEval(false);
+   };
 
    useEffect(() => {
       const handleKeyDown = (event) => {
@@ -29,10 +50,8 @@ function CalculatorNoButton() {
          event.preventDefault();
          const key = event.key;
 
-         if (key.match(/[0-9.]$/)) {
-            handleNumberClick(key);
-         } else if (key.match(/[+\-*/]$/)) {
-            handleOperationClick(key);
+         if (key.match(/[0-9.+\-*/]$/)) {
+            handleClick(key);
          } else if (key.match(/Enter|=$/)) {
             handleEqualsClick();
          } else if (key.match(/Escape|Delete$/)) {
@@ -45,109 +64,19 @@ function CalculatorNoButton() {
       return () => {
          document.removeEventListener("keydown", handleKeyDown);
       };
-   }, [result, input, operand1, operand2, op]);
-   
-   const handleNumberClick = (number) => {
-      setInput((prevInput) => prevInput + number);
-
-      if (op || operand2) {
-         setOperand2((prevOp2) => prevOp2 + number);
-      } else {
-         setOperand1((prevOp1) => prevOp1 + number);
-      }
-   };
-
-  
-
-   const handleOperationClick = (operation) => {
-      setInput((prevInput) => prevInput + operation);
-
-      if (operation == "-") {
-         if (operand1) {
-            if (input && !operand2) {
-               let lastChar = input.charAt(input.length - 1);
-               if (lastChar.match(/[\+|\-|\*|\/]$/)) {
-                  setOperand2(operation);
-               } else {
-                  setOp(operation);
-               }
-            } else {
-               evaluate();
-               setOp(operation);
-            }
-         } else {
-            setOperand1(operation);
-         }
-      } else {
-         evaluate();
-         setOp(operation);
-      }
-   };
-
- const evaluate = () => {
-      let res;
-      if (op && operand1 !== "" && operand2 !== "") {
-         console.log("bye");
-         let op1AsNum = Number(operand1),
-            op2AsNum = Number(operand2);
-         if (!op1AsNum && op1AsNum != 0) {
-            op1AsNum = "";
-         }
-         if (!op2AsNum && op2AsNum != 0) {
-            op2AsNum = "";
-         }
-
-         console.log(`evaluating ${op1AsNum} ${op} ${op2AsNum}`);
-         if (op === "+") {
-            res = op1AsNum + op2AsNum;
-         } else if (op === "-") {
-            res = op1AsNum - op2AsNum;
-         } else if (op === "*") {
-            res = op1AsNum * op2AsNum;
-         } else if (op === "/") {
-            res = op1AsNum / op2AsNum;
-         }
-         res = parseFloat(res.toFixed(8));
-         setResult(res);
-         setOperand1(res.toString());
-         setOperand2("");
-         
-      }
-   };
-
-   useEffect(() => {
-      setOperand1(result);
-      setOperand2("");
-   }, [result])
-
-   const handleEqualsClick = () => {
-      if (!op) {
-         console.log("hi");
-         setResult(operand1);
-      } else {
-         
-         evaluate();
-      }
-
-   };
-
-   const handleClearClick = () => {
-      setResult(0);
-      setInput("");
-      setOperand1("");
-      setOperand2("");
-      setOp("");
-   };
+   }, [expr]);
 
    const numberStyle = {
       pl: 2,
       pr: 2,
+      flexGrow: 1,
       backgroundColor: "#D9D9D9",
       "&:hover": { backgroundColor: "#D5D5D5" },
    };
    const opStyle = {
       pl: 2,
       pr: 2,
+      flexGrow: 1,
       backgroundColor: "#A0A0A0",
       "&:hover": { backgroundColor: "#9A9A9A" },
    };
@@ -159,10 +88,17 @@ function CalculatorNoButton() {
          pr={2}
          pb={1}
          justifyContent="center"
-         maxWidth={240}
+         width={240}
+         height={400}
+         maxWidth="50vw"
+         maxHeight="70vh"
          overflow="auto"
-         // position="relative"
-         sx={{ backgroundColor: "lightblue", borderRadius: 3, boxShadow: 10, border: "solid royalblue" }}
+         sx={{
+            backgroundColor: "lightblue",
+            borderRadius: 3,
+            boxShadow: 10,
+            border: "solid royalblue",
+         }}
       >
          <Grid item xs={12}>
             <TextField
@@ -175,6 +111,8 @@ function CalculatorNoButton() {
                   "& .MuiInputBase-input.Mui-disabled": {
                      WebkitTextFillColor: "#454545",
                   },
+                  maxHeight: 45,
+                  mb: 1,
                }}
             />
          </Grid>
@@ -182,38 +120,31 @@ function CalculatorNoButton() {
             <TextField
                label="Input"
                variant="outlined"
-               value={input}
+               value={expr}
                fullWidth
                disabled
                sx={{
                   "& .MuiInputBase-input.Mui-disabled": {
                      WebkitTextFillColor: "#454545",
                   },
+                  maxHeight: 45,
+                  mb: 1
                }}
             />
          </Grid>
          <Grid item container spacing={1}>
             <Grid item xs={3} sx={{ width: 40 }}>
-               <IconButton
-                  sx={numberStyle}
-                  onClick={() => handleNumberClick("7")}
-               >
+               <IconButton sx={numberStyle} onClick={() => handleClick("7")}>
                   <Typography>7</Typography>
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={numberStyle}
-                  onClick={() => handleNumberClick("8")}
-               >
+               <IconButton sx={numberStyle} onClick={() => handleClick("8")}>
                   <Typography>8</Typography>
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={numberStyle}
-                  onClick={() => handleNumberClick("9")}
-               >
+               <IconButton sx={numberStyle} onClick={() => handleClick("9")}>
                   <Typography>9</Typography>
                </IconButton>
             </Grid>
@@ -222,7 +153,7 @@ function CalculatorNoButton() {
                   <IconButton
                      sx={opStyle}
                      variant="contained"
-                     onClick={() => handleOperationClick("/")}
+                     onClick={() => handleClick("/")}
                   >
                      <Typography fontSize="1rem">
                         <b>&divide;</b>
@@ -231,78 +162,51 @@ function CalculatorNoButton() {
                </div>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={numberStyle}
-                  onClick={() => handleNumberClick("4")}
-               >
+               <IconButton sx={numberStyle} onClick={() => handleClick("4")}>
                   <Typography>4</Typography>
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={numberStyle}
-                  onClick={() => handleNumberClick("5")}
-               >
+               <IconButton sx={numberStyle} onClick={() => handleClick("5")}>
                   <Typography>5</Typography>
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={numberStyle}
-                  onClick={() => handleNumberClick("6")}
-               >
+               <IconButton sx={numberStyle} onClick={() => handleClick("6")}>
                   <Typography>6</Typography>
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={opStyle}
-                  onClick={() => handleOperationClick("*")}
-               >
+               <IconButton sx={opStyle} onClick={() => handleClick("*")}>
                   <Typography fontSize="1rem">
                      <b>&times;</b>
                   </Typography>
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={numberStyle}
-                  onClick={() => handleNumberClick("1")}
-               >
+               <IconButton sx={numberStyle} onClick={() => handleClick("1")}>
                   <Typography>1</Typography>
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={numberStyle}
-                  onClick={() => handleNumberClick("2")}
-               >
+               <IconButton sx={numberStyle} onClick={() => handleClick("2")}>
                   <Typography>2</Typography>
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={numberStyle}
-                  onClick={() => handleNumberClick("3")}
-               >
+               <IconButton sx={numberStyle} onClick={() => handleClick("3")}>
                   <Typography>3</Typography>
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={opStyle}
-                  onClick={() => handleOperationClick("-")}
-               >
+               <IconButton sx={opStyle} onClick={() => handleClick("-")}>
                   <Typography fontSize="1rem">
                      <b>&minus;</b>
                   </Typography>
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={numberStyle}
-                  onClick={() => handleNumberClick("0")}
-               >
+               <IconButton sx={numberStyle} onClick={() => handleClick("0")}>
                   <Typography>0</Typography>
                </IconButton>
             </Grid>
@@ -314,7 +218,7 @@ function CalculatorNoButton() {
                      backgroundColor: "#D9D9D9",
                      "&:hover": { backgroundColor: "#D5D5D5" },
                   }}
-                  onClick={() => handleNumberClick(".")}
+                  onClick={() => handleClick(".")}
                >
                   <Typography fontWeight={800}>.</Typography>
                </IconButton>
@@ -335,10 +239,7 @@ function CalculatorNoButton() {
                </IconButton>
             </Grid>
             <Grid item xs={3}>
-               <IconButton
-                  sx={opStyle}
-                  onClick={() => handleOperationClick("+")}
-               >
+               <IconButton sx={opStyle} onClick={() => handleClick("+")}>
                   <Typography fontSize="1rem">
                      <b>+</b>
                   </Typography>
@@ -376,9 +277,10 @@ function Calculator() {
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
             placement="bottom-start"
-            style={{zIndex: 6}}
+            style={{ zIndex: 6 }}
+            display="flex"
          >
-               <CalculatorNoButton />
+            <CalculatorNoButton />
          </Popper>
          <IconButton
             onClick={handleClick}
@@ -394,7 +296,6 @@ function Calculator() {
                <CalculateIcon sx={{ fontSize: 60, color: "#A7E5D8 " }} />
             </Tooltip>
          </IconButton>
-         
       </Box>
    );
 }

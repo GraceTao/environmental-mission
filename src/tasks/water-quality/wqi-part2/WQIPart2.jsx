@@ -221,7 +221,7 @@ export default function WQIPart2() {
                            top: { xs: "100%", md: "15%" },
                            left: "5%",
                            zIndex: 1,
-                           width: "93%",
+                           width: {xs: "80%", md: "93%"},
                            mt: { xs: "10%", md: 0 },
                         }}
                      >

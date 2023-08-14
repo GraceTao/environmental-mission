@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
    Alert,
    Box,
@@ -19,14 +19,22 @@ import axios from "axios";
 import { q1, q2, q3, q4, q5 } from "./questions";
 import logo from "../../components/PortCC-logo-horizontal-white.png";
 
-export default function FinalReport() {
-   const [answers, setAnswers] = useState({
+export default function FinalReport({ setShowCert }) {
+   const initialAnswers = {
       q1: "",
       q2: {},
       q3: "",
       q4: "",
       q5: "",
-   });
+   };
+   const storedAnswers = JSON.parse(localStorage.getItem("answers"));
+   if (!storedAnswers) {
+      localStorage.setItem("answers", JSON.stringify(initialAnswers));
+   }
+
+   const [answers, setAnswers] = useState(
+      JSON.parse(localStorage.getItem("answers")) || initialAnswers
+   );
 
    const [showError, setShowError] = useState(false);
    const [showSubmitting, setShowSubmitting] = useState(false);
@@ -36,6 +44,15 @@ export default function FinalReport() {
       const { name, value } = e.target;
 
       setAnswers({ ...answers, [name]: value });
+      updateStorage(name, value);
+   };
+
+   const updateStorage = (key, val) => {
+      const prevAnswers = JSON.parse(localStorage.getItem("answers"));
+      localStorage.setItem(
+         "answers",
+         JSON.stringify({ ...prevAnswers, [key]: val })
+      );
    };
 
    const handleSubmit = async () => {
@@ -47,23 +64,28 @@ export default function FinalReport() {
       if (answers.q1 && filtered && answers.q3 && answers.q4 && answers.q5) {
          const userData = JSON.parse(localStorage.getItem("userData"));
          const allAttempts = JSON.parse(localStorage.getItem("attempts"));
-         const allData = { ...userData, ...allAttempts, ...answers, q2: filtered };
+         const allData = {
+            ...userData,
+            ...allAttempts,
+            ...answers,
+            q2: filtered,
+         };
          console.log(allData);
 
          setShowError(false);
          setShowSubmitting(true);
-         
+
          try {
             await axios.post("/api/submituserdata", allData);
             console.log("Data added successfully");
          } catch (err) {
             console.log("Error:", err);
          }
-         // console.log(allData);
+
          setTimeout(() => {
             setShowFinalPage(true);
             setShowSubmitting(false);
-         }, 4000);
+         }, 3000);
       } else {
          setShowError(true);
       }
@@ -123,22 +145,27 @@ export default function FinalReport() {
                   sx={{ mb: 2 }}
                   align="center"
                >
-                  Thank you for completing today's mission. Click the button to
-                  exit.
+                  Thank you for completing today's mission. Click below to exit
+                  and receive a certificate of completion.
                </Typography>
                <Box align="center">
                   <Button
                      variant="contained"
                      sx={{
                         backgroundColor: "royalblue",
-                        "&:hover": { backgroundColor: "mediumblue" },
+                        "&:hover": { backgroundColor: "#404DC7 " },
+                     }}
+                     onClick={() => {
+                        setShowCert(true);
+                        localStorage.setItem("showCert", true);
                      }}
                   >
-                     exit
+                     get certificate
                   </Button>
                </Box>
             </DialogContent>
          </Dialog>
+
          <Box sx={{ p: 5, pt: 3 }}>
             <Box align="center">
                <Typography
@@ -173,15 +200,20 @@ export default function FinalReport() {
                <RadioGroup
                   name="q1"
                   value={answers.q1}
-                  onChange={(e) =>
-                     setAnswers({ ...answers, q1: e.target.value })
-                  }
+                  onChange={(e) => {
+                     setAnswers({ ...answers, q1: e.target.value });
+                     updateStorage("q1", e.target.value);
+                  }}
                   sx={{ ml: 2, m: 1, mb: 4 }}
                >
                   {q1.map((choice) => (
                      <FormControlLabel
                         key={choice.id}
                         value={choice.id}
+                        defaultChecked={
+                           JSON.parse(localStorage.getItem("answers")).q1 ===
+                           choice.id
+                        }
                         control={<Radio color="success" />}
                         label={choice.label}
                      />
@@ -199,14 +231,24 @@ export default function FinalReport() {
                               onChange={(e) => {
                                  const prev = answers.q2;
                                  const { name, checked } = e.target;
+                                 const newChecked = {
+                                    ...prev,
+                                    [name]: checked,
+                                 };
                                  setAnswers({
                                     ...answers,
-                                    q2: { ...prev, [name]: checked },
+                                    q2: newChecked,
                                  });
+                                 updateStorage("q2", newChecked);
                               }}
                            />
                         }
                         label={choice.label}
+                        defaultChecked={Boolean(
+                           JSON.parse(localStorage.getItem("answers")).q2[
+                              choice.id
+                           ]
+                        )}
                      ></FormControlLabel>
                   ))}
                </FormGroup>
@@ -219,6 +261,7 @@ export default function FinalReport() {
                   multiline
                   rows={3}
                   onChange={handleChange}
+                  defaultValue={JSON.parse(localStorage.getItem("answers")).q3}
                   sx={textFieldStyle}
                />
                <br />
@@ -230,6 +273,7 @@ export default function FinalReport() {
                   multiline
                   rows={3}
                   onChange={handleChange}
+                  defaultValue={JSON.parse(localStorage.getItem("answers")).q4}
                   sx={textFieldStyle}
                />
                <br />
@@ -241,6 +285,7 @@ export default function FinalReport() {
                   multiline
                   rows={3}
                   onChange={handleChange}
+                  defaultValue={JSON.parse(localStorage.getItem("answers")).q5}
                   sx={textFieldStyle}
                />
             </Box>
