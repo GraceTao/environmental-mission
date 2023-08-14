@@ -12,14 +12,14 @@ import { useLocation } from "react-router-dom";
 
 function Instructions({ name, title, content, style }) {
    const location = useLocation().pathname;
-   const [open, setOpen] = useState(sessionStorage.getItem(location) == null);
+   const [open, setOpen] = useState(localStorage.getItem(location) == null);
 
    const theme = useTheme();
    const fullScreen = useMediaQuery(theme.breakpoints.up("sm"));
 
    const handleClose = () => {
       setOpen(false);
-      sessionStorage.setItem(location, true);
+      localStorage.setItem(location, true);
    };
 
    return (
