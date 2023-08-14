@@ -133,7 +133,7 @@ export default function FinalTask() {
                   borderRadius={1}
                >
                   Visit{" "}
-                  <a href="https://portablelab.glideapp.io/dl/d0a5f4">
+                  <a href="https://portablelab.glideapp.io/dl/d0a5f4" target="_blank">
                      this site
                   </a>{" "}
                   to learn about careers, environmental goals, vessels, and more
