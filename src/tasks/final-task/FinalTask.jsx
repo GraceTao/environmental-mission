@@ -22,7 +22,9 @@ import Certificate from "./Certificate";
 export default function FinalTask() {
    const [openMenu, setOpenMenu] = useState(true);
    const [showAlert, setShowAlert] = useState(false);
-   const [showCert, setShowCert] = useState(Boolean(sessionStorage.getItem("showCert")));
+   const [showCert, setShowCert] = useState(
+      Boolean(sessionStorage.getItem("showCert"))
+   );
 
    return (
       <Box>
@@ -119,22 +121,25 @@ export default function FinalTask() {
                alignItems="center"
                width="100%"
                height="100%"
-               padding={3}
+               m={2}
             >
-               <Typography fontSize="1.2rem" fontWeight="bold" align="center">
+               <Typography
+                  fontSize={{xs: "1rem", sm: "1.1rem", md: "1.2rem"}}
+                  fontWeight="bold"
+                  align="center"
+                  mb={3}
+                  backgroundColor="wheat"
+                  padding="8px 15px 8px 15px"
+                  borderRadius={1}
+               >
                   Visit{" "}
                   <a href="https://portablelab.glideapp.io/dl/d0a5f4">
                      this site
                   </a>{" "}
-                  to learn about careers, environmental goals, vessels, and
-                  more at the Port of Corpus Christi.
+                  to learn about careers, environmental goals, vessels, and more
+                  at the Port of Corpus Christi.
                </Typography>
-               <br />
-               <Typography fontSize="1.1rem" align="center">
-                  Download your certificate by clicking the Save icon below or
-                  clicking on the pdf viewer and pressing Ctrl+S.
-               </Typography>
-               <PDFViewer width="90%" height={600}>
+               <PDFViewer width="80%" height={600}>
                   <Certificate />
                </PDFViewer>
             </Box>
