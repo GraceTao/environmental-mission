@@ -197,7 +197,7 @@ export default function UserDataForm({ open, setOpen }) {
                   onClick={handleSubmit}
                   variant="contained"
                   disabled={!formData.order}
-                  sx={{ width: "25%", height: 40 }}
+                  sx={{ width: {xs: "30%", sm: "25%"}, height: 40 }}
                >
                   Submit
                </Button>

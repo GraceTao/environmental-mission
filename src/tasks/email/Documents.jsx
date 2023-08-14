@@ -2,13 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import "./documents.css";
 
-import {
-   Box,
-   Button,
-   Dialog,
-   DialogContent,
-   Typography,
-} from "@mui/material";
+import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
 
 import Map from "./sitemap.jpg";
 import Calculator from "../../components/Calculator";
@@ -17,8 +11,19 @@ import TopBar from "../../components/TopBar";
 import Instructions from "../../components/Instructions";
 import Instr from "../../components/Instr";
 import Response from "./Response";
+import email_chat_animation from "./email_chat_animation.mp4";
 
 function EmailInstructions() {
+   useEffect(() => {
+      setTimeout(() => setVideoPlayed(true), 18000);
+   }, []);
+
+   const hasEnabledInstr = Boolean(
+      localStorage.getItem("hasEnabledEmailInstr")
+   );
+   const [openInstr, setOpenInstr] = useState(hasEnabledInstr);
+   const [videoPlayed, setVideoPlayed] = useState(hasEnabledInstr);
+
    const content = (
       <>
          Please read the email and explore the map and rules. When you have
@@ -26,7 +31,39 @@ function EmailInstructions() {
          guidelines, click the "Reply" button to submit.
       </>
    );
-   return <Instr title="Email Task" contents={content} />;
+   return openInstr ? (
+      <Instr title="Email Task" contents={content} />
+   ) : (
+      <Box
+         display="flex"
+         flexDirection={{ xs: "column", sm: "row" }}
+         justifyContent="space-around"
+         alignItems={{ xs: "center", sm: "flex-start" }}
+         margin="auto"
+      >
+         <video controls autoPlay style={{ minWidth: "300px", width: "60%" }}>
+            <source
+               src={email_chat_animation}
+               alt="text messages"
+               type="video/mp4"
+            />
+         </video>
+
+         <Button
+            disabled={!videoPlayed}
+            variant="contained"
+            color="info"
+            onClick={() => {
+               localStorage.setItem("hasEnabledEmailInstr", true);
+               setOpenInstr(!openInstr);
+            }}
+         >
+            <Typography fontSize={{ xs: "0.8rem", sm: "0.9rem", md: "1rem" }}>
+               proceed to Sitara's email
+            </Typography>
+         </Button>
+      </Box>
+   );
 }
 
 const Documents = () => {
@@ -85,12 +122,20 @@ const Documents = () => {
                   backgroundColor: "inherit",
                   "&:hover": { backgroundColor: "#94B2B990" },
                }}
-            ></Instructions>
+            />
          }
       >
-         <Box position="fixed" top={70} left={"4%"} zIndex={1}>
+         {/* <Box
+            position="fixed"
+            top={70}
+            left="4%"
+            zIndex={1}
+            display="flex"
+            justifyContent="center"
+            width="50%"
+         >
             <Calculator />
-         </Box>
+         </Box> */}
 
          <Box position="relative" mt={13}>
             {rules && (
@@ -184,7 +229,7 @@ const Documents = () => {
                         Hello,
                         <br />
                         <br />
-                        I am interested in constructing an office building
+                        I am part of a team that is designing an office building
                         (roughly the shape of a rectangular prism). In order to
                         submit a formal request, I need to know the dimensions
                         of this space. I would like to maximize the dimensions,
@@ -193,9 +238,10 @@ const Documents = () => {
                         restrictions of this area.
                         <br />
                         <br />
-                        An image of the area is attached below, with the
-                        location of the potential building marked with an X.
-                        Would you be able to provide any guidance?
+                        An image of the area is attached with the location of
+                        the potential building marked with an X. I've also
+                        attached the rules we must adhere to. Would you be able
+                        to provide any guidance?
                         <br />
                         <br />
                         Thanks in advance!
