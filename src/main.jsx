@@ -20,8 +20,6 @@ function App() {
             <Route path="/wqi-p3" element={<WQIPart3 />} />
             <Route path="/account" element={<FinalTask />} />
             <Route path="/email" element={<Email />} />
-
-            
             <Route path="/map-home" element={<MapHome />}/>
          </Routes> 
       </Router>
