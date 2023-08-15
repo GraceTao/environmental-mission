@@ -8,7 +8,7 @@ import WQIPart3 from "./tasks/water-quality/wqi-part3/WQIPart3";
 import MapHome from "./tasks/map-clue/map-home";
 import FinalTask from "./tasks/final-task/FinalTask";
 import Email from "./tasks/email/Documents";
-import Inspection from "./tasks/Inspection/Clue1.jsx";
+import Inspection from "./tasks/inspection/Clue1.jsx";
 
 
 function App() {
