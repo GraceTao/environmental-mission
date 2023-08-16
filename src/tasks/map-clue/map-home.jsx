@@ -20,7 +20,7 @@ import Hydrogen from "./Hydrogen";
 import CO2 from "./CO2";
 import PolicyClue from "./PolicyClue";
 
-import chat from "./map_chat_animation.mp4";
+import chat from "./map-chat-animation.mp4";
 import Calculator from "../../components/Calculator";
 
 
