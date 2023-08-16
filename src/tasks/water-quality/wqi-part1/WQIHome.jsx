@@ -11,9 +11,6 @@ import {
    useMediaQuery,
 } from "@mui/material";
 import Instructions from "../../../components/Instructions";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import TopBar from "../../../components/TopBar";
 import DO from "./DO";
 import Temperature from "./Temperature";
@@ -31,20 +28,7 @@ import SampleUnitConversion from "./SampleUnitConversion";
 import chat from "../wqi-chat-animation.mp4";
 import Calculator from "../../../components/Calculator";
 
-function CalendarAndInstructions() {
-   const hasEnabledInstr = Boolean(sessionStorage.getItem("hasEnabledWQIInstr"));
-   const [enableInstr, setEnableInstr] = useState(hasEnabledInstr);
-   const [openInstr, setOpenInstr] = useState(hasEnabledInstr);
-   const [videoPlayed, setVideoPlayed] = useState(hasEnabledInstr);
-
-   const theme = useTheme();
-   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-   useEffect(() => {
-      setTimeout(() => setVideoPlayed(true), 24000)
-   }, []);
-
-   return openInstr ? (
+const instructions = 
       <Box
          display="flex"
          flexDirection="column"
@@ -63,54 +47,7 @@ function CalendarAndInstructions() {
                Record the values on the top left clipboard as you go. A calculator is provided
                beneath the clipboard. Once you’ve filled out all values, click the arrow on the clipboard to continue.`}
          ></Instr>
-      </Box>
-   ) : (
-      <div>
-         <Box
-            display="flex"
-            flexDirection={isSmallScreen ? "column" : "row"}
-            justifyContent="center"
-            margin="auto"
-         >
-            <div>
-               <video controls autoPlay style={{ width: "90%" }}>
-                  <source
-                     src={chat}
-                     alt="text messages"
-                     type="video/mp4"
-                  />
-               </video>
-            </div>
-            <Box display="flex" flexDirection="column">
-               <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateCalendar
-                     disabled={!videoPlayed}
-                     onChange={(date) => {
-                        const selectedDate = date["$d"].toLocaleDateString();
-                        const today = new Date().toLocaleDateString();
-                        setEnableInstr(selectedDate === today);
-                     }}
-                  />
-               </LocalizationProvider>
-               <Button
-                  variant="contained"
-                  disabled={!enableInstr}
-                  sx={{
-                     backgroundColor: "#417B88",
-                     "&:hover": { backgroundColor: "#4AB0C7 " },
-                  }}
-                  onClick={() => {
-                     setOpenInstr(true);
-                     sessionStorage.setItem("hasEnabledWQIInstr", true);
-                  }}
-               >
-                  to-do: stream visit
-               </Button>
-            </Box>
-         </Box>
-      </div>
-   );
-}
+      </Box>;
 
 export default function WQIHome() {
    const [openClipboard, setOpenClipboard] = useState(false);
@@ -120,21 +57,11 @@ export default function WQIHome() {
       <TopBar
          instruction={
             <Instructions
-               name={
-                  <Typography
-                     color="#33403d"
-                     fontWeight="bold"
-                     fontSize="1.2rem"
-                  >
-                     instructions
-                  </Typography>
-               }
-               title={null}
-               content={<CalendarAndInstructions />}
-               style={{
-                  backgroundColor: "inherit",
-                  "&:hover": { backgroundColor: "#94B2B990" },
-               }}
+               name="Stan"
+               chat={chat}
+               buttonText="to-do: stream visit"
+               instructions={instructions}
+               showCalendar={true}
             ></Instructions>
          }
       >

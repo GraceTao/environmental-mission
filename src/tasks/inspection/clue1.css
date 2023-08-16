@@ -19,7 +19,7 @@ code {
 }
 
 .container {
-  position:relative;
+  position: relative;
   background-image: url("https://p1.pxfuel.com/preview/696/35/657/field-tree-lonely-landscape-nature-meadow.jpg");
   background-size: cover;
   background-position: center;
@@ -27,7 +27,7 @@ code {
   height: 100vh; /* Adjust the height as needed */
   width: 100vw; /* Adjust the width as needed */
   flex-wrap: wrap;
-  
+  margin-top: 30px
 }
 
 

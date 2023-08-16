@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
-import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 
 const Reveal = (props) => {
