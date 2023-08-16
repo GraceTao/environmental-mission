@@ -40,6 +40,25 @@ export default function Instructions({
 
    return (
       <Box>
+         <Box sx={{ flexGrow: 1 }}>
+            <Button
+               onClick={() => setOpenInstr(true)}
+               size="large"
+               variant="contained"
+               sx={{
+                  backgroundColor: "palegreen",
+                  color: "darkgreen",
+                  fontSize: "1.1rem",
+                  boxShadow: 2,
+                  "&:hover": {
+                     backgroundColor: "lightgreen",
+                     boxShadow: 5
+                  }
+               }}
+            >
+               <b>instructions</b>
+            </Button>
+         </Box>
          <Dialog
             fullWidth
             maxWidth={isSmallScreen ? "sm" : "md"}
@@ -50,7 +69,9 @@ export default function Instructions({
             }}
          >
             <DialogContent sx={style}>
-               <DialogContentText color="black">{instructions}</DialogContentText>
+               <DialogContentText color="black">
+                  {instructions}
+               </DialogContentText>
             </DialogContent>
          </Dialog>
 
