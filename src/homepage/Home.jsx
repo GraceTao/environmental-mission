@@ -160,22 +160,6 @@ function Home() {
                      style={{ position: "absolute", left: 5 }}
                   />
                   <Notification />
-
-                  <Instructions
-                     name={<Typography color="white">instructions</Typography>}
-                     title={mission}
-                     content={purpose}
-                     style={{
-                        left: "87%",
-                        position: "sticky",
-                        boxShadow: 5,
-                        backgroundColor: "#356696",
-                        "&:hover": {
-                           backgroundColor: "#294E72",
-                           boxShadow: 5,
-                        },
-                     }}
-                  ></Instructions>
                   <Grid
                      container
                      rowSpacing={{ xs: 8, sm: 10, md: 12, lg: 18 }}

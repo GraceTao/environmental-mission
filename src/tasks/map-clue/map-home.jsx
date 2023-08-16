@@ -23,89 +23,36 @@ import PolicyClue from "./PolicyClue";
 import chat from "./map-chat-animation.mp4";
 import Calculator from "../../components/Calculator";
 
-
-function MapInstructions() {
-   const hasEnabledInstr = sessionStorage.getItem("hasEnabledMapInstr");
-   const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
-
-   useEffect(() => {
-      setTimeout(() => setVideoPlayed(true), 18000);
-   }, []);
-
-   const [videoPlayed, setVideoPlayed] = useState(false);
-
-   return openInstr ? (
-      <Box
-         display="flex"
-         flexDirection="column"
-         justifyContent="center"
-         width="100%"
-      >
-         <Instr
-            title={"Welcome to the Port of Corpus Christi!"}
-            contents={`We are traveling to one of the largest U.S. ports, the Port of Corpus Christi in Texas. It is at the 
-               forefront of the maritime industry and energy marketplace.`}
-         ></Instr>
-         <Instr
-            title={"Port manager:"}
-            contents={`The Port handles thousands of vessels containing crude oil, petroleum, liquefied natural gas, and more. 
+const instructions = (
+   <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      width="100%"
+   >
+      <Instr
+         title={"Welcome to the Port of Corpus Christi!"}
+         contents={`We are traveling to one of the largest U.S. ports, the Port of Corpus Christi in Texas. It is at the 
+               forefront of the maritime industry and energy marketplace. 
+               The Port handles thousands of vessels containing crude oil, petroleum, liquefied natural gas, and more. 
                Our Environmental Management System (EMS) is ISO 14001-certified, which means we set specific environmental 
                goals and performance measures, then work to achieve them. `}
-         ></Instr>
-         <Instr
-            title={"Task:"}
-            contents={
-               <Typography sx={{ p: 2, fontSize: "1.2rem" }}>
-                  Click around on the map to learn more about the Port of Corpus
-                  Christi’s efforts to operate in a manner “conducive to
-                  environmental sustainability and resiliency.” Each window will
-                  either ask you a question whose answer is a number, or give a
-                  number in <b>bold</b>. Determine the clue word based on the
-                  numerical answers. You may need to scroll.
-               </Typography>
-            }
-         ></Instr>
-      </Box>
-   ) : (
-      <div>
-         <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent={"center"}
-            alignContent="center"
-            margin="auto"
-         >
-            <Box display="flex" alignContent="center" justifyContent={"center"}>
-               <video controls autoPlay style={{ width: "50%" }}>
-                  <source src={chat} alt="text messages" type="video/mp4" />
-               </video>
-            </Box>
-            <Box
-               display="flex"
-               alignContent="center"
-               justifyContent={"center"}
-               marginTop="10px"
-            >
-               <Button
-                  disabled={!videoPlayed}
-                  variant="contained"
-                  sx={{
-                     backgroundColor: "#417B88",
-                     "&:hover": { backgroundColor: "#4AB0C7 " },
-                     width: "50%",
-                  }}
-                  onClick={() => {
-                     setOpenInstr(true);
-                     sessionStorage.setItem("hasEnabledMapInstr", true);
-                  }}
-               >
-                  Visit the Port of Corpus Christi!
-               </Button>
-            </Box>
-         </Box>
-      </div>
-   );
-}
+      />
+      <Instr
+         title={"Task:"}
+         contents={
+            <Typography sx={{ fontSize: "1.2rem" }}>
+               Click around on the map to learn more about the Port of Corpus
+               Christi’s efforts to operate in a manner “conducive to
+               environmental sustainability and resiliency.” Each window will
+               either ask you a question whose answer is a number, or give a
+               number in <b>bold</b>. Determine the clue word based on the
+               numerical answers. You may need to scroll.
+            </Typography>
+         }
+      ></Instr>
+   </Box>
+);
 
 export default function MapHome() {
    const [openMessages, setOpenMessages] = useState(false);
@@ -129,21 +76,11 @@ export default function MapHome() {
          <TopBar
             instruction={
                <Instructions
-                  name={
-                     <Typography
-                        color="#33403d"
-                        fontWeight="bold"
-                        fontSize="1.2rem"
-                     >
-                        instructions
-                     </Typography>
-                  }
-                  title={null}
-                  content={<MapInstructions />}
-                  style={{
-                     backgroundColor: "inherit",
-                     "&:hover": { backgroundColor: "#94B2B990" },
-                  }}
+                  name="Jessy"
+                  chat={chat}
+                  buttonText="visit the port of corpus christi"
+                  instructions={instructions}
+                  showCalendar={false}
                ></Instructions>
             }
          />
