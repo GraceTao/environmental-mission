@@ -28,7 +28,7 @@ import AssignmentTwoToneIcon from "@mui/icons-material/AssignmentTwoTone";
 import ChatIcon from "@mui/icons-material/Chat";
 import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
-import wqi_chat_animation from "../wqi_chat_animation.mp4";
+import chat from "../wqi-chat-animation.mp4";
 import Calculator from "../../../components/Calculator";
 
 function CalendarAndInstructions() {
@@ -75,7 +75,7 @@ function CalendarAndInstructions() {
             <div>
                <video controls autoPlay style={{ width: "90%" }}>
                   <source
-                     src={wqi_chat_animation}
+                     src={chat}
                      alt="text messages"
                      type="video/mp4"
                   />
@@ -192,7 +192,7 @@ export default function WQIHome() {
                >
                   <video controls autoPlay style={{ width: "100%" }}>
                      <source
-                        src={wqi_chat_animation}
+                        src={chat}
                         alt="text messages"
                         type="video/mp4"
                      />
