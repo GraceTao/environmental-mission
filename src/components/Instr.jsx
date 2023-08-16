@@ -17,9 +17,7 @@ export default function Instr({ title, contents }) {
          >
             {title}
          </Typography>
-         <Typography fontSize="1.2rem" align="center">
             {contents}
-         </Typography>
       </Box>
    );
 }

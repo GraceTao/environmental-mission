@@ -22,6 +22,7 @@ import PolicyClue from "./PolicyClue";
 
 import chat from "./map-chat-animation.mp4";
 import Calculator from "../../components/Calculator";
+import ChatButton from "../../components/ChatButton";
 
 const instructions = (
    <Box
@@ -31,17 +32,17 @@ const instructions = (
       width="100%"
    >
       <Instr
-         title={"Welcome to the Port of Corpus Christi!"}
-         contents={`We are traveling to one of the largest U.S. ports, the Port of Corpus Christi in Texas. It is at the 
+         title="Welcome to the Port of Corpus Christi!"
+         contents={<Typography fontSize="1.2rem" align="center">We are traveling to one of the largest U.S. ports, the Port of Corpus Christi in Texas. It is at the 
                forefront of the maritime industry and energy marketplace. 
                The Port handles thousands of vessels containing crude oil, petroleum, liquefied natural gas, and more. 
                Our Environmental Management System (EMS) is ISO 14001-certified, which means we set specific environmental 
-               goals and performance measures, then work to achieve them. `}
+               goals and performance measures, then work to achieve them. </Typography>}
       />
       <Instr
-         title={"Task:"}
+         title="Task:"
          contents={
-            <Typography sx={{ fontSize: "1.2rem" }}>
+            <Typography fontSize="1.2rem" align="center">
                Click around on the map to learn more about the Port of Corpus
                Christi’s efforts to operate in a manner “conducive to
                environmental sustainability and resiliency.” Each window will
@@ -55,7 +56,6 @@ const instructions = (
 );
 
 export default function MapHome() {
-   const [openMessages, setOpenMessages] = useState(false);
 
    return (
       <Box
@@ -92,10 +92,7 @@ export default function MapHome() {
             marginLeft="20px"
             position="fixed"
          >
-            <Box>
-               <IconButton
-                  onClick={() => setOpenMessages(true)}
-                  sx={{
+            <ChatButton chat={chat} style={{
                      borderRadius: 2,
                      backgroundColor: "green ",
                      width: 64,
@@ -103,18 +100,7 @@ export default function MapHome() {
                      position: { top: 2, left: 5 },
                      "&:hover": { backgroundColor: "green" },
                      marginBottom: "10px",
-                  }}
-               >
-                  <Tooltip title="Chat" arrow>
-                     <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
-                  </Tooltip>
-               </IconButton>
-            </Box>
-            <Dialog open={openMessages} onClose={() => setOpenMessages(false)}>
-               <video controls autoPlay style={{ width: "100%" }}>
-                  <source src={chat} alt="text messages" type="video/mp4" />
-               </video>
-            </Dialog>
+                  }} />
             <Calculator />
             <PolicyClue />
          </Box>
