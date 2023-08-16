@@ -15,11 +15,11 @@ import email_chat_animation from "./email_chat_animation.mp4";
 
 function EmailInstructions() {
    const content = (
-      <>
+      <Typography fontSize="1.2rem" align="center">
          Please read the email and explore the map and rules. When you have
          determined the <b>maximum</b> dimensions for the building that follow
          guidelines, click the "Reply" button to submit.
-      </>
+      </Typography>
    );
 
    return <Instr title="Email Task" contents={content} />;

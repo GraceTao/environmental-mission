@@ -7,6 +7,7 @@ import {
    Button,
    useMediaQuery,
    useTheme,
+   Typography
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -34,7 +35,7 @@ export default function Instructions({
    const style = {
       backgroundColor: "#CFEFE5",
       display: "flex",
-      overflow: "auto",
+      scroll: "auto",
       p: 2,
    };
 
@@ -69,9 +70,7 @@ export default function Instructions({
             }}
          >
             <DialogContent sx={style}>
-               <DialogContentText color="black">
-                  {instructions}
-               </DialogContentText>
+               {instructions}
             </DialogContent>
          </Dialog>
 

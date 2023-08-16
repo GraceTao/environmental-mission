@@ -60,134 +60,141 @@ const Clue1 = () => {
    };
 
    return (
-         <TopBar
-            className="bar"
-            instruction={
-               <Instructions
-                  name="Alejandro"
-                  chat={chat}
-                  buttonText="proceed to site visit"
-                  instructions={
-                     <Instr
-                        title="Inspection Task"
-                        content="Click around the image to locate various environmental concerns. Then complete and submit the report."
-                     />
-                  }
-               />
-            }
-         >
-            <div className="container">
-               <div className="violations">
-                     <button
-                        name="pesticides"
-                        onClick={() => setPesticide(!openPesticide)}
-                     >
-                        {openPesticide && (
-                           <Reveal
-                              color="#f7d2f4"
-                              text="Pesticides may only be used if they have a valid EPA registration. So to determine if this is a violation we need to know what kind of pesticide this is"
-                              open={openPesticide}
-                              sx={{
-                                 left: "6vw",
-                              }}
-                           />
-                        )}
-                        <img src={Pesticides} alt="Pesticides" />
-                     </button> 
-
-                  <button name="trash" onClick={() => setTrash(!openTrash)}>
-                     <img src={Trash} alt="Trash" />
-                     {openTrash && (
-                        <Reveal
-                           text="Wow, good catch! Littering or illegal disposal of waste is definitely a violation. "
-                           color="#b1f0b9"
-                           open={openTrash}
-                           sx={{
-                              left: "32vw",
-                           }}
-                        />
-                     )}
-                  </button>
-
-                  <button name="grass" onClick={() => setGrass(!openGrass)}>
-                     <img src={Grass} alt="Grass" />
+      <TopBar
+         className="bar"
+         instruction={
+            <Instructions
+               name="Alejandro"
+               chat={chat}
+               buttonText="proceed to site visit"
+               instructions={
+                  <Instr
+                     title="Inspection Task"
+                     contents={
+                        <Typography fontSize="1.2rem" align="center">
+                           Click around the image to locate various
+                           environmental concerns. Then complete and submit the
+                           report
+                        </Typography>
+                     }
+                  />
+               }
+               showCalendar={false}
+            />
+         }
+      >
+         <div className="container">
+            <div className="violations">
+               <button
+                  name="pesticides"
+                  onClick={() => setPesticide(!openPesticide)}
+               >
+                  {openPesticide && (
                      <Reveal
-                        text="Aww poor grass! Patches of dead vegetation may be due to harmful (sometimes illegal) chemicals "
-                        open={openGrass}
-                        color="#9afca6"
+                        color="#f7d2f4"
+                        text="Pesticides may only be used if they have a valid EPA registration. So to determine if this is a violation we need to know what kind of pesticide this is"
+                        open={openPesticide}
                         sx={{
-                           left: "57vw",
+                           left: "6vw",
                         }}
                      />
-                  </button>
-               </div>
-               <div className="vertical">
-                  <button name="emission">
-                     <img
-                        src={Emission}
-                        alt="Emission"
-                        onClick={() => setEmission(!openEmission)}
-                     />
+                  )}
+                  <img src={Pesticides} alt="Pesticides" />
+               </button>
 
+               <button name="trash" onClick={() => setTrash(!openTrash)}>
+                  <img src={Trash} alt="Trash" />
+                  {openTrash && (
                      <Reveal
-                        text="A suspicious looking emission..."
-                        open={openEmission}
-                        color="#8ee1fa"
+                        text="Wow, good catch! Littering or illegal disposal of waste is definitely a violation. "
+                        color="#b1f0b9"
+                        open={openTrash}
                         sx={{
-                           left: "80svw",
-                           top: "10vh",
+                           left: "32vw",
                         }}
                      />
-                  </button>
+                  )}
+               </button>
 
-                  <button name="building">
-                     <img src={Building} alt="Building" />
-                  </button>
-               </div>
-               {!solved ? (
-                  <div>
-                     <Button
-                        name="report"
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => setReport(!openReport)}
-                     >
-                        Report
-                     </Button>
-                     <Submit
-                        open={openReport}
-                        cancel={handleCancel}
-                        inputs={inputs}
-                        setInputs={setInputs}
-                        submit={handleSolve}
-                     />{" "}
-                  </div>
-               ) : (
-                  <div>
-                     <Dialog open={solved} onClose={() => setSolved(!solved)}>
-                        <DialogContent sx={{ backgroundColor: "0FBED8" }}>
-                           <Typography
-                              fontSize={{ xs: "1.1rem", md: "1.2rem" }}
-                              align="center"
-                           >
-                              <b>Congratulations!</b> You have successfully
-                              analyzed this site
-                           </Typography>
-                           <br />
-                           <Typography
-                              fontSize={{ xs: "1.2rem", md: "1.4rem" }}
-                              align="center"
-                              color="#784205"
-                           >
-                              Your clue word is <b>air</b>.
-                           </Typography>
-                        </DialogContent>
-                     </Dialog>
-                     <Box></Box>
-                  </div>
-               )}
+               <button name="grass" onClick={() => setGrass(!openGrass)}>
+                  <img src={Grass} alt="Grass" />
+                  <Reveal
+                     text="Aww poor grass! Patches of dead vegetation may be due to harmful (sometimes illegal) chemicals "
+                     open={openGrass}
+                     color="#9afca6"
+                     sx={{
+                        left: "57vw",
+                     }}
+                  />
+               </button>
             </div>
-         </TopBar>
+            <div className="vertical">
+               <button name="emission">
+                  <img
+                     src={Emission}
+                     alt="Emission"
+                     onClick={() => setEmission(!openEmission)}
+                  />
+
+                  <Reveal
+                     text="A suspicious looking emission..."
+                     open={openEmission}
+                     color="#8ee1fa"
+                     sx={{
+                        left: "80svw",
+                        top: "10vh",
+                     }}
+                  />
+               </button>
+
+               <button name="building">
+                  <img src={Building} alt="Building" />
+               </button>
+            </div>
+            {!solved ? (
+               <div>
+                  <Button
+                     name="report"
+                     variant="contained"
+                     color="secondary"
+                     onClick={() => setReport(!openReport)}
+                  >
+                     Report
+                  </Button>
+                  <Submit
+                     open={openReport}
+                     cancel={handleCancel}
+                     inputs={inputs}
+                     setInputs={setInputs}
+                     submit={handleSolve}
+                  />{" "}
+               </div>
+            ) : (
+               <div>
+                  <Dialog open={solved} onClose={() => setSolved(!solved)}>
+                     <DialogContent sx={{ backgroundColor: "0FBED8" }}>
+                        <Typography
+                           fontSize={{ xs: "1.1rem", md: "1.2rem" }}
+                           align="center"
+                        >
+                           <b>Congratulations!</b> You have successfully
+                           analyzed this site
+                        </Typography>
+                        <br />
+                        <Typography
+                           fontSize={{ xs: "1.2rem", md: "1.4rem" }}
+                           align="center"
+                           color="#784205"
+                        >
+                           Your clue word is <b>air</b>.
+                        </Typography>
+                     </DialogContent>
+                  </Dialog>
+                  <Box></Box>
+               </div>
+            )}
+         </div>
+      </TopBar>
    );
 };
 
