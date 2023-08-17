@@ -3,13 +3,21 @@ import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 import Typography from "@mui/material/Typography";
 
-
 const Reveal = (props) => {
-  const { text, open, sx } = props;
+   const { text, open, setOpen, sx, color } = props;
 
-  return (
-    <Popper open={open}>
-      <Box
+   return (
+      <Popper
+         open={Boolean(open)}
+         anchorEl={open}
+         onClose={() => setOpen(null)}
+         sx={{maxWidth: "50%", width: "200px", backgroundColor: color}}
+      >
+        <Typography align="center" p={2}>
+          {text}
+        </Typography>
+        
+         {/* <Box
         sx={{
           position: "relative",
           align: "center",
@@ -29,13 +37,13 @@ const Reveal = (props) => {
           
           ...sx, // Spread the additional styles here
         }}
-      >
-      
-        {text}
-      
-      </Box>
-    </Popper>
-  );
+      > */}
+
+         {/* {text} */}
+
+         {/* </Box> */}
+      </Popper>
+   );
 };
 
 export default Reveal;
