@@ -94,7 +94,7 @@ export default function FinalTaskLogin({ showAlert, setShowAlert }) {
                }
                if (hasShowedContactHint) {
                   setHint(
-                     "The word order is wrong. purple = Stan, green = Naomi,...what clue words did they give you?"
+                     "The word order is wrong. purple = Stan, green = Naomi, ... what clue words did they give you?"
                   );
                }
                animate();
