@@ -7,7 +7,7 @@ import {
    Button,
    useMediaQuery,
    useTheme,
-   Typography
+   Typography,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -48,13 +48,13 @@ export default function Instructions({
                variant="contained"
                sx={{
                   backgroundColor: "palegreen",
-                  color: "darkgreen",
+                  color: "#104A30",
                   fontSize: "1.1rem",
                   boxShadow: 2,
                   "&:hover": {
                      backgroundColor: "lightgreen",
-                     boxShadow: 5
-                  }
+                     boxShadow: 5,
+                  },
                }}
             >
                <b>instructions</b>
@@ -69,82 +69,91 @@ export default function Instructions({
                sessionStorage.setItem(location, true);
             }}
          >
-            <DialogContent sx={style}>
-               {instructions}
-            </DialogContent>
+            <DialogContent sx={style}>{instructions}</DialogContent>
          </Dialog>
 
-         <Dialog
-            fullWidth
-            maxWidth={isSmallScreen ? "sm" : "md"}
-            open={openChat}
-         >
-            <DialogContent sx={style}>
-               <Box
-                  display="flex"
-                  flexDirection={isSmallScreen ? "column" : "row"}
-                  justifyContent="space-around"
-               >
-                  <video
-                     controls
-                     autoPlay
-                     style={{ width: isSmallScreen ? "90%" : "55%" }}
-                     onEnded={() => {
-                        showCalendar
-                           ? setEnableCalendar(!enableCalendar)
-                           : setEnableButton(!enableButton);
-                     }}
-                  >
-                     <source src={chat} alt="text messages" type="video/mp4" />
-                     Chat animation between you and {name}
-                  </video>
-                  <Box
-                     display="flex"
-                     flexDirection="column"
-                     justifyContent="space-around"
-                     alignItems="center"
-                  >
-                     {showCalendar && (
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                           <DateCalendar
-                              disabled={!enableCalendar}
-                              onChange={(date) => {
-                                 const selectedDate =
-                                    date["$d"].toLocaleDateString();
-                                 const today = new Date().toLocaleDateString();
-                                 setEnableButton(selectedDate === today);
-                              }}
-                              sx={{
-                                 ...{
-                                    width: isSmallScreen ? "70%" : "100%",
-                                    mb: 2,
-                                 },
-                                 ...(enableCalendar && {
-                                    backgroundColor: "lightblue",
-                                    borderRadius: 2,
-                                    pl: "3%",
-                                    pr: "3%",
-                                    boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.5)",
-                                 }),
-                              }}
-                           />
-                        </LocalizationProvider>
-                     )}
-                     <Button
-                        disabled={!enableButton}
-                        onClick={() => {
-                           setOpenChat(!openChat);
-                           setOpenInstr(!openInstr);
-                        }}
-                        variant="contained"
-                        sx={{ boxShadow: 5, mb: 2 }}
+         {chat && (
+            <Dialog
+               fullWidth
+               maxWidth={isSmallScreen ? "sm" : "md"}
+               open={openChat}
+            >
+               <DialogContent sx={style}>
+                  <DialogContentText>
+                     <Box
+                        display="flex"
+                        flexDirection={isSmallScreen ? "column" : "row"}
+                        justifyContent="space-around"
                      >
-                        {buttonText}
-                     </Button>
-                  </Box>
-               </Box>
-            </DialogContent>
-         </Dialog>
+                        <video
+                           controls
+                           autoPlay
+                           style={{ width: isSmallScreen ? "90%" : "55%" }}
+                           onEnded={() => {
+                              showCalendar
+                                 ? setEnableCalendar(!enableCalendar)
+                                 : setEnableButton(!enableButton);
+                           }}
+                        >
+                           <source
+                              src={chat}
+                              alt="text messages"
+                              type="video/mp4"
+                           />
+                           Chat animation between you and {name}
+                        </video>
+
+                        <Box
+                           display="flex"
+                           flexDirection="column"
+                           justifyContent="space-around"
+                           alignItems="center"
+                        >
+                           {showCalendar && (
+                              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                 <DateCalendar
+                                    disabled={!enableCalendar}
+                                    onChange={(date) => {
+                                       const selectedDate =
+                                          date["$d"].toLocaleDateString();
+                                       const today =
+                                          new Date().toLocaleDateString();
+                                       setEnableButton(selectedDate === today);
+                                    }}
+                                    sx={{
+                                       // ...{
+                                       //    width: isSmallScreen ? "70%" : "100%",
+                                       //    mb: 2,
+                                       // },
+                                       ...(enableCalendar && {
+                                          backgroundColor: "lightblue",
+                                          borderRadius: 2,
+                                          pl: "3%",
+                                          pr: "3%",
+                                          boxShadow:
+                                             "0px 3px 5px rgba(0, 0, 0, 0.5)",
+                                       }),
+                                    }}
+                                 />
+                              </LocalizationProvider>
+                           )}
+                           <Button
+                              disabled={!enableButton}
+                              onClick={() => {
+                                 setOpenChat(!openChat);
+                                 setOpenInstr(!openInstr);
+                              }}
+                              variant="contained"
+                              sx={{ boxShadow: 5, mb: 2 }}
+                           >
+                              {buttonText}
+                           </Button>
+                        </Box>
+                     </Box>
+                  </DialogContentText>
+               </DialogContent>
+            </Dialog>
+         )}
       </Box>
    );
 }

@@ -74,7 +74,7 @@ const Clue1 = () => {
                         <Typography fontSize="1.2rem" align="center">
                            Click around the image to locate various
                            environmental concerns. Then complete and submit the
-                           report
+                           report.
                         </Typography>
                      }
                   />
