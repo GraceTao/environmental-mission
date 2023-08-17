@@ -2,155 +2,182 @@ import React from "react";
 import Popper from "@mui/material/Popper";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import ClearIcon from '@mui/icons-material/Clear';
-
 
 const Submit = (props) => {
-  const { text, open, sx } = props;
+   const { anchorEl, setAnchorEl, sx } = props;
+   const solved = Boolean(sessionStorage.getItem("solvedInspection"));
 
-  return (
-    <Popper
-      open={open}
-      sx={{
-        marginLeft: "5vw",
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
-        fontSize: "1vh",
-        backgroundColor: "#FFFDD0",
-        flexDirection: "column",
-        gap: "1em", // Use em units for gap between elements
-        padding: "1em", // Use em units for padding
-        marginTop:"10vh",
+   return (
+      <Popper
+         open={Boolean(anchorEl)}
+         anchorEl={anchorEl}
+         onClose={() => {
+            setAnchorEl(null);
+            sessionStorage.setItem(
+               "inspectionAnswers",
+               JSON.stringify(props.inputs)
+            );
+         }}
+         placement="auto-start"
+         sx={{
+            marginLeft: "5vw",
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "1vh",
+            backgroundColor: "#FFFDD0",
+            flexDirection: "column",
+            gap: "1em", // Use em units for gap between elements
+            padding: "2em", // Use em units for padding
+            // marginTop: "10vh",
 
-        ...sx,
-      }}
-    >
-        <div
-        style={{
-          maxHeight: "70vh", // Set the maximum height to 70vh (adjust as needed)
-          overflow: "auto", // Enable scrolling when content exceeds the container height
-        }}
+            ...sx,
+         }}
       >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: "1rem",
-          marginTop: "1rem",
-        }}
-      >
-        <h1>Site Report: Environmental Investigation</h1>
+         <div
+            style={{
+               maxHeight: "70vh", // Set the maximum height to 70vh (adjust as needed)
+               overflow: "auto", // Enable scrolling when content exceeds the container height
+            }}
+         >
+            <div
+               style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  gap: "1rem",
+                  fontSize: "1.2rem",
+               }}
+            >
+               <b>Site Report: Environmental Investigation</b>
+            </div>
 
+            {/* Wrapped content inside a parent div */}
+            <div style={{ fontSize: "1.1rem" }}>
+               <div
+                  style={{
+                     display: "flex",
+                     flexDirection: "row",
+                     alignItems: "center",
+                     gap: "1rem",
+                     marginTop: "1rem",
+                  }}
+               >
+                  In total,
+                  <TextField
+                     disabled={solved}
+                     defaultValue={props.inputs.totalAreas}
+                     inputProps={{ style: { maxWidth: "70px" } }}
+                     onChange={(e) =>
+                        props.setInputs({
+                           ...props.inputs,
+                           totalAreas: e.target.value,
+                        })
+                     }
+                  />
+                  areas of concern were identified.
+               </div>
 
+               <div
+                  style={{
+                     display: "flex",
+                     flexDirection: "row",
+                     alignItems: "center",
+                     gap: "1rem",
+                     marginTop: "2rem",
+                  }}
+               >
+                  Of these, there is/are
+                  <TextField
+                     disabled={solved}
+                     defaultValue={props.inputs.definiteViolations}
+                     inputProps={{ style: { maxWidth: "70px" } }}
+                     onChange={(e) =>
+                        props.setInputs({
+                           ...props.inputs,
+                           definiteViolations: e.target.value,
+                        })
+                     }
+                  />
+                  definite violations.
+               </div>
 
-      </div>
-
-
-      {/* Wrapped content inside a parent div */}
-      <div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: "1rem",
-            marginTop: "1rem",
-          }}
-        >
-          <h3> In total, </h3>
-          <TextField inputProps={{ style: { height: "auto", fontSize: "1vw" } }} 
-          onChange={(e) =>
-            props.setInputs({
-              ...props.inputs,
-              totalAreas: e.target.value,
-            })
-          }
-          
-          />
-          <h3> areas of concern were identified </h3>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: "1rem",
-            marginTop: "2rem",
-          }}
-        >
-          <h3> Of these there is/are </h3>
-          <TextField inputProps={{ style: { height: "auto", fontSize: "1vw" } }}
-           onChange={(e) =>
-            props.setInputs({
-              ...props.inputs,
-              definiteViolations: e.target.value,
-            })
-          }
-          />
-          <h3> definite violations </h3>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: "1rem",
-            marginTop: "1rem"
-          }}
-        >
-          <h3> The remaining </h3>
-          <TextField inputProps={{ style: { height: "auto", fontSize: "1vw" } }} 
-
-          onChange={(e) =>
-            props.setInputs({
-            ...props.inputs,
-            furtherInvestigation: e.target.value,
-  })
-}
-          
-          />
-          <h3> warrant further investigation</h3>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            gap: "1rem",
-
-            whiteSpace: "nowrap",
-          }}
-        >
-          <h3> Please elaborate on why we must resolve these issues </h3>
-          <TextField multiline inputProps={{ style: { height: "auto", fontSize: "1vw",  gap: "1rem" } }
-        
-        } 
-        onChange={(e) =>
-          props.setInputs({
-            ...props.inputs,
-            resolutionExplanation: e.target.value,
-          })
-        }
-        
-        />
-          {/* Use inputProps to set height to auto */}
-        </div>
-
-        <Button style={{ marginTop: "2rem" }} onClick={props.submit}>Submit</Button>
-        <Button style={{ marginTop: "2rem" }} onClick={props.cancel}>
-          Cancel
-        </Button>
-      </div>
-      </div>
-    </Popper>
-  );
+               <div
+                  style={{
+                     display: "flex",
+                     flexDirection: "row",
+                     alignItems: "center",
+                     gap: "1rem",
+                     marginTop: "1rem",
+                  }}
+               >
+                  The remaining
+                  <TextField
+                     disabled={solved}
+                     defaultValue={props.inputs.furtherInvestigation}
+                     inputProps={{ style: { maxWidth: "70px" } }}
+                     onChange={(e) =>
+                        props.setInputs({
+                           ...props.inputs,
+                           furtherInvestigation: e.target.value,
+                        })
+                     }
+                  />
+                  warrant further investigation.
+               </div>
+               <br />
+               <div
+                  style={{
+                     display: "flex",
+                     flexDirection: "column",
+                     alignItems: "center",
+                     gap: "1rem",
+                     whiteSpace: "nowrap",
+                  }}
+               >
+                  Please elaborate on why we must resolve these issues:
+                  <TextField
+                     disabled={solved}
+                     multiline
+                     defaultValue={props.inputs.resolutionExplanation}
+                     rows={3}
+                     sx={{ width: "80%" }}
+                     onChange={(e) =>
+                        props.setInputs({
+                           ...props.inputs,
+                           resolutionExplanation: e.target.value,
+                        })
+                     }
+                  />
+                  {/* Use inputProps to set height to auto */}
+               </div>
+               <div
+                  style={{
+                     display: "flex",
+                     justifyContent: "flex-end",
+                     marginBottom: "2px",
+                  }}
+               >
+                  <Button
+                  disabled={solved}
+                     style={{ marginTop: "2rem", marginRight: "1rem" }}
+                     onClick={props.submit}
+                     variant="outlined"
+                  >
+                     Submit
+                  </Button>
+                  <Button
+                     style={{ marginTop: "2rem" }}
+                     onClick={props.cancel}
+                     variant="outlined"
+                  >
+                     Cancel
+                  </Button>
+               </div>
+            </div>
+         </div>
+      </Popper>
+   );
 };
 
 export default Submit;
-

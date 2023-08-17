@@ -64,66 +64,65 @@ const instructions = (
 export default function MapHome() {
    return (
       <TopBar
-            instruction={
-               <Instructions
-                  name="Jessy"
-                  chat={chat}
-                  buttonText="visit the port of corpus christi"
-                  instructions={instructions}
-                  showCalendar={false}
-               ></Instructions>
-            }
-         >
-      <Box
-         sx={{
-            backgroundImage:
-               "url('https://upload.wikimedia.org/wikipedia/commons/d/d8/Hafen_Corpus_Christi.svg')", //<MapBackground />,
-            backgroundSize: "cover",
-            width: "140vw",
-            height: "140vh",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            minHeight: "100vh",
-            overflowY: "scroll",
-            overflowX: "scroll",
-            backgroundAttachment: "local",
-            position: "relative",
-            pt: 9
-         }}
-      >
-         
-         <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-between"
-            // marginTop="70px"
-            // alignItems="center"
-            marginLeft="15px"
-            position="fixed"
-            height="205px"
-         >
-            <ChatButton
+         instruction={
+            <Instructions
+               name="Jessy"
                chat={chat}
-               style={{
-                  borderRadius: 2,
-                  backgroundColor: "green ",
-                  width: 64,
-                  height: 64,
-                  "&:hover": { backgroundColor: "green" },
-                  // marginBottom: "10px",
-               }}
-            />
-            <Calculator />
-            <PolicyClue />
-         </Box>
+               buttonText="visit the port of corpus christi"
+               instructions={instructions}
+               showCalendar={false}
+            ></Instructions>
+         }
+      >
+         <Box
+            sx={{
+               backgroundImage:
+                  "url('https://upload.wikimedia.org/wikipedia/commons/d/d8/Hafen_Corpus_Christi.svg')", //<MapBackground />,
+               backgroundSize: "cover",
+               width: "140vw",
+               height: "140vh",
+               backgroundPosition: "center",
+               backgroundRepeat: "no-repeat",
+               minHeight: "100vh",
+               overflowY: "scroll",
+               overflowX: "scroll",
+               backgroundAttachment: "local",
+               position: "relative",
+               pt: 9,
+            }}
+         >
+            <Box
+               display="flex"
+               flexDirection="column"
+               justifyContent="space-between"
+               // marginTop="70px"
+               // alignItems="center"
+               marginLeft="15px"
+               position="fixed"
+               height="205px"
+            >
+               <ChatButton
+                  chat={chat}
+                  style={{
+                     borderRadius: 2,
+                     backgroundColor: "green ",
+                     width: 64,
+                     height: 64,
+                     "&:hover": { backgroundColor: "green" },
+                     // marginBottom: "10px",
+                  }}
+               />
+               <Calculator />
+               <PolicyClue />
+            </Box>
 
-         <CO2 />
-         <Hydrogen />
-         <Ship />
-         <AirQuality />
-         <Star />
-         <Tree />
-      </Box>
+            <CO2 />
+            <Hydrogen />
+            <Ship />
+            <AirQuality />
+            <Star />
+            <Tree />
+         </Box>
       </TopBar>
    );
 }
