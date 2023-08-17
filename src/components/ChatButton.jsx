@@ -1,10 +1,17 @@
-import { Box, IconButton, Dialog, Tooltip } from "@mui/material";
+import {
+   Box,
+   IconButton,
+   Dialog,
+   DialogContent,
+   DialogContentText,
+   Tooltip,
+} from "@mui/material";
 import { useState } from "react";
 import ChatIcon from "@mui/icons-material/Chat";
 
 export default function ChatButton({ chat, style }) {
    const [open, setOpen] = useState(false);
-   
+
    return (
       <Box>
          <Dialog
@@ -13,13 +20,17 @@ export default function ChatButton({ chat, style }) {
             fullWidth
             maxWidth="sm"
          >
-            <video autoPlay alt="text messages" controls>
-               <source src={chat} type="video/mp4" />
-            </video>
+            <DialogContent sx={{backgroundColor: "skyblue"}}>
+               <DialogContentText>
+                  <video autoPlay alt="text messages" controls width="100%">
+                     <source src={chat} type="video/mp4" />
+                  </video>
+               </DialogContentText>
+            </DialogContent>
          </Dialog>
-         <IconButton onClick={() => setOpen(!open)} sx={style}>
+         <IconButton onClick={() => setOpen(!open)} sx={style} disableRipple>
             <Tooltip title="Chat" arrow>
-               <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
+               <ChatIcon sx={{ fontSize: 55, color: "palegreen" }} />
             </Tooltip>
          </IconButton>
       </Box>

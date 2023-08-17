@@ -27,6 +27,7 @@ import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
 import chat from "../wqi-chat-animation.mp4";
 import Calculator from "../../../components/Calculator";
+import ChatButton from "../../../components/ChatButton";
 
 const instructions = (
    <Box
@@ -121,17 +122,7 @@ export default function WQIHome() {
                   openClipboard={openClipboard}
                   setOpenClipboard={setOpenClipboard}
                />
-               <IconButton onClick={() => setOpenMessages(true)}>
-                  <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
-               </IconButton>
-               <Dialog
-                  open={openMessages}
-                  onClose={() => setOpenMessages(false)}
-               >
-                  <video controls autoPlay style={{ width: "100%" }}>
-                     <source src={chat} alt="text messages" type="video/mp4" />
-                  </video>
-               </Dialog>
+            <ChatButton chat={chat} />
             </Box>
             <Box ml="5px" mt="5px">
                <SampleUnitConversion />
