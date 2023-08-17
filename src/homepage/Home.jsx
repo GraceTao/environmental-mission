@@ -159,8 +159,10 @@ function Home() {
                   </DialogContent>
                </Dialog>
             ) : (
-               <div style={{ position: "relative" }}>
-                  <img
+               <div>
+                  <Box>
+                  <Box>
+                     <img
                      src={logo}
                      alt="Port of Corpus Christi Logo"
                      width="20%"
@@ -174,6 +176,9 @@ function Home() {
                   <Box position="absolute" right={10}>
                      <Instructions instructions={purpose} />
                   </Box>
+                  </Box>
+                  
+                  
 
                   <Grid
                      container
@@ -181,7 +186,8 @@ function Home() {
                      columnSpacing={{ xs: 15, sm: 22, md: 25, lg: 25 }}
                      justifyContent="center"
                      alignItems="center"
-                     sx={{pt: {xs: "16%", sm: "14%"}, pl: "4%", pr: "4%"}}
+                     position="relative"
+                     sx={{pt: {xs: "16%", sm: "14%", md: "12%", lg: "11%"}, pl: "4%", pr: "4%", pb: "5%"}}
                   >
                      {appIcons.map((app) => (
                         <Grid item key={app.name}>
@@ -209,7 +215,7 @@ function Home() {
                                  borderColor: app.color,
                                  borderRadius: "45%",
                                  "&:hover": {
-                                    backgroundColor: "#FCECFC70",
+                                    backgroundColor: "lightgray",
                                     boxShadow: 7,
                                  },
                                  boxShadow: 2,
@@ -234,6 +240,7 @@ function Home() {
                         </Grid>
                      ))}
                   </Grid>
+                  </Box>
                   <ContactsList
                      open={showIconContent}
                      setOpen={setShowIconContent}
