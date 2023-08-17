@@ -25,6 +25,7 @@ import TopBar from "../../components/TopBar";
 import Instructions from "../../components/Instructions";
 import Instr from "../../components/Instr";
 import chat from "./inspection-chat-animation.mp4";
+import ChatButton from "../../components/ChatButton";
 
 const Clue1 = () => {
    const [openTrash, setTrash] = useState(false);
@@ -84,7 +85,9 @@ const Clue1 = () => {
          }
       >
          <div className="container">
+            <ChatButton chat={chat} style={{ml: 1}}/>
             <div className="violations">
+               
                <button
                   name="pesticides"
                   onClick={() => setPesticide(!openPesticide)}

@@ -10,6 +10,7 @@ import DraggablePopper from "./DraggablePopper";
 import TopBar from "../../components/TopBar";
 import Instructions from "../../components/Instructions";
 import Instr from "../../components/Instr";
+import ChatButton from "../../components/ChatButton";
 import Response from "./Response";
 import email_chat_animation from "./email_chat_animation.mp4";
 
@@ -140,6 +141,10 @@ const Documents = () => {
                pl={2}
                pr={2}
             >
+                           <ChatButton
+               chat={email_chat_animation}
+               style={{ backgroundColor: "teal", borderRadius: 3, mr: 4 }}
+            />
                {image ? (
                   <img
                      src={Map}
