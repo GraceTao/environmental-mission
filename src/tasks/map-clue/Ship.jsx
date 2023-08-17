@@ -36,6 +36,7 @@ export default function Ship() {
                   color: "blue",
                   width: "100%",
                   height: "100%",
+                  boxShadow: 5,
                }}
             />
          }
