@@ -178,10 +178,10 @@ function Home() {
                   <Grid
                      container
                      rowSpacing={{ xs: 8, sm: 10, md: 12, lg: 18 }}
-                     columnSpacing={{ xs: 15, sm: 20, md: 20, lg: 25 }}
+                     columnSpacing={{ xs: 15, sm: 22, md: 25, lg: 25 }}
                      justifyContent="center"
                      alignItems="center"
-                     style={{ marginTop: "2%", marginBottom: "2%" }}
+                     sx={{pt: {xs: "16%", sm: "14%"}, pl: "4%", pr: "4%"}}
                   >
                      {appIcons.map((app) => (
                         <Grid item key={app.name}>
@@ -214,21 +214,21 @@ function Home() {
                                  },
                                  boxShadow: 2,
                                  width: {
-                                    xs: "85px",
-                                    sm: "90px",
+                                    xs: "90px",
+                                    sm: "95px",
                                     md: "100px",
-                                    lg: "100px",
+                                    lg: "105px",
                                  },
                                  height: {
-                                    xs: "85px",
-                                    sm: "90px",
+                                    xs: "90px",
+                                    sm: "95px",
                                     md: "100px",
-                                    lg: "100px",
+                                    lg: "105px",
                                  },
                               }}
                            >
                               <app.icon
-                                 sx={{ fontSize: "60px", color: app.color }}
+                                 sx={{ fontSize: "65px", color: app.color }}
                               ></app.icon>
                            </IconButton>
                         </Grid>
