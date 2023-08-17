@@ -76,9 +76,10 @@ export default function AirQuality() {
          icon={
             <FactoryIcon
                sx={{
-                  color: "grey",
+                  color: "#00fbd1",
                   width: "100%",
                   height: "100%",
+                  boxShadow: 5,
                }}
             />
          }

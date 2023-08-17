@@ -26,9 +26,10 @@ export default function Tree() {
          icon={
             <ForestRoundedIcon
                sx={{
-                  color: "green",
+                  color: "#60f81d",
                   width: "100%",
                   height: "100%",
+                  boxShadow: 5,
                }}
             />
          }

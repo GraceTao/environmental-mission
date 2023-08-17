@@ -29,7 +29,7 @@ function MapInstructions() {
    const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
 
    useEffect(() => {
-      setTimeout(() => setVideoPlayed(true), 18000);
+      setTimeout(() => setVideoPlayed(true), 10000);
    }, []);
 
    const [videoPlayed, setVideoPlayed] = useState(false);
