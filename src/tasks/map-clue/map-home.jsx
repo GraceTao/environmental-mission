@@ -54,7 +54,7 @@ const instructions = (
                environmental sustainability and resiliency.” Each window will
                either ask you a question whose answer is a number, or give a
                number in <b>bold</b>. Determine the clue word based on the
-               numerical answers. You may need to scroll.
+               numerical answers. <u>You may need to scroll.</u>
             </Typography>
          }
       ></Instr>
@@ -63,22 +63,7 @@ const instructions = (
 
 export default function MapHome() {
    return (
-      <Box
-         sx={{
-            backgroundImage:
-               "url('https://upload.wikimedia.org/wikipedia/commons/d/d8/Hafen_Corpus_Christi.svg')", //<MapBackground />,
-            backgroundSize: "cover",
-            width: "150vw",
-            height: "150vh",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            minHeight: "100vh",
-            overflowY: "scroll",
-            overflowX: "scroll",
-            backgroundAttachment: "local",
-         }}
-      >
-         <TopBar
+      <TopBar
             instruction={
                <Instructions
                   name="Jessy"
@@ -88,14 +73,34 @@ export default function MapHome() {
                   showCalendar={false}
                ></Instructions>
             }
-         />
+         >
+      <Box
+         sx={{
+            backgroundImage:
+               "url('https://upload.wikimedia.org/wikipedia/commons/d/d8/Hafen_Corpus_Christi.svg')", //<MapBackground />,
+            backgroundSize: "cover",
+            width: "140vw",
+            height: "140vh",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            minHeight: "100vh",
+            overflowY: "scroll",
+            overflowX: "scroll",
+            backgroundAttachment: "local",
+            position: "relative",
+            pt: 9
+         }}
+      >
+         
          <Box
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
-            marginTop="70px"
-            marginLeft="20px"
+            // marginTop="70px"
+            // alignItems="center"
+            marginLeft="15px"
             position="fixed"
+            height="205px"
          >
             <ChatButton
                chat={chat}
@@ -104,9 +109,8 @@ export default function MapHome() {
                   backgroundColor: "green ",
                   width: 64,
                   height: 64,
-                  position: { top: 2, left: 5 },
                   "&:hover": { backgroundColor: "green" },
-                  marginBottom: "10px",
+                  // marginBottom: "10px",
                }}
             />
             <Calculator />
@@ -120,5 +124,6 @@ export default function MapHome() {
          <Star />
          <Tree />
       </Box>
+      </TopBar>
    );
 }
