@@ -26,6 +26,7 @@ export default function CO2() {
                   color: "red",
                   width: "100%",
                   height: "100%",
+                  boxShadow: 5,
                }}
             />
          }

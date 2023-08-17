@@ -33,11 +33,17 @@ const instructions = (
    >
       <Instr
          title="Welcome to the Port of Corpus Christi!"
-         contents={<Typography fontSize="1.2rem" align="center">We are traveling to one of the largest U.S. ports, the Port of Corpus Christi in Texas. It is at the 
-               forefront of the maritime industry and energy marketplace. 
-               The Port handles thousands of vessels containing crude oil, petroleum, liquefied natural gas, and more. 
-               Our Environmental Management System (EMS) is ISO 14001-certified, which means we set specific environmental 
-               goals and performance measures, then work to achieve them. </Typography>}
+         contents={
+            <Typography fontSize="1.2rem" align="center">
+               We are traveling to one of the largest U.S. ports, the Port of
+               Corpus Christi in Texas. It is at the forefront of the maritime
+               industry and energy marketplace. The Port handles thousands of
+               vessels containing crude oil, petroleum, liquefied natural gas,
+               and more. Our Environmental Management System (EMS) is ISO
+               14001-certified, which means we set specific environmental goals
+               and performance measures, then work to achieve them.{" "}
+            </Typography>
+         }
       />
       <Instr
          title="Task:"
@@ -56,7 +62,6 @@ const instructions = (
 );
 
 export default function MapHome() {
-
    return (
       <Box
          sx={{
@@ -92,15 +97,18 @@ export default function MapHome() {
             marginLeft="20px"
             position="fixed"
          >
-            <ChatButton chat={chat} style={{
-                     borderRadius: 2,
-                     backgroundColor: "green ",
-                     width: 64,
-                     height: 64,
-                     position: { top: 2, left: 5 },
-                     "&:hover": { backgroundColor: "green" },
-                     marginBottom: "10px",
-                  }} />
+            <ChatButton
+               chat={chat}
+               style={{
+                  borderRadius: 2,
+                  backgroundColor: "green ",
+                  width: 64,
+                  height: 64,
+                  position: { top: 2, left: 5 },
+                  "&:hover": { backgroundColor: "green" },
+                  marginBottom: "10px",
+               }}
+            />
             <Calculator />
             <PolicyClue />
          </Box>
