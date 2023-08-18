@@ -35,13 +35,13 @@ const instructions = (
          title="Welcome to the Port of Corpus Christi!"
          contents={
             <Typography fontSize="1.2rem" align="center">
-               We are traveling to one of the largest U.S. ports, the Port of
-               Corpus Christi in Texas. It is at the forefront of the maritime
-               industry and energy marketplace. The Port handles thousands of
-               vessels containing crude oil, petroleum, liquefied natural gas,
-               and more. Our Environmental Management System (EMS) is ISO
-               14001-certified, which means we set specific environmental goals
-               and performance measures, then work to achieve them.{" "}
+               The Port of Corpus Christi in Texas is one of the largest U.S.
+               ports. It is at the forefront of the maritime industry and energy
+               marketplace, handling thousands of vessels containing crude oil,
+               petroleum, liquefied natural gas, and more. The Port of Corpus
+               Christi's Environmental Management System (EMS) is ISO
+               14001-certified, which means it sets specific environmental goals
+               and performance measures, then works to achieve them.
             </Typography>
          }
       />
@@ -53,8 +53,11 @@ const instructions = (
                Christi’s efforts to operate in a manner “conducive to
                environmental sustainability and resiliency.” Each window will
                either ask you a question whose answer is a number, or give a
-               number in <b>bold</b>. Determine the clue word based on the
-               numerical answers. <u>You may need to scroll.</u>
+               number in <b>bold</b>. <br />
+               <u>
+                  Determine the clue word based on the numerical answers. You
+                  may need to scroll.
+               </u>
             </Typography>
          }
       ></Instr>
