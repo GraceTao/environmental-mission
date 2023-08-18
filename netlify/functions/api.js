@@ -53,22 +53,6 @@ router.post("/submituserdata", async (req, res) => {
    }
 });
 
-// router.get("/getdata", async (req, res) => {
-
-//    try {
-//       const response = await service.spreadsheets.values.get({
-//          spreadsheetId: SHEET_ID,
-//          range: "A1:C1",
-//        });
-
-//        const rows = response.data.values;
-//        console.log("Row data:", rows);
-//       res.status(200).send("Row fetched successfully");
-//    } catch (err) {
-//       console.error("Error adding user data: ", err);
-//       res.status(500).json({ message: "An error occurred" });
-//    }
-// });
 
 api.use("/api", router);
 export const handler = serverless(api);
