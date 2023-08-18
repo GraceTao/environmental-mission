@@ -5,28 +5,25 @@ import {
    Typography,
    FormControl,
    FormLabel,
-   Box,
+   //Box,
    Button,
-   Popper,
+   //Popper,
    IconButton,
    Tooltip,
    TextField,
    Dialog,
    Snackbar,
+   DialogContent
 } from "@mui/material";
 import FlagIcon from "@mui/icons-material/Flag";
-import { AudioFileSharp } from "@mui/icons-material";
 import { addAttempt } from "../../homepage/trackAttempts";
 
 export default function PolicyClue() {
-   const storedMap = sessionStorage.getItem("inputMap");
    const displayMapClue = sessionStorage.getItem("displayMapClue");
 
    const [openClue, setOpenClue] = useState(false);
    const [openAlert, setOpenAlert] = useState(false);
    const [alertMessage, setAlertMessage] = useState("");
-   //const [correct, setCorrect] = useState();
-   const [submitted, setSubmitted] = useState(false);
    const [displayClue, setDisplayClue] = useState(displayMapClue);
 
    const letters = [
@@ -55,8 +52,6 @@ export default function PolicyClue() {
    const handleSubmit = () => {
       !Object.values(showLetter).every((letter) => letter === "") &&
          addAttempt("mapAttempts");
-
-      setSubmitted(true);
 
       //sessionStorage.setItem("inputMap", inputMap);
       setOpenAlert(true);
@@ -106,7 +101,7 @@ export default function PolicyClue() {
    const checkContains = (obj) => {
       let res = true;
       Object.values(showLetter).forEach((letters) => {
-         if (letters == "") {
+         if (letters == null || letters == "") {
             res = false;
          }
       });
@@ -126,24 +121,41 @@ export default function PolicyClue() {
             </>
          );
       } else if (!checkNumbers()) {
-         setAlertMessage(<>All inputs must be letters! Hint: A=1</>);
+         setAlertMessage(
+            <>
+               All inputs must be letters! Hint: A=1
+            </>
+         );
       } else if (!checkLetters()) {
          setAlertMessage(
             <>Some of your letters are not correct! Check the map carefully!</>
-         );
+         )
       } else if (!checkEntries()) {
          setAlertMessage(
             <>
                The letters are not in the correct order. Try unscrambling them!
             </>
          );
+      } else {
+         sessionStorage.setItem("displayMapClue", true)
+         setDisplayClue(true)
+         setOpenAlert(false)
+         setOpenClue(false)
       }
    };
 
    return (
       <div>
          <IconButton
-            onClick={() => setOpenClue(true)}
+            onClick={() => {
+               if (displayMapClue) {
+                  setDisplayClue(true)
+               }
+               else {
+                  setOpenClue(true)
+               }
+            }}
+
             sx={{
                borderRadius: 2,
                backgroundColor: "#ffff8d ",
@@ -152,7 +164,7 @@ export default function PolicyClue() {
                "&:hover": { backgroundColor: "#ffff8d" },
             }}
          >
-            <Tooltip title="Find the clue!" arrow>
+            <Tooltip title="Find the clue word!" arrow>
                <FlagIcon sx={{ fontSize: 55, color: "orange" }} />
             </Tooltip>
          </IconButton>
@@ -163,8 +175,13 @@ export default function PolicyClue() {
             sx={{ boxShadow: 6 }}
          >
             <div style={{ overflow: "auto", maxHeight: "50vh" }}>
-               <FormControl>
-                  <FormLabel>Find the clue!</FormLabel>
+               <FormControl
+                  sx={{
+                     borderRadius: 2,
+                     padding:"10px"
+                  }}
+               >
+                  <FormLabel>Find the clue word!</FormLabel>
 
                   {letters.map((letter) => (
                      <TextField
@@ -176,7 +193,7 @@ export default function PolicyClue() {
                         inputProps={{ maxLength: 1 }}
                      ></TextField>
                   ))}
-                  <Button onClick={handleSubmit}>Submit</Button>
+                  <Button variant="contained" onClick={handleSubmit}>Submit</Button>
                </FormControl>
                <Snackbar
                   anchorOrigin={{ vertical: "top", horizontal: "center" }}
@@ -193,6 +210,23 @@ export default function PolicyClue() {
                   </Alert>
                </Snackbar>
             </div>
+         </Dialog>
+         <Dialog
+            open={!!displayClue}
+            onClose={() => {
+               setDisplayClue(false);
+            }}
+         >
+            <DialogContent sx={{ backgroundColor: "lightblue" }}>
+               <Typography
+                  align="center"
+                  fontSize={{ xs: "1.2rem", md: "1.4rem" }}
+               >
+                  You got it right!
+                  <br />
+                  Your clue word is <b>policy</b>.
+               </Typography>
+            </DialogContent>
          </Dialog>
       </div>
    );
