@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 function Page1() {
    return (
       <div>
-         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
+         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }} align="center">
          In early 2023, the Port of Corpus Christi Horizons Clean Hydrogen Hub (HCH2) 
          and Trans Permian (Trans Permian) H2Hub announced that they would be merging 
          into a single hub. 

@@ -7,7 +7,7 @@ import table from './Air Quality Table.png'
 
 function Page1() {
    return (
-      <div>
+      <Box padding="10px">
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
             Air quality, similar to water quality, directly affects our health. Poor quality
             air contains high levels of pollutants and is often visible as haze (take the
@@ -15,29 +15,31 @@ function Page1() {
             <br />
             <br />
             Indicators of air quality include the level of:
-            <br /> - Particle pollution, AKA particulate matter (PM): solid or liquid particles
+            <ul>
+               <li>Particle pollution, AKA particulate matter (PM): solid or liquid particles
             suspended in the air. These include soot, dirt, dust, and smoke, and come from
-            numerous sources.
-            <br /> - Volatile organic compounds (VOC): compounds with high vapor pressure and low
+            numerous sources.</li>
+               <li>Volatile organic compounds (VOC): compounds with high vapor pressure and low
             water solubility. They are emitted as gasses from sources like paints, pesticides,
-            cleaning supplies, and glues.
-            <br /> - NOx: shorthand for nitric oxide (NO) and nitrogen dioxide (NO2), which
-            contribute to the formation of smog and acid rain.
-            <br /> - SOx: sulfur oxides, most commonly sulfur dioxide (SO2), which have pungent
-            odors and are known to be harmful to health and vegetation.
+            cleaning supplies, and glues.</li>
+               <li>NOx: shorthand for nitric oxide (NO) and nitrogen dioxide (NO2), which
+            contribute to the formation of smog and acid rain.</li>
+               <li>SOx: sulfur oxides, most commonly sulfur dioxide (SO2), which have pungent
+            odors and are known to be harmful to health and vegetation.</li>
+            </ul>
          </Typography>
-      </div>
+      </Box>
    );
 }
 
 function Page2() {
    return (
-      <div>
-         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
+      <Box align="center" padding="10px">
+         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }} align="left">
             Look at the table below
          </Typography>
 
-         <Box width="70%" pb={2}>
+         <Box width="70%" pb={2} align="center">
                <img
                      src={table}
                      alt="Air Quality Table"
@@ -45,7 +47,7 @@ function Page2() {
                   />
          </Box>
 
-         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
+         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }} align="center" >
             By the end of 2023, Corpus Christi hopes to reduce the total NOx, PM, VOC, and
             SOx emissions to 5,019.7 tons.
             <br />
@@ -64,9 +66,9 @@ function Page2() {
             V1 = 2020 total NOx, PM, VOC, SOx emissions
             <br />
             <br />
-            Source: https://portofcc.com/wp-content/uploads/PV-FINAL-Port-of-Corpus-Christi-2020-EI-Report-2-Nov-21-scg.pdf
+            <a href="https://portofcc.com/wp-content/uploads/PV-FINAL-Port-of-Corpus-Christi-2020-EI-Report-2-Nov-21-scg.pdf">Source</a>
          </Typography>
-      </div>
+      </Box>
    );
 }
 

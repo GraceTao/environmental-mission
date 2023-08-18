@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 function Page1() {
    return (
       <div>
-         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
+         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }} align="center">
          In their 2022 Environmental Policy, the Port of Corpus Christi commits to 
          voluntarily creating/restoring 50 acres of habitat within the Corpus Christi 
          and Aransas Bay systems every three years.
