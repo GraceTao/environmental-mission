@@ -16,18 +16,14 @@ import {
    DialogContent
 } from "@mui/material";
 import FlagIcon from "@mui/icons-material/Flag";
-import { AudioFileSharp } from "@mui/icons-material";
 import { addAttempt } from "../../homepage/trackAttempts";
 
 export default function PolicyClue() {
-   const storedMap = sessionStorage.getItem("inputMap");
    const displayMapClue = sessionStorage.getItem("displayMapClue");
 
    const [openClue, setOpenClue] = useState(false);
    const [openAlert, setOpenAlert] = useState(false);
    const [alertMessage, setAlertMessage] = useState("");
-   //const [correct, setCorrect] = useState();
-   const [submitted, setSubmitted] = useState(false);
    const [displayClue, setDisplayClue] = useState(displayMapClue);
 
    const letters = [
@@ -56,9 +52,6 @@ export default function PolicyClue() {
    const handleSubmit = () => {
       !Object.values(showLetter).every((letter) => letter === "") &&
          addAttempt("mapAttempts");
-
-      console.log(addAttempt("mapAttempts"));
-      setSubmitted(true);
 
       //sessionStorage.setItem("inputMap", inputMap);
       setOpenAlert(true);
@@ -143,7 +136,6 @@ export default function PolicyClue() {
                The letters are not in the correct order. Try unscrambling them!
             </>
          );
-         setOpenAlert(true)
       } else {
          sessionStorage.setItem("displayMapClue", true)
          setDisplayClue(true)
@@ -155,7 +147,15 @@ export default function PolicyClue() {
    return (
       <div>
          <IconButton
-            onClick={() => setOpenClue(true)}
+            onClick={() => {
+               if (displayMapClue) {
+                  setDisplayClue(true)
+               }
+               else {
+                  setOpenClue(true)
+               }
+            }}
+
             sx={{
                borderRadius: 2,
                backgroundColor: "#ffff8d ",
@@ -164,7 +164,7 @@ export default function PolicyClue() {
                "&:hover": { backgroundColor: "#ffff8d" },
             }}
          >
-            <Tooltip title="Find the clue!" arrow>
+            <Tooltip title="Find the clue word!" arrow>
                <FlagIcon sx={{ fontSize: 55, color: "orange" }} />
             </Tooltip>
          </IconButton>
@@ -175,8 +175,13 @@ export default function PolicyClue() {
             sx={{ boxShadow: 6 }}
          >
             <div style={{ overflow: "auto", maxHeight: "50vh" }}>
-               <FormControl>
-                  <FormLabel>Find the clue!</FormLabel>
+               <FormControl
+                  sx={{
+                     borderRadius: 2,
+                     padding:"10px"
+                  }}
+               >
+                  <FormLabel>Find the clue word!</FormLabel>
 
                   {letters.map((letter) => (
                      <TextField
@@ -188,7 +193,7 @@ export default function PolicyClue() {
                         inputProps={{ maxLength: 1 }}
                      ></TextField>
                   ))}
-                  <Button onClick={handleSubmit}>Submit</Button>
+                  <Button variant="contained" onClick={handleSubmit}>Submit</Button>
                </FormControl>
                <Snackbar
                   anchorOrigin={{ vertical: "top", horizontal: "center" }}

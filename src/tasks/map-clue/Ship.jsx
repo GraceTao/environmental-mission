@@ -10,18 +10,19 @@ function Page1() {
             Look at the table below
          </Typography>
 
-         <Box width="70%" pb={2}>
+         <Box pb={2} align="center">
             <ShipTable />
          </Box>
 
-         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" }}}>
-            What is the ratio of outbound to inbound crude oil tonnage? Round DOWN to the nearest whole number.
+         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" }}} align="center">
+            <b>What is the ratio of outbound to inbound crude oil tonnage? Round DOWN to the nearest whole number.</b>
             <br />
             <br />
             ratio = X:1
+            <br />
          </Typography>
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" }}}>
-            Source: https://portofcc.com/wp-content/uploads/Cargo_Tonnage_by_Commodity_2023_05.pdf
+            <a href="https://portofcc.com/wp-content/uploads/Cargo_Tonnage_by_Commodity_2023_05.pdf">Source</a>
          </Typography>
       </div>
    );
