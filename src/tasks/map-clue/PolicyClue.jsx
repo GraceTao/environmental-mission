@@ -5,14 +5,15 @@ import {
    Typography,
    FormControl,
    FormLabel,
-   Box,
+   //Box,
    Button,
-   Popper,
+   //Popper,
    IconButton,
    Tooltip,
    TextField,
    Dialog,
    Snackbar,
+   DialogContent
 } from "@mui/material";
 import FlagIcon from "@mui/icons-material/Flag";
 import { AudioFileSharp } from "@mui/icons-material";
@@ -56,6 +57,7 @@ export default function PolicyClue() {
       !Object.values(showLetter).every((letter) => letter === "") &&
          addAttempt("mapAttempts");
 
+      console.log(addAttempt("mapAttempts"));
       setSubmitted(true);
 
       //sessionStorage.setItem("inputMap", inputMap);
@@ -106,7 +108,7 @@ export default function PolicyClue() {
    const checkContains = (obj) => {
       let res = true;
       Object.values(showLetter).forEach((letters) => {
-         if (letters == "") {
+         if (letters == null || letters == "") {
             res = false;
          }
       });
@@ -126,17 +128,27 @@ export default function PolicyClue() {
             </>
          );
       } else if (!checkNumbers()) {
-         setAlertMessage(<>All inputs must be letters! Hint: A=1</>);
+         setAlertMessage(
+            <>
+               All inputs must be letters! Hint: A=1
+            </>
+         );
       } else if (!checkLetters()) {
          setAlertMessage(
             <>Some of your letters are not correct! Check the map carefully!</>
-         );
+         )
       } else if (!checkEntries()) {
          setAlertMessage(
             <>
                The letters are not in the correct order. Try unscrambling them!
             </>
          );
+         setOpenAlert(true)
+      } else {
+         sessionStorage.setItem("displayMapClue", true)
+         setDisplayClue(true)
+         setOpenAlert(false)
+         setOpenClue(false)
       }
    };
 
@@ -193,6 +205,23 @@ export default function PolicyClue() {
                   </Alert>
                </Snackbar>
             </div>
+         </Dialog>
+         <Dialog
+            open={!!displayClue}
+            onClose={() => {
+               setDisplayClue(false);
+            }}
+         >
+            <DialogContent sx={{ backgroundColor: "lightblue" }}>
+               <Typography
+                  align="center"
+                  fontSize={{ xs: "1.2rem", md: "1.4rem" }}
+               >
+                  You got it right!
+                  <br />
+                  Your clue word is <b>policy</b>.
+               </Typography>
+            </DialogContent>
          </Dialog>
       </div>
    );
