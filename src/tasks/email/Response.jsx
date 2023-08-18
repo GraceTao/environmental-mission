@@ -41,16 +41,19 @@ export default function Response({
       setSubmitted(false);
    };
 
-   const handleClose = () => {
-      setOpen(!open);
-      setSubmitted(false);
-      setError("");
-
+   const store = () => {
       sessionStorage.setItem("height", inputs.height);
       sessionStorage.setItem("length", inputs.length);
       sessionStorage.setItem("width", inputs.width);
       sessionStorage.setItem("volume", inputs.volume);
       sessionStorage.setItem("sa", inputs.sa);
+   }
+
+   const handleClose = () => {
+      setOpen(!open);
+      setSubmitted(false);
+      setError("");
+      store();
    };
 
    const handleSolve = () => {
@@ -74,6 +77,7 @@ export default function Response({
          sessionStorage.setItem("solvedEmail", "true");
       }
       setSubmitted(true);
+      store();
       console.log(addAttempt("emailAttempts"));
    };
 

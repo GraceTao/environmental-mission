@@ -14,12 +14,14 @@ export default function Notification() {
             display: "flex",
             justifyContent: "center",
             marginTop: "5px",
+            // position: "relative",
+            zIndex: 5
          }}
       >
          {open ? (
             <Box
                sx={{ width: {xs: "70%", sm: "60%", md: "50%"}, boxShadow: 7 }}
-               style={{ position: "absolute", zIndex: 1 }}
+               style={{ position: "absolute", zIndex: 5 }}
             >
                <Alert
                   severity="warning"
@@ -42,7 +44,7 @@ export default function Notification() {
                }}
                style={{
                   position: "absolute",
-                  zIndex: 1,
+                  zIndex: 5,
                   height: 40,
                   backgroundColor: "#F0CD60",
                }}

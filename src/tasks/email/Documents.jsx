@@ -10,60 +10,20 @@ import DraggablePopper from "./DraggablePopper";
 import TopBar from "../../components/TopBar";
 import Instructions from "../../components/Instructions";
 import Instr from "../../components/Instr";
+import ChatButton from "../../components/ChatButton";
 import Response from "./Response";
 import email_chat_animation from "./email_chat_animation.mp4";
 
 function EmailInstructions() {
-   useEffect(() => {
-      setTimeout(() => setVideoPlayed(true), 18000);
-   }, []);
-
-   const hasEnabledInstr = Boolean(
-      sessionStorage.getItem("hasEnabledEmailInstr")
-   );
-   const [openInstr, setOpenInstr] = useState(hasEnabledInstr);
-   const [videoPlayed, setVideoPlayed] = useState(hasEnabledInstr);
-
    const content = (
-      <>
+      <Typography fontSize="1.2rem" align="center">
          Please read the email and explore the map and rules. When you have
          determined the <b>maximum</b> dimensions for the building that follow
          guidelines, click the "Reply" button to submit.
-      </>
+      </Typography>
    );
-   return openInstr ? (
-      <Instr title="Email Task" contents={content} />
-   ) : (
-      <Box
-         display="flex"
-         flexDirection={{ xs: "column", sm: "row" }}
-         justifyContent="space-around"
-         alignItems={{ xs: "center", sm: "flex-start" }}
-         margin="auto"
-      >
-         <video controls autoPlay style={{ minWidth: "300px", width: "60%" }}>
-            <source
-               src={email_chat_animation}
-               alt="text messages"
-               type="video/mp4"
-            />
-         </video>
 
-         <Button
-            disabled={!videoPlayed}
-            variant="contained"
-            color="info"
-            onClick={() => {
-               sessionStorage.setItem("hasEnabledEmailInstr", true);
-               setOpenInstr(!openInstr);
-            }}
-         >
-            <Typography fontSize={{ xs: "0.8rem", sm: "0.9rem", md: "1rem" }}>
-               proceed to Sitara's email
-            </Typography>
-         </Button>
-      </Box>
-   );
+   return <Instr title="Email Task" contents={content} />;
 }
 
 const Documents = () => {
@@ -106,22 +66,11 @@ const Documents = () => {
          className="bar"
          instruction={
             <Instructions
-               content={<EmailInstructions />}
-               name={
-                  <Typography
-                     color="#33403d"
-                     fontWeight="bold"
-                     fontSize="1.2rem"
-                     name="text"
-                  >
-                     instructions
-                  </Typography>
-               }
-               title={null}
-               style={{
-                  backgroundColor: "inherit",
-                  "&:hover": { backgroundColor: "#94B2B990" },
-               }}
+               name="Naomi"
+               chat={email_chat_animation}
+               buttonText="proceed to Sitara's email"
+               instructions={<EmailInstructions />}
+               showCalendar={false}
             />
          }
       >
@@ -192,6 +141,10 @@ const Documents = () => {
                pl={2}
                pr={2}
             >
+                           <ChatButton
+               chat={email_chat_animation}
+               style={{ backgroundColor: "teal", borderRadius: 3, mr: 4 }}
+            />
                {image ? (
                   <img
                      src={Map}

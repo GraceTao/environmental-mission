@@ -11,9 +11,6 @@ import {
    useMediaQuery,
 } from "@mui/material";
 import Instructions from "../../../components/Instructions";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import TopBar from "../../../components/TopBar";
 import DO from "./DO";
 import Temperature from "./Temperature";
@@ -28,89 +25,42 @@ import AssignmentTwoToneIcon from "@mui/icons-material/AssignmentTwoTone";
 import ChatIcon from "@mui/icons-material/Chat";
 import ImageCredits from "./ImageCredits";
 import SampleUnitConversion from "./SampleUnitConversion";
-import wqi_chat_animation from "../wqi_chat_animation.mp4";
+import chat from "../wqi-chat-animation.mp4";
 import Calculator from "../../../components/Calculator";
+import ChatButton from "../../../components/ChatButton";
 
-function CalendarAndInstructions() {
-   const hasEnabledInstr = Boolean(sessionStorage.getItem("hasEnabledWQIInstr"));
-   const [enableInstr, setEnableInstr] = useState(hasEnabledInstr);
-   const [openInstr, setOpenInstr] = useState(hasEnabledInstr);
-   const [videoPlayed, setVideoPlayed] = useState(hasEnabledInstr);
-
-   const theme = useTheme();
-   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-   useEffect(() => {
-      setTimeout(() => setVideoPlayed(true), 24000)
-   }, []);
-
-   return openInstr ? (
-      <Box
-         display="flex"
-         flexDirection="column"
-         justifyContent="center"
-         width="100%"
-      >
-         <Instr
-            title={"Task:"}
-            contents={`Find the water quality index (WQI) of this pond and use the WQI to determine the
-               water quality rating. If the rating is correct, you will receive the clue word.`}
-         ></Instr>
-         <Instr
-            title={"Part One:"}
-            contents={`Click on the water quality indicators in the picture to learn more about them. Then calculate
-               the unit-converted measurements for each indicator. Some values are filled in for you.
-               Record the values on the top left clipboard as you go. A calculator is provided
-               beneath the clipboard. Once you’ve filled out all values, click the arrow on the clipboard to continue.`}
-         ></Instr>
-      </Box>
-   ) : (
-      <div>
-         <Box
-            display="flex"
-            flexDirection={isSmallScreen ? "column" : "row"}
-            justifyContent="center"
-            margin="auto"
-         >
-            <div>
-               <video controls autoPlay style={{ width: "90%" }}>
-                  <source
-                     src={wqi_chat_animation}
-                     alt="text messages"
-                     type="video/mp4"
-                  />
-               </video>
-            </div>
-            <Box display="flex" flexDirection="column">
-               <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateCalendar
-                     disabled={!videoPlayed}
-                     onChange={(date) => {
-                        const selectedDate = date["$d"].toLocaleDateString();
-                        const today = new Date().toLocaleDateString();
-                        setEnableInstr(selectedDate === today);
-                     }}
-                  />
-               </LocalizationProvider>
-               <Button
-                  variant="contained"
-                  disabled={!enableInstr}
-                  sx={{
-                     backgroundColor: "#417B88",
-                     "&:hover": { backgroundColor: "#4AB0C7 " },
-                  }}
-                  onClick={() => {
-                     setOpenInstr(true);
-                     sessionStorage.setItem("hasEnabledWQIInstr", true);
-                  }}
-               >
-                  to-do: stream visit
-               </Button>
-            </Box>
-         </Box>
-      </div>
-   );
-}
+const instructions = (
+   <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      width="100%"
+   >
+      <Instr
+         title={"Task:"}
+         contents={
+            <Typography fontSize="1.2rem" align="center">
+               Find the water quality index (WQI) of this pond and use the WQI
+               to determine the water quality rating. If the rating is correct,
+               you will receive the clue word.
+            </Typography>
+         }
+      ></Instr>
+      <Instr
+         title={"Part One:"}
+         contents={
+            <Typography fontSize="1.2rem" align="center">
+               Click on the water quality indicators in the picture to learn
+               more about them. Then calculate the unit-converted measurements
+               for each indicator. Some values are filled in for you. Record the
+               values on the top left clipboard as you go. A calculator is
+               provided beneath the clipboard. Once you’ve filled out all
+               values, click the arrow on the clipboard to continue.
+            </Typography>
+         }
+      ></Instr>
+   </Box>
+);
 
 export default function WQIHome() {
    const [openClipboard, setOpenClipboard] = useState(false);
@@ -120,21 +70,11 @@ export default function WQIHome() {
       <TopBar
          instruction={
             <Instructions
-               name={
-                  <Typography
-                     color="#33403d"
-                     fontWeight="bold"
-                     fontSize="1.2rem"
-                  >
-                     instructions
-                  </Typography>
-               }
-               title={null}
-               content={<CalendarAndInstructions />}
-               style={{
-                  backgroundColor: "inherit",
-                  "&:hover": { backgroundColor: "#94B2B990" },
-               }}
+               name="Stan"
+               chat={chat}
+               buttonText="to-do: stream visit"
+               instructions={instructions}
+               showCalendar={true}
             ></Instructions>
          }
       >
@@ -149,7 +89,6 @@ export default function WQIHome() {
                overflow: "auto",
                backgroundAttachment: "local",
                position: "relative",
-               
             }}
          >
             <Box
@@ -167,7 +106,7 @@ export default function WQIHome() {
                         height: 75,
                         "&:hover": { backgroundColor: "white" },
                         mr: "5px",
-                        ml: "5px"
+                        ml: "5px",
                      }}
                      onClick={() => setOpenClipboard(true)}
                   >
@@ -183,21 +122,7 @@ export default function WQIHome() {
                   openClipboard={openClipboard}
                   setOpenClipboard={setOpenClipboard}
                />
-               <IconButton onClick={() => setOpenMessages(true)}>
-                  <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
-               </IconButton>
-               <Dialog
-                  open={openMessages}
-                  onClose={() => setOpenMessages(false)}
-               >
-                  <video controls autoPlay style={{ width: "100%" }}>
-                     <source
-                        src={wqi_chat_animation}
-                        alt="text messages"
-                        type="video/mp4"
-                     />
-                  </video>
-               </Dialog>
+            <ChatButton chat={chat} />
             </Box>
             <Box ml="5px" mt="5px">
                <SampleUnitConversion />

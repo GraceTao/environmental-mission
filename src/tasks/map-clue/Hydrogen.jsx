@@ -11,7 +11,7 @@ function Page1() {
          into a single hub. 
          <br />
          <br />
-         This proposed hub will complete about <b>two dozen</b> different clean hydrogen 
+         This proposed hub will complete about <b>25</b> different clean hydrogen 
          production projects, including hydrogen fuel cell bus manufacturing and hydrogen 
          re-fueling stations.
          </Typography>
@@ -26,9 +26,10 @@ export default function Hydrogen() {
          icon={
             <EnergySavingsLeafIcon
                sx={{
-                  color: "#03a9f4",
+                  color: "#60f81d",
                   width: "100%",
                   height: "100%",
+                  boxShadow: 5,
                }}
             />
          }
