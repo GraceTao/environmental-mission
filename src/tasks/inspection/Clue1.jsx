@@ -23,6 +23,7 @@ import Instructions from "../../components/Instructions";
 import Instr from "../../components/Instr";
 import chat from "./inspection-chat-animation.mp4";
 import ChatButton from "../../components/ChatButton";
+import { addAttempt } from "../../homepage/trackAttempts";
 
 const Clue1 = () => {
    const [openTrash, setTrash] = useState(null);
@@ -51,6 +52,10 @@ const Clue1 = () => {
       const violations = parseInt(inputs.definiteViolations);
       const further = parseInt(inputs.furtherInvestigation);
       const exp = inputs.resolutionExplanation;
+
+      if (areas || violations || further || exp) {
+         console.log(addAttempt("inspectionAttempts"));
+      }
 
       if (!areas || !violations || !further || !exp) {
          setError("One or more entries have not been completed.");
