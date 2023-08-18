@@ -18,7 +18,8 @@ const contacts = [
       name: "Me",
       occupation: "Environmental Compliance Specialist",
       color: "black",
-      bio: "Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.",
+      bio: `I conduct field inspections of local facilities, properties, and project sites to make sure that they comply with environmental, water pollution, airborne particulate, and other regulations related to the health and safety of the community. 
+      I monitor activities, assess impacts, and prepare environmental evaluations to ensure that operations are environmentally responsible. Promoting sustainable practices can help protect surrounding ecosystems and communities.`,
    },
    {
       name: "Naomi",
@@ -85,12 +86,10 @@ export default function ContactsList({ open, setOpen }) {
                            >
                               <ListItemButton
                                  onClick={() => setActiveContact(person.name)}
-
-                                 
                               >
                                  <ListItemText>
                                     <Typography
-                                       fontSize={{sm: "1.1rem", md: "1.2rem"}}
+                                       fontSize={{ sm: "1.1rem", md: "1.2rem" }}
                                        lineHeight={1.1}
                                     >
                                        {person.name}
