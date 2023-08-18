@@ -109,9 +109,11 @@ export default function Instructions({
                         <Box
                            display="flex"
                            flexDirection="column"
-                           justifyContent="space-around"
+                           justifyContent="flex-start"
                            alignItems="center"
+                           sx={{mt: isSmallScreen ? 0 : "10%"}}
                         >
+                           {!isSmallScreen && <Typography align="center" ml={1} mb={"10%"}>You may need to scroll down to see the full chat.</Typography>}
                            {showCalendar && (
                               <LocalizationProvider dateAdapter={AdapterDayjs}>
                                  <DateCalendar
@@ -140,6 +142,7 @@ export default function Instructions({
                                  />
                               </LocalizationProvider>
                            )}
+                           
                            <Button
                               disabled={!enableButton}
                               onClick={() => {
