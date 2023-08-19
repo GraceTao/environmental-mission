@@ -9,13 +9,13 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
+import Popper from "@mui/material/Popper";
 
 import Pesticides from "./pesticides.jpeg";
 import Trash from "./trash.jpeg";
 import Grass from "./grass.jpeg";
 import Building from "./building.png";
 import Emission from "./emissions.png";
-import Popper from "@mui/material/Popper";
 import Reveal from "./Reveal";
 import Submit from "./Submit";
 import TopBar from "../../components/TopBar";
@@ -24,6 +24,33 @@ import Instr from "../../components/Instr";
 import chat from "./inspection-chat-animation.mp4";
 import ChatButton from "../../components/ChatButton";
 import { addAttempt } from "../../homepage/trackAttempts";
+
+const images = [
+   {
+      link: "https://creazilla.com/nodes/3169267-building-clipart",
+      name: "Building",
+   },
+   {
+      link: "https://pixabay.com/illustrations/%E5%90%B9%E3%81%8D%E5%87%BA%E3%81%97-comic-anime-cartoon-cloud-1935735/",
+      name: "Emission",
+   },
+   {
+      link: "https://commons.wikimedia.org/wiki/File:Brown_dead_grass_weeds_and_leaves.jpg",
+      name: "Dead grass",
+   },
+   {
+      link: "https://commons.wikimedia.org/wiki/File:Warning2Pesticides.jpg",
+      name: "Pesticides sign",
+   },
+   {
+      link: "https://pxhere.com/en/photo/946959",
+      name: "Trash bags",
+   },
+   {
+      link: "https://p1.pxfuel.com/preview/696/35/657/field-tree-lonely-landscape-nature-meadow.jpg",
+      name: "Background",
+   },
+];
 
 const Clue1 = () => {
    const [openTrash, setTrash] = useState(null);
@@ -44,6 +71,8 @@ const Clue1 = () => {
    const [inputs, setInputs] = useState(
       JSON.parse(sessionStorage.getItem("inspectionAnswers")) || initialInputs
    );
+
+   const [imgCreds, setCreds] = useState(false);
 
    const handleSolve = () => {
       store();
@@ -81,7 +110,8 @@ const Clue1 = () => {
    }
 
    return (
-      <div className="container">
+      <Box position="relative">
+         
          {error && (
             <Snackbar
                anchorOrigin={{ vertical: "top", horizontal: "center" }}
@@ -102,6 +132,7 @@ const Clue1 = () => {
                </Alert>
             </Snackbar>
          )}
+         <div className="container">
          <TopBar
             className="bar"
             instruction={
@@ -267,21 +298,29 @@ const Clue1 = () => {
                      />
                   </button>
                </Grid>
-               {/* <Grid item xs={6} sm={4} md={3}></Grid> */}
             </Grid>
-            {/* </Box> */}
-            {/* <div className="violations">
-               
-            </div>
-            <div className="vertical">
-               
-
-               <button name="building">
-                  <img src={Building} alt="Building" />
-               </button>
-            </div> */}
+            
          </TopBar>
-      </div>
+</div>
+            <Box position="absolute" bottom={0} right="5px">
+               {imgCreds && (
+                  <Box>
+                     {images.map((img) => (
+                        <Box key={img.name} sx={{ backgroundColor: "white" }}>
+                           <a href={img.link}>{img.name}</a>
+                           <br />
+                        </Box>
+                     ))}
+                  </Box>
+               )}
+               <Button
+                  onClick={() => setCreds(!imgCreds)}
+                  sx={{ color: "white" }}
+               >
+                  Image Credits
+               </Button>
+            </Box>
+         </Box>
    );
 };
 

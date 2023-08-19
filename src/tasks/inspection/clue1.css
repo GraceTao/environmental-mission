@@ -24,10 +24,11 @@ code {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 93vh;
-  overflow: auto;
+  min-height: 100vh;
+  /* height: 100vh; */
+  overflow-y: auto;
   background-attachment: local;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   margin-top: 60px;
 }
 
