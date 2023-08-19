@@ -139,7 +139,7 @@ export default function FinalTask() {
                   to learn about careers, environmental goals, vessels, and more
                   at the Port of Corpus Christi.
                </Typography>
-               <PDFViewer width="80%" height={600}>
+               <PDFViewer width="80%" height="80%">
                   <Certificate />
                </PDFViewer>
             </Box>
