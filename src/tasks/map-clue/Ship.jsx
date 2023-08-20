@@ -5,16 +5,15 @@ import ShipTable from "./ShipTable";
 
 function Page1() {
    return (
-      <div>
-         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }}>
-            Look at the{" "}
-            <a href="https://portofcc.com/wp-content/uploads/Cargo_Tonnage_by_Commodity_2023_05.pdf">
-               table
-            </a>{" "}
-            below.
+      <Box align="center">
+         <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }} align="left">
+            The table below shows the amount of{" "}
+            <a href="https://portofcc.com/wp-content/uploads/Cargo_Tonnage_by_Commodity_2023_05.pdf" target="_blank">
+               inbound and outbound cargo
+            </a>{" "}from the Port of Corpus Christi.
          </Typography>
 
-         <Box pb={2} align="center">
+         <Box pb={2} sx={{width: {xs: "95%", sm: "85%", md: "80%", lg: "70%"}}}>
             <ShipTable />
          </Box>
 
@@ -28,10 +27,10 @@ function Page1() {
             </b>
             <br />
             <br />
-            ratio = X:1
+            ratio = (<i>X</i> outbound tons) : (1 inbound ton)
             <br />
          </Typography>
-      </div>
+      </Box>
    );
 }
 

@@ -91,7 +91,8 @@ export default function FinalReport({ setShowCert }) {
       }
    };
 
-   const textFieldStyle = { minWidth: "95%", mb: 3 };
+   const textFieldStyle = { minWidth: "95%", mb: 4 };
+   const longAnswerStyle = { fontSize: "1.05rem", mb: 2 };
 
    return (
       <Box
@@ -166,7 +167,7 @@ export default function FinalReport({ setShowCert }) {
             </DialogContent>
          </Dialog>
 
-         <Box sx={{ p: 5, pt: 3 }}>
+         <Box sx={{ pl: 3, pr: 3, pt: 4, pb: 4 }}>
             <Box align="center">
                <Typography
                   fontSize="1.7rem"
@@ -196,98 +197,128 @@ export default function FinalReport({ setShowCert }) {
             </Box>
 
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-               <FormLabel sx={{ color: "black" }}>Question 1</FormLabel>
-               <RadioGroup
-                  name="q1"
-                  value={answers.q1}
-                  onChange={(e) => {
-                     setAnswers({ ...answers, q1: e.target.value });
-                     updateStorage("q1", e.target.value);
-                  }}
-                  sx={{ ml: 2, m: 1, mb: 4 }}
-               >
-                  {q1.map((choice) => (
-                     <FormControlLabel
-                        key={choice.id}
-                        value={choice.id}
-                        defaultChecked={
-                           JSON.parse(sessionStorage.getItem("answers")).q1 ===
-                           choice.id
-                        }
-                        control={<Radio color="success" />}
-                        label={choice.label}
-                     />
-                  ))}
-               </RadioGroup>
-               <FormLabel sx={{ color: "black" }}>Question 2</FormLabel>
-               <FormGroup sx={{ ml: 2, m: 1 }}>
-                  {q2.map((choice) => (
-                     <FormControlLabel
-                        key={choice.id}
-                        control={
-                           <Checkbox
-                              name={choice.id}
-                              checked={answers.q2[choice.id] || false}
-                              onChange={(e) => {
-                                 const prev = answers.q2;
-                                 const { name, checked } = e.target;
-                                 const newChecked = {
-                                    ...prev,
-                                    [name]: checked,
-                                 };
-                                 setAnswers({
-                                    ...answers,
-                                    q2: newChecked,
-                                 });
-                                 updateStorage("q2", newChecked);
-                              }}
+               <ol style={{ fontFamily: "Arial", fontSize: "1.05rem" }}>
+                  <li>
+                     <FormLabel sx={{ color: "black" }}>{q1[0]}</FormLabel>
+                     <RadioGroup
+                        name="q1"
+                        value={answers.q1}
+                        onChange={(e) => {
+                           setAnswers({ ...answers, q1: e.target.value });
+                           updateStorage("q1", e.target.value);
+                        }}
+                        sx={{
+                           mt: 2,
+                           mb: 4,
+                           ml: { xs: 0, sm: 1, md: 2, lg: 3 },
+                        }}
+                     >
+                        {q1.slice(1).map((choice) => (
+                           <FormControlLabel
+                              key={choice.id}
+                              value={choice.id}
+                              defaultChecked={
+                                 JSON.parse(sessionStorage.getItem("answers"))
+                                    .q1 === choice.id
+                              }
+                              control={<Radio />}
+                              label={<Typography>{choice.label}</Typography>}
+                              sx={{ mb: 1 }}
                            />
+                        ))}
+                     </RadioGroup>
+                  </li>
+
+                  <li>
+                     <FormLabel sx={{ color: "black", fontSize: "1.05rem" }}>
+                        {q2[0]}
+                     </FormLabel>
+                     <FormGroup
+                        sx={{
+                           ml: { xs: 0, sm: 1, md: 2, lg: 3 },
+                           mt: 2,
+                           mb: 4,
+                           mr: 2,
+                        }}
+                     >
+                        {q2.slice(1).map((choice) => (
+                           <FormControlLabel
+                              key={choice.id}
+                              control={
+                                 <Checkbox
+                                    color="success"
+                                    name={choice.id}
+                                    checked={answers.q2[choice.id] || false}
+                                    onChange={(e) => {
+                                       const prev = answers.q2;
+                                       const { name, checked } = e.target;
+                                       const newChecked = {
+                                          ...prev,
+                                          [name]: checked,
+                                       };
+                                       setAnswers({
+                                          ...answers,
+                                          q2: newChecked,
+                                       });
+                                       updateStorage("q2", newChecked);
+                                    }}
+                                 />
+                              }
+                              label={choice.label}
+                              defaultChecked={Boolean(
+                                 JSON.parse(sessionStorage.getItem("answers"))
+                                    .q2[choice.id]
+                              )}
+                           ></FormControlLabel>
+                        ))}
+                     </FormGroup>
+                  </li>
+
+                  <li>
+                     <Typography sx={longAnswerStyle}>{q3}</Typography>
+                     <TextField
+                        name="q3"
+                        label="Your response here"
+                        multiline
+                        rows={4}
+                        onChange={handleChange}
+                        defaultValue={
+                           JSON.parse(sessionStorage.getItem("answers")).q3
                         }
-                        label={choice.label}
-                        defaultChecked={Boolean(
-                           JSON.parse(sessionStorage.getItem("answers")).q2[
-                              choice.id
-                           ]
-                        )}
-                     ></FormControlLabel>
-                  ))}
-               </FormGroup>
-               <br />
-               <Typography>{q3}</Typography>
-               <br />
-               <TextField
-                  name="q3"
-                  label="Your response here"
-                  multiline
-                  rows={3}
-                  onChange={handleChange}
-                  defaultValue={JSON.parse(sessionStorage.getItem("answers")).q3}
-                  sx={textFieldStyle}
-               />
-               <br />
-               <Typography>{q4}</Typography>
-               <br />
-               <TextField
-                  name="q4"
-                  label="Your response here"
-                  multiline
-                  rows={3}
-                  onChange={handleChange}
-                  defaultValue={JSON.parse(sessionStorage.getItem("answers")).q4}
-                  sx={textFieldStyle}
-               />
-               <br />
-               <Typography>{q5}</Typography>
-               <br />
-               <TextField
-                  name="q5"
-                  label="Your response here"
-                  multiline
-                  rows={3}
-                  onChange={handleChange}
-                  defaultValue={JSON.parse(sessionStorage.getItem("answers")).q5}
-                  sx={textFieldStyle}
-               />
+                        sx={textFieldStyle}
+                     />
+                  </li>
+
+                  <li>
+                     <Typography sx={longAnswerStyle}>{q4}</Typography>
+                     <TextField
+                        name="q4"
+                        label="Your response here"
+                        multiline
+                        rows={4}
+                        onChange={handleChange}
+                        defaultValue={
+                           JSON.parse(sessionStorage.getItem("answers")).q4
+                        }
+                        sx={textFieldStyle}
+                     />
+                  </li>
+
+                  <li>
+                     <Typography sx={longAnswerStyle}>{q5}</Typography>
+                     <TextField
+                        name="q5"
+                        label="Your response here"
+                        multiline
+                        rows={4}
+                        onChange={handleChange}
+                        defaultValue={
+                           JSON.parse(sessionStorage.getItem("answers")).q5
+                        }
+                        sx={textFieldStyle}
+                     />
+                  </li>
+               </ol>
             </Box>
             <Box align="center">
                <Button
@@ -295,6 +326,7 @@ export default function FinalReport({ setShowCert }) {
                   onClick={handleSubmit}
                   sx={{
                      fontSize: { xs: "1rem", sm: "1.05rem" },
+                     mt: -1,
                      width: "25%",
                      minWidth: "130px",
                      backgroundColor: "blueviolet",

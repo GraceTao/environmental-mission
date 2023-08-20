@@ -96,13 +96,20 @@ function Page2() {
             align="left"
          >
             The table below shows{" "}
-            <a href="https://portofcc.com/wp-content/uploads/PV-FINAL-Port-of-Corpus-Christi-2020-EI-Report-2-Nov-21-scg.pdf">
+            <a
+               href="https://portofcc.com/wp-content/uploads/PV-FINAL-Port-of-Corpus-Christi-2020-EI-Report-2-Nov-21-scg.pdf"
+               target="_blank"
+            >
                2020 emissions
             </a>{" "}
             from the Port of Corpus Christi.
          </Typography>
 
-         <Box width={{ xs: "100%", sm: "95%", md: "75%" }} pb={2} align="center">
+         <Box
+            width={{ xs: "100%", sm: "95%", md: "75%" }}
+            pb={2}
+            align="center"
+         >
             <img src={table} alt="Air Quality Table" width="100%" />
          </Box>
 
@@ -122,27 +129,29 @@ function Page2() {
                What % reduction is this? Round your answer to the nearest whole
                number.
             </b>
-            <br />
-            <br />
+         </Typography>
+         <Typography
+            align="left"
+            sx={{ p: 2, pb: 0, fontSize: { sm: "1rem", lg: "1.2rem" } }}
+         >
             <i>
                Note that we are only looking at total NO<sub>x</sub>, PM, VOC,
                and SO<sub>x</sub> emissions. PM includes PM<sub>2.5</sub> and PM
                <sub>10</sub>.
             </i>
-            <br />
-            <br />
-            Use this equation if you’re having trouble:
          </Typography>
-         <Box sx={{ fontSize: { sm: "1rem", md: "1.1rem", lg: "1.2rem" } }}>
+         <Box sx={{ fontSize: { sm: "0.9rem", md: "1rem", lg: "1.1rem" } }}>
             <MathJaxContext>
                <MathJax>
                   $$
                   {`\\text{% reduction} = 100\\text{%} \\times \\frac{(V - 5019.7)}{V}`}
                   $$
-                  {/* \({`y = \\text{2020 total NOx, PM, VOC, SOx emissions}`}\) */}
                </MathJax>
             </MathJaxContext>
-            <Typography fontSize="inherit">where <i>V</i> = 2020 total NO<sub>x</sub>, PM, VOC, and SO<sub>x</sub> emissions</Typography>
+            <Typography fontSize="inherit" mb={2}>
+               where <i>V</i> = 2020 total NO<sub>x</sub>, PM, VOC, and SO
+               <sub>x</sub> emissions
+            </Typography>
          </Box>
       </Box>
    );
