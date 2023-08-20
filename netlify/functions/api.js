@@ -5,7 +5,6 @@ import Redlock from "redlock";
 import Client from "ioredis";
 
 const SHEET_ID = process.env.SHEET_ID;
-console.log(SHEET_ID);
 
 const serviceAccount = {
    type: "service_account",
