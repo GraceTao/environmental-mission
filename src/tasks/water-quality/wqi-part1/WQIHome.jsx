@@ -67,79 +67,82 @@ export default function WQIHome() {
    const [openMessages, setOpenMessages] = useState(false);
 
    return (
-      <TopBar
-         instruction={
-            <Instructions
-               name="Stan"
-               chat={chat}
-               buttonText="to-do: stream visit"
-               instructions={instructions}
-               showCalendar={true}
-            ></Instructions>
-         }
-      >
-         <Box
-            sx={{
-               backgroundImage:
-                  "url('https://upload.wikimedia.org/wikipedia/commons/7/71/Savage_River_%28Maryland%29_from_Allegany_Bridge.jpg')",
-               backgroundSize: "cover",
-               backgroundPosition: "center",
-               backgroundRepeat: "no-repeat",
-               minHeight: "100vh",
-               overflow: "auto",
-               backgroundAttachment: "local",
-               position: "relative",
-            }}
+      <Box position="relative">
+         <TopBar
+            instruction={
+               <Instructions
+                  name="Stan"
+                  chat={chat}
+                  buttonText="to-do: stream visit"
+                  instructions={instructions}
+                  showCalendar={true}
+               ></Instructions>
+            }
          >
             <Box
-               display="flex"
-               flexDirection="row"
-               justifyContent="space-between"
-               mt={8}
+               sx={{
+                  backgroundImage:
+                     "url('https://upload.wikimedia.org/wikipedia/commons/7/71/Savage_River_%28Maryland%29_from_Allegany_Bridge.jpg')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  minHeight: "100vh",
+                  overflow: "auto",
+                  backgroundAttachment: "local",
+                  position: "relative",
+               }}
             >
-               <Box display="flex" flexDirection="row" mt={0.5}>
-                  <IconButton
-                     sx={{
-                        backgroundColor: "lightgray",
-                        borderRadius: 5,
-                        width: 70,
-                        height: 75,
-                        "&:hover": { backgroundColor: "white" },
-                        mr: "5px",
-                        ml: "5px",
-                     }}
-                     onClick={() => setOpenClipboard(true)}
-                  >
-                     <Tooltip title="Clipboard" arrow>
-                        <AssignmentTwoToneIcon
-                           sx={{ fontSize: 65, color: "black" }}
-                        />
-                     </Tooltip>
-                  </IconButton>
-                  <Calculator />
+               <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  mt={8}
+               >
+                  <Box display="flex" flexDirection="row" mt={0.5}>
+                     <IconButton
+                        sx={{
+                           backgroundColor: "lightgray",
+                           borderRadius: 5,
+                           width: 70,
+                           height: 75,
+                           "&:hover": { backgroundColor: "white" },
+                           mr: "5px",
+                           ml: "5px",
+                        }}
+                        onClick={() => setOpenClipboard(true)}
+                     >
+                        <Tooltip title="Clipboard" arrow>
+                           <AssignmentTwoToneIcon
+                              sx={{ fontSize: 65, color: "black" }}
+                           />
+                        </Tooltip>
+                     </IconButton>
+                     <Calculator />
+                  </Box>
+                  <Readings
+                     openClipboard={openClipboard}
+                     setOpenClipboard={setOpenClipboard}
+                  />
+                  <ChatButton chat={chat} />
                </Box>
-               <Readings
-                  openClipboard={openClipboard}
-                  setOpenClipboard={setOpenClipboard}
-               />
-            <ChatButton chat={chat} />
+               <Box ml="5px" mt="5px">
+                  <SampleUnitConversion />
+               </Box>
+               <Box>
+                  <DO />
+                  <Temperature upstream={true}></Temperature>
+                  <Temperature upstream={false}></Temperature>
+                  <FC />
+                  <PH />
+                  <Turbidity />
+                  <NitratesPhosphates />
+                  <TS />
+               </Box>
             </Box>
-            <Box ml="5px" mt="5px">
-               <SampleUnitConversion />
-            </Box>
-            <Box>
-               <DO />
-               <Temperature upstream={true}></Temperature>
-               <Temperature upstream={false}></Temperature>
-               <FC />
-               <PH />
-               <Turbidity />
-               <NitratesPhosphates />
-               <TS />
-
+            <Box position="absolute" bottom={0} right="5px">
                <ImageCredits />
             </Box>
-         </Box>
-      </TopBar>
+         </TopBar>
+      </Box>
    );
 }

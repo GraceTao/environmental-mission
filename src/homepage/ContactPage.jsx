@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Tab } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function ContactPage({ person }) {
@@ -15,12 +15,12 @@ export default function ContactPage({ person }) {
                fontSize: "100px",
             }}
          />
-         <Typography fontSize="1.3rem">{person.name}</Typography>
+         <Typography fontSize="1.3rem" fontWeight="bold">{person.name}</Typography>
          <Typography fontSize="1.1rem">
             <i>{person.occupation}</i>
          </Typography>
          <br />
-         <Typography fontSize="1rem" sx={{ fontFamily: "Calibri" }}>
+         <Typography fontSize="1.15rem"  fontFamily="Baskerville" sx={{textIndent: "2em"}}>
             {person.bio}
          </Typography>
       </Box>

@@ -154,7 +154,10 @@ export default function Submit() {
    };
 
    const handleSubmit = () => {
-      console.log(addAttempt("wqiAttempts"));
+      if (inputWQI) {
+         console.log(addAttempt("wqiAttempts"));
+      }
+      
 
       const answerCheck = answerWithinMargin(parseFloat(inputWQI).toFixed(2));
       setCorrect(answerCheck);

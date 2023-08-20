@@ -111,7 +111,7 @@ export default function Instructions({
                            flexDirection="column"
                            justifyContent="flex-start"
                            alignItems="center"
-                           sx={{mt: isSmallScreen ? 0 : "10%"}}
+                           sx={{mt: isSmallScreen ? 0 : "2%"}}
                         >
                            {!isSmallScreen && <Typography align="center" ml={1} mb={"10%"}>You may need to scroll down to see the full chat.</Typography>}
                            {showCalendar && (
@@ -133,8 +133,8 @@ export default function Instructions({
                                        ...(enableCalendar && {
                                           backgroundColor: "lightblue",
                                           borderRadius: 2,
-                                          pl: "3%",
-                                          pr: "3%",
+                                          ml: "3%",
+                                          mr: "3%",
                                           boxShadow:
                                              "0px 3px 5px rgba(0, 0, 0, 0.5)",
                                        }),

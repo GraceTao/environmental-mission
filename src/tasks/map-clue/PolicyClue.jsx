@@ -13,10 +13,12 @@ import {
    TextField,
    Dialog,
    Snackbar,
-   DialogContent
+   DialogContent,
 } from "@mui/material";
 import FlagIcon from "@mui/icons-material/Flag";
 import { addAttempt } from "../../homepage/trackAttempts";
+
+const CLUE_WORD = "policy";
 
 export default function PolicyClue() {
    const displayMapClue = sessionStorage.getItem("displayMapClue");
@@ -60,13 +62,10 @@ export default function PolicyClue() {
 
    function checkNumbers() {
       let res = true;
-      let nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
       Object.values(showLetter).forEach((letters) => {
-         nums.forEach((index) => {
-            if (letters.includes(index)) {
-               res = false;
-            }
-         });
+         if (letters.match(/[0-9]+/)) {
+            res = false;
+         }
       });
       return res;
    }
@@ -74,28 +73,23 @@ export default function PolicyClue() {
    function checkLetters() {
       let res = true;
       let check = false;
-      let answer = ["p", "o", "l", "i", "c", "y"];
-      answer.forEach((index) => {
+      CLUE_WORD.split("").forEach((index) => {
          Object.values(showLetter).forEach((letters) => {
-            if (letters == index) {
+            if (letters.toLocaleLowerCase() == index) {
                check = true;
             }
          });
          res = res && check;
          check = false;
       });
+
       return res;
    }
 
    function checkEntries() {
-      let res = true;
-      let answer = ["p", "o", "l", "i", "c", "y"];
-      Object.values(showLetter).forEach((letters, index) => {
-         if (letters != answer[index]) {
-            res = false;
-         }
-      });
-      return res;
+      return (
+         Object.values(showLetter).join("").toLocaleLowerCase() === CLUE_WORD
+      );
    }
 
    const checkContains = (obj) => {
@@ -121,15 +115,14 @@ export default function PolicyClue() {
             </>
          );
       } else if (!checkNumbers()) {
-         setAlertMessage(
-            <>
-               All inputs must be letters! Hint: A=1
-            </>
-         );
+         setAlertMessage(<>All inputs must be letters! Hint: A=1</>);
       } else if (!checkLetters()) {
          setAlertMessage(
-            <>Some of your letters are not correct! Check the map carefully!</>
-         )
+            <>
+               Some of your letters are not correct! Check your calculations and
+               conversions carefully! Note: one letter per box.
+            </>
+         );
       } else if (!checkEntries()) {
          setAlertMessage(
             <>
@@ -137,10 +130,10 @@ export default function PolicyClue() {
             </>
          );
       } else {
-         sessionStorage.setItem("displayMapClue", true)
-         setDisplayClue(true)
-         setOpenAlert(false)
-         setOpenClue(false)
+         sessionStorage.setItem("displayMapClue", true);
+         setDisplayClue(true);
+         setOpenAlert(false);
+         setOpenClue(false);
       }
    };
 
@@ -149,13 +142,11 @@ export default function PolicyClue() {
          <IconButton
             onClick={() => {
                if (displayMapClue) {
-                  setDisplayClue(true)
-               }
-               else {
-                  setOpenClue(true)
+                  setDisplayClue(true);
+               } else {
+                  setOpenClue(true);
                }
             }}
-
             sx={{
                borderRadius: 2,
                backgroundColor: "#ffff8d ",
@@ -178,10 +169,10 @@ export default function PolicyClue() {
                <FormControl
                   sx={{
                      borderRadius: 2,
-                     padding:"10px"
+                     padding: "10px",
                   }}
                >
-                  <FormLabel>Find the clue word!</FormLabel>
+                  <FormLabel>Figure out the clue word!</FormLabel>
 
                   {letters.map((letter) => (
                      <TextField
@@ -190,10 +181,12 @@ export default function PolicyClue() {
                         onChange={handleChange}
                         name={letter}
                         value={showLetter[letter]}
-                        inputProps={{ maxLength: 1 }}
+                        inputProps={{ maxLength: 2 }}
                      ></TextField>
                   ))}
-                  <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+                  <Button variant="contained" onClick={handleSubmit}>
+                     Submit
+                  </Button>
                </FormControl>
                <Snackbar
                   anchorOrigin={{ vertical: "top", horizontal: "center" }}
@@ -217,13 +210,13 @@ export default function PolicyClue() {
                setDisplayClue(false);
             }}
          >
-            <DialogContent sx={{ backgroundColor: "lightblue" }}>
+            <DialogContent sx={{ backgroundColor: "#D2F6E3" }}>
                <Typography
                   align="center"
-                  fontSize={{ xs: "1.2rem", md: "1.4rem" }}
+                  fontSize={{ xs: "1.2rem", md: "1.3rem" }}
                >
-                  You got it right!
-                  <br />
+                  You got it right! Thanks for visiting the Port of Corpus Christi.
+                  <br /><br />
                   Your clue word is <b>policy</b>.
                </Typography>
             </DialogContent>

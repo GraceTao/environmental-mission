@@ -41,6 +41,7 @@ export default function IndicatorInfo({ icon, position, page1, page2 }) {
                borderRadius: 3,
                boxShadow: 6,
             }}
+            style={{zIndex: 18}}
          >
             <div style={{ overflow: "auto", maxHeight: "50vh" }}>
                {openPage2 ? (

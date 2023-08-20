@@ -41,6 +41,7 @@ export default function IconInfo({
                borderRadius: 3,
                boxShadow: 6
             }}
+            style={{zIndex: 18}}
          >
             <div style={{ overflow: "auto", maxHeight: "50vh" }}>
                <Box>
