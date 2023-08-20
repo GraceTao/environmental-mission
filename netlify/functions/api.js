@@ -1,6 +1,7 @@
 import { google } from "googleapis";
 import express, { Router } from "express";
 import serverless from "serverless-http";
+import Redlock from "redlock";
 
 const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
 
@@ -29,31 +30,45 @@ const auth = new google.auth.GoogleAuth({
 
 const service = google.sheets({ version: "v4", auth });
 
-class Mutex {
-   constructor() {
-      this.locked = false;
-      this.queue = [];
-   }
+const redis = new Client({
+   host: process.env.REDIS_HOST,
+   port: 17386,
+   password: process.env.REDIS_PASSWORD,
+});
+const redlock = new Redlock([redis], {
+   driftFactor: 0.01,
+   retryCount: -1,
+   retryDelay: 200,
+   retryJitter: 200,
+});
 
-   async lock() {
-      if (this.locked) {
-         await new Promise((resolve) => this.queue.push(resolve));
-      } else {
-         this.locked = true;
-      }
-   }
 
-   unlock() {
-      if (this.queue.length > 0) {
-         const nextResolve = this.queue.shift();
-         nextResolve();
-      } else {
-         this.locked = false;
-      }
-   }
-}
 
-const mutex = new Mutex();
+// class Mutex {
+//    constructor() {
+//       this.locked = false;
+//       this.queue = [];
+//    }
+
+//    async lock() {
+//       if (this.locked) {
+//          await new Promise((resolve) => this.queue.push(resolve));
+//       } else {
+//          this.locked = true;
+//       }
+//    }
+
+//    unlock() {
+//       if (this.queue.length > 0) {
+//          const nextResolve = this.queue.shift();
+//          nextResolve();
+//       } else {
+//          this.locked = false;
+//       }
+//    }
+// }
+
+// const mutex = new Mutex();
 
 router.post("/submituserdata", async (req, res) => {
    const {
@@ -82,9 +97,11 @@ router.post("/submituserdata", async (req, res) => {
       ...Object.values(rest),
    ];
 
-   await mutex.lock();
+   // await mutex.lock();
 
+   redlock.using(["submit user data"], 5000, async (signal) => {
    try {
+
       await service.spreadsheets.values.append({
          spreadsheetId: SHEET_ID,
          range: "Sheet1",
@@ -99,9 +116,13 @@ router.post("/submituserdata", async (req, res) => {
    } catch (err) {
       console.error("Error adding user data: ", err);
       res.status(500).json({ message: "An error occurred" });
-   } finally {
-      mutex.unlock();
    }
+   })
+
+   
+   // finally {
+   //    mutex.unlock();
+   // }
 });
 
 api.use("/api", router);
