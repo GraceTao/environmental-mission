@@ -2,7 +2,7 @@ import { google } from "googleapis";
 import express, { Router } from "express";
 import serverless from "serverless-http";
 import Redlock from "redlock";
-import Client from "ioredis";
+import {createClient} from "ioredis";
 
 const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
 
@@ -31,12 +31,19 @@ const auth = new google.auth.GoogleAuth({
 
 const service = google.sheets({ version: "v4", auth });
 
-const redis = new Client({
-   host: `redis://${process.env.REDIS_HOST}/?family=6`,
-   port: 17386,
+const client = createClient({
    password: process.env.REDIS_PASSWORD,
-});
-const redlock = new Redlock([redis], {
+   socket: {
+      host: process.env.REDIS_HOST
+   },
+   port: 17386
+})
+   
+   // host: `redis://${process.env.REDIS_HOST}/?family=6`,
+   // port: 17386,
+   // password: process.env.REDIS_PASSWORD,
+
+const redlock = new Redlock([client], {
    driftFactor: 0.01,
    retryCount: -1,
    retryDelay: 200,
