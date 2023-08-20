@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
    Alert,
    Box,
@@ -139,7 +139,7 @@ export default function FinalTask() {
                   to learn about careers, environmental goals, vessels, and more
                   at the Port of Corpus Christi.
                </Typography>
-               <PDFViewer width="80%" height="80%">
+               <PDFViewer width="80%" height={650}>
                   <Certificate />
                </PDFViewer>
             </Box>

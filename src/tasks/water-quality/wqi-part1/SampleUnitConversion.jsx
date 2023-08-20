@@ -105,12 +105,12 @@ export default function SampleUnitConversion() {
                      flexDirection="row"
                      justifyContent="flex-start"
                      key={index}
+                     sx={{fontSize: {xs: "0.9rem", sm: "0.95rem", md: "1rem"}}}
                   >
-                     <Typography>{eqn.text}&emsp;</Typography>
-
+                     <Typography fontSize="inherit">{eqn.text}&emsp;</Typography>
                      <MathJaxContext>
                         <MathJax>
-                           <span style={{ fontSize: {xs: "0.9rem", sm: "1rem"} }}>{eqn.eqn}</span>
+                           {eqn.eqn}
                         </MathJax>
                      </MathJaxContext>
                   </Box>

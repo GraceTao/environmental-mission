@@ -8,11 +8,11 @@ function Page1() {
          <Typography sx={{ p: 2, fontSize: { sm: "1rem", lg: "1.2rem" } }} align="center">
          In their 2022 Environmental Policy, the Port of Corpus Christi commits to 
          voluntarily creating/restoring 50 acres of habitat within the Corpus Christi 
-         and Aransas Bay systems every three years.
+         and Aransas Bay systems every 3 years.
          <br />
          <br />
          <b>Assuming an equal number of acres is restored every month, how many acres of
-          habitat does the Port plan on restoring every six months? Round UP to the 
+          habitat does the Port of Corpus Christi plan on restoring every six months? Round UP to the 
           nearest whole number. </b>
          </Typography>
       </div>
