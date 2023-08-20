@@ -2,6 +2,7 @@ import { google } from "googleapis";
 import express, { Router } from "express";
 import serverless from "serverless-http";
 import Redlock from "redlock";
+import Client from "ioredis";
 
 const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
 
@@ -41,8 +42,6 @@ const redlock = new Redlock([redis], {
    retryDelay: 200,
    retryJitter: 200,
 });
-
-
 
 // class Mutex {
 //    constructor() {
@@ -100,26 +99,24 @@ router.post("/submituserdata", async (req, res) => {
    // await mutex.lock();
 
    redlock.using(["submit user data"], 5000, async (signal) => {
-   try {
+      try {
+         await service.spreadsheets.values.append({
+            spreadsheetId: SHEET_ID,
+            range: "Sheet1",
+            valueInputOption: "RAW",
+            resource: {
+               values: [toAdd],
+            },
+         });
 
-      await service.spreadsheets.values.append({
-         spreadsheetId: SHEET_ID,
-         range: "Sheet1",
-         valueInputOption: "RAW",
-         resource: {
-            values: [toAdd],
-         },
-      });
+         console.log("Data added successfully");
+         res.status(200).send("Data added successfully");
+      } catch (err) {
+         console.error("Error adding user data: ", err);
+         res.status(500).json({ message: "An error occurred" });
+      }
+   });
 
-      console.log("Data added successfully");
-      res.status(200).send("Data added successfully");
-   } catch (err) {
-      console.error("Error adding user data: ", err);
-      res.status(500).json({ message: "An error occurred" });
-   }
-   })
-
-   
    // finally {
    //    mutex.unlock();
    // }
