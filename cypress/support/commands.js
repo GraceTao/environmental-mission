@@ -11,22 +11,39 @@
 //
 // -- This is a parent command --
 
-Cypress.Commands.add('submitConcurrentRequests', (numRequests) => {
+Cypress.Commands.add("submitConcurrentRequests", (numRequests) => {
    const requests = Array.from({ length: numRequests }, (_, index) => {
-     return cy.request({
-       method: 'POST',
-       url: `/api/submituserdata`, // Use the environment variable
-       body: cy.fixture('ex_data.json'),
-       failOnStatusCode: false, // Allow failed requests to be captured
-     }).then((response) => {
-      // You can add assertions here based on the response status if needed
-      expect(response.status).to.eq(200); // Example assertion
-    });
+      return cy
+         .request({
+            method: "POST",
+            url: `/api/submituserdata`, // Use the environment variable
+            body: {
+               state: "stateName",
+               county: "countyName",
+               school: "schoolName",
+               order: "Before",
+               emailAttempts: 1,
+               inspectionAttempts: 2,
+               mapAttempts: 3,
+               wqiAttempts: 50,
+               passwordAttempts: 3000,
+               q1: "q1 answer",
+               q2: "q2 answer",
+               q3: "q3 answer",
+               q4: "q4 answer",
+               q5: "q5 answer",
+            },
+            failOnStatusCode: false, // Allow failed requests to be captured
+         })
+         .then((response) => {
+            // You can add assertions here based on the response status if needed
+            expect(response.status).to.eq(200); // Example assertion
+         });
    });
- 
-   return Promise.all(requests);
- });
- 
+
+   // return Promise.all(requests);
+});
+
 //
 //
 // -- This is a child command --
