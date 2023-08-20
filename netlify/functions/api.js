@@ -3,6 +3,15 @@ import express, { Router } from "express";
 import serverless from "serverless-http";
 import Redlock from "redlock";
 import Client from "ioredis";
+// import { createClient } from 'redis';
+
+// const redis = createClient({
+//     password: '5H9ekXm7YmcQo0bZNbTRekLPuFhgP2Ga',
+//     socket: {
+//         host: 'redis-15128.c228.us-central1-1.gce.cloud.redislabs.com',
+//         port: 15128
+//     }
+// });
 
 const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
 
@@ -31,14 +40,24 @@ const auth = new google.auth.GoogleAuth({
 
 const service = google.sheets({ version: "v4", auth });
 
-const client = new Client({
-   host: `redis://default:${process.env.REDIS_PASSWORD}@${process.env.REDIS_HOST}`,
-   // port: 15128,
-   // password: process.env.REDIS_PASSWORD,
-   // family: 6
+const redis = new Client({
+   // host: `redis://default:${process.env.REDIS_PASSWORD}@${process.env.REDIS_HOST}`,
+   host: process.env.REDIS_HOST,
+   port: 15128,
+   password: process.env.REDIS_PASSWORD,
 });
 
-const redlock = new Redlock([client], {
+// redis.on("connect", () => {
+//    console.log("Connected to Redis");
+//    redis.quit(); // Close the connection
+// });
+
+// redis.on("error", (error) => {
+//    console.error("Error connecting to Redis:", error);
+//    redis.quit(); // Close the connection
+// });
+
+const redlock = new Redlock([redis], {
    driftFactor: 0.01,
    retryCount: -1,
    retryDelay: 200,
