@@ -4,7 +4,8 @@ import serverless from "serverless-http";
 import Redlock from "redlock";
 import Client from "ioredis";
 
-const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
+const SHEET_ID = process.env.SHEET_ID;
+console.log(SHEET_ID);
 
 const serviceAccount = {
    type: "service_account",
