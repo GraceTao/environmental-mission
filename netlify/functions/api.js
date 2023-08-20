@@ -33,9 +33,9 @@ const service = google.sheets({ version: "v4", auth });
 
 const client = new Client({
    host: process.env.REDIS_HOST,
-   port: 17386,
+   port: 15128,
    password: process.env.REDIS_PASSWORD,
-   family: 6
+   // family: 6
 });
 
 const redlock = new Redlock([client], {
