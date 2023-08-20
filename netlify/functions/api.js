@@ -32,7 +32,7 @@ const auth = new google.auth.GoogleAuth({
 const service = google.sheets({ version: "v4", auth });
 
 const redis = new Client({
-   host: `redis//${process.env.REDIS_HOST}`,
+   host: `redis://${process.env.REDIS_HOST}`,
    port: 17386,
    password: process.env.REDIS_PASSWORD,
 });
