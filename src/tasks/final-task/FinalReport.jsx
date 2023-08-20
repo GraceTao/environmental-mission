@@ -85,7 +85,7 @@ export default function FinalReport({ setShowCert }) {
          setTimeout(() => {
             setShowFinalPage(true);
             setShowSubmitting(false);
-         }, 3000);
+         }, 2500);
       } else {
          setShowError(true);
       }
@@ -130,7 +130,7 @@ export default function FinalReport({ setShowCert }) {
          <Dialog open={showFinalPage}>
             <DialogContent sx={{ backgroundColor: "#EEFEF6" }}>
                <Typography
-                  fontSize="1.1rem"
+                  fontSize="1.2rem"
                   color="darkgreen"
                   align="center"
                   sx={{ mb: 3 }}
@@ -140,7 +140,7 @@ export default function FinalReport({ setShowCert }) {
                </Typography>
 
                <Typography
-                  fontSize="1.1rem"
+                  fontSize="1.2rem"
                   color="navy"
                   sx={{ mb: 2 }}
                   align="center"

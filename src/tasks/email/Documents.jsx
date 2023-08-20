@@ -250,7 +250,7 @@ const Documents = () => {
                </Box>
 
                <Dialog open={solved} onClose={() => setSolved(!solved)}>
-                  <DialogContent sx={{ backgroundColor: "#D2F6E3" }}>
+                  <DialogContent>
                      <Typography
                         fontSize={{ xs: "1.1rem", md: "1.2rem" }}
                         align="center"
