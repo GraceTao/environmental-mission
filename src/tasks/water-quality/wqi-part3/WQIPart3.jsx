@@ -15,7 +15,7 @@ export default function WQIPart3() {
          <Instr
             title="Part Three:"
             contents={
-               <>
+               <Typography fontSize="1.2rem" align="center">
                   Find the weighted sum of the Q-values using the weighting
                   factors; this is the water quality index (WQI). Submit the WQI
                   for approval. A calculator is provided at the top left.
@@ -24,7 +24,7 @@ export default function WQIPart3() {
                   Note: the WQI is a number between 0 and 100.{" "}
                   <b>Round to two decimal places.</b> Answers within
                   &plusmn;&nbsp;{marginOfError} will be accepted.
-               </>
+               </Typography>
             }
          ></Instr>
       </Box>
@@ -34,21 +34,7 @@ export default function WQIPart3() {
       <TopBar
          instruction={
             <Instructions
-               name={
-                  <Typography
-                     color="#33403d"
-                     fontWeight="bold"
-                     fontSize="1.2rem"
-                  >
-                     instructions
-                  </Typography>
-               }
-               title={null}
-               content={instructions}
-               style={{
-                  backgroundColor: "inherit",
-                  "&:hover": { backgroundColor: "#94B2B990" },
-               }}
+               instructions={instructions}
             ></Instructions>
          }
       >
