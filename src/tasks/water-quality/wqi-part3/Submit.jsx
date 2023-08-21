@@ -124,8 +124,12 @@ export default function Submit() {
          setAlertMessage(
             <>
                Check your measurement for{" "}
-               <b>{solutions[String(checkMeasurement())].fullName}.</b> Round to 2 decimal places. Don't
-               forget to adjust the Q-Values and Weighted Q-Values if you change any measurements!
+               <b>{solutions[String(checkMeasurement())].fullName}.</b>
+               <br />
+               <span style={{ color: "darkblue" }}>
+                  Round to 2 decimal places. Don't forget to adjust the Q-Values
+                  and Weighted Q-Values if you change any measurements!
+               </span>
             </>
          );
       } else if (checkQValue()) {
@@ -140,7 +144,11 @@ export default function Submit() {
                Check your Weighted Q-Value calculation for{" "}
                <b>{solutions[checkWeighted()].fullName}</b>.
                <br />
-               Round to <i>two</i> decimal places!
+               <span style={{ color: "darkblue" }}>
+                  Weighted Q-Value = Q-Value * Weighting Factor
+                  <br />
+                  Round to <i>two</i> decimal places!
+               </span>
             </>
          );
       } else {
@@ -157,7 +165,6 @@ export default function Submit() {
       if (inputWQI) {
          console.log(addAttempt("wqiAttempts"));
       }
-      
 
       const answerCheck = answerWithinMargin(parseFloat(inputWQI).toFixed(2));
       setCorrect(answerCheck);

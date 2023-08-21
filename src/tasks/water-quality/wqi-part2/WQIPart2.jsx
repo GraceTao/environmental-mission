@@ -92,36 +92,30 @@ export default function WQIPart2() {
       <Box display="flex" flexDirection="column" justifyContent="center">
          <Instr
             title="Task:"
-            contents="Find the water quality index (WQI) of this pond and use the WQI to determine the water quality rating. If the rating is correct, you will receive a clue."
+            contents={
+               <Typography fontSize="1.2rem" align="center">
+                  Find the water quality index (WQI) of this pond and use the
+                  WQI to determine the water quality rating. If the rating is
+                  correct, you will receive a clue.
+               </Typography>
+            }
          ></Instr>
          <Instr
             title="Part Two:"
-            contents="Determine the quality values (Q-values) based on the provided graphs. Use whole numbers. Record the Q-values in the table on the left. Click the top right arrow to continue."
+            contents={
+               <Typography fontSize="1.2rem" align="center">
+                  Determine the quality values (Q-values) based on the provided
+                  graphs. Use whole numbers. Record the Q-values in the table on
+                  the left. Click the top right arrow to continue.
+               </Typography>
+            }
          ></Instr>
       </Box>
    );
 
    return (
       <TopBar
-         instruction={
-            <Instructions
-               name={
-                  <Typography
-                     color="#33403d"
-                     fontWeight="bold"
-                     fontSize="1.2rem"
-                  >
-                     instructions
-                  </Typography>
-               }
-               title={null}
-               content={instructions}
-               style={{
-                  backgroundColor: "inherit",
-                  "&:hover": { backgroundColor: "#94B2B990" },
-               }}
-            ></Instructions>
-         }
+         instruction={<Instructions instructions={instructions}></Instructions>}
       >
          <Box
             sx={{
@@ -130,7 +124,7 @@ export default function WQIPart2() {
                overflow: "auto",
                position: "relative",
                mt: 8,
-               pt: 1
+               pt: 1,
             }}
          >
             <Box>
@@ -221,7 +215,7 @@ export default function WQIPart2() {
                            top: { xs: "100%", md: "15%" },
                            left: "5%",
                            zIndex: 1,
-                           width: {xs: "80%", md: "93%"},
+                           width: { xs: "80%", md: "93%" },
                            mt: { xs: "10%", md: 0 },
                         }}
                      >
