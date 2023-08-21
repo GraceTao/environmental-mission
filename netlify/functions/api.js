@@ -45,32 +45,6 @@ const redlock = new Redlock([redis], {
    retryJitter: 200,
 });
 
-// class Mutex {
-//    constructor() {
-//       this.locked = false;
-//       this.queue = [];
-//    }
-
-//    async lock() {
-//       if (this.locked) {
-//          await new Promise((resolve) => this.queue.push(resolve));
-//       } else {
-//          this.locked = true;
-//       }
-//    }
-
-//    unlock() {
-//       if (this.queue.length > 0) {
-//          const nextResolve = this.queue.shift();
-//          nextResolve();
-//       } else {
-//          this.locked = false;
-//       }
-//    }
-// }
-
-// const mutex = new Mutex();
-
 router.post("/submituserdata", async (req, res) => {
    const {
       state,
@@ -98,8 +72,6 @@ router.post("/submituserdata", async (req, res) => {
       ...Object.values(rest),
    ];
 
-   // await mutex.lock();
-
    redlock.using(["submit user data"], 5000, async (signal) => {
       try {
          await service.spreadsheets.values.append({
@@ -118,10 +90,6 @@ router.post("/submituserdata", async (req, res) => {
          res.status(500).json({ message: "An error occurred" });
       }
    });
-
-   // finally {
-   //    mutex.unlock();
-   // }
 });
 
 api.use("/api", router);
