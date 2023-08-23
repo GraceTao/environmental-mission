@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
    Alert,
    Box,
+   Button,
    Grid,
    IconButton,
    Dialog,
@@ -124,7 +125,7 @@ export default function FinalTask() {
                m={2}
             >
                <Typography
-                  fontSize={{xs: "1rem", sm: "1.1rem", md: "1.2rem"}}
+                  fontSize={{ xs: "1rem", sm: "1.1rem", md: "1.2rem" }}
                   fontWeight="bold"
                   align="center"
                   mb={3}
@@ -133,12 +134,29 @@ export default function FinalTask() {
                   borderRadius={1}
                >
                   Visit{" "}
-                  <a href="https://portablelab.glideapp.io/dl/d0a5f4" target="_blank">
+                  <a
+                     href="https://portablelab.glideapp.io/dl/d0a5f4"
+                     target="_blank"
+                  >
                      this site
                   </a>{" "}
                   to learn about careers, environmental goals, vessels, and more
                   at the Port of Corpus Christi.
                </Typography>
+               <Typography>
+                  Click below to restart the mission.
+               </Typography>
+               <Button
+                  component={Link}
+                  to="/"
+                  size="large"
+                  variant="contained"
+                  onClick={() => sessionStorage.clear()}
+                  sx={{mb: 2}}
+               >
+                  Restart
+               </Button>
+
                <PDFViewer width="80%" height={650}>
                   <Certificate />
                </PDFViewer>
