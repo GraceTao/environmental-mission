@@ -30,6 +30,8 @@ export default function Tree() {
                   width: "100%",
                   height: "100%",
                   boxShadow: 5,
+                  backgroundColor:"darkgreen",
+                  borderRadius: '8%'
                }}
             />
          }

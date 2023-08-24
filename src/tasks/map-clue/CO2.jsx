@@ -23,10 +23,12 @@ export default function CO2() {
          icon={
             <Co2Icon
                sx={{
-                  color: "red",
+                  color: "white",
                   width: "100%",
                   height: "100%",
                   boxShadow: 5,
+                  backgroundColor:"red",
+                  borderRadius: '8%'
                }}
             />
          }

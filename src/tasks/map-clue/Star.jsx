@@ -82,6 +82,8 @@ export default function Star() {
                   width: "100%",
                   height: "100%",
                   boxShadow: 5,
+                  backgroundColor:"goldenrod",
+                  borderRadius: '8%'
                }}
             />
          }
