@@ -30,6 +30,8 @@ export default function Hydrogen() {
                   width: "100%",
                   height: "100%",
                   boxShadow: 5,
+                  backgroundColor:"green",
+                  borderRadius: '8%'
                }}
             />
          }

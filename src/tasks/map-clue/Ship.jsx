@@ -40,10 +40,12 @@ export default function Ship() {
          icon={
             <DirectionsBoatFilledIcon
                sx={{
-                  color: "blue",
+                  color: "deepskyblue",
                   width: "100%",
                   height: "100%",
                   boxShadow: 5,
+                  backgroundColor:"darkblue",
+                  borderRadius: '8%'
                }}
             />
          }

@@ -167,6 +167,8 @@ export default function AirQuality() {
                   width: "100%",
                   height: "100%",
                   boxShadow: 5,
+                  backgroundColor:"teal",
+                  borderRadius: '8%'
                }}
             />
          }
