@@ -7,8 +7,8 @@ import {
    Image,
 } from "@react-pdf/renderer";
 
-import PortCCLogo from "../../components/PortCC-logo-horizontal-white.png";
-import LearningUndefeatedLogo from "../../components/learning_undefeated_logo.png";
+import PortCCLogo from "../../../public/PortCC-logo-horizontal-white.png";
+import LearningUndefeatedLogo from "../../../public/learning_undefeated_logo.png";
 
 // Font.register({ family: 'Courier', src: source, fontStyle: 'normal', fontWeight: 'bold', fonts: [] });
 
@@ -63,7 +63,7 @@ export default function Certificate() {
                   borderColor: "#549459", 
                   borderStyle: "solid", 
                   width: "82%",
-                  backgroundColor: "lightyellow", //#E8FEE8
+                  backgroundColor: "lightyellow", 
                   padding: 15,
                }}
             >

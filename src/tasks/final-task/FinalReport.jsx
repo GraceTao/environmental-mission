@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
    Alert,
    Box,
@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { q1, q2, q3, q4, q5 } from "./questions";
-import logo from "../../components/PortCC-logo-horizontal-white.png";
+import logo from "../../../public/PortCC-logo-horizontal-white.png";
 
 export default function FinalReport({ setShowCert }) {
    const initialAnswers = {
