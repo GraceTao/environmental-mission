@@ -18,25 +18,78 @@ const contacts = [
       name: "Me",
       occupation: "Environmental Compliance Specialist",
       color: "black",
-      bio: "Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.",
+      bio: (
+         <>
+            I conduct field inspections of local facilities, properties, and
+            project sites to make sure that they comply with environmental,
+            water pollution, airborne particulate, and other regulations related
+            to the health and safety of the community. I monitor activities,
+            assess impacts, and prepare environmental evaluations to ensure that
+            operations are environmentally responsible. Most recently, I have
+            been monitoring the Port of Corpus Christi's environmental efforts.
+         </>
+      ),
+   },
+   {
+      name: "Naomi",
+      occupation: "Design Project Engineer",
+      color: "#A1E876",
+      bio: (
+         <>
+            I collaborate with architects, environmental experts, construction
+            teams, and other engineers to develop designs that minimize
+            ecological impact, enhance energy efficiency, and incorporate
+            sustainable materials. Through innovative engineering solutions, I
+            contribute to the development of eco-friendly, efficient port
+            structures and systems. Most recently, I have been integrating solar
+            panels into a new terminal to harness renewable energy.
+         </>
+      ),
    },
    {
       name: "Stan",
       occupation: "Water Treatment Specialist",
-      color: "mediumpurple",
-      bio: "Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.",
+      color: "#A876DA",
+      bio: (
+         <>
+            I prevent pollutants from entering the ecosystem by conducting water
+            quality tests as well as designing and operating wastewater and
+            stormwater treatment systems. Most recently, I have been managing a
+            treatment plant that purifies runoff from cargo handling so it has
+            minimal impact on marine life after entering local waters.
+         </>
+      ),
+   },
+   {
+      name: "Alejandro",
+      occupation: "Manager of Environmental Sustainability and Resilience",
+      color: "#83E8EB",
+      bio: (
+         <>
+            I collaborate with design engineers, sustainability standards
+            organizations, and technical staff to oversee and implement
+            Sustainability Action Plans to enhance environmental sustainability
+            and resilience. I help develop and evaluate initiatives related to
+            energy transition, climate action, water resource management, green
+            infrastructure, and resource efficiency.
+         </>
+      ),
    },
    {
       name: "Jessy",
-      occupation: "Manager of Environmental Sustainability and Resilience",
-      color: "goldenyellow",
-      bio: "Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.",
-   },
-   {
-      name: "Will Williams",
-      occupation: "Water Treatment Specialist",
-      color: "violet",
-      bio: "Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.",
+      occupation: "Port Sustainability Manager",
+      color: "#FCD168",
+      bio: (
+         <>
+            I coordinate and promote sustainable practices across various
+            aspects of port operations, including efficiency projects, waste
+            management initiatives, and community engagement efforts. I consult
+            with local environmental agencies to evalute project sites and
+            minimize the Port of Corpus Christi's carbon footprint. Through
+            partnering with local environmental organizations, I help generate
+            positive environmental and social impacts.
+         </>
+      ),
    },
 ];
 
@@ -54,7 +107,7 @@ export default function ContactsList({ open, setOpen }) {
             maxWidth="md"
          >
             <DialogTitle
-               sx={{ backgroundColor: "darkorange", boxShadow: 5, mb: 2 }}
+               sx={{ backgroundColor: "orange", boxShadow: 5, mb: 2 }}
             >
                <Typography fontSize="1.7rem" align="center">
                   <b>Contacts</b>
@@ -66,6 +119,7 @@ export default function ContactsList({ open, setOpen }) {
                   display="flex"
                   flexDirection="row"
                   justifyContent="space-between"
+                  // sx={{mt: 2}}
                >
                   <List sx={{ pr: 3 }}>
                      <Divider color="#B6B6B6" />
@@ -74,16 +128,14 @@ export default function ContactsList({ open, setOpen }) {
                            <ListItem
                               key={person.name}
                               disablePadding
-                              sx={{ backgroundColor: "#FCB270" }}
+                              sx={{ backgroundColor: "#F9D69D" }}
                            >
                               <ListItemButton
                                  onClick={() => setActiveContact(person.name)}
-
-                                 
                               >
                                  <ListItemText>
                                     <Typography
-                                       fontSize={{sm: "1.1rem", md: "1.2rem"}}
+                                       fontSize={{ sm: "1.1rem", md: "1.2rem" }}
                                        lineHeight={1.1}
                                     >
                                        {person.name}

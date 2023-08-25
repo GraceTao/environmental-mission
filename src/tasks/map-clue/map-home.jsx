@@ -1,17 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
    Typography,
    Box,
    IconButton,
    Button,
-   //Tooltip,
+   Tooltip,
    Dialog,
-   useTheme,
-   useMediaQuery,
 } from "@mui/material";
 import Instructions from "../../components/Instructions";
 import TopBar from "../../components/TopBar";
-import Instr from "../water-quality/Instr";
+import Instr from "../../components/Instr";
 //import AssignmentTwoToneIcon from "@mui/icons-material/AssignmentTwoTone";
 import ChatIcon from "@mui/icons-material/Chat";
 import AirQuality from "./AirQuality";
@@ -20,149 +18,114 @@ import Star from "./Star";
 import Tree from "./Tree";
 import Hydrogen from "./Hydrogen";
 import CO2 from "./CO2";
-import chat from "./map_chat_animation.mp4"
+import PolicyClue from "./PolicyClue";
 
-function MapInstructions() {
-   const hasEnabledInstr = sessionStorage.getItem("hasEnabledMapInstr");
-   const [openInstr, setOpenInstr] = useState(Boolean(hasEnabledInstr));
+import chat from "./map-chat-animation.mp4";
+import Calculator from "../../components/Calculator";
+import ChatButton from "../../components/ChatButton";
 
-   const theme = useTheme();
-   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-   return openInstr ? (
-      <Box
-         display="flex"
-         flexDirection="column"
-         justifyContent="center"
-         width="100%"
-      >
-
-
-         <Instr
-            title={"Welcome to the Port of Corpus Christi!"}
-            contents={
-               `We are traveling to one of the largest U.S. ports, the Port of Corpus Christi in Texas. It is at the 
-               forefront of the maritime industry and energy marketplace.`
-            }
-         ></Instr>
-         <Instr
-            title={"Port manager:"}
-            contents={
-               `The Port handles thousands of vessels containing crude oil, petroleum, liquefied natural gas, and more. 
-               Our Environmental Management System (EMS) is ISO 14001-certified, which means we set specific environmental 
-               goals and performance measures, then work to achieve them. `
-            }
-         ></Instr>
-         <Instr
-            title={"Task:"}
-            contents={
-               `Click around on the map to learn more about the Port of Corpus Christi’s efforts to operate in a manner 
-               “conducive to environmental sustainability and resiliency.” Each window will either ask you a question whose 
-               answer is a number, or give a number in *bold*. Determine the clue word based on the numerical answers. You 
-               may need to scroll. `
-            }
-         ></Instr>
-
-      </Box>
-   ) : (
-      <div>
-         <Box
-            display="flex"
-            flexDirection={isSmallScreen ? "column" : "row"}
-            justifyContent="center"
-            margin="auto"
-         >
-            <div>
-               <video controls autoPlay style={{ width: "90%" }}>
-                  <source
-                     src={chat}
-                     alt="text messages"
-                     type="video/mp4"
-                  />
-               </video>
-            </div>
-            <Button
-               variant="contained"
-               sx={{
-                  backgroundColor: "#417B88",
-                  "&:hover": { backgroundColor: "#4AB0C7 " },
-               }}
-               onClick={() => {
-                  setOpenInstr(true);
-                  sessionStorage.setItem("hasEnabledMapInstr", true);
-               }}
-            >
-               Visit the Port of Corpus Christi!
-            </Button>
-         </Box>
-      </div>
-   );
-}
+const instructions = (
+   <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      width="100%"
+   >
+      <Instr
+         title="Welcome to the Port of Corpus Christi!"
+         contents={
+            <Typography fontSize="1.2rem" align="center">
+               The Port of Corpus Christi in Texas is one of the largest U.S.
+               ports. It is at the forefront of the maritime industry and energy
+               marketplace, handling thousands of vessels containing crude oil,
+               petroleum, liquefied natural gas, and more. The Port of Corpus
+               Christi's Environmental Management System (EMS) is ISO
+               14001-certified, which means it sets specific environmental goals
+               and performance measures, then works to achieve them.
+            </Typography>
+         }
+      />
+      <Instr
+         title="Task:"
+         contents={
+            <Typography fontSize="1.2rem" align="center">
+               Click around on the map to learn more about the Port of Corpus
+               Christi’s efforts to operate in a manner “conducive to
+               environmental sustainability and resiliency.” Each window will
+               either ask you a question whose answer is a number, or give a
+               number in <b>bold</b>. <br />
+               <u>
+                  Determine the clue word based on the numerical answers. You
+                  may need to scroll.
+               </u>
+            </Typography>
+         }
+      ></Instr>
+   </Box>
+);
 
 export default function MapHome() {
-   const [openMessages, setOpenMessages] = useState(false);
-
    return (
-      <Box
-         sx={{
-            backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/d/d8/Hafen_Corpus_Christi.svg')", //<MapBackground />,
-            backgroundSize: 'cover',
-            width: '150vw',
-            height: '150vh',
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            minHeight: "100vh",
-            overflowY: "scroll",
-            overflowX: "scroll",
-            backgroundAttachment: "local",
-         }}
+      <TopBar
+         instruction={
+            <Instructions
+               name="Jessy"
+               chat={chat}
+               buttonText="visit the port of corpus christi"
+               instructions={instructions}
+               showCalendar={false}
+            ></Instructions>
+         }
       >
-         <TopBar
-            instruction={
-               <Instructions
-                  name={
-                     <Typography
-                        color="#33403d"
-                        fontWeight="bold"
-                        fontSize="1.2rem"
-                     >
-                        instructions
-                     </Typography>
-                  }
-                  title={null}
-                  content={<MapInstructions />}
+         <Box
+            sx={{
+               backgroundImage:
+                  "url('https://upload.wikimedia.org/wikipedia/commons/d/d8/Hafen_Corpus_Christi.svg')", //<MapBackground />,
+               backgroundSize: "cover",
+               width: "140vw",
+               height: "140vh",
+               backgroundPosition: "center",
+               backgroundRepeat: "no-repeat",
+               minHeight: "100vh",
+               overflowY: "scroll",
+               overflowX: "scroll",
+               backgroundAttachment: "local",
+               position: "relative",
+               pt: 9,
+            }}
+         >
+            <Box
+               display="flex"
+               flexDirection="column"
+               justifyContent="space-between"
+               // marginTop="70px"
+               // alignItems="center"
+               marginLeft="15px"
+               position="fixed"
+               height="205px"
+            >
+               <ChatButton
+                  chat={chat}
                   style={{
-                     backgroundColor: "inherit",
-                     "&:hover": { backgroundColor: "#94B2B990" },
+                     borderRadius: 2,
+                     backgroundColor: "green ",
+                     width: 64,
+                     height: 64,
+                     "&:hover": { backgroundColor: "green" },
+                     // marginBottom: "10px",
                   }}
-               ></Instructions>
-            }
-
-         />
-         <Box display="flex" flexDirection="row" justifyContent="space-between" marginTop='8vh' marginLeft='2vw' position='fixed'>
-            <Box>
-               <IconButton onClick={() => setOpenMessages(true)}>
-                  <ChatIcon sx={{ fontSize: 55, color: "lightgreen" }} />
-               </IconButton>
+               />
+               <Calculator />
+               <PolicyClue />
             </Box>
-            <Dialog open={openMessages} onClose={() => setOpenMessages(false)}>
-               <video controls autoPlay style={{ width: "100%" }}>
-                  <source
-                     src={chat}
-                     alt="text messages"
-                     type="video/mp4"
-                  />
-               </video>
-            </Dialog>
-         </Box>
-         
-         <CO2 />
-         <Hydrogen />
-         <Ship />
-         <AirQuality />
-         <Star />
-         <Tree />
 
-      </Box>
+            <CO2 />
+            <Hydrogen />
+            <Ship />
+            <AirQuality />
+            <Star />
+            <Tree />
+         </Box>
+      </TopBar>
    );
 }

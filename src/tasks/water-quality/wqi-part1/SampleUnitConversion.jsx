@@ -36,11 +36,7 @@ export default function SampleUnitConversion() {
 
    return (
       <div>
-         <Button
-            variant="contained"
-            onClick={handleClick}
-            sx={{position: "fixed", top: {xs: 135, sm: 145}, left: 10 }}
-         >
+         <Button variant="contained" onClick={handleClick}>
             sample unit conversion
          </Button>
 
@@ -109,11 +105,11 @@ export default function SampleUnitConversion() {
                      flexDirection="row"
                      justifyContent="flex-start"
                      key={index}
+                     sx={{fontSize: {xs: "0.9rem", sm: "0.95rem", md: "1rem"}}}
                   >
-                     <Typography>{eqn.text}&emsp;</Typography>
-
+                     <Typography fontSize="inherit">{eqn.text}&emsp;</Typography>
                      <MathJaxContext>
-                        <MathJax style={{ fontSize: "1.1rem" }}>
+                        <MathJax>
                            {eqn.eqn}
                         </MathJax>
                      </MathJaxContext>

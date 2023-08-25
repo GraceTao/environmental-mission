@@ -2,13 +2,12 @@ import {
    Box,
    Dialog,
    DialogContent,
+   DialogTitle,
    Grid,
    IconButton,
    Typography,
-   Fade,
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import Instructions from "../components/Instructions";
 import { appIcons } from "./app-icons";
 import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
 import { Link } from "react-router-dom";
@@ -17,6 +16,7 @@ import StopWatch from "./StopWatch";
 import ContactsList from "./ContactsList";
 import Notification from "./Notification";
 import UserDataForm from "./user-info/UserDataForm";
+import Instructions from "../components/Instructions";
 
 function PhoneContent({ open, setOpen }) {
    return (
@@ -85,28 +85,38 @@ function ClockContent({ open, setOpen }) {
 
 function Home() {
    const purpose = (
-      <div>
-         <Typography sx={{ fontSize: "1.2rem" }} color="darkgreen">
-            You are an environmental compliance specialist working alongside
-            your peers to analyze the Port of Corpus Christi environment. You’re
-            specifically interested in the local watershed and its surrounding
-            buildings. You will be presenting a report to your manager on the
-            status and actions of the Port with respect to environmental health.
+      <Box display="flex" flexDirection="column" alignItems="center">
+         <Typography
+            sx={{
+               color: "#104A30",
+               fontSize: "1.5rem",
+               fontWeight: 700,
+               mb: 3,
+            }}
+         >
+            Online Escape Room: Environmental Mission
+         </Typography>
+         <Typography
+            sx={{ fontSize: "1.2rem" }}
+            color="darkgreen"
+            align="center"
+         >
+            You are an{" "}
+            <i>
+               <b>environmental compliance specialist</b>
+            </i>{" "}
+            working alongside your peers to analyze the Port of Corpus Christi
+            environment. You’re specifically interested in the local watershed
+            and its surrounding buildings. You will be presenting a report to
+            your manager on the status and actions of the Port of Corpus Christi
+            with respect to environmental health.
             <br />
             <br />
          </Typography>
          <Typography variant="body1" color="darkred">
             Read the notification!
          </Typography>
-      </div>
-   );
-
-   const mission = (
-      <Typography
-         sx={{ color: "#104A30", fontSize: "1.5rem", fontWeight: 700 }}
-      >
-         Online Escape Room: Environmental Mission
-      </Typography>
+      </Box>
    );
 
    const [showIconContent, setShowIconContent] = useState({
@@ -115,7 +125,24 @@ function Home() {
       ContactsIcon: false,
    });
 
-   const [showUserForm, setShowUserForm] = useState(sessionStorage.getItem("submittedStartForm") == null);
+   const [showUserForm, setShowUserForm] = useState(
+      sessionStorage.getItem("submittedStartForm") == null
+   );
+
+   useEffect(() => {
+      const storedAttempts = JSON.parse(sessionStorage.getItem("attempts"));
+      if (!storedAttempts) {
+         const initialAttempts = {
+            wqiAttempts: 0,
+            emailAttempts: 0,
+            inspectionAttempts: 0,
+            mapAttempts: 0,
+            passwordAttempts: 0,
+         };
+
+         sessionStorage.setItem("attempts", JSON.stringify(initialAttempts));
+      }
+   }, []);
 
    return (
       <>
@@ -127,87 +154,101 @@ function Home() {
             }}
          >
             {showUserForm ? (
-               <Dialog open={true} >
+               <Dialog open={true}>
                   <DialogContent>
-                     <UserDataForm open={showUserForm} setOpen={setShowUserForm} />
+                     <UserDataForm
+                        open={showUserForm}
+                        setOpen={setShowUserForm}
+                     />
                   </DialogContent>
                </Dialog>
             ) : (
-               <div style={{ position: "relative" }}>
-                  <img
-                     src={logo}
-                     alt="Port of Corpus Christi Logo"
-                     width="300px"
-                     style={{ position: "absolute", left: 5 }}
-                  />
-                  <Notification />
+               <div>
+                  <Box>
+                     <Box>
+                        <img
+                           src={logo}
+                           alt="Port of Corpus Christi Logo"
+                           width="20%"
+                           style={{
+                              position: "absolute",
+                              left: 5,
+                              minWidth: "250px",
+                           }}
+                        />
+                        <Notification />
+                        <Box position="absolute" right={10}>
+                           <Instructions instructions={purpose} />
+                        </Box>
+                     </Box>
 
-                  
-                  <Instructions
-                     name={<Typography color="white">instructions</Typography>}
-                     title={mission}
-                     content={purpose}
-                     style={{
-                        left: "87%",
-                        position: "sticky",
-                        boxShadow: 5,
-                        backgroundColor: "#356696",
-                        "&:hover": {
-                           backgroundColor: "#294E72",
-                           boxShadow: 5,
-                        },
-                     }}
-                  ></Instructions>
-                  <Grid
-                     container
-                     rowSpacing={{ xs: 8, sm: 10, md: 12, lg: 18 }}
-                     columnSpacing={{ xs: 15, sm: 20, md: 20, lg: 25 }}
-                     justifyContent="center"
-                     alignItems="center"
-                     style={{ marginTop: "2%", marginBottom: "2%" }}
-                  >
-                     {appIcons.map((app) => (
-                        <Grid item key={app.name}>
-                           <IconButton
-                              component={app.path !== "/" ? Link : null}
-                              to={app.path !== "/" ? app.path : null}
-                              onClick={() => {
-                                 app.path === "/" &&
-                                    setShowIconContent({
-                                       ...showIconContent,
-                                       [app.name]: !showIconContent[app.name],
-                                    });
-                              }}
-                              sx={{
-                                 border: "solid",
-                                 borderColor: app.color,
-                                 borderRadius: "45%",
-                                 "&:hover": {
-                                    backgroundColor: "#FCECFC70",
-                                    boxShadow: 7,
-                                 },
-                                 boxShadow: 2,
-                                 width: {
-                                    xs: "85px",
-                                    sm: "90px",
-                                    md: "100px",
-                                    lg: "100px",
-                                 },
-                                 height: {
-                                    xs: "85px",
-                                    sm: "90px",
-                                    md: "100px",
-                                    lg: "100px",
-                                 },
-                              }}
-                           >
-                              <app.icon
-                                 sx={{ fontSize: "60px", color: app.color }}
-                              ></app.icon>
-                           </IconButton>
-                        </Grid>
-                     ))}
-                  </Grid>
+                     <Grid
+                        container
+                        rowSpacing={{ xs: 8, sm: 10, md: 12, lg: 18 }}
+                        columnSpacing={{ xs: 15, sm: 22, md: 25, lg: 25 }}
+                        justifyContent="center"
+                        alignItems="center"
+                        position="relative"
+                        sx={{
+                           pt: { xs: "16%", sm: "14%", md: "12%", lg: "11%" },
+                           pl: "4%",
+                           pr: "4%",
+                           pb: "5%",
+                        }}
+                     >
+                        {appIcons.map((app) => (
+                           <Grid item key={app.name}>
+                              <IconButton
+                                 component={app.path !== "/" ? Link : null}
+                                 to={
+                                    app.path !== "/"
+                                       ? app.name === "CalendarIcon" &&
+                                         sessionStorage.getItem(
+                                            "displayWQIClue"
+                                         ) == "true"
+                                          ? "/wqi-p3"
+                                          : app.path
+                                       : null
+                                 }
+                                 onClick={() => {
+                                    app.path === "/" &&
+                                       setShowIconContent({
+                                          ...showIconContent,
+                                          [app.name]:
+                                             !showIconContent[app.name],
+                                       });
+                                 }}
+                                 sx={{
+                                    border: "solid",
+                                    borderColor: app.color,
+                                    borderRadius: "45%",
+                                    "&:hover": {
+                                       backgroundColor: "lightgray",
+                                       boxShadow: 7,
+                                    },
+                                    boxShadow: 2,
+                                    width: {
+                                       xs: "90px",
+                                       sm: "95px",
+                                       md: "100px",
+                                       lg: "105px",
+                                    },
+                                    height: {
+                                       xs: "90px",
+                                       sm: "95px",
+                                       md: "100px",
+                                       lg: "105px",
+                                    },
+                                 }}
+                              >
+                                 <app.icon
+                                    sx={{ fontSize: "65px", color: app.color }}
+                                 ></app.icon>
+                              </IconButton>
+                           </Grid>
+                        ))}
+                     </Grid>
+                  </Box>
                   <ContactsList
                      open={showIconContent}
                      setOpen={setShowIconContent}

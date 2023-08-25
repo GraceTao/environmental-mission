@@ -20,7 +20,7 @@ export default function ImageCredits() {
       >
          <Button
             onClick={handleClick}
-            sx={{ color: "blue", fontWeight: "bold" }}
+            sx={{ color: "black", fontWeight: "bold" }}
          >
             Image Credits
          </Button>

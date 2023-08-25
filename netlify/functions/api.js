@@ -1,14 +1,16 @@
 import { google } from "googleapis";
 import express, { Router } from "express";
 import serverless from "serverless-http";
+import Redlock from "redlock";
+import Client from "ioredis";
 
-const SHEET_ID = "1H0Rs1kbonJtlWkSydnf7D0TmVWr44TP47ZfJQt1tEtE";
+const SHEET_ID = process.env.SHEET_ID;
 
 const serviceAccount = {
    type: "service_account",
    project_id: "learn-undef-environ-mission",
    private_key_id: process.env.PRIVATE_KEY_ID,
-   private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
+   private_key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"),
    client_email: process.env.CLIENT_EMAIL,
    client_id: process.env.CLIENT_ID,
    auth_uri: "https://accounts.google.com/o/oauth2/auth",
@@ -27,48 +29,68 @@ const auth = new google.auth.GoogleAuth({
    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
-
 const service = google.sheets({ version: "v4", auth });
 
-router.post("/submituserdata", async (req, res) => {
-   const { state, county, school, order, attempts, q1, q2, q3, q4, q5 } = req.body;
-
-   console.log(req.body);
-
-   try {
-      await service.spreadsheets.values.append({
-         spreadsheetId: SHEET_ID,
-         range: "Sheet1",
-         valueInputOption: "RAW",
-         resource: {
-            values: [[state, county, school, order, attempts, q1, q2, q3, q4, q5]],
-         },
-      });
-
-      console.log("Data added successfully");
-      res.status(200).send("Data added successfully");
-   } catch (err) {
-      console.error("Error adding user data: ", err);
-      res.status(500).json({ message: "An error occurred" });
-   }
+const redis = new Client({
+   // host: `redis://default:${process.env.REDIS_PASSWORD}@${process.env.REDIS_HOST}`,
+   host: process.env.REDIS_HOST,
+   port: process.env.REDIS_PORT,
+   password: process.env.REDIS_PASSWORD,
 });
 
-// router.get("/getdata", async (req, res) => {
+const redlock = new Redlock([redis], {
+   driftFactor: 0.01,
+   retryCount: -1,
+   retryDelay: 200,
+   retryJitter: 200,
+});
 
-//    try {
-//       const response = await service.spreadsheets.values.get({
-//          spreadsheetId: SHEET_ID,
-//          range: "A1:C1",
-//        });
-   
-//        const rows = response.data.values;
-//        console.log("Row data:", rows);
-//       res.status(200).send("Row fetched successfully");
-//    } catch (err) {
-//       console.error("Error adding user data: ", err);
-//       res.status(500).json({ message: "An error occurred" });
-//    }
-// });
+router.post("/submituserdata", async (req, res) => {
+   const {
+      state,
+      county,
+      school,
+      order,
+      emailAttempts,
+      inspectionAttempts,
+      mapAttempts,
+      wqiAttempts,
+      passwordAttempts,
+      ...rest
+   } = req.body;
+
+   const toAdd = [
+      state,
+      county,
+      school,
+      order,
+      emailAttempts,
+      inspectionAttempts,
+      mapAttempts,
+      wqiAttempts,
+      passwordAttempts,
+      ...Object.values(rest),
+   ];
+
+   redlock.using(["submit user data"], 5000, async (signal) => {
+      try {
+         await service.spreadsheets.values.append({
+            spreadsheetId: SHEET_ID,
+            range: "Sheet1",
+            valueInputOption: "RAW",
+            resource: {
+               values: [toAdd],
+            },
+         });
+
+         console.log("Data added successfully");
+         res.status(200).send("Data added successfully");
+      } catch (err) {
+         console.error("Error adding user data: ", err);
+         res.status(500).json({ message: "An error occurred" });
+      }
+   });
+});
 
 api.use("/api", router);
 export const handler = serverless(api);

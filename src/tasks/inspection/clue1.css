@@ -1,0 +1,190 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+
+.Button {
+  margin-right : "50px";
+}
+
+.container {
+  position: relative;
+  background-image: url("https://p1.pxfuel.com/preview/696/35/657/field-tree-lonely-landscape-nature-meadow.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  /* height: 100vh; */
+  overflow-y: auto;
+  background-attachment: local;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+
+
+
+
+
+.violations {
+  position: relative;
+  display: flex; /* or inline-flex */
+  flex-direction: row;
+  top: 70vh; /* Adjust as needed */
+  left: 5vw; /* Adjust as needed */
+  align-items: flex-end;
+  
+ 
+  
+  
+  
+}
+
+
+button[name="pesticides"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 20vw;
+  height: 20vh;
+  margin-right: 5%;
+  padding: 0; */
+  border: none;
+  background: none;
+  /* Other desired styles */
+}
+
+button img {
+  width: 100%;
+  min-width: 70px;
+  object-fit: contain;
+  align-items: center;
+  justify-content: center;
+}
+
+button[name="building"] {
+  position: relative;
+  /* width: 20vw;
+  height: 40vh;
+  margin-right: 5%;
+  padding: 0; */
+  border: none;
+  background: none;
+  /* Other desired styles */
+}
+
+button[name="emission"] {
+  position: relative;
+  /* width: 20vw;
+  height: 20vh; 
+  margin-right: 5%;
+  padding: 0; */
+  border: none;
+  background: none;
+  /* Other desired styles */
+}
+
+
+
+button[name="trash"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 20vw;
+  height: 20vh;
+  margin-right: 5%;
+  padding: 0; */
+  border: none;
+  background: none;
+  /* Other desired styles */
+}
+
+
+Button[name="report"] {
+  position: absolute;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  top: 15px;
+  left: 90px;
+  /* height:8vh; */
+  min-width:100px;
+  /* left: 15vw; */
+  width: 10vw;
+  font-size:1.1rem;
+  /* margin-right: 5%;
+  padding: 0; */
+  /* Other desired styles */
+}
+
+
+button[name="grass"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 20vw;
+  height: 20vh;
+  margin-right: 5%;
+  padding: 0; */
+  border: none;
+  background: none;
+  /* Other desired styles */
+}
+
+
+
+.vertical {
+  position: relative;
+  top: -15vh;
+  left:3vw;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  
+
+  
+ 
+}
+
+/* .row {
+
+  
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  
+
+  
+} */
+
+@media (max-height: 400px) {
+  txt { font-size: 10px; }
+}
+
+
+@media (max-width: 400px) {
+  p { font-size: 12px; }
+}
+
+@media (max-width: 300px) {
+  p { font-size: 10px; }
+}
+
+@media (max-width: 550px) {
+  p { font-size: 18px; }
+}
+
+@media (min-width: 551px) {
+  p { font-size: 20px; }
+}
