@@ -11,7 +11,7 @@ import React, { useState, useEffect } from "react";
 import { appIcons } from "./app-icons";
 import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
 import { Link } from "react-router-dom";
-import logo from "../../public/PortCC-logo-horizontal-white.png";
+import logo from "../components/PortCC-logo-horizontal-white.png";
 import StopWatch from "./StopWatch";
 import ContactsList from "./ContactsList";
 import Notification from "./Notification";

@@ -7,8 +7,8 @@ import {
    Image,
 } from "@react-pdf/renderer";
 
-import PortCCLogo from "../../../public/PortCC-logo-horizontal-white.png";
-import LearningUndefeatedLogo from "../../../public/learning_undefeated_logo.png";
+import PortCCLogo from "../../components/PortCC-logo-horizontal-white.png";
+import LearningUndefeatedLogo from "../../components/learning_undefeated_logo.png";
 
 // Font.register({ family: 'Courier', src: source, fontStyle: 'normal', fontWeight: 'bold', fonts: [] });
 

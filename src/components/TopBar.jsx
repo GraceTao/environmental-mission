@@ -1,7 +1,7 @@
 import { AppBar, Toolbar, Tooltip, IconButton } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
-import logo from "../../public/PortCC-logo-horizontal-white.png";
+import logo from "./PortCC-logo-horizontal-white.png";
 
 export default function TopBar({ instruction, children }) {
    return (
