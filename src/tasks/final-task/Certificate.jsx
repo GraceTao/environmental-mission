@@ -63,7 +63,7 @@ export default function Certificate() {
                   borderColor: "#549459", 
                   borderStyle: "solid", 
                   width: "82%",
-                  backgroundColor: "lightyellow", //#E8FEE8
+                  backgroundColor: "lightyellow", 
                   padding: 15,
                }}
             >
